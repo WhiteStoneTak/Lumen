@@ -1,0 +1,7 @@
+{
+  "lumen_schema": "contract-diff-v1",
+  "func_id": "count_vowels",
+  "source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+  "regeneration_attempts": 0,
+  "edits": []
+}

@@ -1,0 +1,7 @@
+{
+  "lumen_schema": "contract-diff-v1",
+  "func_id": "is_sorted",
+  "source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
+  "regeneration_attempts": 0,
+  "edits": []
+}

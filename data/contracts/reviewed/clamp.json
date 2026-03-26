@@ -1,0 +1,10 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "clamp",
+  "source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+  "generation_model": null,
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [],
+  "invariants": []
+}

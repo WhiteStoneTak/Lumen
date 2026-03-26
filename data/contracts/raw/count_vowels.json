@@ -1,0 +1,10 @@
+{
+  "lumen_schema": "contract-raw-v1",
+  "func_id": "count_vowels",
+  "source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+  "generation_model": null,
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [],
+  "invariants": []
+}

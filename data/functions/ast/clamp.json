@@ -1,0 +1,171 @@
+{
+  "lumen_schema": "ast-v1",
+  "func_id": "clamp",
+  "source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "clamp",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "value",
+              "annotation": {
+                "_type": "Name",
+                "id": "float",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "lo",
+              "annotation": {
+                "_type": "Name",
+                "id": "float",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "hi",
+              "annotation": {
+                "_type": "Name",
+                "id": "float",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return value clamped to the closed interval [lo, hi].\n\n    Assumes lo <= hi.\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "Compare",
+              "left": {
+                "_type": "Name",
+                "id": "value",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ops": [
+                {
+                  "_type": "Lt"
+                }
+              ],
+              "comparators": [
+                {
+                  "_type": "Name",
+                  "id": "lo",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "Name",
+                  "id": "lo",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "Compare",
+              "left": {
+                "_type": "Name",
+                "id": "value",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ops": [
+                {
+                  "_type": "Gt"
+                }
+              ],
+              "comparators": [
+                {
+                  "_type": "Name",
+                  "id": "hi",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "Name",
+                  "id": "hi",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "value",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Name",
+          "id": "float",
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}
