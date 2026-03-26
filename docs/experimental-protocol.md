@@ -85,7 +85,52 @@ The `ast` field is a recursive dict serialization of the Python `ast.AST` node t
 Each node is `{"_type": "<NodeClassName>", "<field>": ...}`. Lists and scalars are
 passed through unchanged. Produced by `src/pipeline/text_to_ast.py`.
 
-### 4.2 Contract Raw (`contract-raw-v1`)
+### 4.2 Typed AST JSON (`typed_ast-v1`)
+
+```json
+{
+  "lumen_schema": "typed_ast-v1",
+  "func_id": "<string>",
+  "source_hash": "<sha256 hex of raw .py file>",
+  "mypy_version": "<string>",
+  "type_info": {
+    "extraction_status": "ok | partial | failed",
+    "extraction_notes": ["<string>", ...],
+    "func_type": "<mypy full signature string or null>",
+    "params": [
+      {
+        "name": "<string>",
+        "mypy_type": "<stable type string or null>",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "<mypy return type string or null>"
+  },
+  "ast": { ... }
+}
+```
+
+The `ast` field is identical in structure to `ast-v1` — the same recursive dict
+serialization of the Python AST. The `type_info` section overlays type annotations
+extracted by the mypy build API.
+
+**Extraction method:** `mypy.build.build()` with the source file as input.
+Param and return types are extracted from `FuncDef.arguments[i].variable.type` and
+`FuncDef.type.ret_type` respectively.
+
+**Known limitation:** Local variable types are not extracted. The mypy build API
+in this usage mode does not run the full type-checker on function bodies; only
+function signature types derived from explicit annotations are available.
+This limitation is recorded in `extraction_notes` of every artifact.
+
+**Extraction status values:**
+- `"ok"` — all params and return type extracted without error
+- `"partial"` — some types extracted; at least one param or return type is null
+- `"failed"` — mypy could not process the source; `type_info` fields are null
+
+Produced by `src/pipeline/ast_to_typed_ast.py`.
+
+### 4.3 Contract Raw (`contract-raw-v1`)
 
 ```json
 {
@@ -102,13 +147,13 @@ passed through unchanged. Produced by `src/pipeline/text_to_ast.py`.
 
 Produced by `src/pipeline/contract_generator.py`. Not to be edited by the author.
 
-### 4.3 Contract Reviewed (`contract-reviewed-v1`)
+### 4.4 Contract Reviewed (`contract-reviewed-v1`)
 
 Same top-level fields as `contract-raw-v1` except `lumen_schema` is
 `contract-reviewed-v1`. This file reflects the author-reviewed version and is the
 authoritative contract used in C4 and C1+.
 
-### 4.4 Contract Diff (`contract-diff-v1`)
+### 4.5 Contract Diff (`contract-diff-v1`)
 
 ```json
 {
