@@ -7,7 +7,9 @@ name = "lumen"
 version = "0.1.0"
 description = "Route A empirical study: structured code representations for LLM code reasoning"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "anthropic>=0.20.0",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]

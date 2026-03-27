@@ -291,7 +291,7 @@ T3 "minimal modification" metric: **dropped** (constitution v0.2.2 §14.3).
 |------|----------|-------|---------------------|
 | Test subject A | OpenAI | GPT-5.4 | TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT |
 | Test subject B | Anthropic | Claude Opus 4.6 | TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT |
-| Contract-generation LLM | Anthropic | Claude Sonnet 4.6 | TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT |
+| Contract-generation LLM | Anthropic | Claude Sonnet 4.6 | `claude-sonnet-4-6` |
 
 **Separation constraint (binding):** The contract-generation LLM (Claude Sonnet 4.6)
 must not be used as a test subject in any experimental condition. This is required
@@ -334,14 +334,14 @@ Max output tokens:     TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
 
 --- Contract-generation LLM ---
 Provider:              Anthropic
-Execution surface:     TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-Exact model identifier (API):  TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-UI display label (if no API ID):  TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
+Execution surface:     Anthropic Messages API (anthropic Python SDK)
+Exact model identifier (API):  claude-sonnet-4-6
+UI display label (if no API ID):  N/A — exact API identifier in use
 Access date (YYYY-MM-DD):  TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-Prompt version:        TO BE FILLED (see src/pipeline/contract_generator.py)
+Prompt version:        _CONTRACT_PROMPT_TEMPLATE in src/pipeline/contract_generator.py
 Decoding — temperature:  0.0
 Decoding — other:      provider defaults (see §8.3)
-Max output tokens:     TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
+Max output tokens:     1024
 ```
 
 ### 8.3 Default Decoding Policy
