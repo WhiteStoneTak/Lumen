@@ -2,9 +2,21 @@
   "lumen_schema": "contract-raw-v1",
   "func_id": "count_vowels",
   "source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
-  "generation_model": null,
+  "generation_model": "claude-sonnet-4-6",
   "generation_attempt": 0,
-  "preconditions": [],
-  "postconditions": [],
-  "invariants": []
+  "preconditions": [
+    "s must be a string"
+  ],
+  "postconditions": [
+    "The return value is a non-negative integer",
+    "The return value equals the total count of characters in s that are 'a', 'e', 'i', 'o', or 'u' (case-insensitive)",
+    "The return value is at most len(s)",
+    "The return value is 0 if s contains no vowel characters (case-insensitive)",
+    "The return value equals len(s) if every character in s is a vowel (case-insensitive)"
+  ],
+  "invariants": [
+    "Non-alphabetic characters in s do not contribute to the return value",
+    "The comparison is case-insensitive, so uppercase vowels are counted the same as lowercase vowels",
+    "The return value is always an integer greater than or equal to 0"
+  ]
 }

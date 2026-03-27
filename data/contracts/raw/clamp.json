@@ -2,9 +2,20 @@
   "lumen_schema": "contract-raw-v1",
   "func_id": "clamp",
   "source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
-  "generation_model": null,
+  "generation_model": "claude-sonnet-4-6",
   "generation_attempt": 0,
-  "preconditions": [],
-  "postconditions": [],
-  "invariants": []
+  "preconditions": [
+    "lo <= hi"
+  ],
+  "postconditions": [
+    "The return value is greater than or equal to lo",
+    "The return value is less than or equal to hi",
+    "If value < lo, the return value equals lo",
+    "If value > hi, the return value equals hi",
+    "If lo <= value <= hi, the return value equals value"
+  ],
+  "invariants": [
+    "The return value is always within the closed interval [lo, hi]",
+    "The return value is one of: lo, hi, or value itself"
+  ]
 }

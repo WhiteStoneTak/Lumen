@@ -2,9 +2,22 @@
   "lumen_schema": "contract-raw-v1",
   "func_id": "is_sorted",
   "source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
-  "generation_model": null,
+  "generation_model": "claude-sonnet-4-6",
   "generation_attempt": 0,
-  "preconditions": [],
-  "postconditions": [],
-  "invariants": []
+  "preconditions": [
+    "items must be a list",
+    "Elements in items must be comparable to each other using the > operator"
+  ],
+  "postconditions": [
+    "The return value is a bool",
+    "The return value is True if items is empty",
+    "The return value is True if items contains exactly one element",
+    "The return value is True if every element is less than or equal to the next element (non-decreasing order)",
+    "The return value is False if any element is strictly greater than the element immediately following it"
+  ],
+  "invariants": [
+    "The function does not modify the input list",
+    "The return value is always a bool (either True or False)",
+    "The function always returns True for lists of length 0 or 1"
+  ]
 }
