@@ -1,0 +1,61 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "clamp",
+  "source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+  "properties": [
+    {
+      "property_id": "clamp.P01",
+      "category": "inputs",
+      "statement": "The function accepts exactly three parameters: value, lo, and hi.",
+      "required": true
+    },
+    {
+      "property_id": "clamp.P02",
+      "category": "inputs",
+      "statement": "All three parameters are annotated as float.",
+      "required": true
+    },
+    {
+      "property_id": "clamp.P03",
+      "category": "inputs",
+      "statement": "The precondition lo <= hi is documented in the docstring but is not enforced by the function body.",
+      "required": true
+    },
+    {
+      "property_id": "clamp.P04",
+      "category": "outputs",
+      "statement": "The return type is float.",
+      "required": true
+    },
+    {
+      "property_id": "clamp.P05",
+      "category": "behavior",
+      "statement": "Returns lo when value is strictly less than lo.",
+      "required": true
+    },
+    {
+      "property_id": "clamp.P06",
+      "category": "behavior",
+      "statement": "Returns hi when value is strictly greater than hi.",
+      "required": true
+    },
+    {
+      "property_id": "clamp.P07",
+      "category": "behavior",
+      "statement": "Returns value unchanged when lo <= value <= hi.",
+      "required": true
+    },
+    {
+      "property_id": "clamp.P08",
+      "category": "edge_case",
+      "statement": "The interval [lo, hi] is closed: when value equals lo or hi exactly, value itself is returned.",
+      "required": true
+    },
+    {
+      "property_id": "clamp.P09",
+      "category": "edge_case",
+      "statement": "When lo equals hi, the function always returns lo (= hi) regardless of the value of value.",
+      "required": false
+    }
+  ]
+}

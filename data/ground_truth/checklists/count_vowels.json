@@ -1,0 +1,49 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "count_vowels",
+  "source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+  "properties": [
+    {
+      "property_id": "count_vowels.P01",
+      "category": "inputs",
+      "statement": "The function accepts exactly one parameter s, annotated as str.",
+      "required": true
+    },
+    {
+      "property_id": "count_vowels.P02",
+      "category": "outputs",
+      "statement": "The return type is int.",
+      "required": true
+    },
+    {
+      "property_id": "count_vowels.P03",
+      "category": "outputs",
+      "statement": "The return value is a non-negative integer representing the number of vowel characters found.",
+      "required": true
+    },
+    {
+      "property_id": "count_vowels.P04",
+      "category": "behavior",
+      "statement": "Counts exactly the five vowels: a, e, i, o, u.",
+      "required": true
+    },
+    {
+      "property_id": "count_vowels.P05",
+      "category": "behavior",
+      "statement": "The count is case-insensitive: uppercase vowel letters are counted the same as lowercase.",
+      "required": true
+    },
+    {
+      "property_id": "count_vowels.P06",
+      "category": "behavior",
+      "statement": "Non-vowel characters — including consonants, digits, spaces, and punctuation — do not contribute to the count.",
+      "required": true
+    },
+    {
+      "property_id": "count_vowels.P07",
+      "category": "edge_case",
+      "statement": "Returns 0 for an empty string.",
+      "required": true
+    }
+  ]
+}

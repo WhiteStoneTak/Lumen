@@ -1,0 +1,55 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "is_sorted",
+  "source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
+  "properties": [
+    {
+      "property_id": "is_sorted.P01",
+      "category": "inputs",
+      "statement": "The function accepts exactly one parameter items, annotated as list.",
+      "required": true
+    },
+    {
+      "property_id": "is_sorted.P02",
+      "category": "inputs",
+      "statement": "The element type is unconstrained; the function requires only that elements support pairwise comparison with >.",
+      "required": true
+    },
+    {
+      "property_id": "is_sorted.P03",
+      "category": "outputs",
+      "statement": "The return type is bool.",
+      "required": true
+    },
+    {
+      "property_id": "is_sorted.P04",
+      "category": "behavior",
+      "statement": "Returns True if and only if items is in non-decreasing order (no element is strictly greater than its immediate successor).",
+      "required": true
+    },
+    {
+      "property_id": "is_sorted.P05",
+      "category": "behavior",
+      "statement": "Returns False if any adjacent pair exists where the earlier element is strictly greater than the later element.",
+      "required": true
+    },
+    {
+      "property_id": "is_sorted.P06",
+      "category": "edge_case",
+      "statement": "Returns True for an empty list.",
+      "required": true
+    },
+    {
+      "property_id": "is_sorted.P07",
+      "category": "edge_case",
+      "statement": "Returns True for a single-element list.",
+      "required": true
+    },
+    {
+      "property_id": "is_sorted.P08",
+      "category": "edge_case",
+      "statement": "Equal adjacent elements satisfy the non-decreasing condition; a list of all equal elements returns True.",
+      "required": true
+    }
+  ]
+}
