@@ -3,5 +3,20 @@
   "func_id": "is_sorted",
   "source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
   "regeneration_attempts": 0,
-  "edits": []
+  "edits": [
+    {
+      "kind": "delete",
+      "clause_type": "invariant",
+      "original": "The return value is always a bool (either True or False)",
+      "revised": null,
+      "justification": "This is redundant with the existing postcondition and typed return information."
+    },
+    {
+      "kind": "delete",
+      "clause_type": "invariant",
+      "original": "The function always returns True for lists of length 0 or 1",
+      "revised": null,
+      "justification": "This is redundant with the existing postconditions for empty and single-element lists."
+    }
+  ]
 }

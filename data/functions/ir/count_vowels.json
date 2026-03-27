@@ -1,0 +1,195 @@
+{
+  "lumen_schema": "ir-v1",
+  "func_id": "count_vowels",
+  "source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (s: builtins.str) -> builtins.int",
+    "params": [
+      {
+        "name": "s",
+        "mypy_type": "builtins.str",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.int"
+  },
+  "contracts": {
+    "preconditions": [
+      "s must be a string"
+    ],
+    "postconditions": [
+      "The return value is a non-negative integer",
+      "The return value equals the total count of characters in s that are 'a', 'e', 'i', 'o', or 'u' (case-insensitive)",
+      "The return value is at most len(s)",
+      "The return value is 0 if s contains no vowel characters (case-insensitive)",
+      "The return value equals len(s) if every character in s is a vowel (case-insensitive)"
+    ],
+    "invariants": [
+      "Non-alphabetic characters in s do not contribute to the return value",
+      "The comparison is case-insensitive, so uppercase vowels are counted the same as lowercase vowels"
+    ]
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "count_vowels",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "s",
+              "annotation": {
+                "_type": "Name",
+                "id": "str",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return the number of vowel characters in s, case-insensitive.\n\n    Counts a, e, i, o, u only. Non-alphabetic characters are ignored.\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "count",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "ch",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Call",
+              "func": {
+                "_type": "Attribute",
+                "value": {
+                  "_type": "Name",
+                  "id": "s",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "attr": "lower",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [],
+              "keywords": []
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "ch",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "In"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Constant",
+                      "value": "aeiou",
+                      "kind": null
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "AugAssign",
+                    "target": {
+                      "_type": "Name",
+                      "id": "count",
+                      "ctx": {
+                        "_type": "Store"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "value": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    }
+                  }
+                ],
+                "orelse": []
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "count",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Name",
+          "id": "int",
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

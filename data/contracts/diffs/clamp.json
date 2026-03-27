@@ -3,5 +3,20 @@
   "func_id": "clamp",
   "source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
   "regeneration_attempts": 0,
-  "edits": []
+  "edits": [
+    {
+      "kind": "delete",
+      "clause_type": "invariant",
+      "original": "The return value is always within the closed interval [lo, hi]",
+      "revised": null,
+      "justification": "This depends on the precondition lo <= hi and is better treated as a postcondition than an invariant."
+    },
+    {
+      "kind": "delete",
+      "clause_type": "invariant",
+      "original": "The return value is one of: lo, hi, or value itself",
+      "revised": null,
+      "justification": "This is redundant given the existing branch-specific postconditions."
+    }
+  ]
 }
