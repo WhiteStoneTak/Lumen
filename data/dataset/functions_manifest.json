@@ -31,8 +31,8 @@
           "ground_truth_ref": "data/ground_truth/checklists/clamp.json"
         },
         "T2": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/clamp.json"
         },
         "T3": {
           "available": false,
@@ -76,8 +76,8 @@
           "ground_truth_ref": "data/ground_truth/checklists/count_vowels.json"
         },
         "T2": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/count_vowels.json"
         },
         "T3": {
           "available": false,
@@ -121,8 +121,8 @@
           "ground_truth_ref": "data/ground_truth/checklists/is_sorted.json"
         },
         "T2": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/is_sorted.json"
         },
         "T3": {
           "available": false,

@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "count_vowels",
+  "source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+  "bug_id": "count_vowels.B01",
+  "bug_category": "off_by_one",
+  "bug_description": "The accumulator increment uses `count += 2` instead of `count += 1`, doubling the contribution of every vowel and producing a result twice the correct count.",
+  "location": {
+    "path": "data/ground_truth/bugs/count_vowels_buggy.py",
+    "start_line": 9,
+    "end_line": 9
+  },
+  "reference_fix": {
+    "start_line": 9,
+    "end_line": 9,
+    "replacement": "            count += 1"
+  },
+  "test_suite_ref": "data/ground_truth/tests/count_vowels_t2_test.py"
+}

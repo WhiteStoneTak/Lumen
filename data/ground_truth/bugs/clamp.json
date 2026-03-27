@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "clamp",
+  "source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+  "bug_id": "clamp.B01",
+  "bug_category": "wrong_comparison_operator",
+  "bug_description": "The upper-bound guard uses `value < hi` instead of `value > hi`, so values above hi are never clamped and pass through to `return value` unchecked.",
+  "location": {
+    "path": "data/ground_truth/bugs/clamp_buggy.py",
+    "start_line": 8,
+    "end_line": 8
+  },
+  "reference_fix": {
+    "start_line": 8,
+    "end_line": 8,
+    "replacement": "    if value > hi:"
+  },
+  "test_suite_ref": "data/ground_truth/tests/clamp_t2_test.py"
+}

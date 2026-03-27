@@ -33,8 +33,8 @@ Pilot seeds currently wired:
 
 Current task availability in pilot manifest:
 
-- `T1`: available (checklists present)
-- `T2`: unavailable (manual bug annotations/tests pending)
+- `T1`: available (checklists present for all 3 pilot functions)
+- `T2`: **active** (t2-bug-v1 annotations, buggy source files, and test suites authored for all 3 pilot functions; see §2 T2 below)
 - `T3`: unavailable (manual transform specs/tests pending)
 
 ## 2. Ground-Truth Artifact Schemas
@@ -66,6 +66,19 @@ Validation code lives in `src/experiment/contracts.py`.
 Template (manual authoring starter, not active truth):
 
 - `data/ground_truth/bugs/TEMPLATE.t2-bug-v1.json`
+
+Active T2 pilot artifacts (authored 2026-03-27):
+
+| func_id | bug_id | bug_category | buggy line |
+|---|---|---|---|
+| `clamp` | `clamp.B01` | `wrong_comparison_operator` | line 8: `value < hi` instead of `value > hi` |
+| `count_vowels` | `count_vowels.B01` | `off_by_one` | line 9: `count += 2` instead of `count += 1` |
+| `is_sorted` | `is_sorted.B01` | `wrong_comparison_operator` | line 7: `>=` instead of `>` |
+
+Buggy source files: `data/ground_truth/bugs/{func_id}_buggy.py`
+Test suites: `data/ground_truth/tests/{func_id}_t2_test.py`
+
+Intentionally deferred for T2: `score_t2.py` scorer implementation, experiment runner integration.
 
 ### T3 Transformation Spec
 
@@ -134,4 +147,4 @@ The following are intentionally not implemented in this block:
 - experiment runner orchestration
 - task scorer implementations (`score_t1_checklist.py`, `score_t2.py`, `score_t3.py`)
 - analysis scripts and statistical reporting
-- manual authoring of T2/T3 pilot truth content
+- manual authoring of T3 pilot truth content (T2 is now active)
