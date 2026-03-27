@@ -1,0 +1,10 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "template_only": true,
+  "status": "manual_authoring_required",
+  "func_id": "<func_id>",
+  "source_hash": "<sha256 of data/functions/raw/{func_id}.py>",
+  "transform_id": "<func_id>.TR01",
+  "instruction": "<natural-language transformation specification>",
+  "test_suite_ref": "data/ground_truth/tests/<func_id>_t3_test.py"
+}

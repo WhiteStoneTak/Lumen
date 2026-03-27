@@ -1,0 +1,21 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "template_only": true,
+  "status": "manual_authoring_required",
+  "func_id": "<func_id>",
+  "source_hash": "<sha256 of data/functions/raw/{func_id}.py>",
+  "bug_id": "<func_id>.B01",
+  "bug_category": "off_by_one",
+  "bug_description": "<one-sentence canonical diagnosis>",
+  "location": {
+    "path": "data/ground_truth/bugs/<func_id>_buggy.py",
+    "start_line": 1,
+    "end_line": 1
+  },
+  "reference_fix": {
+    "start_line": 1,
+    "end_line": 1,
+    "replacement": "<fixed code line(s)>"
+  },
+  "test_suite_ref": "data/ground_truth/tests/<func_id>_t2_test.py"
+}

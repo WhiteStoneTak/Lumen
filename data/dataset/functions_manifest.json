@@ -1,0 +1,141 @@
+{
+  "lumen_schema": "dataset-manifest-v1",
+  "protocol_scope": "route-a-90-day-python-non-recursive-single-function",
+  "items": [
+    {
+      "func_id": "clamp",
+      "source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+      "inclusion_status": "included",
+      "dataset_tier": "pilot",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/clamp.py",
+        "annotated_text": "data/functions/annotated_text/clamp.py",
+        "ast": "data/functions/ast/clamp.json",
+        "typed_ast": "data/functions/typed_ast/clamp.json",
+        "ir": "data/functions/ir/clamp.json"
+      },
+      "representations": {
+        "C1": true,
+        "C1+": true,
+        "C2": true,
+        "C3": true,
+        "C4": true
+      },
+      "tasks": {
+        "T1": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/clamp.json"
+        },
+        "T2": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+        "ast_source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+        "typed_ast_source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+        "ir_source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+        "t1_source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491"
+      }
+    },
+    {
+      "func_id": "count_vowels",
+      "source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+      "inclusion_status": "included",
+      "dataset_tier": "pilot",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/count_vowels.py",
+        "annotated_text": "data/functions/annotated_text/count_vowels.py",
+        "ast": "data/functions/ast/count_vowels.json",
+        "typed_ast": "data/functions/typed_ast/count_vowels.json",
+        "ir": "data/functions/ir/count_vowels.json"
+      },
+      "representations": {
+        "C1": true,
+        "C1+": true,
+        "C2": true,
+        "C3": true,
+        "C4": true
+      },
+      "tasks": {
+        "T1": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/count_vowels.json"
+        },
+        "T2": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+        "ast_source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+        "typed_ast_source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+        "ir_source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+        "t1_source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660"
+      }
+    },
+    {
+      "func_id": "is_sorted",
+      "source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
+      "inclusion_status": "included",
+      "dataset_tier": "pilot",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/is_sorted.py",
+        "annotated_text": "data/functions/annotated_text/is_sorted.py",
+        "ast": "data/functions/ast/is_sorted.json",
+        "typed_ast": "data/functions/typed_ast/is_sorted.json",
+        "ir": "data/functions/ir/is_sorted.json"
+      },
+      "representations": {
+        "C1": true,
+        "C1+": true,
+        "C2": true,
+        "C3": true,
+        "C4": true
+      },
+      "tasks": {
+        "T1": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/is_sorted.json"
+        },
+        "T2": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
+        "ast_source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
+        "typed_ast_source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
+        "ir_source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
+        "t1_source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54"
+      }
+    }
+  ]
+}
