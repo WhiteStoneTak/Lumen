@@ -39,7 +39,6 @@ from pathlib import Path
 # Designated contract-generation model per experimental protocol §8.1.
 # Do NOT substitute a test-subject model here.
 CONTRACT_GENERATION_MODEL = "claude-sonnet-4-6"
-CONTRACT_GENERATION_PROVIDER = "Anthropic"
 
 # Maximum total attempts per function (protocol §6: up to 2 regeneration attempts).
 MAX_ATTEMPTS = 3
@@ -254,9 +253,7 @@ def generate_raw_contract(func_id: str) -> Path:
             "func_id": func_id,
             "source_hash": source_hash,
             "generation_model": CONTRACT_GENERATION_MODEL,
-            "generation_provider": CONTRACT_GENERATION_PROVIDER,
             "generation_attempt": attempt,
-            "generation_temperature": 0.0,
             "preconditions": parsed["preconditions"],
             "postconditions": parsed["postconditions"],
             "invariants": parsed["invariants"],
