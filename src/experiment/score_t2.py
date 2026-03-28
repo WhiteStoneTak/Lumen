@@ -353,10 +353,25 @@ def _apply_fix_to_source(
     """Apply model's fix to the buggy source at the reference_fix line span.
 
     reference_fix uses 1-based inclusive line numbers.
+
+    If the model_fix_line has no leading whitespace but the original buggy line
+    does, the original indentation is preserved so the patched source remains
+    syntactically valid Python.
     """
     lines = buggy_source.splitlines(keepends=True)
     start = reference_fix["start_line"] - 1   # 0-indexed
     end = reference_fix["end_line"]            # exclusive (1-indexed end + 1 - 1 = end)
+
+    # Normalize indentation: if the model omitted leading whitespace, re-apply
+    # the indentation from the original buggy line so the patched source is
+    # syntactically valid regardless of how the model formatted its fix snippet.
+    original_line = lines[start] if start < len(lines) else ""
+    original_indent = len(original_line) - len(original_line.lstrip())
+    fix_stripped = model_fix_line.lstrip()
+    fix_indent = len(model_fix_line) - len(fix_stripped)
+    if original_indent > 0 and fix_indent == 0:
+        model_fix_line = " " * original_indent + fix_stripped
+
     # Preserve the trailing newline on the replacement line
     replacement = model_fix_line.rstrip("\n") + "\n"
     fixed_lines = lines[:start] + [replacement] + lines[end:]

@@ -138,6 +138,33 @@ Fix:
 ```
 """
 
+# Simulates real model output: fix shown without leading indentation in the
+# short snippet, which previously caused an IndentationError in the scorer.
+CLAMP_RESPONSE_NO_INDENT_FIX = """\
+The bug is on line 8. The comparison `value < hi` is wrong — it should be
+`value > hi`. The fix is:
+
+```python
+if value > hi:
+    return hi
+```
+
+Corrected function:
+
+```python
+def clamp(value: float, lo: float, hi: float) -> float:
+    \"\"\"Return value clamped to the closed interval [lo, hi].
+
+    Assumes lo <= hi.
+    \"\"\"
+    if value < lo:
+        return lo
+    if value > hi:
+        return hi
+    return value
+```
+"""
+
 
 # ---------------------------------------------------------------------------
 # Test class
@@ -332,6 +359,20 @@ class TestScoreT2Fix(unittest.TestCase):
             msg=f"unexpected detail: {detail!r}",
         )
 
+    def test_clamp_unindented_fix_snippet_passes(self) -> None:
+        """Regression: fix line without leading whitespace must not IndentationError.
+
+        Real model responses often present the fix without indentation in the
+        short code snippet (e.g. ``if value > hi:`` with no leading spaces).
+        _apply_fix_to_source must re-apply the original indentation so the
+        patched source compiles cleanly.
+        """
+        claims = extract_t2_claims(CLAMP_RESPONSE_NO_INDENT_FIX)
+        score, detail = score_t2_fix(
+            claims, self.clamp_ctx["truth"], self.clamp_ctx["buggy_source"]
+        )
+        self.assertEqual(score, 1, msg=f"detail={detail!r}")
+
 
 class TestScoreT2Composite(unittest.TestCase):
     def _run(self, func_id: str, response: str) -> dict:
@@ -426,6 +467,12 @@ class TestScoreT2Composite(unittest.TestCase):
         """Caveat 2: clamp diagnosis must not require exact bug_description."""
         result = self._run("clamp", CLAMP_DIAGNOSIS_BY_OPERATOR_ONLY)
         self.assertEqual(result["subscores"]["diagnosis"], 1)
+
+    def test_clamp_unindented_fix_snippet_full_score(self) -> None:
+        """Regression: model response with unindented fix snippet scores 3/3."""
+        result = self._run("clamp", CLAMP_RESPONSE_NO_INDENT_FIX)
+        self.assertEqual(result["score"], 3.0, msg=f"subscores={result['subscores']}")
+        self.assertEqual(result["status"], "ok")
 
     def test_subscores_keys_present(self) -> None:
         result = self._run("clamp", CLAMP_RESPONSE_CORRECT)
