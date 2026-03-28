@@ -17,6 +17,7 @@ from experiment.contracts import (  # noqa: E402
     load_ground_truth_for_scorer_input,
     validate_scorer_result,
     validate_t2_bug_annotation,
+    validate_t3_transform_spec,
 )
 
 
@@ -32,7 +33,7 @@ class ExperimentContractTests(unittest.TestCase):
             item = get_manifest_item(manifest, func_id)
             self.assertTrue(item["tasks"]["T1"]["available"])
             self.assertTrue(item["tasks"]["T2"]["available"])
-            self.assertFalse(item["tasks"]["T3"]["available"])
+            self.assertTrue(item["tasks"]["T3"]["available"])
 
     def test_t1_ground_truth_loads_from_scorer_input_contract(self) -> None:
         scorer_input = {
@@ -115,6 +116,36 @@ class ExperimentContractTests(unittest.TestCase):
             # ground-truth paths are resolved separately in validate_t2_bug_annotation.
             payload = load_ground_truth_for_scorer_input(scorer_input, check_paths=False)
             self.assertEqual(payload["lumen_schema"], "t2-bug-v1")
+            self.assertEqual(payload["func_id"], func_id)
+
+    def test_t3_annotations_load_and_validate_for_all_pilot_funcs(self) -> None:
+        """Each pilot function's active T3 transform spec must pass full schema validation."""
+        import json
+        from experiment.contracts import repo_root
+
+        root = repo_root()
+        for func_id in ("clamp", "count_vowels", "is_sorted"):
+            path = root / "data" / "ground_truth" / "transforms" / f"{func_id}.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            validated = validate_t3_transform_spec(payload, expected_func_id=func_id, check_paths=True)
+            self.assertEqual(validated["lumen_schema"], "t3-transform-v1")
+            self.assertEqual(validated["func_id"], func_id)
+
+    def test_t3_manifest_resolution_returns_t3_transform_schema(self) -> None:
+        """load_ground_truth_for_scorer_input resolves T3 ground truth correctly."""
+        for func_id in ("clamp", "count_vowels", "is_sorted"):
+            scorer_input = {
+                "lumen_schema": "scorer-input-v1",
+                "func_id": func_id,
+                "task": "T3",
+                "condition": "C4",
+                "model_id": "demo-model",
+                "response_ref": "results/raw/placeholder.json",
+            }
+            # check_paths=False: scorer_input.response_ref is a placeholder;
+            # ground-truth paths are resolved separately in validate_t3_transform_spec.
+            payload = load_ground_truth_for_scorer_input(scorer_input, check_paths=False)
+            self.assertEqual(payload["lumen_schema"], "t3-transform-v1")
             self.assertEqual(payload["func_id"], func_id)
 
     def test_t3_parse_failure_requires_zero_score(self) -> None:

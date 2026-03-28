@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "count_vowels",
+  "source_hash": "4857ad43eeb1e45cc8582bb0626cbe39aba239eb413ba40e8193718b80241660",
+  "transform_id": "count_vowels.TR01",
+  "instruction": "Modify the function to also count the letter 'y' (and 'Y') as a vowel, in addition to a, e, i, o, u. The function must remain case-insensitive.",
+  "test_suite_ref": "data/ground_truth/tests/count_vowels_t3_test.py"
+}

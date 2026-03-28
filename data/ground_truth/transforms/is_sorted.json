@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "is_sorted",
+  "source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
+  "transform_id": "is_sorted.TR01",
+  "instruction": "Modify the function to require strictly ascending order: each element must be strictly less than the next element. A list with equal adjacent elements must return False. Empty and single-element lists still return True.",
+  "test_suite_ref": "data/ground_truth/tests/is_sorted_t3_test.py"
+}

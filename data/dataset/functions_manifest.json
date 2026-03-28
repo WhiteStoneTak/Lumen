@@ -35,8 +35,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/clamp.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/clamp.json"
         }
       },
       "lineage": {
@@ -80,8 +80,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/count_vowels.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/count_vowels.json"
         }
       },
       "lineage": {
@@ -125,8 +125,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/is_sorted.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/is_sorted.json"
         }
       },
       "lineage": {

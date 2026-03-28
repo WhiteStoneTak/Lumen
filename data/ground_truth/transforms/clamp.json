@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "clamp",
+  "source_hash": "71247521e8d01109b8e9e2d5684125bccba5e920dc932949bd5b4eac73d2c491",
+  "transform_id": "clamp.TR01",
+  "instruction": "Modify the function to enforce the precondition `lo <= hi` by raising `ValueError` with a descriptive message when `lo > hi`. All other behavior (clamping value to [lo, hi]) must remain unchanged.",
+  "test_suite_ref": "data/ground_truth/tests/clamp_t3_test.py"
+}
