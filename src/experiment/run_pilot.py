@@ -62,10 +62,25 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Use a specific run ID instead of the auto-generated timestamp.",
     )
     p.add_argument(
+        "--run-mode",
+        default="full",
+        choices=["smoke", "full"],
+        help="Plan/execute the full matrix or a deterministic smoke subset (default: full).",
+    )
+    p.add_argument(
+        "--behavior",
+        default="resume",
+        choices=["resume", "overwrite", "skip"],
+        help=(
+            "How to treat existing item state for the same run_id: "
+            "resume completed-safe items, overwrite all items, or only run still-planned items."
+        ),
+    )
+    p.add_argument(
         "--force",
         action="store_true",
         default=False,
-        help="Re-run items that already have score artifacts (overwrite).",
+        help="Deprecated alias for --behavior overwrite.",
     )
     p.add_argument(
         "--dry-run",
@@ -81,6 +96,9 @@ def main(argv: list[str] | None = None) -> int:
     parser = _build_parser()
     args = parser.parse_args(argv)
 
+    if args.force and args.behavior not in {"resume", "overwrite"}:
+        parser.error("--force cannot be combined with --behavior skip")
+
     from experiment.runner import run_pilot_experiment  # noqa: PLC0415
 
     summary = run_pilot_experiment(
@@ -91,11 +109,15 @@ def main(argv: list[str] | None = None) -> int:
         conditions=args.conditions,
         force=args.force,
         dry_run=args.dry_run,
+        run_mode=args.run_mode,
+        execution_behavior=args.behavior,
     )
 
     print(
         f"\nRun complete: {summary['run_id']}  "
+        f"planned={summary['planned']}  "
         f"completed={summary['completed']}  "
+        f"running={summary['running']}  "
         f"skipped={summary['skipped']}  "
         f"failed={summary['failed']}"
     )

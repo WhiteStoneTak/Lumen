@@ -22,10 +22,13 @@ Coverage:
 
 from __future__ import annotations
 
+import csv
 import json
+import shutil
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -40,6 +43,7 @@ from experiment.runner import (  # noqa: E402
     plan_experiment_items,
     resolve_representation_artifact,
     run_pilot_experiment,
+    select_smoke_items,
     slugify_model,
 )
 
@@ -68,6 +72,26 @@ class RunnerPlanningTests(unittest.TestCase):
     def test_plan_two_models_doubles_count(self) -> None:
         items = plan_experiment_items(self.manifest, models=["m1", "m2"])
         self.assertEqual(len(items), 90)
+
+    def test_smoke_subset_one_per_model_task_pair(self) -> None:
+        items = plan_experiment_items(self.manifest, models=["m1", "m2"])
+        smoke = select_smoke_items(items)
+        self.assertEqual(len(smoke), 6)
+        self.assertEqual(
+            {(item["model"], item["task"]) for item in smoke},
+            {
+                ("m1", "T1"),
+                ("m1", "T2"),
+                ("m1", "T3"),
+                ("m2", "T1"),
+                ("m2", "T2"),
+                ("m2", "T3"),
+            },
+        )
+
+    def test_smoke_subset_is_deterministic(self) -> None:
+        items = plan_experiment_items(self.manifest, models=["m1", "m2"])
+        self.assertEqual(select_smoke_items(items), select_smoke_items(items))
 
     def test_plan_filters_by_func_id(self) -> None:
         items = plan_experiment_items(
@@ -444,6 +468,245 @@ class RunnerDryRunTests(unittest.TestCase):
         self.assertEqual(item["task"], "T2")
         self.assertEqual(item["condition"], "C2")
         self.assertEqual(item["status"], "planned")
+
+    def test_dry_run_smoke_mode_produces_expected_subset(self) -> None:
+        summary = run_pilot_experiment(
+            models=["m1", "m2"],
+            run_mode="smoke",
+            dry_run=True,
+        )
+        self.assertEqual(summary["total_items"], 6)
+        self.assertEqual(summary["planned"], 6)
+        self.assertEqual(summary["run_spec"]["run_mode"], "smoke")
+
+
+class RunnerPersistenceAuditExportTests(unittest.TestCase):
+
+    def _run_dir(self, run_id: str) -> Path:
+        return repo_root() / "results" / "runs" / run_id
+
+    def _cleanup_run(self, run_id: str) -> None:
+        shutil.rmtree(self._run_dir(run_id), ignore_errors=True)
+
+    def test_completed_items_persist_prompt_response_and_score(self) -> None:
+        run_id = "test_runner_completed_persistence"
+        self._cleanup_run(run_id)
+        self.addCleanup(self._cleanup_run, run_id)
+
+        with patch(
+            "experiment.runner.invoke_model",
+            return_value={
+                "model_id": "test-model",
+                "response_text": (
+                    "clamp takes value, lo, hi and returns lo when value is below lo, "
+                    "hi when value is above hi, and value otherwise."
+                ),
+                "prompt_tokens": None,
+                "total_tokens": None,
+                "error": None,
+            },
+        ):
+            summary = run_pilot_experiment(
+                models=["test-model"],
+                run_id=run_id,
+                func_ids=["clamp"],
+                tasks=["T1"],
+                conditions=["C1"],
+                run_mode="full",
+                execution_behavior="overwrite",
+            )
+
+        item = summary["items"][0]
+        self.assertEqual(item["status"], "completed")
+        self.assertTrue((repo_root() / item["prompt_path"]).exists())
+        self.assertTrue((repo_root() / item["response_path"]).exists())
+        self.assertTrue((repo_root() / item["score_path"]).exists())
+
+        audit = json.loads((self._run_dir(run_id) / "audit.json").read_text(encoding="utf-8"))
+        self.assertEqual(audit["counts"]["completed"], 1)
+        self.assertEqual(audit["missing_expected_output_count"], 0)
+
+        export_path = self._run_dir(run_id) / "analysis_long.csv"
+        self.assertTrue(export_path.exists())
+        with export_path.open(encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["item_status"], "completed")
+        self.assertEqual(rows[0]["function"], "clamp")
+
+    def test_failed_items_persist_failure_state_and_reason(self) -> None:
+        run_id = "test_runner_failed_persistence"
+        self._cleanup_run(run_id)
+        self.addCleanup(self._cleanup_run, run_id)
+
+        with patch(
+            "experiment.runner.invoke_model",
+            return_value={
+                "model_id": "test-model",
+                "response_text": "",
+                "prompt_tokens": None,
+                "total_tokens": None,
+                "error": "synthetic model failure",
+            },
+        ):
+            summary = run_pilot_experiment(
+                models=["test-model"],
+                run_id=run_id,
+                func_ids=["clamp"],
+                tasks=["T1"],
+                conditions=["C1"],
+                execution_behavior="overwrite",
+            )
+
+        item = summary["items"][0]
+        self.assertEqual(item["status"], "failed")
+        self.assertEqual(item["failure_reason"]["code"], "model_invocation_failed")
+        self.assertTrue((repo_root() / item["prompt_path"]).exists())
+        self.assertTrue((repo_root() / item["response_path"]).exists())
+        self.assertIsNone(item["score_path"])
+
+        export_path = self._run_dir(run_id) / "analysis_long.csv"
+        with export_path.open(encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertEqual(rows[0]["item_status"], "failed")
+        self.assertEqual(rows[0]["execution_failure_reason_code"], "model_invocation_failed")
+
+    def test_resume_does_not_rerun_completed_items(self) -> None:
+        run_id = "test_runner_resume_completed"
+        self._cleanup_run(run_id)
+        self.addCleanup(self._cleanup_run, run_id)
+
+        success_response = {
+            "model_id": "test-model",
+            "response_text": (
+                "clamp takes value, lo, hi and returns lo when value is below lo, "
+                "hi when value is above hi, and value otherwise."
+            ),
+            "prompt_tokens": None,
+            "total_tokens": None,
+            "error": None,
+        }
+
+        with patch("experiment.runner.invoke_model", return_value=success_response) as mocked:
+            first = run_pilot_experiment(
+                models=["test-model"],
+                run_id=run_id,
+                func_ids=["clamp"],
+                tasks=["T1"],
+                conditions=["C1"],
+                execution_behavior="overwrite",
+            )
+            self.assertEqual(mocked.call_count, 1)
+
+        with patch(
+            "experiment.runner.invoke_model",
+            side_effect=AssertionError("resume should not rerun completed items"),
+        ):
+            second = run_pilot_experiment(
+                models=["test-model"],
+                run_id=run_id,
+                func_ids=["clamp"],
+                tasks=["T1"],
+                conditions=["C1"],
+                execution_behavior="resume",
+            )
+
+        self.assertEqual(first["items"][0]["status"], "completed")
+        self.assertEqual(second["items"][0]["status"], "completed")
+        self.assertEqual(second["items"][0]["attempt_count"], 1)
+
+    def test_audit_detects_missing_completed_artifacts(self) -> None:
+        run_id = "test_runner_missing_artifact_audit"
+        self._cleanup_run(run_id)
+        self.addCleanup(self._cleanup_run, run_id)
+
+        with patch(
+            "experiment.runner.invoke_model",
+            return_value={
+                "model_id": "test-model",
+                "response_text": (
+                    "clamp takes value, lo, hi and returns lo when value is below lo, "
+                    "hi when value is above hi, and value otherwise."
+                ),
+                "prompt_tokens": None,
+                "total_tokens": None,
+                "error": None,
+            },
+        ):
+            first = run_pilot_experiment(
+                models=["test-model"],
+                run_id=run_id,
+                func_ids=["clamp"],
+                tasks=["T1"],
+                conditions=["C1"],
+                execution_behavior="overwrite",
+            )
+
+        prompt_path = repo_root() / first["items"][0]["prompt_path"]
+        prompt_path.unlink()
+
+        second = run_pilot_experiment(
+            models=["test-model"],
+            run_id=run_id,
+            func_ids=["clamp"],
+            tasks=["T1"],
+            conditions=["C1"],
+            dry_run=True,
+        )
+
+        item = second["items"][0]
+        self.assertEqual(item["status"], "failed")
+        self.assertEqual(item["failure_reason"]["code"], "completed_artifacts_missing")
+
+        audit = json.loads((self._run_dir(run_id) / "audit.json").read_text(encoding="utf-8"))
+        self.assertEqual(audit["missing_expected_output_count"], 1)
+        self.assertEqual(
+            audit["missing_expected_outputs"][0]["missing_expected_artifacts"],
+            ["prompt"],
+        )
+
+    def test_export_has_one_row_per_item_and_failure_rows_are_representable(self) -> None:
+        run_id = "test_runner_export_shape"
+        self._cleanup_run(run_id)
+        self.addCleanup(self._cleanup_run, run_id)
+
+        responses = [
+            {
+                "model_id": "test-model",
+                "response_text": (
+                    "clamp takes value, lo, hi and returns lo when value is below lo, "
+                    "hi when value is above hi, and value otherwise."
+                ),
+                "prompt_tokens": None,
+                "total_tokens": None,
+                "error": None,
+            },
+            {
+                "model_id": "test-model",
+                "response_text": "",
+                "prompt_tokens": None,
+                "total_tokens": None,
+                "error": "synthetic model failure",
+            },
+        ]
+
+        with patch("experiment.runner.invoke_model", side_effect=responses):
+            summary = run_pilot_experiment(
+                models=["test-model"],
+                run_id=run_id,
+                func_ids=["clamp"],
+                tasks=["T1"],
+                conditions=["C1", "C2"],
+                execution_behavior="overwrite",
+            )
+
+        self.assertEqual(summary["total_items"], 2)
+        export_path = self._run_dir(run_id) / "analysis_long.csv"
+        with export_path.open(encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertEqual(len(rows), 2)
+        self.assertEqual({row["condition"] for row in rows}, {"C1", "C2"})
+        self.assertEqual({row["item_status"] for row in rows}, {"completed", "failed"})
 
 
 if __name__ == "__main__":
