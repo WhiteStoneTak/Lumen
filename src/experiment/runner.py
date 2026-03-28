@@ -45,7 +45,7 @@ from experiment.score_t3 import score_t3
 PROMPT_VERSION = "pilot-v1"
 RUN_INDEX_SCHEMA = "pilot-run-index-v2"
 RUN_AUDIT_SCHEMA = "pilot-run-audit-v1"
-RUN_MODES = ("smoke", "full")
+RUN_MODES = ("smoke", "full", "preflight")
 EXECUTION_BEHAVIORS = ("resume", "overwrite", "skip")
 ITEM_STATUS_LIFECYCLE = ("planned", "running", "completed", "failed", "skipped")
 DEFAULT_TASKS = ("T1", "T2", "T3")
@@ -217,12 +217,47 @@ def select_smoke_items(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return selected
 
 
+def plan_preflight_items(
+    manifest: dict[str, Any],
+    models: list[str],
+) -> list[dict[str, Any]]:
+    """Return exactly 15 items for a deterministic preflight run.
+
+    Selects:
+    - 1 function: the first alphabetically-sorted included function
+    - 1 model: the first model in *models*
+    - All 3 tasks (T1, T2, T3)
+    - All 5 conditions (C1, C1+, C2, C3, C4)
+
+    Total = 1 × 1 × 3 × 5 = 15 items (assumes the chosen function has all
+    tasks available and all condition representations present, as every pilot
+    function does).
+    """
+    included = sorted(
+        (item["func_id"] for item in manifest.get("items", [])
+         if item.get("inclusion_status") == "included"),
+    )
+    if not included:
+        raise ValueError("Manifest contains no included functions.")
+    first_func = included[0]
+    first_model = models[0]
+    return plan_experiment_items(
+        manifest,
+        models=[first_model],
+        func_ids=[first_func],
+    )
+
+
 def _apply_run_mode(items: list[dict[str, Any]], run_mode: str) -> list[dict[str, Any]]:
     """Return the planned items after applying *run_mode*."""
     if run_mode == "full":
         return items
     if run_mode == "smoke":
         return select_smoke_items(items)
+    if run_mode == "preflight":
+        # preflight items are already computed via plan_preflight_items;
+        # _apply_run_mode receives the pre-planned list unchanged.
+        return items
     raise ValueError(f"Unknown run_mode: {run_mode!r}")
 
 
@@ -257,6 +292,11 @@ def _build_run_spec(
         "smoke_selection_rule": (
             "first planned item for each (model, task) pair"
             if run_mode == "smoke"
+            else None
+        ),
+        "preflight_selection_rule": (
+            "first alphabetical function × first model × all tasks × all conditions (15 items)"
+            if run_mode == "preflight"
             else None
         ),
     }
@@ -1202,7 +1242,7 @@ def run_pilot_experiment(
     dry_run:
         Plan only — do not call the LLM.
     run_mode:
-        ``"full"`` or ``"smoke"``.
+        ``"full"``, ``"smoke"``, or ``"preflight"``.
     execution_behavior:
         ``"resume"``, ``"overwrite"``, or ``"skip"``.
 
@@ -1228,14 +1268,17 @@ def run_pilot_experiment(
     run_dir.mkdir(parents=True, exist_ok=True)
 
     manifest = load_dataset_manifest(check_paths=True)
-    planned_items = plan_experiment_items(
-        manifest,
-        models=models,
-        tasks=tasks,
-        conditions=conditions,
-        func_ids=func_ids,
-    )
-    items = _apply_run_mode(planned_items, run_mode)
+    if run_mode == "preflight":
+        items = plan_preflight_items(manifest, models=models)
+    else:
+        planned_items = plan_experiment_items(
+            manifest,
+            models=models,
+            tasks=tasks,
+            conditions=conditions,
+            func_ids=func_ids,
+        )
+        items = _apply_run_mode(planned_items, run_mode)
     run_spec = _build_run_spec(
         run_id=run_id,
         items=items,

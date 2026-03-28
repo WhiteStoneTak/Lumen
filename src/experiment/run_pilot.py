@@ -64,8 +64,12 @@ def _build_parser() -> argparse.ArgumentParser:
     p.add_argument(
         "--run-mode",
         default="full",
-        choices=["smoke", "full"],
-        help="Plan/execute the full matrix or a deterministic smoke subset (default: full).",
+        choices=["smoke", "full", "preflight"],
+        help=(
+            "Plan/execute the full matrix, a deterministic smoke subset, or a preflight "
+            "run (1 function × 1 model × all tasks × all conditions = 15 items). "
+            "(default: full)"
+        ),
     )
     p.add_argument(
         "--behavior",

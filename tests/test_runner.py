@@ -41,6 +41,7 @@ from experiment.runner import (  # noqa: E402
     build_task_prompt,
     dispatch_scorer,
     plan_experiment_items,
+    plan_preflight_items,
     resolve_representation_artifact,
     run_pilot_experiment,
     select_smoke_items,
@@ -157,6 +158,75 @@ class RunnerPlanningTests(unittest.TestCase):
 
     def test_slugify_model_replaces_both(self) -> None:
         self.assertEqual(slugify_model("a/b:c"), "a_b_c")
+
+
+# ---------------------------------------------------------------------------
+# Preflight planning tests
+# ---------------------------------------------------------------------------
+
+class RunnerPreflightTests(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.manifest = load_dataset_manifest(check_paths=True)
+
+    def test_preflight_exact_item_count(self) -> None:
+        """plan_preflight_items must return exactly 15 items."""
+        items = plan_preflight_items(self.manifest, models=["test-model"])
+        self.assertEqual(len(items), 15)
+
+    def test_preflight_covers_all_five_conditions(self) -> None:
+        """preflight must cover all 5 conditions."""
+        items = plan_preflight_items(self.manifest, models=["test-model"])
+        conditions = {item["condition"] for item in items}
+        self.assertEqual(conditions, {"C1", "C1+", "C2", "C3", "C4"})
+
+    def test_preflight_covers_all_three_tasks(self) -> None:
+        """preflight must cover all 3 tasks."""
+        items = plan_preflight_items(self.manifest, models=["test-model"])
+        tasks = {item["task"] for item in items}
+        self.assertEqual(tasks, {"T1", "T2", "T3"})
+
+    def test_preflight_uses_exactly_one_function(self) -> None:
+        """preflight must select exactly 1 function."""
+        items = plan_preflight_items(self.manifest, models=["test-model"])
+        func_ids = {item["func_id"] for item in items}
+        self.assertEqual(len(func_ids), 1)
+
+    def test_preflight_uses_exactly_one_model(self) -> None:
+        """preflight must use exactly 1 model (the first supplied)."""
+        items = plan_preflight_items(self.manifest, models=["m1", "m2"])
+        models = {item["model"] for item in items}
+        self.assertEqual(models, {"m1"})
+        self.assertEqual(len(models), 1)
+
+    def test_preflight_selects_first_alphabetical_function(self) -> None:
+        """preflight function must be the first alphabetically among included functions."""
+        from experiment.contracts import load_dataset_manifest  # noqa: PLC0415
+        manifest = load_dataset_manifest(check_paths=True)
+        included = sorted(
+            item["func_id"]
+            for item in manifest["items"]
+            if item.get("inclusion_status") == "included"
+        )
+        expected_first = included[0]
+        items = plan_preflight_items(manifest, models=["test-model"])
+        self.assertTrue(all(item["func_id"] == expected_first for item in items))
+
+    def test_preflight_run_mode_dry_run_produces_15_items(self) -> None:
+        """run_pilot_experiment with run_mode='preflight' must plan 15 items."""
+        summary = run_pilot_experiment(
+            models=["test-model", "other-model"],
+            run_mode="preflight",
+            dry_run=True,
+        )
+        self.assertEqual(summary["total_items"], 15)
+        self.assertEqual(summary["run_spec"]["run_mode"], "preflight")
+
+    def test_preflight_is_deterministic(self) -> None:
+        """plan_preflight_items is deterministic — repeated calls return identical items."""
+        items_a = plan_preflight_items(self.manifest, models=["test-model"])
+        items_b = plan_preflight_items(self.manifest, models=["test-model"])
+        self.assertEqual(items_a, items_b)
 
 
 # ---------------------------------------------------------------------------
