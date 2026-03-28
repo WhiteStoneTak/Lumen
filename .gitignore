@@ -39,3 +39,8 @@ htmlcov/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Experiment run outputs (LLM responses, scores, index files).
+# The results/ directory exists in the repo for analysis/figures/raw artifacts;
+# only the auto-generated run subdirectories are gitignored.
+results/runs/
