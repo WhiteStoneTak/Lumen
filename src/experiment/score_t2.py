@@ -362,14 +362,14 @@ def _apply_fix_to_source(
     start = reference_fix["start_line"] - 1   # 0-indexed
     end = reference_fix["end_line"]            # exclusive (1-indexed end + 1 - 1 = end)
 
-    # Normalize indentation: if the model omitted leading whitespace, re-apply
-    # the indentation from the original buggy line so the patched source is
-    # syntactically valid regardless of how the model formatted its fix snippet.
+    # Normalize indentation: strip any leading whitespace the model may have
+    # included in its fix snippet and re-apply the exact indentation of the
+    # original buggy line.  This makes the patched source syntactically valid
+    # regardless of whether the model used 0, 3, or any other indent width.
     original_line = lines[start] if start < len(lines) else ""
     original_indent = len(original_line) - len(original_line.lstrip())
     fix_stripped = model_fix_line.lstrip()
-    fix_indent = len(model_fix_line) - len(fix_stripped)
-    if original_indent > 0 and fix_indent == 0:
+    if original_indent > 0:
         model_fix_line = " " * original_indent + fix_stripped
 
     # Preserve the trailing newline on the replacement line
