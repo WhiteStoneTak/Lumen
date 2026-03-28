@@ -1,7 +1,7 @@
 """Tests for the Lumen pilot experiment runner (src/experiment/runner.py).
 
 Coverage:
-1. plan_experiment_items — full pilot count (all 3 funcs × T1+T3 + T2/C1)
+1. plan_experiment_items — full pilot count (all 3 funcs × 5 conditions for T1/T2/T3 = 39)
 2. plan_experiment_items — filters by func_id
 3. plan_experiment_items — filters by task
 4. plan_experiment_items — T1/T2/T3 all appear when available
@@ -17,6 +17,7 @@ Coverage:
 14. dispatch_scorer — T2 returns scorer-result-v1 dict
 15. dispatch_scorer — T3 returns scorer-result-v1 dict
 16. run_pilot_experiment — dry_run=True produces planned items without error
+17. resolve_representation_artifact — T2 non-C1 returns buggy artifact paths
 """
 
 from __future__ import annotations
@@ -58,15 +59,15 @@ class RunnerPlanningTests(unittest.TestCase):
 
     def test_plan_all_pilot_items_expected_count(self) -> None:
         # 3 funcs × T1 × 5 conditions = 15
-        # 3 funcs × T2 × 1 condition (C1 only) = 3
+        # 3 funcs × T2 × 5 conditions = 15  (T2 now fully crossed)
         # 3 funcs × T3 × 5 conditions = 15
-        # total = 33 per model
+        # total = 45 per model
         items = plan_experiment_items(self.manifest, models=["test-model"])
-        self.assertEqual(len(items), 33)
+        self.assertEqual(len(items), 45)
 
     def test_plan_two_models_doubles_count(self) -> None:
         items = plan_experiment_items(self.manifest, models=["m1", "m2"])
-        self.assertEqual(len(items), 66)
+        self.assertEqual(len(items), 90)
 
     def test_plan_filters_by_func_id(self) -> None:
         items = plan_experiment_items(
@@ -93,13 +94,24 @@ class RunnerPlanningTests(unittest.TestCase):
         self.assertIn("T2", tasks)
         self.assertIn("T3", tasks)
 
-    def test_plan_t2_only_c1(self) -> None:
+    def test_plan_t2_all_five_conditions(self) -> None:
         items = plan_experiment_items(self.manifest, models=["m"])
         t2_items = [i for i in items if i["task"] == "T2"]
-        self.assertTrue(
-            all(i["condition"] == "C1" for i in t2_items),
-            "T2 items should only have condition C1 in the pilot runner",
+        t2_conditions = {i["condition"] for i in t2_items}
+        self.assertEqual(
+            t2_conditions,
+            {"C1", "C1+", "C2", "C3", "C4"},
+            "T2 should be fully crossed with all 5 conditions",
         )
+
+    def test_plan_t2_count_per_func(self) -> None:
+        items = plan_experiment_items(self.manifest, models=["m"])
+        for func_id in ("clamp", "count_vowels", "is_sorted"):
+            t2_func_items = [i for i in items if i["task"] == "T2" and i["func_id"] == func_id]
+            self.assertEqual(
+                len(t2_func_items), 5,
+                f"Expected 5 T2 items for {func_id} (one per condition), got {len(t2_func_items)}",
+            )
 
     def test_plan_item_has_required_keys(self) -> None:
         items = plan_experiment_items(
@@ -167,13 +179,55 @@ class RunnerRepresentationTests(unittest.TestCase):
         # Buggy source should contain a bug — 'value < hi' instead of 'value > hi'
         self.assertIn("def clamp", art["content"])
 
-    def test_resolve_t2_non_c1_returns_none(self) -> None:
-        for cond in ("C1+", "C2", "C3", "C4"):
-            result = resolve_representation_artifact("clamp", cond, self.manifest, task="T2")
-            self.assertIsNone(
-                result,
-                f"Expected None for T2/{cond} (buggy representation not available)",
-            )
+    def test_resolve_t2_c1plus_returns_buggy_annotated_text(self) -> None:
+        art = resolve_representation_artifact("clamp", "C1+", self.manifest, task="T2")
+        self.assertIsNotNone(art, "T2/C1+ should return a buggy annotated text artifact")
+        self.assertEqual(art.get("note"), "buggy_source")
+        self.assertIn("data/functions/annotated_text/clamp_buggy.py", art["path"])
+        self.assertIn("def clamp", art["content"])
+
+    def test_resolve_t2_c2_returns_buggy_ast_json(self) -> None:
+        art = resolve_representation_artifact("clamp", "C2", self.manifest, task="T2")
+        self.assertIsNotNone(art, "T2/C2 should return a buggy AST artifact")
+        self.assertEqual(art.get("note"), "buggy_source")
+        self.assertIn("clamp_buggy.json", art["path"])
+        parsed = json.loads(art["content"])
+        self.assertEqual(parsed.get("lumen_schema"), "ast-v1")
+
+    def test_resolve_t2_c3_returns_buggy_typed_ast_json(self) -> None:
+        art = resolve_representation_artifact("clamp", "C3", self.manifest, task="T2")
+        self.assertIsNotNone(art, "T2/C3 should return a buggy typed AST artifact")
+        self.assertEqual(art.get("note"), "buggy_source")
+        self.assertIn("clamp_buggy.json", art["path"])
+        parsed = json.loads(art["content"])
+        self.assertEqual(parsed.get("lumen_schema"), "typed_ast-v1")
+
+    def test_resolve_t2_c4_returns_buggy_ir_json(self) -> None:
+        art = resolve_representation_artifact("clamp", "C4", self.manifest, task="T2")
+        self.assertIsNotNone(art, "T2/C4 should return a buggy IR artifact")
+        self.assertEqual(art.get("note"), "buggy_source")
+        self.assertIn("clamp_buggy.json", art["path"])
+        parsed = json.loads(art["content"])
+        self.assertEqual(parsed.get("lumen_schema"), "ir-v1")
+
+    def test_resolve_t2_c4_uses_correct_contracts(self) -> None:
+        """C4 buggy IR must carry correct reviewed contracts (specification)."""
+        art = resolve_representation_artifact("clamp", "C4", self.manifest, task="T2")
+        self.assertIsNotNone(art)
+        parsed = json.loads(art["content"])
+        contracts = parsed.get("contracts", {})
+        self.assertGreater(len(contracts.get("postconditions", [])), 0,
+                           "C4 buggy IR must have non-empty postconditions (correct contracts)")
+
+    def test_resolve_t2_non_c1_all_funcs(self) -> None:
+        """All 3 pilot functions return non-None for T2 non-C1 conditions."""
+        for func_id in ("clamp", "count_vowels", "is_sorted"):
+            for cond in ("C1+", "C2", "C3", "C4"):
+                art = resolve_representation_artifact(func_id, cond, self.manifest, task="T2")
+                self.assertIsNotNone(
+                    art,
+                    f"Expected artifact for T2/{cond}/{func_id}, got None",
+                )
 
     def test_resolve_c2_content_is_valid_json(self) -> None:
         for func_id in ("clamp", "count_vowels", "is_sorted"):
@@ -375,7 +429,7 @@ class RunnerDryRunTests(unittest.TestCase):
             "dry_run should not create prompts directory",
         )
 
-    def test_dry_run_t2_skips_non_c1(self) -> None:
+    def test_dry_run_t2_c2_is_planned(self) -> None:
         summary = run_pilot_experiment(
             models=["test-model"],
             func_ids=["clamp"],
@@ -383,8 +437,13 @@ class RunnerDryRunTests(unittest.TestCase):
             conditions=["C2"],
             dry_run=True,
         )
-        # T2/C2 should be excluded from the plan entirely
-        self.assertEqual(len(summary["items"]), 0)
+        # T2/C2 is now a valid combination with buggy AST artifact
+        self.assertEqual(len(summary["items"]), 1)
+        item = summary["items"][0]
+        self.assertEqual(item["func_id"], "clamp")
+        self.assertEqual(item["task"], "T2")
+        self.assertEqual(item["condition"], "C2")
+        self.assertEqual(item["status"], "planned")
 
 
 if __name__ == "__main__":

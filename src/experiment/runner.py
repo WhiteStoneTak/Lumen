@@ -10,10 +10,10 @@ See: docs/experimental-protocol.md
 
 Design notes
 ------------
-- T2 for non-C1 conditions is SKIPPED in this pilot runner.  Buggy-source
-  representations in non-text formats (AST, typed-AST, IR) do not exist yet.
-  Only C1 (raw buggy Python text) is available for T2.  This is an honest
-  deferral — do not silently run T2 against the correct source.
+- T2 uses buggy-source representations for all conditions (C1–C4).  Buggy
+  artifacts exist for all conditions: C2/C3/C4 use the _buggy variants of
+  ast-v1/typed_ast-v1/ir-v1 derived from the buggy source file; C1+ uses the
+  buggy source annotated with correct reviewed contracts as specification.
 - PROMPT_VERSION is a stable identifier embedded in every prompt artifact.
   The prompt *wording* must be identical across C1/C1+/C2/C3/C4 — only the
   representation_content block differs.
@@ -94,8 +94,9 @@ def plan_experiment_items(
     - Only conditions where the representation is available in the manifest.
     - Optional caller-supplied filters on func_ids, tasks, conditions.
 
-    T2 for non-C1 conditions is excluded with a note: buggy representations
-    in non-text formats have not been generated for this pilot.
+    T2 is fully crossed with all 5 conditions.  Buggy-source representations
+    exist for C1 (raw source), C1+ (annotated buggy text), C2 (buggy AST),
+    C3 (buggy typed AST), and C4 (buggy IR with correct contracts).
     """
     allowed_tasks = set(tasks) if tasks else {"T1", "T2", "T3"}
     allowed_conditions = set(conditions) if conditions else {"C1", "C1+", "C2", "C3", "C4"}
@@ -121,10 +122,6 @@ def plan_experiment_items(
 
             for condition in sorted(allowed_conditions):
                 if not representations.get(condition, False):
-                    continue
-
-                # T2 pilot constraint: only C1 has a buggy source file.
-                if task == "T2" and condition != "C1":
                     continue
 
                 for model in models:
@@ -161,17 +158,21 @@ def resolve_representation_artifact(
     manifest:
         Loaded manifest dict.
     task:
-        When ``"T2"`` and ``condition == "C1"``, returns the *buggy* source
-        file content instead of the correct source.
-        When ``"T2"`` and ``condition != "C1"``, returns ``None`` (buggy
-        representations for non-text conditions are not yet generated).
+        When ``"T2"``, returns the *buggy* representation artifact instead of
+        the correct one.  Buggy artifacts exist for all conditions:
+
+        - C1: raw buggy source (``data/ground_truth/bugs/{func_id}_buggy.py``)
+        - C1+: buggy annotated text (``data/functions/annotated_text/{func_id}_buggy.py``)
+        - C2: buggy AST (``data/functions/ast/{func_id}_buggy.json``)
+        - C3: buggy typed AST (``data/functions/typed_ast/{func_id}_buggy.json``)
+        - C4: buggy IR (``data/functions/ir/{func_id}_buggy.json``)
 
     Returns
     -------
     dict with ``path`` (repo-relative str) and ``content`` (str), or ``None``
     when the artifact is unavailable.
     """
-    # T2 special handling
+    # T2 special handling: use buggy-source representations for all conditions
     if task == "T2":
         if condition == "C1":
             buggy_path = f"data/ground_truth/bugs/{func_id}_buggy.py"
@@ -183,8 +184,53 @@ def resolve_representation_artifact(
                 "content": full.read_text(encoding="utf-8"),
                 "note": "buggy_source",
             }
+        elif condition == "C1+":
+            buggy_path = f"data/functions/annotated_text/{func_id}_buggy.py"
+            full = (repo_root() / buggy_path).resolve()
+            if not full.exists():
+                return None
+            return {
+                "path": buggy_path,
+                "content": full.read_text(encoding="utf-8"),
+                "note": "buggy_source",
+            }
+        elif condition == "C2":
+            buggy_path = f"data/functions/ast/{func_id}_buggy.json"
+            full = (repo_root() / buggy_path).resolve()
+            if not full.exists():
+                return None
+            raw_content = full.read_text(encoding="utf-8")
+            try:
+                parsed = json.loads(raw_content)
+                content = json.dumps(parsed, indent=2, ensure_ascii=False)
+            except json.JSONDecodeError:
+                content = raw_content
+            return {"path": buggy_path, "content": content, "note": "buggy_source"}
+        elif condition == "C3":
+            buggy_path = f"data/functions/typed_ast/{func_id}_buggy.json"
+            full = (repo_root() / buggy_path).resolve()
+            if not full.exists():
+                return None
+            raw_content = full.read_text(encoding="utf-8")
+            try:
+                parsed = json.loads(raw_content)
+                content = json.dumps(parsed, indent=2, ensure_ascii=False)
+            except json.JSONDecodeError:
+                content = raw_content
+            return {"path": buggy_path, "content": content, "note": "buggy_source"}
+        elif condition == "C4":
+            buggy_path = f"data/functions/ir/{func_id}_buggy.json"
+            full = (repo_root() / buggy_path).resolve()
+            if not full.exists():
+                return None
+            raw_content = full.read_text(encoding="utf-8")
+            try:
+                parsed = json.loads(raw_content)
+                content = json.dumps(parsed, indent=2, ensure_ascii=False)
+            except json.JSONDecodeError:
+                content = raw_content
+            return {"path": buggy_path, "content": content, "note": "buggy_source"}
         else:
-            # Buggy representations for C1+/C2/C3/C4 do not exist in this pilot.
             return None
 
     # Normal path resolution
@@ -534,15 +580,10 @@ def run_experiment_item(
     # Resolve representation artifact
     artifact = resolve_representation_artifact(func_id, condition, manifest, task=task)
     if artifact is None:
-        skip_reason = (
-            "buggy_representation_not_available"
-            if task == "T2" and condition != "C1"
-            else "representation_artifact_missing"
-        )
         return {
             **base_row,
             "status": "skipped",
-            "skip_reason": skip_reason,
+            "skip_reason": "representation_artifact_missing",
         }
 
     representation_content: str = artifact["content"]
@@ -669,16 +710,6 @@ def run_pilot_experiment(
 
     print(f"[runner] run_id={run_id}  items={len(items)}  dry_run={dry_run}")
 
-    # Also count T2 non-C1 that were excluded from the plan
-    all_conditions = set(conditions) if conditions else {"C1", "C1+", "C2", "C3", "C4"}
-    t2_skipped_conditions = all_conditions - {"C1"}
-    t2_excluded_note = (
-        f"T2 for conditions {sorted(t2_skipped_conditions)} excluded: "
-        "buggy representations not yet generated for non-C1 formats."
-        if t2_skipped_conditions
-        else None
-    )
-
     item_rows: list[dict[str, Any]] = []
     completed = 0
     skipped = 0
@@ -730,8 +761,6 @@ def run_pilot_experiment(
         "failed": failed,
         "items": item_rows,
     }
-    if t2_excluded_note:
-        summary["notes"] = [t2_excluded_note]
 
     index_path = run_dir / "index.json"
     index_path.write_text(

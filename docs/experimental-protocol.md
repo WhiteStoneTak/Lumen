@@ -275,6 +275,38 @@ Produced by `src/pipeline/typed_ast_to_ir.py`.
 
 ---
 
+## §5.1 T2 Representation Policy
+
+**Amendment date:** 2026-03-27
+
+T2 (bug detection) uses buggy-source representations across all five conditions.
+The representation artifacts for T2 are derived exclusively from the buggy source
+file (`data/ground_truth/bugs/{func_id}_buggy.py`), not from the correct source.
+
+| Condition | T2 artifact | Path convention |
+|-----------|-------------|-----------------|
+| C1  | Raw buggy Python source text | `data/ground_truth/bugs/{func_id}_buggy.py` |
+| C1+ | Buggy source + correct reviewed contracts as docstring | `data/functions/annotated_text/{func_id}_buggy.py` |
+| C2  | AST of buggy source (`ast-v1`) | `data/functions/ast/{func_id}_buggy.json` |
+| C3  | Typed AST of buggy source (`typed_ast-v1`) | `data/functions/typed_ast/{func_id}_buggy.json` |
+| C4  | Buggy AST + buggy type info + correct reviewed contracts (`ir-v1`) | `data/functions/ir/{func_id}_buggy.json` |
+
+**Contracts as specification, not description:** In C1+ and C4, the correct reviewed
+contracts describe the *intended* behavior of the function (its specification), not the
+actual behavior of the buggy implementation.  The contracts are copied verbatim from
+`data/contracts/reviewed/{func_id}.json` and are not regenerated from the buggy source.
+This preserves the diagnostic signal: a model can detect the bug by reasoning about the
+discrepancy between the specification (contracts) and the implementation (buggy body).
+
+**Correct-side artifacts are not affected:** This policy applies only to T2.  T1 and T3
+continue to use the correct source artifacts (`data/functions/raw/{func_id}.py` and
+its derived representations) as before.
+
+**Pilot item count:** With T2 fully crossed across all 5 conditions, the pilot matrix
+expands from 33 to 45 runnable items per model (3 funcs × 5 conditions × 3 tasks = 45).
+
+---
+
 ## 6. Contract Review Provenance
 
 See constitution §14.2 for the full protocol. Summary:
