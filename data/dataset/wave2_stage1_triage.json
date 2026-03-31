@@ -1,0 +1,155 @@
+{
+  "lumen_schema": "wave2-stage1-triage-v1",
+  "authored_at": "2026-03-31",
+  "wave1_lesson_summary": "All 8 wave1 functions scored T3=1.0 under both C2 and C3 advisory conditions, confirming that wave1 complexity is uniformly too easy for frontier models and wave2 must source harder candidates from outside the current raw/ pool.",
+  "sourcing_rules_version": "v1",
+  "sourcing_rules": {
+    "hard_boundaries": [
+      "Python, single function (one def), non-recursive",
+      "Authorable T2 ground truth: bug injection must be tractable without formal verification",
+      "Pure or nearly-pure function: no heavy I/O, no class state, no external data dependencies"
+    ],
+    "t2_difficulty": {
+      "pass": [
+        "Multi-step logic with non-obvious bug locations",
+        "Conditional chains with coverage gaps",
+        "Edge-case-rich accumulation (boundary state tracking)",
+        "Index arithmetic across multiple variables",
+        "Loop termination conditions involving multiple variables"
+      ],
+      "blocked": [
+        "Single-operator flip is the only injectable bug (e.g., > vs >= only)"
+      ],
+      "exclude": [
+        "Single-line functions",
+        "Trivially obvious behavior from name alone",
+        "No branching or looping structure"
+      ]
+    },
+    "t3_difficulty": {
+      "pass": [
+        "Has semantic structure admitting a non-trivial behavioral transform",
+        "Output type/structure change alters downstream usage",
+        "Tie-breaking policy change with observable behavioral difference",
+        "Accumulation strategy inversion (e.g., inclusive vs exclusive semantics)",
+        "Boundary semantics change (e.g., open vs closed interval)"
+      ],
+      "blocked": [
+        "All valid transforms collapse into optional-parameter defaults"
+      ],
+      "exclude": [
+        "Only trivial constant substitution; no meaningful semantic transform exists"
+      ]
+    },
+    "wave1_easy_family_exclusion": {
+      "characterization": "Short utility helpers (8-20 executable lines), all behavior obvious from name/docstring, single-loop or single-scan structure, T3 transforms trivially deducible from context",
+      "exclude_if": "Similar complexity, structure, and T2/T3 profile to any of the 8 wave1 items"
+    },
+    "truth_tractability": {
+      "pass": "Bug location and expected behavior authoring-tractable without formal verification",
+      "blocked": "Requires complex oracle (e.g., NP-hard correctness check)",
+      "exclude": "Truth authoring requires external system or data"
+    },
+    "representation_value": {
+      "pass": "Richer type information or contracts plausibly help orient the model vs raw source",
+      "weak": "Any representation gives essentially equivalent context"
+    }
+  },
+  "rubric_table": [
+    {
+      "criterion": "Python, single function, non-recursive",
+      "PASS": "One def, no self-call or mutual recursion",
+      "BLOCKED": null,
+      "EXCLUDE": "Recursive, multi-function, class method"
+    },
+    {
+      "criterion": "T2 authorability",
+      "PASS": "Non-trivial bug family tractable to author and verify",
+      "BLOCKED": "Only single-operator flip injectable",
+      "EXCLUDE": "Requires external oracle or formal verification"
+    },
+    {
+      "criterion": "T2 difficulty",
+      "PASS": "Multi-step logic; non-obvious bug location; edge-case-rich",
+      "BLOCKED": "Single operator flip only; too trivial",
+      "EXCLUDE": "Single-line or trivially obvious"
+    },
+    {
+      "criterion": "T3 discriminative potential",
+      "PASS": "Admits non-trivial behavioral transform with real semantic content",
+      "BLOCKED": "Transforms collapse to optional-param defaults",
+      "EXCLUDE": "Only trivial constant substitution"
+    },
+    {
+      "criterion": "wave1 easy-family exclusion",
+      "PASS": "Meaningfully harder than wave1 (complexity, structure, edge cases)",
+      "BLOCKED": null,
+      "EXCLUDE": "Same complexity profile as wave1 helpers"
+    },
+    {
+      "criterion": "Truth tractability",
+      "PASS": "Author can specify and verify correct behavior without external tools",
+      "BLOCKED": "Requires complex oracle",
+      "EXCLUDE": "Requires external system/data"
+    },
+    {
+      "criterion": "Representation value (C2/C3/C4)",
+      "PASS": "Type contracts or structured context plausibly help C3/C4 over C1",
+      "BLOCKED": null,
+      "EXCLUDE": null
+    }
+  ],
+  "bounded_candidate_pool": {
+    "sources_examined": [
+      {
+        "source": "data/functions/raw/ — functions NOT in wave1 and NOT pilot anchors",
+        "files_found": 0,
+        "wave1_functions": ["remove_adjacent_dups", "batch_list", "sliding_window_max", "rle_encode", "count_true_segments", "merge_sorted", "first_index_of_max", "rotate_list"],
+        "pilot_anchors": ["clamp", "count_vowels", "is_sorted"],
+        "note": "raw/ contains exactly 11 .py files: 3 pilot anchors + 8 wave1 functions. Zero uncharacterized files remain."
+      },
+      {
+        "source": "candidates.json — entries at stage1_pass or pre-stage2 state",
+        "entries_found": 0,
+        "note": "All non-anchor entries in candidates.json are wave1-authored with stage3_result=ceiling_risk. demo_func has final_decision=EXCLUDE (smoke-test only). No pre-stage2 entries exist."
+      },
+      {
+        "source": "data/dataset/ — intake queue files",
+        "files_found": 0,
+        "note": "data/dataset/ contains only candidates.json and functions_manifest.json. No intake queue, no stage1 CSV, no additional tracker files."
+      }
+    ],
+    "total_candidates_examined": 0,
+    "conclusion": "The bounded candidate pool is EMPTY. The raw/ directory is exhausted. All 11 function files are either wave1-authored or pilot anchors. No new candidates can be triaged from existing repo sources."
+  },
+  "candidates": [],
+  "first_wave_shortlist": [],
+  "reserve_list": [],
+  "diversity_audit": {
+    "pass_ready_count": 0,
+    "pass_blocked_count": 0,
+    "families_represented": [],
+    "overrepresented": null,
+    "balancing_note": "No candidates to audit. Pool expansion required before diversity analysis is possible."
+  },
+  "final_decision": "WAVE2 SOURCING INSUFFICIENT — EXPAND CANDIDATE POOL BEFORE AUTHORING",
+  "next_action": "Manually author and commit 15-25 new Python function source files to data/functions/raw/ that satisfy the wave2 sourcing rubric (harder difficulty families: stateful scan/segment logic with multiple interacting state variables, ordering/tie-policy logic, grouping/partitioning with non-trivial boundary conditions, accumulation with multi-step invariants, string/sequence processing with multi-step logic), then re-run Phase 4A triage.",
+  "pool_expansion_guidance": {
+    "target_count": "15-25 new candidate functions",
+    "target_difficulty_families": [
+      "stateful scan / segment / window logic with multiple interacting state variables (harder than count_true_segments)",
+      "ordering / tie-policy / sort-variant logic (harder than first_index_of_max)",
+      "grouping / restructuring / partitioning logic (harder than batch_list)",
+      "accumulation / aggregation with multi-step invariants (harder than rle_encode)",
+      "boundary-condition-heavy / index arithmetic (harder than sliding_window_max)",
+      "string/sequence processing with multi-step logic",
+      "two-pointer or dual-cursor merge/scan patterns (harder than merge_sorted)"
+    ],
+    "complexity_target": "20-40 executable lines, 2+ distinct loop structures or nested conditionals, non-obvious bug locations",
+    "avoid": [
+      "Functions with only single-operator-flip injectable bugs",
+      "Functions where T3 transform is trivially a constant substitution",
+      "Functions with behavior fully obvious from name and docstring"
+    ]
+  }
+}
