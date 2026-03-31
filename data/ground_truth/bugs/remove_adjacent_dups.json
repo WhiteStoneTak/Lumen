@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "remove_adjacent_dups",
+  "source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
+  "bug_id": "remove_adjacent_dups.B01",
+  "bug_category": "incorrect_variable_reference",
+  "bug_description": "The deduplication check compares `item` against `items[-1]` (the last element of the original input) instead of `result[-1]` (the last element appended to the accumulator). This causes the function to suppress all occurrences of the final input value while allowing earlier adjacent duplicates to pass through unchecked.",
+  "location": {
+    "path": "data/ground_truth/bugs/remove_adjacent_dups_buggy.py",
+    "start_line": 17,
+    "end_line": 17
+  },
+  "reference_fix": {
+    "start_line": 17,
+    "end_line": 17,
+    "replacement": "        if item != result[-1]:"
+  },
+  "test_suite_ref": "data/ground_truth/tests/remove_adjacent_dups_t2_test.py"
+}

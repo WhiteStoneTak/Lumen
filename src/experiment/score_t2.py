@@ -362,6 +362,14 @@ def _apply_fix_to_source(
     start = reference_fix["start_line"] - 1   # 0-indexed
     end = reference_fix["end_line"]            # exclusive (1-indexed end + 1 - 1 = end)
 
+    if "\n" in model_fix_line:
+        # Multi-line fix: the caller has already produced correctly indented lines.
+        # Apply them all verbatim without single-line re-indentation.
+        fix_parts = model_fix_line.rstrip("\n").split("\n")
+        replacement_lines = [p + "\n" for p in fix_parts]
+        fixed_lines = lines[:start] + replacement_lines + lines[end:]
+        return "".join(fixed_lines)
+
     # Normalize indentation: strip any leading whitespace the model may have
     # included in its fix snippet and re-apply the exact indentation of the
     # original buggy line.  This makes the patched source syntactically valid
@@ -514,6 +522,27 @@ def _extract_best_fix_line(
         for line in fix_lines:
             if re.search(r"items\[i\]\s*>\s*items\[i", line):
                 return line
+
+    elif func_id == "count_true_segments":
+        # The fix requires replacing the entire for-loop block (for header + if/elif body).
+        # Look for the model's proposed fix block which starts with `for flag in flags:`.
+        # The model typically shows the loop at base indent inside a code fence; we
+        # re-indent each line by +4 spaces to match the actual function-body context.
+        for i, line in enumerate(fix_lines):
+            if re.search(r"for\s+flag\s+in\s+flags\s*:", line.strip()):
+                base_indent = len(line) - len(line.lstrip())
+                block: list[str] = [line]
+                for subsequent in fix_lines[i + 1:]:
+                    if not subsequent.strip():
+                        break
+                    subsequent_indent = len(subsequent) - len(subsequent.lstrip())
+                    if subsequent_indent <= base_indent:
+                        break
+                    block.append(subsequent)
+                if len(block) >= 2:
+                    # Re-indent by +4 to place the for loop in function-body context
+                    reindented = ["    " + ln for ln in block]
+                    return "\n".join(reindented)
 
     # Generic fallback: return first non-trivial code block line
     for line in fix_lines:

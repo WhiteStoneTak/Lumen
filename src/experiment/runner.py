@@ -233,10 +233,19 @@ def plan_preflight_items(
     tasks available and all condition representations present, as every pilot
     function does).
     """
-    included = sorted(
-        (item["func_id"] for item in manifest.get("items", [])
-         if item.get("inclusion_status") == "included"),
+    # Prefer pilot-tier functions for preflight: they have all tasks and
+    # conditions available, satisfying the 1×1×3×5=15 item guarantee.
+    # Fall back to all included functions if no pilot-tier items exist.
+    pilot_included = sorted(
+        item["func_id"] for item in manifest.get("items", [])
+        if item.get("inclusion_status") == "included"
+        and item.get("dataset_tier") == "pilot"
     )
+    all_included = sorted(
+        item["func_id"] for item in manifest.get("items", [])
+        if item.get("inclusion_status") == "included"
+    )
+    included = pilot_included if pilot_included else all_included
     if not included:
         raise ValueError("Manifest contains no included functions.")
     first_func = included[0]

@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "rotate_list",
+  "source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
+  "bug_id": "rotate_list.B01",
+  "bug_category": "swapped_arguments",
+  "bug_description": "The two slice operands in the concatenation are swapped: `items[:k] + items[k:]` is written instead of `items[k:] + items[:k]`. The expression `items[:k] + items[k:]` always reconstructs the original list in its original order, producing a copy rather than a rotation.",
+  "location": {
+    "path": "data/ground_truth/bugs/rotate_list_buggy.py",
+    "start_line": 19,
+    "end_line": 19
+  },
+  "reference_fix": {
+    "start_line": 19,
+    "end_line": 19,
+    "replacement": "    return items[k:] + items[:k]"
+  },
+  "test_suite_ref": "data/ground_truth/tests/rotate_list_t2_test.py"
+}

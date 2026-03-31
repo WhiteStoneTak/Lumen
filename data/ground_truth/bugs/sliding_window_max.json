@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "sliding_window_max",
+  "source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
+  "bug_id": "sliding_window_max.B01",
+  "bug_category": "off_by_one",
+  "bug_description": "The loop range is `len(nums) - k` instead of `len(nums) - k + 1`. This produces one fewer iteration than required, omitting the final window. The last k-element window starting at index `len(nums) - k` is never evaluated.",
+  "location": {
+    "path": "data/ground_truth/bugs/sliding_window_max_buggy.py",
+    "start_line": 16,
+    "end_line": 16
+  },
+  "reference_fix": {
+    "start_line": 16,
+    "end_line": 16,
+    "replacement": "    for i in range(len(nums) - k + 1):"
+  },
+  "test_suite_ref": "data/ground_truth/tests/sliding_window_max_t2_test.py"
+}

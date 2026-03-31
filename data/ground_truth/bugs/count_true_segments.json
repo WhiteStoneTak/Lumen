@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "count_true_segments",
+  "source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
+  "bug_id": "count_true_segments.B01",
+  "bug_category": "missing_boundary_check",
+  "bug_description": "The count is incremented when a segment exits (on transition True→False) rather than when it is entered (on transition False→True or at list start). Any True segment that extends to the end of the input never triggers a False transition, so it is never counted. The end-of-input boundary is not checked.",
+  "location": {
+    "path": "data/ground_truth/bugs/count_true_segments_buggy.py",
+    "start_line": 15,
+    "end_line": 20
+  },
+  "reference_fix": {
+    "start_line": 15,
+    "end_line": 20,
+    "replacement": "    for flag in flags:\n        if flag and not in_segment:\n            count += 1\n            in_segment = True\n        elif not flag:\n            in_segment = False"
+  },
+  "test_suite_ref": "data/ground_truth/tests/count_true_segments_t2_test.py"
+}

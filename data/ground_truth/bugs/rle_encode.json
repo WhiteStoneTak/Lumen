@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "rle_encode",
+  "source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
+  "bug_id": "rle_encode.B01",
+  "bug_category": "incorrect_variable_reference",
+  "bug_description": "When a run boundary is detected, `current` is reassigned to `items[-1]` (the last element of the original input list) instead of `item` (the element that started the new run). All subsequent run tracking is therefore anchored to the wrong value, causing intermediate run values to be dropped from the encoding.",
+  "location": {
+    "path": "data/ground_truth/bugs/rle_encode_buggy.py",
+    "start_line": 23,
+    "end_line": 23
+  },
+  "reference_fix": {
+    "start_line": 23,
+    "end_line": 23,
+    "replacement": "            current = item"
+  },
+  "test_suite_ref": "data/ground_truth/tests/rle_encode_t2_test.py"
+}

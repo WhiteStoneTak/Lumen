@@ -136,6 +136,366 @@
         "ir_source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54",
         "t1_source_hash": "9f28b2b580afb7cc792152a327fc6a35cb8372d20652f0e26e92abc405049d54"
       }
+    },
+    {
+      "func_id": "remove_adjacent_dups",
+      "source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/remove_adjacent_dups.py",
+        "annotated_text": null,
+        "ast": null,
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": false,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
+        "ast_source_hash": null,
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "batch_list",
+      "source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/batch_list.py",
+        "annotated_text": null,
+        "ast": null,
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": false,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/batch_list.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
+        "ast_source_hash": null,
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "sliding_window_max",
+      "source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/sliding_window_max.py",
+        "annotated_text": null,
+        "ast": null,
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": false,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
+        "ast_source_hash": null,
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "rle_encode",
+      "source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/rle_encode.py",
+        "annotated_text": null,
+        "ast": null,
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": false,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
+        "ast_source_hash": null,
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "count_true_segments",
+      "source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/count_true_segments.py",
+        "annotated_text": null,
+        "ast": null,
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": false,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
+        "ast_source_hash": null,
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "merge_sorted",
+      "source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/merge_sorted.py",
+        "annotated_text": null,
+        "ast": null,
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": false,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
+        "ast_source_hash": null,
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "first_index_of_max",
+      "source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/first_index_of_max.py",
+        "annotated_text": null,
+        "ast": null,
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": false,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
+        "ast_source_hash": null,
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "rotate_list",
+      "source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/rotate_list.py",
+        "annotated_text": null,
+        "ast": null,
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": false,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "raw_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
+        "ast_source_hash": null,
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
     }
   ]
 }

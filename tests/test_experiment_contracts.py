@@ -25,7 +25,10 @@ class ExperimentContractTests(unittest.TestCase):
     def test_manifest_validates_and_contains_pilot_funcs(self) -> None:
         manifest = load_dataset_manifest(check_paths=True)
         func_ids = {item["func_id"] for item in manifest["items"]}
-        self.assertEqual(func_ids, {"clamp", "count_vowels", "is_sorted"})
+        self.assertTrue(
+            {"clamp", "count_vowels", "is_sorted"}.issubset(func_ids),
+            msg=f"Pilot funcs missing from manifest: {func_ids}",
+        )
 
     def test_manifest_task_availability_is_consistent(self) -> None:
         manifest = load_dataset_manifest(check_paths=True)

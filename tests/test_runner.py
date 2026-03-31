@@ -63,16 +63,17 @@ class RunnerPlanningTests(unittest.TestCase):
         self.assertGreater(len(items), 0)
 
     def test_plan_all_pilot_items_expected_count(self) -> None:
-        # 3 funcs × T1 × 5 conditions = 15
-        # 3 funcs × T2 × 5 conditions = 15  (T2 now fully crossed)
-        # 3 funcs × T3 × 5 conditions = 15
-        # total = 45 per model
+        # 3 pilot funcs × T1 × 5 conditions = 15
+        # 3 pilot funcs × T2 × 5 conditions = 15  (T2 fully crossed)
+        # 3 pilot funcs × T3 × 5 conditions = 15
+        # 8 wave1 funcs × T2 × C1 only     =  8
+        # total = 53 per model
         items = plan_experiment_items(self.manifest, models=["test-model"])
-        self.assertEqual(len(items), 45)
+        self.assertEqual(len(items), 53)
 
     def test_plan_two_models_doubles_count(self) -> None:
         items = plan_experiment_items(self.manifest, models=["m1", "m2"])
-        self.assertEqual(len(items), 90)
+        self.assertEqual(len(items), 106)
 
     def test_smoke_subset_one_per_model_task_pair(self) -> None:
         items = plan_experiment_items(self.manifest, models=["m1", "m2"])
@@ -199,16 +200,22 @@ class RunnerPreflightTests(unittest.TestCase):
         self.assertEqual(models, {"m1"})
         self.assertEqual(len(models), 1)
 
-    def test_preflight_selects_first_alphabetical_function(self) -> None:
-        """preflight function must be the first alphabetically among included functions."""
+    def test_preflight_selects_first_alphabetical_pilot_function(self) -> None:
+        """preflight function must be the first alphabetically among pilot-tier functions."""
         from experiment.contracts import load_dataset_manifest  # noqa: PLC0415
         manifest = load_dataset_manifest(check_paths=True)
-        included = sorted(
+        pilot_included = sorted(
+            item["func_id"]
+            for item in manifest["items"]
+            if item.get("inclusion_status") == "included"
+            and item.get("dataset_tier") == "pilot"
+        )
+        all_included = sorted(
             item["func_id"]
             for item in manifest["items"]
             if item.get("inclusion_status") == "included"
         )
-        expected_first = included[0]
+        expected_first = (pilot_included if pilot_included else all_included)[0]
         items = plan_preflight_items(manifest, models=["test-model"])
         self.assertTrue(all(item["func_id"] == expected_first for item in items))
 

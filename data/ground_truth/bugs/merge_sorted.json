@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "merge_sorted",
+  "source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
+  "bug_id": "merge_sorted.B01",
+  "bug_category": "missing_boundary_check",
+  "bug_description": "The drain loop for the `b` remainder uses `j < len(b) - 1` instead of `j < len(b)`. When `b` has remaining elements after the main merge loop, the final element of `b`'s remainder is never appended. The boundary condition fails to include the last index.",
+  "location": {
+    "path": "data/ground_truth/bugs/merge_sorted_buggy.py",
+    "start_line": 25,
+    "end_line": 25
+  },
+  "reference_fix": {
+    "start_line": 25,
+    "end_line": 25,
+    "replacement": "    while j < len(b):"
+  },
+  "test_suite_ref": "data/ground_truth/tests/merge_sorted_t2_test.py"
+}

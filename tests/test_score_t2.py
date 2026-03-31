@@ -166,6 +166,34 @@ def clamp(value: float, lo: float, hi: float) -> float:
 """
 
 
+# Mirrors the actual gpt-5.4 response structure for count_true_segments:
+# diagnostic code block first (sets up `if flag:` as the first fix_line),
+# then the correct fix block with `for flag in flags:` as the anchor.
+COUNT_TRUE_SEGMENTS_RESPONSE_CORRECT = """\
+The bug is in this logic:
+
+```python
+if flag:
+    in_segment = True
+elif in_segment:
+    count += 1
+    in_segment = False
+```
+
+The function increments count on exit (True→False transition), so any True
+segment at the end of the list is never counted.  The fix is to count on entry:
+
+```python
+for flag in flags:
+    if flag and not in_segment:
+        count += 1
+        in_segment = True
+    elif not flag:
+        in_segment = False
+```
+"""
+
+
 # ---------------------------------------------------------------------------
 # Test class
 # ---------------------------------------------------------------------------
@@ -317,6 +345,7 @@ class TestScoreT2Fix(unittest.TestCase):
         self.clamp_ctx = _load_context("clamp")
         self.cv_ctx = _load_context("count_vowels")
         self.is_ctx = _load_context("is_sorted")
+        self.cts_ctx = _load_context("count_true_segments")
 
     def test_clamp_correct_fix_passes(self) -> None:
         claims = extract_t2_claims(CLAMP_RESPONSE_CORRECT)
@@ -358,6 +387,15 @@ class TestScoreT2Fix(unittest.TestCase):
             "no_fix_found" in detail or "test_failure" in detail,
             msg=f"unexpected detail: {detail!r}",
         )
+
+    def test_count_true_segments_correct_fix_passes(self) -> None:
+        """Regression: count_true_segments multi-line fix must extract from the fix
+        block (not the diagnostic block) and produce a passing test suite."""
+        claims = extract_t2_claims(COUNT_TRUE_SEGMENTS_RESPONSE_CORRECT)
+        score, detail = score_t2_fix(
+            claims, self.cts_ctx["truth"], self.cts_ctx["buggy_source"]
+        )
+        self.assertEqual(score, 1, msg=f"detail={detail!r}")
 
     def test_clamp_unindented_fix_snippet_passes(self) -> None:
         """Regression: fix line without leading whitespace must not IndentationError.
