@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "tokenize_arithmetic",
+  "source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
+  "bug_id": "tokenize_arithmetic.B01",
+  "bug_category": "missing_boundary_check",
+  "bug_description": "The inner digit-scan loop condition uses only `expr[j].isdigit()` instead of `expr[j].isdigit() or expr[j] == '.'`. Decimal numbers (e.g. '3.14') are split at the decimal point: the integer part is emitted as NUM, the '.' is treated as an unknown character and silently skipped (falls through to the final `i += 1`), and the fractional part is emitted as a separate NUM. Multi-part decimal literals are tokenized incorrectly.",
+  "location": {
+    "path": "data/functions/raw/tokenize_arithmetic.py",
+    "start_line": 52,
+    "end_line": 52
+  },
+  "reference_fix": {
+    "start_line": 52,
+    "end_line": 52,
+    "replacement": "            while j < n and (expr[j].isdigit() or expr[j] == \".\"):"
+  },
+  "test_suite_ref": "data/ground_truth/tests/tokenize_arithmetic_t2_test.py"
+}

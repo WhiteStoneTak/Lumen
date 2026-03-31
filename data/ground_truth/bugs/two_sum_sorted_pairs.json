@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "two_sum_sorted_pairs",
+  "source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
+  "bug_id": "two_sum_sorted_pairs.B01",
+  "bug_category": "missing_boundary_check",
+  "bug_description": "After recording a matching pair, the code advances both pointers past duplicates but only skips duplicate values for the left pointer. The right-pointer duplicate-skip loop is missing. This causes the same right-side value to be re-paired with newly-advanced left pointer values, producing duplicate output pairs when the right side has repeated values.",
+  "location": {
+    "path": "data/functions/raw/two_sum_sorted_pairs.py",
+    "start_line": 30,
+    "end_line": 33
+  },
+  "reference_fix": {
+    "start_line": 30,
+    "end_line": 33,
+    "replacement": "            while left < right and nums[left] == left_val:\n                left += 1\n            while left < right and nums[right] == right_val:\n                right -= 1"
+  },
+  "test_suite_ref": "data/ground_truth/tests/two_sum_sorted_pairs_t2_test.py"
+}

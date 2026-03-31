@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "longest_plateau",
+  "source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
+  "bug_id": "longest_plateau.B01",
+  "bug_category": "wrong_comparison_operator",
+  "bug_description": "The post-loop flush check uses `>=` (greater-than-or-equal) instead of `>` (strictly greater). When the final run ties with the current best, it overwrites the earlier result even though the earlier run should be kept per the 'earliest start' tie-breaking policy.",
+  "location": {
+    "path": "data/functions/raw/longest_plateau.py",
+    "start_line": 46,
+    "end_line": 46
+  },
+  "reference_fix": {
+    "start_line": 46,
+    "end_line": 46,
+    "replacement": "    if cur_len > best_len:"
+  },
+  "test_suite_ref": "data/ground_truth/tests/longest_plateau_t2_test.py"
+}

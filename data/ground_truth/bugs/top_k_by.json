@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "top_k_by",
+  "source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
+  "bug_id": "top_k_by.B01",
+  "bug_category": "incorrect_variable_reference",
+  "bug_description": "The sort key uses `key(pair[1])` (ascending order) instead of `-key(pair[1])` (descending order) for the primary key. Items are sorted lowest-first instead of highest-first, so the function returns the k lowest-valued items rather than the k highest.",
+  "location": {
+    "path": "data/functions/raw/top_k_by.py",
+    "start_line": 35,
+    "end_line": 35
+  },
+  "reference_fix": {
+    "start_line": 35,
+    "end_line": 35,
+    "replacement": "            key=lambda pair: (-key(pair[1]), tiebreak_key(pair[1]), pair[0]),"
+  },
+  "test_suite_ref": "data/ground_truth/tests/top_k_by_t2_test.py"
+}

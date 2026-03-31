@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "longest_plateau",
+  "source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
+  "transform_id": "longest_plateau.TR01",
+  "instruction": "Change the tie-breaking policy: instead of returning the FIRST (earliest-start) longest plateau when multiple runs tie for the maximum length, return the LAST (latest-start) longest plateau. All other behaviour is unchanged: return a (start, end, value) tuple, return (-1, -1, None) for empty input, and a single-element tuple (i, i, value) for a single-element list.",
+  "test_suite_ref": "data/ground_truth/tests/longest_plateau_t3_test.py"
+}

@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "merge_intervals",
+  "source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
+  "bug_id": "merge_intervals.B01",
+  "bug_category": "wrong_comparison_operator",
+  "bug_description": "The overlap check uses `next_start < current[1]` (strict less-than) instead of `next_start <= current[1]` (less-than-or-equal). Touching intervals where the start of the next equals the end of the current (e.g. [1,2] and [2,4]) are not merged, even though the docstring specifies they should be.",
+  "location": {
+    "path": "data/functions/raw/merge_intervals.py",
+    "start_line": 30,
+    "end_line": 30
+  },
+  "reference_fix": {
+    "start_line": 30,
+    "end_line": 30,
+    "replacement": "        if next_start <= current[1]:"
+  },
+  "test_suite_ref": "data/ground_truth/tests/merge_intervals_t2_test.py"
+}

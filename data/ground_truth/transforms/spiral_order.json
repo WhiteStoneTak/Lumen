@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "spiral_order",
+  "source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
+  "transform_id": "spiral_order.TR01",
+  "instruction": "Change the traversal direction from clockwise to counter-clockwise. In counter-clockwise spiral order: start at the top-left corner, go DOWN the left column first, then RIGHT along the bottom row, then UP the right column, then LEFT along the top row, then repeat inward. Empty or single-cell matrices behave the same as in the original.",
+  "test_suite_ref": "data/ground_truth/tests/spiral_order_t3_test.py"
+}

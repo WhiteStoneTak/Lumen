@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "spiral_order",
+  "source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
+  "bug_id": "spiral_order.B01",
+  "bug_category": "missing_boundary_check",
+  "bug_description": "The bottom-row traversal (right-to-left) is guarded by `if top <= bottom:` to avoid re-traversing the top row when only a single row remains. Removing this guard causes the top row to be traversed twice when an odd-row-count matrix reduces to a single-row remainder, producing duplicate elements in the output.",
+  "location": {
+    "path": "data/functions/raw/spiral_order.py",
+    "start_line": 37,
+    "end_line": 37
+  },
+  "reference_fix": {
+    "start_line": 37,
+    "end_line": 37,
+    "replacement": "        if top <= bottom:"
+  },
+  "test_suite_ref": "data/ground_truth/tests/spiral_order_t2_test.py"
+}

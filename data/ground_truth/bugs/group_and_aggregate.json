@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "group_and_aggregate",
+  "source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
+  "bug_id": "group_and_aggregate.B01",
+  "bug_category": "wrong_comparison_operator",
+  "bug_description": "The min-update condition uses `>` (greater-than) instead of `<` (less-than). This causes the 'min' field to track the running maximum rather than the running minimum. Any group with two or more values will have a wrong 'min' equal to the actual group maximum.",
+  "location": {
+    "path": "data/functions/raw/group_and_aggregate.py",
+    "start_line": 33,
+    "end_line": 33
+  },
+  "reference_fix": {
+    "start_line": 33,
+    "end_line": 33,
+    "replacement": "            if value < entry[\"min\"]:"
+  },
+  "test_suite_ref": "data/ground_truth/tests/group_and_aggregate_t2_test.py"
+}

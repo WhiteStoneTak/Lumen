@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "two_sum_sorted_pairs",
+  "source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
+  "transform_id": "two_sum_sorted_pairs.TR01",
+  "instruction": "Change the return type: instead of returning value pairs (a, b) where a + b == target, return index pairs (i, j) where i < j and nums[i] + nums[j] == target. Each returned tuple contains the zero-based indices of the two elements, not the elements themselves. Return index pairs in ascending order of i. Deduplicate so that each valid unordered index pair is returned at most once.",
+  "test_suite_ref": "data/ground_truth/tests/two_sum_sorted_pairs_t3_test.py"
+}

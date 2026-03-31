@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "top_k_by",
+  "source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
+  "transform_id": "top_k_by.TR01",
+  "instruction": "Change the semantics from top-k to bottom-k: instead of returning the k items with the highest primary key values, return the k items with the LOWEST primary key values. The tiebreak_key semantics are preserved (lower tiebreak_key = ranked better, i.e. appears earlier in the returned list). When there is no tiebreak_key, original order breaks ties. Return at most k items; fewer if len(items) < k. If k <= 0, return [].",
+  "test_suite_ref": "data/ground_truth/tests/top_k_by_t3_test.py"
+}

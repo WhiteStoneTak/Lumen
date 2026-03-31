@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "equal_width_buckets",
+  "source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
+  "transform_id": "equal_width_buckets.TR01",
+  "instruction": "Change from equal-width buckets to equal-frequency (quantile) buckets. Assign each value to one of n_buckets quantile buckets such that approximately the same number of values fall in each bucket. Sort the values, divide them into n_buckets roughly equal groups, and assign each value the 0-indexed bucket number of its rank group. When len(values) is not evenly divisible by n_buckets, earlier buckets may receive one extra element. Values with equal rank that fall on a quantile boundary go into the lower-numbered bucket. Return the bucket indices in the same order as the input values (not sorted order). Return 0-indexed bucket assignments.",
+  "test_suite_ref": "data/ground_truth/tests/equal_width_buckets_t3_test.py"
+}

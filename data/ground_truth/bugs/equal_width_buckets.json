@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "equal_width_buckets",
+  "source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
+  "bug_id": "equal_width_buckets.B01",
+  "bug_category": "missing_boundary_check",
+  "bug_description": "The bucket assignment `int((v - min_val) / width)` can return exactly `n_buckets` when `v == max_val` and the floating-point division yields a clean integer. The clamp `if bucket >= n_buckets: bucket = n_buckets - 1` is missing, so the maximum value is assigned to an out-of-bounds bucket index equal to `n_buckets`, causing downstream IndexError or incorrect bucket assignment.",
+  "location": {
+    "path": "data/functions/raw/equal_width_buckets.py",
+    "start_line": 33,
+    "end_line": 35
+  },
+  "reference_fix": {
+    "start_line": 33,
+    "end_line": 35,
+    "replacement": "        bucket = int((v - min_val) / width)\n        if bucket >= n_buckets:\n            bucket = n_buckets - 1"
+  },
+  "test_suite_ref": "data/ground_truth/tests/equal_width_buckets_t2_test.py"
+}

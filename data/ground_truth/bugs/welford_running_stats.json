@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "welford_running_stats",
+  "source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
+  "bug_id": "welford_running_stats.B01",
+  "bug_category": "incorrect_variable_reference",
+  "bug_description": "The Welford M2 update uses `delta * delta` (squaring the pre-update delta) instead of `delta * delta2` (multiplying the pre-update and post-update deltas). The correct online algorithm requires both deltas to maintain a numerically stable variance accumulator. Using delta squared inflates M2, causing incorrect variance for all inputs with more than one element.",
+  "location": {
+    "path": "data/functions/raw/welford_running_stats.py",
+    "start_line": 29,
+    "end_line": 29
+  },
+  "reference_fix": {
+    "start_line": 29,
+    "end_line": 29,
+    "replacement": "        M2 += delta * delta2"
+  },
+  "test_suite_ref": "data/ground_truth/tests/welford_running_stats_t2_test.py"
+}

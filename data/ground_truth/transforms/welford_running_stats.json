@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "welford_running_stats",
+  "source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
+  "transform_id": "welford_running_stats.TR01",
+  "instruction": "Change from population variance (M2 / n) to sample variance (M2 / (n - 1)) for n > 1. For n = 1, variance must remain 0.0 (sample variance is undefined at n=1). All other behaviour is unchanged: return a list of (count, mean, variance) tuples in order, one per input value. Empty input returns [].",
+  "test_suite_ref": "data/ground_truth/tests/welford_running_stats_t3_test.py"
+}

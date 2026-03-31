@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "tokenize_arithmetic",
+  "source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
+  "transform_id": "tokenize_arithmetic.TR01",
+  "instruction": "Change the operator token type: instead of using 'OP' for all four arithmetic operators (+, -, *, /), use 'ADDOP' for + and - and 'MULOP' for * and /. No token with type 'OP' should appear in the output. All other token types (NUM, LPAREN, RPAREN) and all token values remain unchanged.",
+  "test_suite_ref": "data/ground_truth/tests/tokenize_arithmetic_t3_test.py"
+}

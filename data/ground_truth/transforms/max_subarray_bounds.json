@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "max_subarray_bounds",
+  "source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
+  "transform_id": "max_subarray_bounds.TR01",
+  "instruction": "Change the return type from a single best-subarray tuple to a list of ALL subarrays whose sum equals the global maximum sum. Return them as a list of (start, end, total) tuples sorted by start index in ascending order. If only one subarray achieves the maximum sum, return a list with one element. If the input is empty, return an empty list. If all values are negative, the maximum is the single largest element; only single-element subarrays at that value are included.",
+  "test_suite_ref": "data/ground_truth/tests/max_subarray_bounds_t3_test.py"
+}

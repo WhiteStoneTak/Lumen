@@ -496,6 +496,476 @@
         "ir_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
         "t1_source_hash": null
       }
+    },
+    {
+      "func_id": "max_subarray_bounds",
+      "source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/max_subarray_bounds.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/max_subarray_bounds.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/max_subarray_bounds.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
+        "ast_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "longest_plateau",
+      "source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/longest_plateau.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/longest_plateau.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/longest_plateau.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
+        "ast_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "group_and_aggregate",
+      "source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/group_and_aggregate.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/group_and_aggregate.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/group_and_aggregate.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
+        "ast_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "two_sum_sorted_pairs",
+      "source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/two_sum_sorted_pairs.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/two_sum_sorted_pairs.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/two_sum_sorted_pairs.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
+        "ast_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "top_k_by",
+      "source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/top_k_by.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/top_k_by.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/top_k_by.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
+        "ast_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "tokenize_arithmetic",
+      "source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/tokenize_arithmetic.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/tokenize_arithmetic.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/tokenize_arithmetic.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
+        "ast_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "spiral_order",
+      "source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/spiral_order.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/spiral_order.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/spiral_order.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
+        "ast_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "welford_running_stats",
+      "source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/welford_running_stats.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/welford_running_stats.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/welford_running_stats.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
+        "ast_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "merge_intervals",
+      "source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/merge_intervals.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/merge_intervals.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/merge_intervals.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
+        "ast_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "equal_width_buckets",
+      "source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/equal_width_buckets.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/equal_width_buckets.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json"
+        },
+        "T3": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/equal_width_buckets.json"
+        }
+      },
+      "lineage": {
+        "source": "wave2_pool_expansion_v1",
+        "raw_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
+        "ast_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
     }
   ]
 }

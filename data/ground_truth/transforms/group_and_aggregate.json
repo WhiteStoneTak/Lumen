@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "group_and_aggregate",
+  "source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
+  "transform_id": "group_and_aggregate.TR01",
+  "instruction": "Change the aggregation fields returned per group: instead of {count, sum, min, max}, return {count, mean, range} where mean = sum / count (a float) and range = max - min (a number). The 'sum', 'min', and 'max' keys must NOT appear in the output. Keys appear in insertion order. Empty input returns {}. Single-value groups have mean equal to that value and range equal to 0.",
+  "test_suite_ref": "data/ground_truth/tests/group_and_aggregate_t3_test.py"
+}
