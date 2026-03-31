@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "remove_adjacent_dups",
+  "source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
+  "transform_id": "remove_adjacent_dups.TR01",
+  "instruction": "Add an optional `key` parameter (default `None`). When `key` is a callable, use `key(item)` to compute the comparison value for each element instead of comparing items directly. When `key` is `None`, behaviour is identical to the original function (direct value equality). All other behaviour (collapsing adjacent duplicates, preserving order, returning an empty list for empty input) must remain unchanged.",
+  "test_suite_ref": "data/ground_truth/tests/remove_adjacent_dups_t3_test.py"
+}

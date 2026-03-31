@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "merge_sorted",
+  "source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
+  "transform_id": "merge_sorted.TR01",
+  "instruction": "Add an optional `descending` parameter (default `False`). When `descending=True`, both input lists must be sorted in descending order and the merged result must also be in descending order. When `descending=False`, behaviour is identical to the original function (ascending merge). All other behaviour (handling empty inputs, preserving duplicate values) must remain unchanged.",
+  "test_suite_ref": "data/ground_truth/tests/merge_sorted_t3_test.py"
+}

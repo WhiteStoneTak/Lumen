@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "sliding_window_max",
+  "source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
+  "transform_id": "sliding_window_max.TR01",
+  "instruction": "Add an optional `stride` parameter (default `1`). The window starting positions advance by `stride` elements at a time instead of always 1. Raise `ValueError` with a descriptive message when `stride < 1`. With `stride=1`, the result is identical to the original function. All other behaviour (returning empty list for invalid inputs, computing max of each window) must remain unchanged.",
+  "test_suite_ref": "data/ground_truth/tests/sliding_window_max_t3_test.py"
+}

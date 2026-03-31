@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "batch_list",
+  "source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
+  "transform_id": "batch_list.TR01",
+  "instruction": "Add an optional `pad` parameter (default `None`). When `pad` is not `None`, the final batch must be padded to exactly `batch_size` elements by appending `pad` as needed. When `pad` is `None`, the final batch is left as-is (original behaviour). All other behaviour (splitting items, returning empty list for empty input or batch_size < 1) must remain unchanged.",
+  "test_suite_ref": "data/ground_truth/tests/batch_list_t3_test.py"
+}
