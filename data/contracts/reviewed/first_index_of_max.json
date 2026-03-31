@@ -1,0 +1,17 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "first_index_of_max",
+  "source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
+  "generation_model": "claude-sonnet-4-6",
+  "generation_attempt": 0,
+  "preconditions": [
+    "nums is non-empty"
+  ],
+  "postconditions": [
+    "The return value is a valid index into nums (0 <= return value < len(nums))",
+    "nums[return value] equals the maximum element of nums",
+    "There is no index i < return value such that nums[i] equals the maximum element",
+    "The return value is 0 when all elements of nums are equal"
+  ],
+  "invariants": []
+}

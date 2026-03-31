@@ -1,0 +1,17 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "rotate_list",
+  "source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
+  "generation_model": "claude-sonnet-4-6",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "The return value is a list",
+    "If items is empty, the return value is an empty list",
+    "The length of the return value equals len(items)",
+    "The return value equals items[(k % len(items)):] + items[:(k % len(items))] when items is non-empty",
+    "If k % len(items) == 0, the return value equals list(items)",
+    "All elements from items appear in the return value with the same frequency"
+  ],
+  "invariants": []
+}

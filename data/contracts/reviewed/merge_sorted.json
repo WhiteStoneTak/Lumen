@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "merge_sorted",
+  "source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
+  "generation_model": "claude-sonnet-4-6",
+  "generation_attempt": 0,
+  "preconditions": [
+    "a is sorted in non-decreasing order",
+    "b is sorted in non-decreasing order"
+  ],
+  "postconditions": [
+    "The return value is a list sorted in non-decreasing order",
+    "The length of the return value equals len(a) + len(b)",
+    "Every element from a appears in the return value the same number of times as in a",
+    "Every element from b appears in the return value the same number of times as in b",
+    "If both a and b are empty, the return value is an empty list"
+  ],
+  "invariants": []
+}

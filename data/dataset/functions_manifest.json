@@ -150,15 +150,15 @@
         "raw_source": "data/functions/raw/remove_adjacent_dups.py",
         "annotated_text": null,
         "ast": "data/functions/ast/remove_adjacent_dups.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/remove_adjacent_dups.json",
+        "ir": "data/functions/ir/remove_adjacent_dups.json"
       },
       "representations": {
         "C1": true,
         "C1+": false,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -177,8 +177,8 @@
       "lineage": {
         "raw_source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
         "ast_source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
+        "ir_source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
         "t1_source_hash": null
       }
     },
@@ -195,15 +195,15 @@
         "raw_source": "data/functions/raw/batch_list.py",
         "annotated_text": null,
         "ast": "data/functions/ast/batch_list.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/batch_list.json",
+        "ir": "data/functions/ir/batch_list.json"
       },
       "representations": {
         "C1": true,
         "C1+": false,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -222,8 +222,8 @@
       "lineage": {
         "raw_source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
         "ast_source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
+        "ir_source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
         "t1_source_hash": null
       }
     },
@@ -240,15 +240,15 @@
         "raw_source": "data/functions/raw/sliding_window_max.py",
         "annotated_text": null,
         "ast": "data/functions/ast/sliding_window_max.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/sliding_window_max.json",
+        "ir": "data/functions/ir/sliding_window_max.json"
       },
       "representations": {
         "C1": true,
         "C1+": false,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -267,8 +267,8 @@
       "lineage": {
         "raw_source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
         "ast_source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
+        "ir_source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
         "t1_source_hash": null
       }
     },
@@ -285,15 +285,15 @@
         "raw_source": "data/functions/raw/rle_encode.py",
         "annotated_text": null,
         "ast": "data/functions/ast/rle_encode.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/rle_encode.json",
+        "ir": "data/functions/ir/rle_encode.json"
       },
       "representations": {
         "C1": true,
         "C1+": false,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -312,8 +312,8 @@
       "lineage": {
         "raw_source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
         "ast_source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
+        "ir_source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
         "t1_source_hash": null
       }
     },
@@ -330,15 +330,15 @@
         "raw_source": "data/functions/raw/count_true_segments.py",
         "annotated_text": null,
         "ast": "data/functions/ast/count_true_segments.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/count_true_segments.json",
+        "ir": "data/functions/ir/count_true_segments.json"
       },
       "representations": {
         "C1": true,
         "C1+": false,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -357,8 +357,8 @@
       "lineage": {
         "raw_source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
         "ast_source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
+        "ir_source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
         "t1_source_hash": null
       }
     },
@@ -375,15 +375,15 @@
         "raw_source": "data/functions/raw/merge_sorted.py",
         "annotated_text": null,
         "ast": "data/functions/ast/merge_sorted.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/merge_sorted.json",
+        "ir": "data/functions/ir/merge_sorted.json"
       },
       "representations": {
         "C1": true,
         "C1+": false,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -402,8 +402,8 @@
       "lineage": {
         "raw_source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
         "ast_source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
+        "ir_source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
         "t1_source_hash": null
       }
     },
@@ -420,15 +420,15 @@
         "raw_source": "data/functions/raw/first_index_of_max.py",
         "annotated_text": null,
         "ast": "data/functions/ast/first_index_of_max.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/first_index_of_max.json",
+        "ir": "data/functions/ir/first_index_of_max.json"
       },
       "representations": {
         "C1": true,
         "C1+": false,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -447,8 +447,8 @@
       "lineage": {
         "raw_source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
         "ast_source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
+        "ir_source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
         "t1_source_hash": null
       }
     },
@@ -465,15 +465,15 @@
         "raw_source": "data/functions/raw/rotate_list.py",
         "annotated_text": null,
         "ast": "data/functions/ast/rotate_list.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/rotate_list.json",
+        "ir": "data/functions/ir/rotate_list.json"
       },
       "representations": {
         "C1": true,
         "C1+": false,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -492,8 +492,8 @@
       "lineage": {
         "raw_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
         "ast_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
+        "ir_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
         "t1_source_hash": null
       }
     }

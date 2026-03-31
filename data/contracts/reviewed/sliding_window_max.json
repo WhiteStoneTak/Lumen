@@ -1,0 +1,17 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "sliding_window_max",
+  "source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
+  "generation_model": "claude-sonnet-4-6",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "The return value is a list",
+    "If nums is empty, k < 1, or k > len(nums), the return value is an empty list",
+    "The length of the return value equals len(nums) - k + 1 when the result is non-empty",
+    "Each element in the return value equals the maximum of a consecutive k-element window of nums",
+    "The i-th element of the return value is max(nums[i:i+k])",
+    "Every element of the return value is also present in nums"
+  ],
+  "invariants": []
+}

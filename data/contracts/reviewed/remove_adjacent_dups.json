@@ -1,0 +1,17 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "remove_adjacent_dups",
+  "source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
+  "generation_model": "claude-sonnet-4-6",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "The return value is a list",
+    "If items is empty, the return value is an empty list",
+    "The return value contains no two adjacent equal elements",
+    "Every element in the return value also appears in items (values are preserved)",
+    "The relative order of distinct adjacent runs is maintained",
+    "The length of the return value is at most len(items)"
+  ],
+  "invariants": []
+}

@@ -1,0 +1,17 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "rle_encode",
+  "source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
+  "generation_model": "claude-sonnet-4-6",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "The return value is a list of (value, count) tuples",
+    "If items is empty, the return value is an empty list",
+    "Each count in the return value is a positive integer",
+    "No two adjacent tuples in the return value have the same value",
+    "The sum of all counts equals len(items)",
+    "Expanding each (value, count) pair yields items exactly (run-length decoding recovers the input)"
+  ],
+  "invariants": []
+}

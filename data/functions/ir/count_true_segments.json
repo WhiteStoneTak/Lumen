@@ -1,0 +1,258 @@
+{
+  "lumen_schema": "ir-v1",
+  "func_id": "count_true_segments",
+  "source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (flags: builtins.list[Any]) -> builtins.int",
+    "params": [
+      {
+        "name": "flags",
+        "mypy_type": "builtins.list[Any]",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.int"
+  },
+  "contracts": {
+    "preconditions": [],
+    "postconditions": [
+      "The return value is a non-negative integer",
+      "If flags is empty or contains no True values, the return value is 0",
+      "The return value counts maximal consecutive runs of True values",
+      "If all elements of flags are True, the return value is 1",
+      "The return value increments by 1 for each False-to-True transition in flags"
+    ],
+    "invariants": []
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "count_true_segments",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "flags",
+              "annotation": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Count the number of contiguous True segments in flags.\n\n    A segment is a maximal consecutive run of True values.\n    Returns 0 for an empty list or an all-False list.\n\n    Examples:\n        count_true_segments([True, True, False, True])        == 2\n        count_true_segments([False, True, True, False, True]) == 2\n        count_true_segments([True, True, True])               == 1\n        count_true_segments([False, False])                   == 0\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "count",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "in_segment",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": false,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "flag",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Name",
+              "id": "flags",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "BoolOp",
+                  "op": {
+                    "_type": "And"
+                  },
+                  "values": [
+                    {
+                      "_type": "Name",
+                      "id": "flag",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    {
+                      "_type": "UnaryOp",
+                      "op": {
+                        "_type": "Not"
+                      },
+                      "operand": {
+                        "_type": "Name",
+                        "id": "in_segment",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "AugAssign",
+                    "target": {
+                      "_type": "Name",
+                      "id": "count",
+                      "ctx": {
+                        "_type": "Store"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "value": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    }
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "in_segment",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Constant",
+                      "value": true,
+                      "kind": null
+                    },
+                    "type_comment": null
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "If",
+                    "test": {
+                      "_type": "UnaryOp",
+                      "op": {
+                        "_type": "Not"
+                      },
+                      "operand": {
+                        "_type": "Name",
+                        "id": "flag",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      }
+                    },
+                    "body": [
+                      {
+                        "_type": "Assign",
+                        "targets": [
+                          {
+                            "_type": "Name",
+                            "id": "in_segment",
+                            "ctx": {
+                              "_type": "Store"
+                            }
+                          }
+                        ],
+                        "value": {
+                          "_type": "Constant",
+                          "value": false,
+                          "kind": null
+                        },
+                        "type_comment": null
+                      }
+                    ],
+                    "orelse": []
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "count",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Name",
+          "id": "int",
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "batch_list",
+  "source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
+  "generation_model": "claude-sonnet-4-6",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "The return value is a list of lists",
+    "If items is empty or batch_size < 1, the return value is an empty list",
+    "Each sub-list has at most batch_size elements",
+    "All elements from items appear in the return value in their original order",
+    "The concatenation of all sub-lists equals items",
+    "All sub-lists except possibly the last have exactly batch_size elements"
+  ],
+  "invariants": []
+}

@@ -1,0 +1,16 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "count_true_segments",
+  "source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
+  "generation_model": "claude-sonnet-4-6",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "The return value is a non-negative integer",
+    "If flags is empty or contains no True values, the return value is 0",
+    "The return value counts maximal consecutive runs of True values",
+    "If all elements of flags are True, the return value is 1",
+    "The return value increments by 1 for each False-to-True transition in flags"
+  ],
+  "invariants": []
+}

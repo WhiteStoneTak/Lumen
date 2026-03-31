@@ -1,0 +1,406 @@
+{
+  "lumen_schema": "ir-v1",
+  "func_id": "rle_encode",
+  "source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (items: builtins.list[Any]) -> builtins.list[Any]",
+    "params": [
+      {
+        "name": "items",
+        "mypy_type": "builtins.list[Any]",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.list[Any]"
+  },
+  "contracts": {
+    "preconditions": [],
+    "postconditions": [
+      "The return value is a list of (value, count) tuples",
+      "If items is empty, the return value is an empty list",
+      "Each count in the return value is a positive integer",
+      "No two adjacent tuples in the return value have the same value",
+      "The sum of all counts equals len(items)",
+      "Expanding each (value, count) pair yields items exactly (run-length decoding recovers the input)"
+    ],
+    "invariants": []
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "rle_encode",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "items",
+              "annotation": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return the run-length encoding of items as a list of (value, count) pairs.\n\n    Consecutive equal values are collapsed into a single (value, count) tuple.\n    Non-consecutive duplicates produce separate tuples.\n    Order is preserved.  Returns an empty list for empty input.\n\n    Examples:\n        rle_encode([1, 1, 2, 3, 3]) == [(1, 2), (2, 1), (3, 2)]\n        rle_encode(['a', 'a', 'a']) == [('a', 3)]\n        rle_encode([])              == []\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "UnaryOp",
+              "op": {
+                "_type": "Not"
+              },
+              "operand": {
+                "_type": "Name",
+                "id": "items",
+                "ctx": {
+                  "_type": "Load"
+                }
+              }
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "List",
+                  "elts": [],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "result",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "current",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "items",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Constant",
+                "value": 0,
+                "kind": null
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "count",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 1,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "item",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "items",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Slice",
+                "lower": {
+                  "_type": "Constant",
+                  "value": 1,
+                  "kind": null
+                },
+                "upper": null,
+                "step": null
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "item",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "Eq"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Name",
+                      "id": "current",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "AugAssign",
+                    "target": {
+                      "_type": "Name",
+                      "id": "count",
+                      "ctx": {
+                        "_type": "Store"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "value": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "result",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Tuple",
+                          "elts": [
+                            {
+                              "_type": "Name",
+                              "id": "current",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            {
+                              "_type": "Name",
+                              "id": "count",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            }
+                          ],
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "current",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Name",
+                      "id": "item",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "count",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    },
+                    "type_comment": null
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Attribute",
+                "value": {
+                  "_type": "Name",
+                  "id": "result",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "attr": "append",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Tuple",
+                  "elts": [
+                    {
+                      "_type": "Name",
+                      "id": "current",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    {
+                      "_type": "Name",
+                      "id": "count",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Name",
+          "id": "list",
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}
