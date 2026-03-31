@@ -1,0 +1,193 @@
+{
+  "lumen_schema": "wave2-raw-pool-inventory-v1",
+  "authored_at": "2026-03-31",
+  "total_added": 22,
+  "functions": [
+    {
+      "func_id": "max_subarray_bounds",
+      "family": "stateful_scan",
+      "est_exec_lines": 18,
+      "description": "Modified Kadane's algorithm returning (start, end, sum) of max-sum contiguous subarray with earliest-start tie policy.",
+      "harder_than_wave1_because": "Four interacting state variables (cur_sum, cur_start, best_sum, best_start/end); tie-policy is strict (earliest start wins); all-negative edge case handled differently from empty case.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "peak_valley_indices",
+      "family": "stateful_scan",
+      "est_exec_lines": 14,
+      "description": "Detect strict local peaks and valleys in a sequence, skipping boundary elements and plateaus.",
+      "harder_than_wave1_because": "Dual condition checks per element; plateau exclusion requires strict inequality on both sides; boundary sentinel semantics differ from interior logic.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "longest_plateau",
+      "family": "stateful_scan",
+      "est_exec_lines": 20,
+      "description": "Find start, end, and value of longest consecutive equal-element run; earliest-start tie policy.",
+      "harder_than_wave1_because": "Requires closing final run after loop; tie policy (strictly-greater-length only) means first wins; multiple interacting variables (cur_start, cur_val, best_start, best_end, best_val).",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "segments_above_threshold",
+      "family": "stateful_scan",
+      "est_exec_lines": 15,
+      "description": "Extract all maximal contiguous sublists where every element exceeds a threshold.",
+      "harder_than_wave1_because": "Segment boundary detection requires flushing current_segment on value exit and after loop; strict vs non-strict threshold boundary is a T2-injectable location.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "merge_intervals",
+      "family": "two_pointer",
+      "est_exec_lines": 18,
+      "description": "Sort and merge overlapping/touching intervals into a non-overlapping sorted list.",
+      "harder_than_wave1_because": "Sort-then-scan with mutable current interval; touching-interval boundary (<=) is T2-injectable; must append final interval after loop; max-end extension logic.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "two_sum_sorted_pairs",
+      "family": "two_pointer",
+      "est_exec_lines": 20,
+      "description": "Return all unique (a,b) value pairs from a sorted list summing to target, deduplicating repeated values.",
+      "harder_than_wave1_because": "Duplicate-skipping logic after match requires advancing both pointers past equal values; interaction between deduplication and pointer convergence condition.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "sorted_list_intersection",
+      "family": "two_pointer",
+      "est_exec_lines": 15,
+      "description": "Multiset intersection of two sorted lists preserving duplicate counts.",
+      "harder_than_wave1_because": "Dual-cursor merge with three-way branch; result is multiset (not set) — off-by-one in either pointer advance gives wrong duplicate counts.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "stable_partition",
+      "family": "grouping_partitioning",
+      "est_exec_lines": 12,
+      "description": "Split a list into (true_group, false_group) by predicate, preserving relative order in each group.",
+      "harder_than_wave1_because": "Return value is a tuple of two lists; predicate semantics are inverted for false_group; T3 potential: swap return order, return interleaved, or return indices.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "chunk_on_change",
+      "family": "grouping_partitioning",
+      "est_exec_lines": 18,
+      "description": "Split a list into chunks whenever a key function value changes, supporting optional identity key.",
+      "harder_than_wave1_because": "Key function indirection adds a layer vs simple equality; must append trailing chunk after loop; None-key fallback requires conditional lambda assignment.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "group_and_aggregate",
+      "family": "grouping_partitioning",
+      "est_exec_lines": 20,
+      "description": "Group (key, value) pairs and compute per-group count, sum, min, and max.",
+      "harder_than_wave1_because": "Four simultaneous accumulators per group; conditional update for min/max; insertion-order key semantics; empty-group initialization must get all four fields correct.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "dense_rank",
+      "family": "ordering_tie_policy",
+      "est_exec_lines": 14,
+      "description": "Assign 1-based dense ranks (same rank for ties, no gap after ties) preserving original order.",
+      "harder_than_wave1_because": "Dense vs standard rank semantics differ; requires sorted-unique mapping then output-order application; T3: swap to standard rank (rank+count_of_ties_above).",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "top_k_by",
+      "family": "ordering_tie_policy",
+      "est_exec_lines": 18,
+      "description": "Return top-k items by primary key (desc) with optional secondary tiebreak key (asc) and stable original-order fallback.",
+      "harder_than_wave1_because": "Composite sort key with three levels (primary desc, secondary asc, original-index); optional tiebreak_key changes sort tuple; k > len(items) must not error.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "equal_width_buckets",
+      "family": "index_arithmetic",
+      "est_exec_lines": 16,
+      "description": "Bin numeric values into n equal-width buckets (0-indexed); last bucket is inclusive on max_val.",
+      "harder_than_wave1_because": "Width calculation involves float division; max_val edge case requires explicit clamp to n_buckets-1; all-equal case is a separate branch; bucket arithmetic is off-by-one prone.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "strided_windows",
+      "family": "index_arithmetic",
+      "est_exec_lines": 14,
+      "description": "Extract windows of a fixed size at a configurable stride, with optional trailing partial windows.",
+      "harder_than_wave1_because": "Loop termination condition i+size<=n differs from i<n; include_partial adds a post-loop branch; stride != 1 skips positions non-trivially.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "spiral_order",
+      "family": "index_arithmetic",
+      "est_exec_lines": 22,
+      "description": "Traverse a 2D matrix in clockwise spiral order using shrinking boundary pointers.",
+      "harder_than_wave1_because": "Four boundary variables updated in four separate traversal passes per loop iteration; guard conditions on bottom and right traversals prevent double-counting in single-row/column cases.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "antidiagonals",
+      "family": "index_arithmetic",
+      "est_exec_lines": 16,
+      "description": "Extract all antidiagonals of a 2D matrix as a list of lists, using index arithmetic over diagonal index d.",
+      "harder_than_wave1_because": "Row/column range for each diagonal d requires clamped arithmetic: r_start=max(0,d-C+1), r_end=min(R,d+1); column c=d-r must be derived; non-square matrices are tricky.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "camel_to_snake",
+      "family": "string_sequence",
+      "est_exec_lines": 20,
+      "description": "Convert camelCase/PascalCase to snake_case with abbreviation handling (XMLParser -> xml_parser) using character-level scan.",
+      "harder_than_wave1_because": "Three distinct underscore-insertion rules interact per character; abbreviation boundary detection requires lookahead and lookback simultaneously; no regex — pure character scan.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "tokenize_arithmetic",
+      "family": "string_sequence",
+      "est_exec_lines": 22,
+      "description": "Scan an arithmetic expression into (type, value) token pairs for NUM, OP, LPAREN, RPAREN.",
+      "harder_than_wave1_because": "State machine with variable-length NUM accumulation; index management (i vs j for NUM end); four distinct token types with different scan logic; partial-number boundary conditions.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "find_balanced_spans",
+      "family": "string_sequence",
+      "est_exec_lines": 18,
+      "description": "Locate top-level balanced bracket spans (start, end) using a depth counter; ignores unmatched brackets.",
+      "harder_than_wave1_because": "Depth counter and span_start tracking interact; must only record outermost spans (depth==0 after decrement); unmatched close brackets silently ignored via depth>0 guard.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "welford_running_stats",
+      "family": "multi_field_accumulation",
+      "est_exec_lines": 15,
+      "description": "Welford's online algorithm computing running (count, mean, population_variance) at each step.",
+      "harder_than_wave1_because": "Two-delta update (delta before and after mean update) is non-obvious and numerically significant; M2 accumulation must use both deltas; population (not sample) variance requires /n not /(n-1).",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "frequency_table",
+      "family": "multi_field_accumulation",
+      "est_exec_lines": 18,
+      "description": "Build a sorted (value, count, cumulative_fraction) frequency table from a flat list.",
+      "harder_than_wave1_because": "Three-field output tuple; cumulative fraction requires running sum across sorted unique values; sort on arbitrary comparable types; empty-input guard.",
+      "truth_authorable": true
+    },
+    {
+      "func_id": "group_by_key",
+      "family": "grouping_partitioning",
+      "est_exec_lines": 12,
+      "description": "Group (key, value) pairs into a dict of value-lists, preserving insertion order and per-group value order.",
+      "harder_than_wave1_because": "Insertion-order semantics require dict presence check before append; T3 potential: return first-only, last-only, or count instead of list; T2: wrong defaultdict semantics.",
+      "truth_authorable": true
+    }
+  ],
+  "family_coverage": {
+    "stateful_scan": ["max_subarray_bounds", "peak_valley_indices", "longest_plateau", "segments_above_threshold"],
+    "two_pointer": ["merge_intervals", "two_sum_sorted_pairs", "sorted_list_intersection"],
+    "grouping_partitioning": ["stable_partition", "chunk_on_change", "group_and_aggregate", "group_by_key"],
+    "ordering_tie_policy": ["dense_rank", "top_k_by"],
+    "index_arithmetic": ["equal_width_buckets", "strided_windows", "spiral_order", "antidiagonals"],
+    "string_sequence": ["camel_to_snake", "tokenize_arithmetic", "find_balanced_spans"],
+    "multi_field_accumulation": ["welford_running_stats", "frequency_table"]
+  },
+  "next_action": "rerun Phase 4A triage on this expanded pool"
+}
