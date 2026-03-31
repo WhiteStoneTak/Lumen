@@ -1,9 +1,8 @@
 """T3 post-transform test suite for rle_encode.
 
-Transform spec (rle_encode.TR01): Add an optional `min_run` parameter
-(default 1). Only include (value, count) tuples where count >= min_run.
-Raises ValueError when min_run < 1. With min_run=1, output is identical to
-the original function.
+Transform spec (rle_encode.TR01): Change the output format from a list of
+(value, count) tuples to a flat interleaved list [value1, count1, value2,
+count2, ...]. Run-detection logic remains unchanged.
 
 These tests are run against a model's transformed implementation.
 Parse failure and execution failure score 0.0 without running tests.
@@ -30,58 +29,69 @@ _SOURCE = _DEFAULT_SOURCE
 rle_encode = _load_func(_SOURCE)
 
 
-class RleEncodeT3MinRunTests(unittest.TestCase):
-    """Only runs of length >= min_run must appear in the output."""
+class RleEncodeT3FlatOutputTests(unittest.TestCase):
+    """The function must return a flat interleaved [value, count, ...] list."""
 
-    def test_min_run_2_filters_single_occurrences(self) -> None:
-        # [1,1,2,3,3] → runs: (1,2),(2,1),(3,2). min_run=2 keeps (1,2),(3,2)
-        result = rle_encode([1, 1, 2, 3, 3], min_run=2)
-        self.assertEqual(result, [(1, 2), (3, 2)])
+    def test_basic_flat_output(self) -> None:
+        # [1,1,2,3,3] → runs: (1,2),(2,1),(3,2) → flat: [1,2,2,1,3,2]
+        result = rle_encode([1, 1, 2, 3, 3])
+        self.assertEqual(result, [1, 2, 2, 1, 3, 2])
 
-    def test_min_run_3_keeps_only_long_runs(self) -> None:
-        # [a,a,a,b,b,c] → runs: (a,3),(b,2),(c,1). min_run=3 keeps (a,3)
-        result = rle_encode(["a", "a", "a", "b", "b", "c"], min_run=3)
-        self.assertEqual(result, [("a", 3)])
+    def test_all_same_flat(self) -> None:
+        # ['a','a','a'] → run: ('a',3) → flat: ['a',3]
+        result = rle_encode(["a", "a", "a"])
+        self.assertEqual(result, ["a", 3])
 
-    def test_min_run_filters_all_returns_empty(self) -> None:
-        # [1,2,3] → runs: (1,1),(2,1),(3,1). min_run=2 → all filtered
-        result = rle_encode([1, 2, 3], min_run=2)
+    def test_empty_returns_empty(self) -> None:
+        result = rle_encode([])
         self.assertEqual(result, [])
 
-    def test_min_run_1_keeps_all(self) -> None:
-        result = rle_encode([1, 1, 2, 3, 3], min_run=1)
-        self.assertEqual(result, [(1, 2), (2, 1), (3, 2)])
+    def test_single_element(self) -> None:
+        # [5] → run: (5,1) → flat: [5,1]
+        result = rle_encode([5])
+        self.assertEqual(result, [5, 1])
 
-    def test_min_run_0_raises_value_error(self) -> None:
-        with self.assertRaises(ValueError):
-            rle_encode([1, 2, 3], min_run=0)
+    def test_no_runs_interleaved(self) -> None:
+        # [1,2,3] → runs: (1,1),(2,1),(3,1) → flat: [1,1,2,1,3,1]
+        result = rle_encode([1, 2, 3])
+        self.assertEqual(result, [1, 1, 2, 1, 3, 1])
 
-    def test_min_run_negative_raises_value_error(self) -> None:
-        with self.assertRaises(ValueError):
-            rle_encode([1, 2, 3], min_run=-1)
+    def test_output_is_flat_list_not_tuples(self) -> None:
+        result = rle_encode([1, 1, 2])
+        self.assertIsInstance(result, list)
+        for item in result:
+            self.assertNotIsInstance(item, tuple)
 
-    def test_min_run_with_empty_input_returns_empty(self) -> None:
-        result = rle_encode([], min_run=2)
-        self.assertEqual(result, [])
+    def test_length_is_double_run_count(self) -> None:
+        # [1,1,2,3,3] → 3 runs → output length 6
+        result = rle_encode([1, 1, 2, 3, 3])
+        self.assertEqual(len(result), 6)
+
+    def test_original_tuple_format_not_returned(self) -> None:
+        result = rle_encode([1, 1, 2])
+        self.assertNotEqual(result, [(1, 2), (2, 1)])
 
 
-class RleEncodeT3OriginalBehaviourPreservedTests(unittest.TestCase):
-    """Original behaviour must be preserved with default min_run=1."""
+class RleEncodeT3RunLogicPreservedTests(unittest.TestCase):
+    """Run-detection logic must be preserved; only output format changes."""
 
-    def test_basic_encoding(self) -> None:
-        self.assertEqual(rle_encode([1, 1, 2, 3, 3]), [(1, 2), (2, 1), (3, 2)])
+    def test_non_adjacent_duplicates_separate_runs(self) -> None:
+        # [1,2,1] → runs: (1,1),(2,1),(1,1) → flat: [1,1,2,1,1,1]
+        result = rle_encode([1, 2, 1])
+        self.assertEqual(result, [1, 1, 2, 1, 1, 1])
 
-    def test_all_same(self) -> None:
-        self.assertEqual(rle_encode(["a", "a", "a"]), [("a", 3)])
+    def test_two_distinct_runs(self) -> None:
+        # [3,3,3,2,2] → runs: (3,3),(2,2) → flat: [3,3,2,2]
+        result = rle_encode([3, 3, 3, 2, 2])
+        self.assertEqual(result, [3, 3, 2, 2])
+
+    def test_alternating_values(self) -> None:
+        # [1,2,1,2] → runs: (1,1),(2,1),(1,1),(2,1) → flat: [1,1,2,1,1,1,2,1]
+        result = rle_encode([1, 2, 1, 2])
+        self.assertEqual(result, [1, 1, 2, 1, 1, 1, 2, 1])
 
     def test_empty_input_returns_empty(self) -> None:
         self.assertEqual(rle_encode([]), [])
-
-    def test_no_runs_each_singleton(self) -> None:
-        self.assertEqual(rle_encode([1, 2, 3]), [(1, 1), (2, 1), (3, 1)])
-
-    def test_non_adjacent_duplicates_separate_tuples(self) -> None:
-        self.assertEqual(rle_encode([1, 2, 1]), [(1, 1), (2, 1), (1, 1)])
 
 
 if __name__ == "__main__":

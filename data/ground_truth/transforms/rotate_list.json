@@ -3,6 +3,6 @@
   "func_id": "rotate_list",
   "source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
   "transform_id": "rotate_list.TR01",
-  "instruction": "Add an optional `right` parameter (default `False`). When `right=True`, rotate the list right by `k` positions (the last `k` elements become the first `k` elements). When `right=False`, behaviour is identical to the original function (left rotation). In both directions `k` is taken modulo `len(items)` and an empty list is returned unchanged. All other behaviour must remain unchanged.",
+  "instruction": "Change the rotation direction from left to right. A right rotation by `k` positions moves the last `k` elements to the front. For example, `rotate_list([1, 2, 3, 4, 5], 2)` must return `[4, 5, 1, 2, 3]` instead of `[3, 4, 5, 1, 2]`. `k` is taken modulo `len(items)` so any integer is valid. Returns a copy of items when `k` is 0 (after mod) or items is empty.",
   "test_suite_ref": "data/ground_truth/tests/rotate_list_t3_test.py"
 }

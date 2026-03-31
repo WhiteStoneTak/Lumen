@@ -3,6 +3,6 @@
   "func_id": "first_index_of_max",
   "source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
   "transform_id": "first_index_of_max.TR01",
-  "instruction": "Add an optional `default` parameter with a sentinel default value (e.g. use `_SENTINEL = object()` at module level and `default=_SENTINEL`). When `nums` is empty and `default` is not the sentinel, return `default` instead of raising `ValueError`. When `nums` is empty and no `default` is provided, continue to raise `ValueError` (original behaviour). All other behaviour (finding the first index of the maximum value in a non-empty list) must remain unchanged.",
+  "instruction": "Change the tie-breaking policy: instead of returning the index of the **first** occurrence of the maximum value, return the index of the **last** occurrence. For example, `first_index_of_max([5, 5, 5])` must return `2` (the last index) instead of `0`. For lists where the maximum appears exactly once, the result is unchanged. Continue to raise `ValueError` for an empty list.",
   "test_suite_ref": "data/ground_truth/tests/first_index_of_max_t3_test.py"
 }

@@ -76,7 +76,7 @@
       "body_line_count": 7,
       "estimated_complexity": "low",
       "t2_bug_family_draft": "incorrect_variable_reference",
-      "t3_transform_family_draft": "key_function_parameter",
+      "t3_transform_family_draft": "tuple_return",
       "stage1_result": "PASS",
       "stage1_exclusion_reason": null,
       "stage2_t2_c1_screen_score": 2.0,
@@ -91,7 +91,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: result[-1] vs items[-1] in deduplication loop. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (13/13), ceiling_risk. Transform: add key callable parameter. Test defect found and corrected during Phase 3C: test_key_all_same_under_key_reduces_to_one had wrong input [1,-1,2,-2] → expected [1] (correct is [1,2]); corrected to input [1,-1,1,-1] → expected [1]. Re-run after correction: score=1.0."
+      "notes": "Wave 1 first-wave authoring. Bug: result[-1] vs items[-1] in deduplication loop. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (13/13), ceiling_risk. Transform: add key callable parameter. Test defect found and corrected during Phase 3C: test_key_all_same_under_key_reduces_to_one had wrong input [1,-1,2,-2] → expected [1] (correct is [1,2]); corrected to input [1,-1,1,-1] → expected [1]. Re-run after correction: score=1.0. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = output-structure change (return (list, removed_count) tuple). score=1.0 (12/12), ceiling_risk persists. t3_transform_family_draft updated to tuple_return."
     },
     {
       "candidate_id": "batch_list",
@@ -99,7 +99,7 @@
       "body_line_count": 6,
       "estimated_complexity": "low",
       "t2_bug_family_draft": "off_by_one",
-      "t3_transform_family_draft": "pad_final_batch",
+      "t3_transform_family_draft": "reversed_batches",
       "stage1_result": "PASS",
       "stage1_exclusion_reason": null,
       "stage2_t2_c1_screen_score": 1.0,
@@ -114,7 +114,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: range step batch_size+1 instead of batch_size. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (11/11), ceiling_risk. Transform: add pad parameter for final-batch padding."
+      "notes": "Wave 1 first-wave authoring. Bug: range step batch_size+1 instead of batch_size. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (11/11), ceiling_risk. Transform: add pad parameter for final-batch padding. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = accumulation-strategy change (reverse each batch). score=1.0 (12/12), ceiling_risk persists."
     },
     {
       "candidate_id": "sliding_window_max",
@@ -122,7 +122,7 @@
       "body_line_count": 6,
       "estimated_complexity": "medium",
       "t2_bug_family_draft": "off_by_one",
-      "t3_transform_family_draft": "stride_parameter",
+      "t3_transform_family_draft": "index_return",
       "stage1_result": "PASS",
       "stage1_exclusion_reason": null,
       "stage2_t2_c1_screen_score": 2.0,
@@ -137,7 +137,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: range(len-k) omits last window; should be range(len-k+1). Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (13/13), ceiling_risk. Transform: add stride parameter with ValueError for stride<1."
+      "notes": "Wave 1 first-wave authoring. Bug: range(len-k) omits last window; should be range(len-k+1). Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (13/13), ceiling_risk. Transform: add stride parameter with ValueError for stride<1. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = output-structure change (return absolute window-max index). score=1.0 (12/12), ceiling_risk persists."
     },
     {
       "candidate_id": "rle_encode",
@@ -145,7 +145,7 @@
       "body_line_count": 14,
       "estimated_complexity": "medium",
       "t2_bug_family_draft": "incorrect_variable_reference",
-      "t3_transform_family_draft": "min_run_filter",
+      "t3_transform_family_draft": "flat_interleaved_output",
       "stage1_result": "PASS",
       "stage1_exclusion_reason": null,
       "stage2_t2_c1_screen_score": 1.0,
@@ -160,7 +160,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: current=items[-1] instead of current=item on run transition. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (12/12), ceiling_risk. Transform: add min_run filter with ValueError for min_run<1."
+      "notes": "Wave 1 first-wave authoring. Bug: current=items[-1] instead of current=item on run transition. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (12/12), ceiling_risk. Transform: add min_run filter with ValueError for min_run<1. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = output-structure change (flat interleaved [value,count,...] list). score=1.0 (12/12), ceiling_risk persists."
     },
     {
       "candidate_id": "count_true_segments",
@@ -168,7 +168,7 @@
       "body_line_count": 9,
       "estimated_complexity": "medium",
       "t2_bug_family_draft": "missing_boundary_check",
-      "t3_transform_family_draft": "min_length_filter",
+      "t3_transform_family_draft": "segment_lengths_list",
       "stage1_result": "PASS",
       "stage1_exclusion_reason": null,
       "stage2_t2_c1_screen_score": 2.0,
@@ -183,7 +183,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: counts on segment exit not entry; trailing True segment missed. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (14/14), ceiling_risk. Transform: add min_length filter with ValueError for min_length<1. HISTORICAL NOTE (2026-03-30, Phase 2E audit): original t2_screen_wave1 run scored fix=0 (score=1.0) due to a combined scorer + annotation defect: (1) SCORER: generic fallback in _extract_best_fix_line picked 'if flag:' from the diagnostic code block instead of the fix block — no function-specific handler existed; (2) ANNOTATION: reference_fix span was 15-19, which omitted buggy line 20 (the last line of the elif body), so even with a corrected extractor the patched source would have retained a stray orphaned statement. Both defects were independently required for fix=0; neither alone was the sole cause. RESOLUTION (2026-03-30, Phase 2E-B, provenance corrected 2026-03-30 Phase 2E-C): COMBINED SCORER + ANNOTATION AMENDMENT. Added count_true_segments-specific extractor in _extract_best_fix_line; extended reference_fix span to 15-20 and updated replacement to include the for-loop header; added multi-line patch support to _apply_fix_to_source. Re-scored under run t2_cts_rescore_v1: score=2.0, subscores={loc:0, diag:1, fix:1}. Score=2.0 is the authoritative Stage 2 result under the amended scoring path and corrected annotation."
+      "notes": "Wave 1 first-wave authoring. Bug: counts on segment exit not entry; trailing True segment missed. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (14/14), ceiling_risk. Transform: add min_length filter with ValueError for min_length<1. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = output-structure change (return list of segment lengths). score=1.0 (13/13), ceiling_risk persists. HISTORICAL NOTE (2026-03-30, Phase 2E audit): original t2_screen_wave1 run scored fix=0 (score=1.0) due to a combined scorer + annotation defect: (1) SCORER: generic fallback in _extract_best_fix_line picked 'if flag:' from the diagnostic code block instead of the fix block — no function-specific handler existed; (2) ANNOTATION: reference_fix span was 15-19, which omitted buggy line 20 (the last line of the elif body), so even with a corrected extractor the patched source would have retained a stray orphaned statement. Both defects were independently required for fix=0; neither alone was the sole cause. RESOLUTION (2026-03-30, Phase 2E-B, provenance corrected 2026-03-30 Phase 2E-C): COMBINED SCORER + ANNOTATION AMENDMENT. Added count_true_segments-specific extractor in _extract_best_fix_line; extended reference_fix span to 15-20 and updated replacement to include the for-loop header; added multi-line patch support to _apply_fix_to_source. Re-scored under run t2_cts_rescore_v1: score=2.0, subscores={loc:0, diag:1, fix:1}. Score=2.0 is the authoritative Stage 2 result under the amended scoring path and corrected annotation."
     },
     {
       "candidate_id": "merge_sorted",
@@ -191,7 +191,7 @@
       "body_line_count": 16,
       "estimated_complexity": "medium",
       "t2_bug_family_draft": "missing_boundary_check",
-      "t3_transform_family_draft": "descending_mode",
+      "t3_transform_family_draft": "exclusive_merge",
       "stage1_result": "PASS",
       "stage1_exclusion_reason": null,
       "stage2_t2_c1_screen_score": 1.0,
@@ -206,7 +206,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: j < len(b)-1 drops last element when b has remainder. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (11/11), ceiling_risk. Transform: add descending flag for descending-order merge."
+      "notes": "Wave 1 first-wave authoring. Bug: j < len(b)-1 drops last element when b has remainder. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (11/11), ceiling_risk. Transform: add descending flag for descending-order merge. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = multi-constraint change (exclusive merge / symmetric-difference semantics). score=1.0 (12/12), ceiling_risk persists."
     },
     {
       "candidate_id": "first_index_of_max",
@@ -214,7 +214,7 @@
       "body_line_count": 9,
       "estimated_complexity": "low",
       "t2_bug_family_draft": "wrong_comparison_operator",
-      "t3_transform_family_draft": "default_parameter_sentinel",
+      "t3_transform_family_draft": "last_occurrence_policy",
       "stage1_result": "PASS",
       "stage1_exclusion_reason": null,
       "stage2_t2_c1_screen_score": 2.0,
@@ -229,7 +229,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: >= instead of > causes last-occurrence instead of first-occurrence. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (11/11), ceiling_risk. Transform: add default sentinel parameter for empty-list fallback."
+      "notes": "Wave 1 first-wave authoring. Bug: >= instead of > causes last-occurrence instead of first-occurrence. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (11/11), ceiling_risk. Transform: add default sentinel parameter for empty-list fallback. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = tie-policy inversion (return last index of max, not first). score=1.0 (12/12), ceiling_risk persists."
     },
     {
       "candidate_id": "rotate_list",
@@ -237,7 +237,7 @@
       "body_line_count": 7,
       "estimated_complexity": "low",
       "t2_bug_family_draft": "swapped_arguments",
-      "t3_transform_family_draft": "right_rotation_flag",
+      "t3_transform_family_draft": "right_rotation_direction",
       "stage1_result": "PASS",
       "stage1_exclusion_reason": null,
       "stage2_t2_c1_screen_score": 1.0,
@@ -252,7 +252,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: items[:k]+items[k:] (copy) instead of items[k:]+items[:k] (rotation). Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (13/13), ceiling_risk. Transform: add right flag for right-direction rotation."
+      "notes": "Wave 1 first-wave authoring. Bug: items[:k]+items[k:] (copy) instead of items[k:]+items[:k] (rotation). Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (13/13), ceiling_risk. Transform: add right flag for right-direction rotation. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = semantic inversion (right rotation replaces left rotation entirely). score=1.0 (12/12), ceiling_risk persists."
     },
     {
       "candidate_id": "demo_func",

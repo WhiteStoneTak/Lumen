@@ -3,6 +3,6 @@
   "func_id": "count_true_segments",
   "source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
   "transform_id": "count_true_segments.TR01",
-  "instruction": "Add an optional `min_length` parameter (default `1`). Only count a contiguous True segment when its length is at least `min_length`. Raise `ValueError` with a descriptive message when `min_length < 1`. With `min_length=1`, all segments are counted and the result is identical to the original function. All other behaviour (traversing the flags list, returning 0 for empty or all-False input) must remain unchanged.",
+  "instruction": "Change the return type from `int` to `list`. Instead of returning the count of True segments, return a list of the lengths of each True segment in the order they appear. For example, `count_true_segments([True, True, False, True])` must return `[2, 1]`. Returns an empty list for empty input or an all-False input.",
   "test_suite_ref": "data/ground_truth/tests/count_true_segments_t3_test.py"
 }

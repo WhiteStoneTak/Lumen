@@ -1,10 +1,8 @@
 """T3 post-transform test suite for first_index_of_max.
 
-Transform spec (first_index_of_max.TR01): Add an optional `default` parameter
-with a sentinel default value. When nums is empty and default is provided
-(not the sentinel), return default instead of raising ValueError. When nums is
-empty and no default is provided, continue to raise ValueError (original
-behaviour). All other behaviour is unchanged.
+Transform spec (first_index_of_max.TR01): Change the tie-breaking policy.
+Instead of returning the index of the first occurrence of the maximum value,
+return the index of the last occurrence. Single-occurrence maxima are unchanged.
 
 These tests are run against a model's transformed implementation.
 Parse failure and execution failure score 0.0 without running tests.
@@ -31,52 +29,71 @@ _SOURCE = _DEFAULT_SOURCE
 first_index_of_max = _load_func(_SOURCE)
 
 
-class FirstIndexOfMaxT3DefaultParameterTests(unittest.TestCase):
-    """When default is provided, empty input returns default instead of raising."""
+class FirstIndexOfMaxT3LastOccurrenceTests(unittest.TestCase):
+    """The function must return the LAST index of the maximum value."""
 
-    def test_default_minus_one_returned_for_empty(self) -> None:
-        result = first_index_of_max([], default=-1)
-        self.assertEqual(result, -1)
-
-    def test_default_none_returned_for_empty(self) -> None:
-        result = first_index_of_max([], default=None)
-        self.assertIsNone(result)
-
-    def test_default_zero_returned_for_empty(self) -> None:
-        result = first_index_of_max([], default=0)
-        self.assertEqual(result, 0)
-
-    def test_default_not_used_when_list_nonempty(self) -> None:
-        # Non-empty list: default is ignored, normal result returned
-        result = first_index_of_max([3, 1, 4], default=-1)
+    def test_basic_last_occurrence_all_equal(self) -> None:
+        # [5,5,5]: max=5, last at index 2; original returns 0
+        result = first_index_of_max([5, 5, 5])
         self.assertEqual(result, 2)
 
-    def test_default_string_value_returned_for_empty(self) -> None:
-        result = first_index_of_max([], default="not_found")
-        self.assertEqual(result, "not_found")
+    def test_unique_max_unchanged(self) -> None:
+        # [3,1,4,1,5,9,2,6]: max=9 at index 5 (only occurrence)
+        result = first_index_of_max([3, 1, 4, 1, 5, 9, 2, 6])
+        self.assertEqual(result, 5)
 
+    def test_last_of_multiple_maxima(self) -> None:
+        # [1,5,3,5]: max=5 at indices 1 and 3; last is 3
+        result = first_index_of_max([1, 5, 3, 5])
+        self.assertEqual(result, 3)
 
-class FirstIndexOfMaxT3OriginalBehaviourPreservedTests(unittest.TestCase):
-    """Original behaviour must be preserved: empty input raises, non-empty works normally."""
+    def test_max_at_end(self) -> None:
+        # [1,2,3,4,5]: max=5 at index 4 (unique)
+        result = first_index_of_max([1, 2, 3, 4, 5])
+        self.assertEqual(result, 4)
 
-    def test_empty_list_raises_value_error(self) -> None:
+    def test_max_at_start_unique(self) -> None:
+        # [5,1,2,3]: max=5 at index 0 (unique) → same result for both policies
+        result = first_index_of_max([5, 1, 2, 3])
+        self.assertEqual(result, 0)
+
+    def test_tied_max_returns_last_not_first(self) -> None:
+        # [1,3,2,3,1]: max=3 at indices 1 and 3; last is 3; original returns 1
+        result = first_index_of_max([1, 3, 2, 3, 1])
+        self.assertEqual(result, 3)
+        self.assertNotEqual(result, 1)
+
+    def test_empty_raises_value_error(self) -> None:
         with self.assertRaises(ValueError):
             first_index_of_max([])
 
-    def test_first_occurrence_of_max_returned(self) -> None:
-        self.assertEqual(first_index_of_max([3, 1, 4, 1, 5, 9, 2, 6]), 5)
-
-    def test_first_of_tied_max(self) -> None:
-        self.assertEqual(first_index_of_max([5, 5, 5]), 0)
-
-    def test_ascending_list(self) -> None:
-        self.assertEqual(first_index_of_max([1, 2, 3]), 2)
-
     def test_single_element(self) -> None:
-        self.assertEqual(first_index_of_max([42]), 0)
+        result = first_index_of_max([42])
+        self.assertEqual(result, 0)
 
-    def test_descending_list(self) -> None:
-        self.assertEqual(first_index_of_max([9, 5, 3, 1]), 0)
+
+class FirstIndexOfMaxT3TiePolicyDifferenceTests(unittest.TestCase):
+    """Confirm that last-occurrence policy diverges from first-occurrence policy."""
+
+    def test_two_maxima_at_start_and_end(self) -> None:
+        # [7,1,2,7]: max=7 at 0 and 3; last → 3, first → 0
+        result = first_index_of_max([7, 1, 2, 7])
+        self.assertEqual(result, 3)
+
+    def test_three_maxima_returns_last(self) -> None:
+        # [4,4,2,4]: max=4 at indices 0,1,3; last is 3
+        result = first_index_of_max([4, 4, 2, 4])
+        self.assertEqual(result, 3)
+
+    def test_two_adjacent_maxima(self) -> None:
+        # [1,6,6,2]: max=6 at indices 1 and 2; last is 2
+        result = first_index_of_max([1, 6, 6, 2])
+        self.assertEqual(result, 2)
+
+    def test_descending_list_unique_max(self) -> None:
+        # [9,5,3,1]: max=9 at index 0 (unique); same for both policies
+        result = first_index_of_max([9, 5, 3, 1])
+        self.assertEqual(result, 0)
 
 
 if __name__ == "__main__":

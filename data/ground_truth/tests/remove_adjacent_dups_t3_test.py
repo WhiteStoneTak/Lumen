@@ -1,8 +1,8 @@
 """T3 post-transform test suite for remove_adjacent_dups.
 
-Transform spec (remove_adjacent_dups.TR01): Add an optional `key` callable
-parameter (default None). When key is not None, comparisons use key(item)
-instead of direct value equality. key=None preserves original behaviour.
+Transform spec (remove_adjacent_dups.TR01): Change the return type from
+`list` to `tuple`. Return `(result, removed_count)` where `result` is the
+deduplicated list and `removed_count` is the total number of elements removed.
 
 These tests are run against a model's transformed implementation.
 Parse failure and execution failure score 0.0 without running tests.
@@ -29,65 +29,67 @@ _SOURCE = _DEFAULT_SOURCE
 remove_adjacent_dups = _load_func(_SOURCE)
 
 
-class RemoveAdjacentDupsT3KeyFunctionTests(unittest.TestCase):
-    """The transformed function must support a key callable for comparisons."""
+class RemoveAdjacentDupsT3TupleReturnTests(unittest.TestCase):
+    """The transformed function must return (result_list, removed_count) tuple."""
 
-    def test_key_abs_collapses_opposite_sign_adjacents(self) -> None:
-        # abs(-1)==abs(1)==1, so -1 and 1 are adjacent duplicates under key=abs
-        result = remove_adjacent_dups([-1, 1, 2], key=abs)
-        self.assertEqual(result, [-1, 2])
+    def test_basic_returns_tuple(self) -> None:
+        # [1,1,2,3,3,3,2]: len=7, result=[1,2,3,2] len=4, removed=3
+        result = remove_adjacent_dups([1, 1, 2, 3, 3, 3, 2])
+        self.assertEqual(result, ([1, 2, 3, 2], 3))
 
-    def test_key_lower_collapses_different_case_adjacents(self) -> None:
-        result = remove_adjacent_dups(["A", "a", "B"], key=str.lower)
-        self.assertEqual(result, ["A", "B"])
+    def test_empty_returns_tuple_zero(self) -> None:
+        result = remove_adjacent_dups([])
+        self.assertEqual(result, ([], 0))
 
-    def test_key_mod2_collapses_same_parity_adjacents(self) -> None:
-        # 2%2==4%2==0; 3%2==1; 5%2==1
-        result = remove_adjacent_dups([2, 4, 3, 5], key=lambda x: x % 2)
-        self.assertEqual(result, [2, 3])
+    def test_single_returns_tuple_zero(self) -> None:
+        result = remove_adjacent_dups([7])
+        self.assertEqual(result, ([7], 0))
 
-    def test_key_preserves_non_adjacent_values(self) -> None:
-        # Under key=abs: 1, -2, 1 — no adjacent duplicates
-        result = remove_adjacent_dups([1, -2, 1], key=abs)
-        self.assertEqual(result, [1, -2, 1])
+    def test_removed_count_all_same(self) -> None:
+        # [5,5,5,5]: len=4, result=[5] len=1, removed=3
+        result = remove_adjacent_dups([5, 5, 5, 5])
+        self.assertEqual(result, ([5], 3))
 
-    def test_key_single_element_unchanged(self) -> None:
-        result = remove_adjacent_dups([42], key=abs)
-        self.assertEqual(result, [42])
+    def test_removed_count_no_dups(self) -> None:
+        # [1,2,3]: no adjacent dups, removed=0
+        result = remove_adjacent_dups([1, 2, 3])
+        self.assertEqual(result, ([1, 2, 3], 0))
 
-    def test_key_all_same_under_key_reduces_to_one(self) -> None:
-        # All elements have abs-value 1; consecutive runs collapse to one element.
-        result = remove_adjacent_dups([1, -1, 1, -1], key=abs)
-        self.assertEqual(result, [1])
+    def test_type_is_tuple(self) -> None:
+        result = remove_adjacent_dups([1, 1, 2])
+        self.assertIsInstance(result, tuple)
+        self.assertEqual(len(result), 2)
 
-    def test_key_empty_input_returns_empty(self) -> None:
-        result = remove_adjacent_dups([], key=abs)
-        self.assertEqual(result, [])
+    def test_first_element_is_list(self) -> None:
+        result = remove_adjacent_dups([1, 1, 2])
+        self.assertIsInstance(result[0], list)
+        self.assertEqual(result[0], [1, 2])
+
+    def test_second_element_is_int(self) -> None:
+        result = remove_adjacent_dups([1, 1, 2])
+        self.assertIsInstance(result[1], int)
+        self.assertEqual(result[1], 1)
 
 
-class RemoveAdjacentDupsT3OriginalBehaviourPreservedTests(unittest.TestCase):
-    """Original behaviour must be preserved when key=None (default)."""
+class RemoveAdjacentDupsT3DeduplicationPreservedTests(unittest.TestCase):
+    """The deduplication logic (which items remain) must be correct in result[0]."""
 
-    def test_adjacent_dups_collapsed_default(self) -> None:
-        self.assertEqual(
-            remove_adjacent_dups([1, 1, 2, 3, 3, 3, 2]),
-            [1, 2, 3, 2],
-        )
+    def test_result_list_collapses_adjacents(self) -> None:
+        result = remove_adjacent_dups([1, 1, 2, 3, 3, 3, 2])
+        self.assertEqual(result[0], [1, 2, 3, 2])
 
-    def test_empty_list_returns_empty(self) -> None:
-        self.assertEqual(remove_adjacent_dups([]), [])
+    def test_result_list_empty_input(self) -> None:
+        result = remove_adjacent_dups([])
+        self.assertEqual(result[0], [])
 
-    def test_single_element_unchanged(self) -> None:
-        self.assertEqual(remove_adjacent_dups([7]), [7])
+    def test_result_list_no_adjacent_dups(self) -> None:
+        result = remove_adjacent_dups([1, 2, 3])
+        self.assertEqual(result[0], [1, 2, 3])
 
-    def test_no_adjacent_dups_unchanged(self) -> None:
-        self.assertEqual(remove_adjacent_dups([1, 2, 3]), [1, 2, 3])
-
-    def test_non_adjacent_dups_preserved(self) -> None:
-        self.assertEqual(remove_adjacent_dups([1, 2, 1]), [1, 2, 1])
-
-    def test_all_same_reduces_to_one(self) -> None:
-        self.assertEqual(remove_adjacent_dups([5, 5, 5, 5]), [5])
+    def test_result_list_preserves_non_adjacent(self) -> None:
+        # [1,2,1]: no adjacent dups, all 3 preserved
+        result = remove_adjacent_dups([1, 2, 1])
+        self.assertEqual(result[0], [1, 2, 1])
 
 
 if __name__ == "__main__":
