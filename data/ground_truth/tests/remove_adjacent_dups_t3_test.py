@@ -56,7 +56,8 @@ class RemoveAdjacentDupsT3KeyFunctionTests(unittest.TestCase):
         self.assertEqual(result, [42])
 
     def test_key_all_same_under_key_reduces_to_one(self) -> None:
-        result = remove_adjacent_dups([1, -1, 2, -2], key=abs)
+        # All elements have abs-value 1; consecutive runs collapse to one element.
+        result = remove_adjacent_dups([1, -1, 1, -1], key=abs)
         self.assertEqual(result, [1])
 
     def test_key_empty_input_returns_empty(self) -> None:
