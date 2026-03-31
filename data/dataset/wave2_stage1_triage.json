@@ -1,155 +1,403 @@
 {
   "lumen_schema": "wave2-stage1-triage-v1",
   "authored_at": "2026-03-31",
-  "wave1_lesson_summary": "All 8 wave1 functions scored T3=1.0 under both C2 and C3 advisory conditions, confirming that wave1 complexity is uniformly too easy for frontier models and wave2 must source harder candidates from outside the current raw/ pool.",
+  "rerun_at": "2026-03-31",
+  "wave1_lesson_summary": "gpt-5.4 fully ceiling-risks wave1 T3 under C2/C3; wave2 must target harder functions with non-trivial multi-step logic",
   "sourcing_rules_version": "v1",
-  "sourcing_rules": {
-    "hard_boundaries": [
-      "Python, single function (one def), non-recursive",
-      "Authorable T2 ground truth: bug injection must be tractable without formal verification",
-      "Pure or nearly-pure function: no heavy I/O, no class state, no external data dependencies"
-    ],
-    "t2_difficulty": {
-      "pass": [
-        "Multi-step logic with non-obvious bug locations",
-        "Conditional chains with coverage gaps",
-        "Edge-case-rich accumulation (boundary state tracking)",
-        "Index arithmetic across multiple variables",
-        "Loop termination conditions involving multiple variables"
-      ],
-      "blocked": [
-        "Single-operator flip is the only injectable bug (e.g., > vs >= only)"
-      ],
-      "exclude": [
-        "Single-line functions",
-        "Trivially obvious behavior from name alone",
-        "No branching or looping structure"
-      ]
-    },
-    "t3_difficulty": {
-      "pass": [
-        "Has semantic structure admitting a non-trivial behavioral transform",
-        "Output type/structure change alters downstream usage",
-        "Tie-breaking policy change with observable behavioral difference",
-        "Accumulation strategy inversion (e.g., inclusive vs exclusive semantics)",
-        "Boundary semantics change (e.g., open vs closed interval)"
-      ],
-      "blocked": [
-        "All valid transforms collapse into optional-parameter defaults"
-      ],
-      "exclude": [
-        "Only trivial constant substitution; no meaningful semantic transform exists"
-      ]
-    },
-    "wave1_easy_family_exclusion": {
-      "characterization": "Short utility helpers (8-20 executable lines), all behavior obvious from name/docstring, single-loop or single-scan structure, T3 transforms trivially deducible from context",
-      "exclude_if": "Similar complexity, structure, and T2/T3 profile to any of the 8 wave1 items"
-    },
-    "truth_tractability": {
-      "pass": "Bug location and expected behavior authoring-tractable without formal verification",
-      "blocked": "Requires complex oracle (e.g., NP-hard correctness check)",
-      "exclude": "Truth authoring requires external system or data"
-    },
-    "representation_value": {
-      "pass": "Richer type information or contracts plausibly help orient the model vs raw source",
-      "weak": "Any representation gives essentially equivalent context"
-    }
-  },
-  "rubric_table": [
+  "candidates": [
     {
-      "criterion": "Python, single function, non-recursive",
-      "PASS": "One def, no self-call or mutual recursion",
-      "BLOCKED": null,
-      "EXCLUDE": "Recursive, multi-function, class method"
+      "candidate_id": "max_subarray_bounds",
+      "source": "wave2_raw_pool",
+      "family": "stateful_scan",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 23,
+      "first_wave": true,
+      "first_wave_rank": 1,
+      "rationale": "Four interacting state variables (cur_sum, cur_start, best_sum, best_start/end). Earliest-start tie policy enforced by strict > on comparison at line 38. T2: change > to >= makes latest-start win for tied sums — semantically non-trivial, requires understanding tie semantics to locate. T3: invert tie policy to latest-start, or return all tied subarrays as list, or drop sum from return tuple. All-negative and empty edge cases add truth-authoring surface. Clearly harder than any wave1 function."
     },
     {
-      "criterion": "T2 authorability",
-      "PASS": "Non-trivial bug family tractable to author and verify",
-      "BLOCKED": "Only single-operator flip injectable",
-      "EXCLUDE": "Requires external oracle or formal verification"
+      "candidate_id": "peak_valley_indices",
+      "source": "wave2_raw_pool",
+      "family": "stateful_scan",
+      "stage1_decision": "PASS-BLOCKED",
+      "blocker": "T2_difficulty LOW: only operator-flip bugs are injectable (> vs >= on dual conditions); T3_discriminative LOW: admit plateaus or boundary elements via single operator change; behavior fully obvious from name and docstring",
+      "T2_difficulty_estimate": "low",
+      "T3_difficulty_estimate": "low",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "high",
+      "exec_lines": 16,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "Simple dual-condition scan over interior elements (range 1..len-1). Each element test is two independent strict-inequality comparisons. Only injectable T2 bugs are > vs >= operator flips. T3: changing to non-strict (include plateaus) or admitting boundary elements are single-operator changes. Behavior almost fully obvious from name and docstring. Profile matches wave1 easy family (count_true_segments). BLOCKED on both T2 and T3 criteria."
     },
     {
-      "criterion": "T2 difficulty",
-      "PASS": "Multi-step logic; non-obvious bug location; edge-case-rich",
-      "BLOCKED": "Single operator flip only; too trivial",
-      "EXCLUDE": "Single-line or trivially obvious"
+      "candidate_id": "longest_plateau",
+      "source": "wave2_raw_pool",
+      "family": "stateful_scan",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 32,
+      "first_wave": true,
+      "first_wave_rank": 2,
+      "rationale": "Five interacting state vars (cur_start, cur_val, best_start, best_end, best_val). Final run must be flushed after loop with a separate post-loop block. Tie policy is strictly-greater-only (first plateau wins). T2: change > to >= in cur_len > best_len comparison — makes latest-start win, but requires understanding that the final flush is a separate code path that must also be consistent; or use i instead of i-1 for best_end in the mid-loop update (off-by-one in end index). T3: invert tie policy (latest plateau wins), or return all plateau spans as list, or return (value, length) without indices. Clearly harder than wave1."
     },
     {
-      "criterion": "T3 discriminative potential",
-      "PASS": "Admits non-trivial behavioral transform with real semantic content",
-      "BLOCKED": "Transforms collapse to optional-param defaults",
-      "EXCLUDE": "Only trivial constant substitution"
+      "candidate_id": "segments_above_threshold",
+      "source": "wave2_raw_pool",
+      "family": "stateful_scan",
+      "stage1_decision": "PASS-BLOCKED",
+      "blocker": "T2 limited to operator-flip (> vs >=); most natural T3 is optional-parameter collapse (add inclusive=False parameter for threshold boundary)",
+      "T2_difficulty_estimate": "low",
+      "T3_difficulty_estimate": "medium",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "medium",
+      "exec_lines": 13,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "13 executable lines. Segment tracking with trailing-flush after loop. T2: only injectable bug is > vs >= (strict vs inclusive threshold boundary) — single operator flip. T3: changing threshold strictness is trivial; returning (start_idx, end_idx) pairs instead of value sublists is the only non-trivial transform, but most obvious T3 is optional-parameter collapse (add inclusive parameter). Not worth shortlisting given T2 weakness."
     },
     {
-      "criterion": "wave1 easy-family exclusion",
-      "PASS": "Meaningfully harder than wave1 (complexity, structure, edge cases)",
-      "BLOCKED": null,
-      "EXCLUDE": "Same complexity profile as wave1 helpers"
+      "candidate_id": "merge_intervals",
+      "source": "wave2_raw_pool",
+      "family": "two_pointer",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "medium",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 19,
+      "first_wave": true,
+      "first_wave_rank": 9,
+      "rationale": "Sort-then-scan with mutable current interval. Two non-trivial T2 injection sites: (1) change <= to < in overlap check (line 30) drops touching intervals — non-obvious because touching [1,2]+[2,4] should merge; (2) remove final result.append(current) drops last interval entirely. T3: change touching semantics (only merge strictly overlapping), or return count of merged groups, or return original intervals annotated with merge group IDs. T3 is medium not high because transforms are somewhat predictable from docstring. Clearly harder than wave1."
     },
     {
-      "criterion": "Truth tractability",
-      "PASS": "Author can specify and verify correct behavior without external tools",
-      "BLOCKED": "Requires complex oracle",
-      "EXCLUDE": "Requires external system/data"
+      "candidate_id": "two_sum_sorted_pairs",
+      "source": "wave2_raw_pool",
+      "family": "two_pointer",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 20,
+      "first_wave": true,
+      "first_wave_rank": 4,
+      "rationale": "Deduplication logic after a match advances both pointers past equal values using two inner while-loops. T2: advance only left pointer (not right) after match — produces duplicate pairs for repeated right values, requires understanding deduplication interaction with convergence condition. Alternative T2: wrong condition in dedup while-loop (left < right vs left <= right). T3: return all pairs including duplicates (remove dedup logic — semantic inversion), or return counts of unique pair types, or change to pairs summing to <= target. Non-trivial T3 family with real semantic content. Clearly harder than wave1."
     },
     {
-      "criterion": "Representation value (C2/C3/C4)",
-      "PASS": "Type contracts or structured context plausibly help C3/C4 over C1",
-      "BLOCKED": null,
-      "EXCLUDE": null
+      "candidate_id": "sorted_list_intersection",
+      "source": "wave2_raw_pool",
+      "family": "two_pointer",
+      "stage1_decision": "PASS-BLOCKED",
+      "blocker": "Borderline wave1-similarity: merge_sorted in wave1 has same dual-cursor three-way-branch structure and similar complexity; T3 transforms (union, set vs multiset) are straightforward",
+      "T2_difficulty_estimate": "medium",
+      "T3_difficulty_estimate": "medium",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "medium",
+      "exec_lines": 15,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "Three-way branch dual-cursor merge, 15 exec lines. T2: advance wrong pointer in < branch (advance j instead of i) — detectable by tracing but straightforward. T3: change to union / symmetric difference / set (not multiset) semantics — all meaningful but not surprising. Structurally very similar to wave1's merge_sorted (same dual-cursor pattern, same branch structure). Medium complexity but borderline wave1-similarity risk. Reserve."
+    },
+    {
+      "candidate_id": "stable_partition",
+      "source": "wave2_raw_pool",
+      "family": "grouping_partitioning",
+      "stage1_decision": "EXCLUDE",
+      "blocker": "T2_difficulty LOW + T3_disc LOW: only trivial bugs; T3 is swap-return-order (single constant change); wave1_easy_risk HIGH",
+      "T2_difficulty_estimate": "low",
+      "T3_difficulty_estimate": "low",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "high",
+      "exec_lines": 8,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "8 executable lines in function body. Single loop appending to one of two lists based on predicate. T2: only trivial bug — append to wrong list or invert predicate. T3: swap return order (false_group, true_group) is a single swap — effectively constant substitution. Return indices instead of items is slightly more interesting but still minimal. Behavior completely obvious from name and docstring. Profile squarely matches wave1 easy family. EXCLUDED."
+    },
+    {
+      "candidate_id": "chunk_on_change",
+      "source": "wave2_raw_pool",
+      "family": "grouping_partitioning",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "medium",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 18,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "Key-fn indirection adds a layer of misdirection vs raw-equality comparison. Trailing-chunk flush after loop is required. T2: omit final result.append(current_chunk) — drops last chunk silently; or forget to reset current_key on chunk boundary. T3: change return to (key, chunk) tuple pairs (structural change); return chunk sizes/lengths instead of chunks; or change to emit chunks whenever key DOES NOT change. T3 has real semantic content. Reserve: first_wave already covers grouping_partitioning via group_and_aggregate."
+    },
+    {
+      "candidate_id": "group_and_aggregate",
+      "source": "wave2_raw_pool",
+      "family": "grouping_partitioning",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 20,
+      "first_wave": true,
+      "first_wave_rank": 3,
+      "rationale": "Four simultaneous accumulators per group (count, sum, min, max). Conditional min/max updates with > and < comparisons. Initialization on first occurrence must set all four correctly. T2: wrong comparator for min (> instead of <) — swaps min and max semantics for per-group accumulation; or initialize min=0 instead of value (corrupts groups where all values are positive). T3: add mean field by computing sum/count at output time (different accumulation strategy); drop count and return only sum/min/max; or change to weighted aggregation. HIGH/HIGH. Clearly harder than wave1."
+    },
+    {
+      "candidate_id": "group_by_key",
+      "source": "wave2_raw_pool",
+      "family": "grouping_partitioning",
+      "stage1_decision": "EXCLUDE",
+      "blocker": "T2_difficulty LOW + T3_disc LOW: optional-parameter collapse trap is the only natural T3; wave1_easy_risk HIGH",
+      "T2_difficulty_estimate": "low",
+      "T3_difficulty_estimate": "low",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "high",
+      "exec_lines": 8,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "8 executable lines in function body. Dict of lists with insertion-order semantics. T2: only trivial — forget to initialize list, or append value before key check. T3: natural optional-param collapse trap (add first_only or last_only parameter defaulting to current behavior). No non-trivial structural T3 transform exists. Behavior obvious from name. Wave1-easy profile. EXCLUDED."
+    },
+    {
+      "candidate_id": "dense_rank",
+      "source": "wave2_raw_pool",
+      "family": "ordering_tie_policy",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 9,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "Two-step algorithm: build rank_map via enumerate over sorted unique values, then map original positions. T2: use enumerate start=0 instead of start=1 (off-by-one in all ranks — non-trivial because requires understanding 1-based dense rank semantics); or include duplicates in sorted_unique (wrong by using list instead of set). T3: change to standard competition rank (1,2,2,4 instead of 1,2,2,3) — requires replacing enumerate approach with count-based accumulation; or percentile rank. Reserve: ordering_tie_policy already covered by top_k_by in first wave."
+    },
+    {
+      "candidate_id": "top_k_by",
+      "source": "wave2_raw_pool",
+      "family": "ordering_tie_policy",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 14,
+      "first_wave": true,
+      "first_wave_rank": 5,
+      "rationale": "Three-level composite sort key: (-primary_key, secondary_key, original_index). Optional tiebreak_key changes sort tuple structure. T2: change -key(pair[1]) to key(pair[1]) (ascending instead of descending primary — subtle sign flip); or change tiebreak_key direction from ascending to descending. T3: change to bottom-k (flip sign on primary key), or change tiebreak ordering semantics (descending tiebreak), or return items grouped by rank tier. HIGH/HIGH. Optional k>len guard and three-level sort make this the most complex ordering function in the pool."
+    },
+    {
+      "candidate_id": "equal_width_buckets",
+      "source": "wave2_raw_pool",
+      "family": "index_arithmetic",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 16,
+      "first_wave": true,
+      "first_wave_rank": 10,
+      "rationale": "Float width calculation with three distinct cases: all-equal (bucket 0), max_val exact (clamp to n_buckets-1), and normal bucketing. T2: remove the clamp (bucket >= n_buckets check) — causes out-of-range bucket index for max_val; or use n_buckets instead of n_buckets-1 in clamp; or compute width as (max_val - min_val) / (n_buckets-1) (wrong denominator). T3: change to percentile/equal-count buckets (fundamentally different algorithm); return bucket boundaries [lo, hi] per value instead of index; or change to 1-indexed. T3 transforms require real algorithmic understanding. Higher complexity than any wave1 function."
+    },
+    {
+      "candidate_id": "strided_windows",
+      "source": "wave2_raw_pool",
+      "family": "index_arithmetic",
+      "stage1_decision": "PASS-BLOCKED",
+      "blocker": "T3 optional-parameter collapse trap: include_partial is already an optional parameter with default=False in the function signature — any T3 extending this is textbook wave1 anti-pattern",
+      "T2_difficulty_estimate": "medium",
+      "T3_difficulty_estimate": "low",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "medium",
+      "exec_lines": 11,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "Loop condition i+size<=n correctly excludes partial windows; include_partial branch handles remainder. T2: change <= to < in loop condition (drops last full window when i+size==n exactly) — medium difficulty. T3: include_partial is already an optional bool parameter in the function signature — the wave1 anti-pattern is fully instantiated here. Other T3 options (return window indices instead of values) are moderate. BLOCKED on T3 optional-param collapse."
+    },
+    {
+      "candidate_id": "spiral_order",
+      "source": "wave2_raw_pool",
+      "family": "index_arithmetic",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 29,
+      "first_wave": true,
+      "first_wave_rank": 7,
+      "rationale": "Four boundary variables (top, bottom, left, right) updated across four traversal passes per loop iteration. Guard conditions (if top<=bottom and if left<=right) prevent double-counting in single-row/column edge cases. T2: remove the if top<=bottom guard — causes duplicate elements when a single row remains (requires understanding why the guard exists); or swap the bottom-- and right-- update ordering to corrupt interior traversal. T3: counterclockwise spiral (reverse traversal order), or outside-in layer extraction returning list of layers, or return (value, row, col) triples. HIGH/HIGH. Longest and most complex function in the pool."
+    },
+    {
+      "candidate_id": "antidiagonals",
+      "source": "wave2_raw_pool",
+      "family": "index_arithmetic",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 18,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "Clamped row-range arithmetic: r_start=max(0,d-cols+1), r_end=min(rows,d+1), column c=d-r derived. T2: change d-cols+1 to d-cols in r_start clamp — drops first row of non-square diagonals, non-trivial to spot without tracing through index arithmetic. T3: change to main diagonals (different index arithmetic entirely), or reverse element order per diagonal (top-to-bottom vs bottom-to-top), or return (row, col) index pairs per diagonal. HIGH/HIGH. Reserve: index_arithmetic already has spiral_order and equal_width_buckets in first wave."
+    },
+    {
+      "candidate_id": "camel_to_snake",
+      "source": "wave2_raw_pool",
+      "family": "string_sequence",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 22,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "Three underscore-insertion rules with non-obvious ordering interaction: (1) prev_lower_or_digit triggers underscore, (2) prev_is_upper AND next_is_lower triggers underscore (abbreviation boundary). Both checks are in an if/elif — ordering matters. T2: swap elif order (check abbreviation rule before lower-or-digit rule) — corrupts 'getHTTPSResponse'-type inputs; or change AND to OR in abbreviation rule. T3: change abbreviation handling to treat each uppercase in a sequence as a separate word (XMLParser -> x_m_l_parser), or add digit-boundary handling. Reserve: string_sequence has tokenize_arithmetic in first wave."
+    },
+    {
+      "candidate_id": "tokenize_arithmetic",
+      "source": "wave2_raw_pool",
+      "family": "string_sequence",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 37,
+      "first_wave": true,
+      "first_wave_rank": 6,
+      "rationale": "State machine with variable-length NUM accumulation using an inner while-loop (j scans ahead to find NUM end boundary). T2: use expr[i:i+1] or expr[i] instead of expr[i:j] for NUM token value — truncates all multi-digit numbers to first digit; requires understanding the j-pointer semantics. Or omit '.' in inner while condition (breaks decimal numbers). T3: add NEG token type for unary minus at expression start or after '('; or change NUM to include optional leading sign; or return (type, value, start_pos) triples. Longest string_sequence function, state machine structure gives genuine T3 discriminative potential."
+    },
+    {
+      "candidate_id": "find_balanced_spans",
+      "source": "wave2_raw_pool",
+      "family": "string_sequence",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "medium",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 17,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "Depth counter with span_start tracking. Records span only when depth reaches 0 (outermost only). T2: record span when depth==1 (before decrement) instead of when depth==0 (after decrement) — returns innermost nested spans rather than outermost; requires understanding depth-tracking semantics. T3: return all spans including nested spans at each level (nested list structure); or return unmatched bracket positions; or parameterize to return nth-level spans. T3 is medium because the outermost-only constraint is partially obvious from docstring. Reserve: string_sequence covered by tokenize_arithmetic and camel_to_snake."
+    },
+    {
+      "candidate_id": "welford_running_stats",
+      "source": "wave2_raw_pool",
+      "family": "multi_field_accumulation",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 14,
+      "first_wave": true,
+      "first_wave_rank": 8,
+      "rationale": "Non-obvious two-delta update: delta computed before mean update, delta2 computed after mean update; M2 uses both deltas (delta * delta2). T2: use delta*delta instead of delta*delta2 for M2 accumulation — numerically incorrect, produces wrong variance especially for early steps; requires understanding the Welford two-delta invariant to locate. T3: change from population variance (M2/n) to sample variance (M2/(n-1)); or add running min and max fields to output tuple; or change from per-step output to cumulative-only final output. HIGH/HIGH. Welford algorithm is genuinely non-obvious — strong discriminative potential for C2/C3."
+    },
+    {
+      "candidate_id": "frequency_table",
+      "source": "wave2_raw_pool",
+      "family": "multi_field_accumulation",
+      "stage1_decision": "PASS-READY",
+      "blocker": null,
+      "T2_difficulty_estimate": "high",
+      "T3_difficulty_estimate": "high",
+      "truth_tractability": "high",
+      "wave1_easy_risk": "low",
+      "exec_lines": 19,
+      "first_wave": false,
+      "first_wave_rank": null,
+      "rationale": "Three-field output: (value, count, cumulative_fraction). Cumulative fraction requires running sum across sorted unique values divided by total. T2: add count to cumulative after computing fraction (off-by-one in cumulative): fraction uses previous cumulative giving wrong value for non-first items; or use count/total instead of cumulative/total (gives per-value fraction, not cumulative). T3: change sort from by-value to by-frequency-descending; or return (value, fraction, cumulative_fraction) normalized form; or add rank field. Reserve: multi_field_accumulation covered by welford_running_stats in first wave."
     }
   ],
-  "bounded_candidate_pool": {
-    "sources_examined": [
-      {
-        "source": "data/functions/raw/ — functions NOT in wave1 and NOT pilot anchors",
-        "files_found": 0,
-        "wave1_functions": ["remove_adjacent_dups", "batch_list", "sliding_window_max", "rle_encode", "count_true_segments", "merge_sorted", "first_index_of_max", "rotate_list"],
-        "pilot_anchors": ["clamp", "count_vowels", "is_sorted"],
-        "note": "raw/ contains exactly 11 .py files: 3 pilot anchors + 8 wave1 functions. Zero uncharacterized files remain."
-      },
-      {
-        "source": "candidates.json — entries at stage1_pass or pre-stage2 state",
-        "entries_found": 0,
-        "note": "All non-anchor entries in candidates.json are wave1-authored with stage3_result=ceiling_risk. demo_func has final_decision=EXCLUDE (smoke-test only). No pre-stage2 entries exist."
-      },
-      {
-        "source": "data/dataset/ — intake queue files",
-        "files_found": 0,
-        "note": "data/dataset/ contains only candidates.json and functions_manifest.json. No intake queue, no stage1 CSV, no additional tracker files."
-      }
-    ],
-    "total_candidates_examined": 0,
-    "conclusion": "The bounded candidate pool is EMPTY. The raw/ directory is exhausted. All 11 function files are either wave1-authored or pilot anchors. No new candidates can be triaged from existing repo sources."
-  },
-  "candidates": [],
-  "first_wave_shortlist": [],
-  "reserve_list": [],
+  "first_wave_shortlist": [
+    "max_subarray_bounds",
+    "longest_plateau",
+    "group_and_aggregate",
+    "two_sum_sorted_pairs",
+    "top_k_by",
+    "tokenize_arithmetic",
+    "spiral_order",
+    "welford_running_stats",
+    "merge_intervals",
+    "equal_width_buckets"
+  ],
+  "reserve_list": [
+    "dense_rank",
+    "chunk_on_change",
+    "antidiagonals",
+    "camel_to_snake",
+    "find_balanced_spans",
+    "frequency_table",
+    "sorted_list_intersection",
+    "segments_above_threshold",
+    "strided_windows",
+    "peak_valley_indices"
+  ],
+  "exclude_list": [
+    "stable_partition",
+    "group_by_key"
+  ],
   "diversity_audit": {
-    "pass_ready_count": 0,
-    "pass_blocked_count": 0,
-    "families_represented": [],
-    "overrepresented": null,
-    "balancing_note": "No candidates to audit. Pool expansion required before diversity analysis is possible."
-  },
-  "final_decision": "WAVE2 SOURCING INSUFFICIENT — EXPAND CANDIDATE POOL BEFORE AUTHORING",
-  "next_action": "Manually author and commit 15-25 new Python function source files to data/functions/raw/ that satisfy the wave2 sourcing rubric (harder difficulty families: stateful scan/segment logic with multiple interacting state variables, ordering/tie-policy logic, grouping/partitioning with non-trivial boundary conditions, accumulation with multi-step invariants, string/sequence processing with multi-step logic), then re-run Phase 4A triage.",
-  "pool_expansion_guidance": {
-    "target_count": "15-25 new candidate functions",
-    "target_difficulty_families": [
-      "stateful scan / segment / window logic with multiple interacting state variables (harder than count_true_segments)",
-      "ordering / tie-policy / sort-variant logic (harder than first_index_of_max)",
-      "grouping / restructuring / partitioning logic (harder than batch_list)",
-      "accumulation / aggregation with multi-step invariants (harder than rle_encode)",
-      "boundary-condition-heavy / index arithmetic (harder than sliding_window_max)",
-      "string/sequence processing with multi-step logic",
-      "two-pointer or dual-cursor merge/scan patterns (harder than merge_sorted)"
+    "pass_ready_count": 15,
+    "pass_blocked_count": 5,
+    "exclude_count": 2,
+    "families_represented_in_pass_ready": [
+      "stateful_scan",
+      "two_pointer",
+      "grouping_partitioning",
+      "ordering_tie_policy",
+      "index_arithmetic",
+      "string_sequence",
+      "multi_field_accumulation"
     ],
-    "complexity_target": "20-40 executable lines, 2+ distinct loop structures or nested conditionals, non-obvious bug locations",
-    "avoid": [
-      "Functions with only single-operator-flip injectable bugs",
-      "Functions where T3 transform is trivially a constant substitution",
-      "Functions with behavior fully obvious from name and docstring"
-    ]
-  }
+    "family_pass_ready_counts": {
+      "stateful_scan": 2,
+      "two_pointer": 2,
+      "grouping_partitioning": 2,
+      "ordering_tie_policy": 2,
+      "index_arithmetic": 3,
+      "string_sequence": 3,
+      "multi_field_accumulation": 2
+    },
+    "first_wave_family_counts": {
+      "stateful_scan": 2,
+      "two_pointer": 2,
+      "grouping_partitioning": 1,
+      "ordering_tie_policy": 1,
+      "index_arithmetic": 2,
+      "string_sequence": 1,
+      "multi_field_accumulation": 1
+    },
+    "overrepresented_families": "index_arithmetic (3 PASS-READY); kept top 2 (spiral_order rank 7, equal_width_buckets rank 10) in first wave; antidiagonals to reserve. string_sequence (3 PASS-READY); kept tokenize_arithmetic (rank 6) as best T2H/T3H rep; camel_to_snake and find_balanced_spans to reserve.",
+    "balancing_note": "All 7 families represented in first-wave shortlist of 10. index_arithmetic and stateful_scan each have 2 shortlisted; all other families have 1. No family exceeds 2 in first wave."
+  },
+  "final_decision": "WAVE2 FIRST-WAVE SHORTLIST READY — PROCEED TO AUTHORING",
+  "next_action": "Author wave2 first-wave truth assets (T2 bug annotations, reference fixes, ground truth) for the 10 shortlisted candidates"
 }
