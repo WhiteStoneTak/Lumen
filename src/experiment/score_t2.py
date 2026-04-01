@@ -544,6 +544,39 @@ def _extract_best_fix_line(
                     reindented = ["    " + ln for ln in block]
                     return "\n".join(reindented)
 
+    elif func_id == "two_sum_sorted_pairs":
+        # The fix is a two-line block: the left-pointer while loop + the missing
+        # right-pointer while loop.  Extract both while loops from the model's fix
+        # block and return them joined so _apply_fix_to_source can use the multi-line
+        # path.  The replacement span covers 4 lines (start_line=30, end_line=33).
+        for i, line in enumerate(fix_lines):
+            if re.search(r"while\s+left\s*<\s*right\s+and\s+nums\[left\]\s*==\s*left_val\s*:", line.strip()):
+                # Collect the left while loop body and then the right while loop
+                block: list[str] = [line]
+                for subsequent in fix_lines[i + 1:]:
+                    stripped_sub = subsequent.strip()
+                    if not stripped_sub:
+                        break
+                    # Stop if we hit something that can't be part of the two while loops
+                    if re.search(r"^\s*(elif|else|if\s+s\s*[=<>]|result\.append|return)\s*", subsequent):
+                        break
+                    block.append(subsequent)
+                # Verify the block contains the right-pointer loop
+                block_text = "\n".join(block)
+                if re.search(r"while\s+left\s*<\s*right\s+and\s+nums\[right\]\s*==\s*right_val\s*:", block_text):
+                    # Normalize to exactly 12-space indent (3 levels of 4) matching the buggy file
+                    normalized: list[str] = []
+                    for bl in block:
+                        stripped_bl = bl.strip()
+                        if not stripped_bl:
+                            continue
+                        # Determine indent: while headers get 12 spaces, bodies get 16
+                        if stripped_bl.startswith("while "):
+                            normalized.append("            " + stripped_bl)
+                        else:
+                            normalized.append("                " + stripped_bl)
+                    return "\n".join(normalized)
+
     # Generic fallback: return first non-trivial code block line
     for line in fix_lines:
         stripped = line.strip()
