@@ -108,6 +108,7 @@
       "exec_lines": 15,
       "first_wave": false,
       "first_wave_rank": null,
+      "second_wave": true,
       "rationale": "Three-way branch dual-cursor merge, 15 exec lines. T2: advance wrong pointer in < branch (advance j instead of i) — detectable by tracing but straightforward. T3: change to union / symmetric difference / set (not multiset) semantics — all meaningful but not surprising. Structurally very similar to wave1's merge_sorted (same dual-cursor pattern, same branch structure). Medium complexity but borderline wave1-similarity risk. Reserve."
     },
     {
@@ -138,6 +139,7 @@
       "exec_lines": 18,
       "first_wave": false,
       "first_wave_rank": null,
+      "second_wave": true,
       "rationale": "Key-fn indirection adds a layer of misdirection vs raw-equality comparison. Trailing-chunk flush after loop is required. T2: omit final result.append(current_chunk) — drops last chunk silently; or forget to reset current_key on chunk boundary. T3: change return to (key, chunk) tuple pairs (structural change); return chunk sizes/lengths instead of chunks; or change to emit chunks whenever key DOES NOT change. T3 has real semantic content. Reserve: first_wave already covers grouping_partitioning via group_and_aggregate."
     },
     {
@@ -183,6 +185,7 @@
       "exec_lines": 9,
       "first_wave": false,
       "first_wave_rank": null,
+      "second_wave": true,
       "rationale": "Two-step algorithm: build rank_map via enumerate over sorted unique values, then map original positions. T2: use enumerate start=0 instead of start=1 (off-by-one in all ranks — non-trivial because requires understanding 1-based dense rank semantics); or include duplicates in sorted_unique (wrong by using list instead of set). T3: change to standard competition rank (1,2,2,4 instead of 1,2,2,3) — requires replacing enumerate approach with count-based accumulation; or percentile rank. Reserve: ordering_tie_policy already covered by top_k_by in first wave."
     },
     {
@@ -228,6 +231,7 @@
       "exec_lines": 11,
       "first_wave": false,
       "first_wave_rank": null,
+      "second_wave": true,
       "rationale": "Loop condition i+size<=n correctly excludes partial windows; include_partial branch handles remainder. T2: change <= to < in loop condition (drops last full window when i+size==n exactly) — medium difficulty. T3: include_partial is already an optional bool parameter in the function signature — the wave1 anti-pattern is fully instantiated here. Other T3 options (return window indices instead of values) are moderate. BLOCKED on T3 optional-param collapse."
     },
     {
@@ -258,6 +262,7 @@
       "exec_lines": 18,
       "first_wave": false,
       "first_wave_rank": null,
+      "second_wave": true,
       "rationale": "Clamped row-range arithmetic: r_start=max(0,d-cols+1), r_end=min(rows,d+1), column c=d-r derived. T2: change d-cols+1 to d-cols in r_start clamp — drops first row of non-square diagonals, non-trivial to spot without tracing through index arithmetic. T3: change to main diagonals (different index arithmetic entirely), or reverse element order per diagonal (top-to-bottom vs bottom-to-top), or return (row, col) index pairs per diagonal. HIGH/HIGH. Reserve: index_arithmetic already has spiral_order and equal_width_buckets in first wave."
     },
     {
@@ -273,6 +278,7 @@
       "exec_lines": 22,
       "first_wave": false,
       "first_wave_rank": null,
+      "second_wave": true,
       "rationale": "Three underscore-insertion rules with non-obvious ordering interaction: (1) prev_lower_or_digit triggers underscore, (2) prev_is_upper AND next_is_lower triggers underscore (abbreviation boundary). Both checks are in an if/elif — ordering matters. T2: swap elif order (check abbreviation rule before lower-or-digit rule) — corrupts 'getHTTPSResponse'-type inputs; or change AND to OR in abbreviation rule. T3: change abbreviation handling to treat each uppercase in a sequence as a separate word (XMLParser -> x_m_l_parser), or add digit-boundary handling. Reserve: string_sequence has tokenize_arithmetic in first wave."
     },
     {
@@ -303,6 +309,7 @@
       "exec_lines": 17,
       "first_wave": false,
       "first_wave_rank": null,
+      "second_wave": true,
       "rationale": "Depth counter with span_start tracking. Records span only when depth reaches 0 (outermost only). T2: record span when depth==1 (before decrement) instead of when depth==0 (after decrement) — returns innermost nested spans rather than outermost; requires understanding depth-tracking semantics. T3: return all spans including nested spans at each level (nested list structure); or return unmatched bracket positions; or parameterize to return nth-level spans. T3 is medium because the outermost-only constraint is partially obvious from docstring. Reserve: string_sequence covered by tokenize_arithmetic and camel_to_snake."
     },
     {
@@ -333,6 +340,7 @@
       "exec_lines": 19,
       "first_wave": false,
       "first_wave_rank": null,
+      "second_wave": true,
       "rationale": "Three-field output: (value, count, cumulative_fraction). Cumulative fraction requires running sum across sorted unique values divided by total. T2: add count to cumulative after computing fraction (off-by-one in cumulative): fraction uses previous cumulative giving wrong value for non-first items; or use count/total instead of cumulative/total (gives per-value fraction, not cumulative). T3: change sort from by-value to by-frequency-descending; or return (value, fraction, cumulative_fraction) normalized form; or add rank field. Reserve: multi_field_accumulation covered by welford_running_stats in first wave."
     }
   ],

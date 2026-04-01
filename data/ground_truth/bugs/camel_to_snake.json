@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "camel_to_snake",
+  "source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
+  "bug_id": "camel_to_snake.BUG01",
+  "bug_category": "wrong_comparison_operator",
+  "bug_description": "The abbreviation-boundary condition uses `or` instead of `and` in `prev_is_upper or next_is_lower`. The correct condition inserts an underscore only when BOTH the previous character is uppercase AND the next is lowercase (the transition point in an abbreviation like XMLParser). With `or`, the condition fires whenever EITHER holds: any uppercase letter followed by a lowercase letter triggers the elif branch (not just the final letter of an abbreviation), causing PascalCase inputs like 'CamelCase' to get a spurious leading underscore and abbreviations to be split at wrong positions.",
+  "location": {
+    "path": "data/functions/raw/camel_to_snake.py",
+    "start_line": 38,
+    "end_line": 38
+  },
+  "reference_fix": {
+    "start_line": 38,
+    "end_line": 38,
+    "replacement": "            elif prev_is_upper and next_is_lower:"
+  },
+  "test_suite_ref": "data/ground_truth/tests/camel_to_snake_t2_test.py"
+}

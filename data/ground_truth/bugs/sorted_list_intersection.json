@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "sorted_list_intersection",
+  "source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
+  "bug_id": "sorted_list_intersection.BUG01",
+  "bug_category": "missing_boundary_check",
+  "bug_description": "When a matching pair is found (`a[i] == b[j]`), only pointer `i` is advanced while `j` remains stationary. The missing `j += 1` advance causes the same element from list `b` to match every subsequent equal element in list `a`, producing more results than the multiset intersection allows. For inputs with repeated common elements, the output contains too many copies — for example, `sorted_list_intersection([2, 2], [2, 2])` returns `[2, 2, 2, 2]` instead of `[2, 2]`. The bug is non-trivial: advancing only one pointer is the correct behavior when deduplicating for set semantics, but is wrong for multiset semantics.",
+  "location": {
+    "path": "data/functions/raw/sorted_list_intersection.py",
+    "start_line": 24,
+    "end_line": 27
+  },
+  "reference_fix": {
+    "start_line": 24,
+    "end_line": 27,
+    "replacement": "        if a[i] == b[j]:\n            result.append(a[i])\n            i += 1\n            j += 1"
+  },
+  "test_suite_ref": "data/ground_truth/tests/sorted_list_intersection_t2_test.py"
+}

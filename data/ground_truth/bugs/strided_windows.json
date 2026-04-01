@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "strided_windows",
+  "source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
+  "bug_id": "strided_windows.BUG01",
+  "bug_category": "off_by_one",
+  "bug_description": "The loop condition uses `i + size < n` instead of `i + size <= n`. The correct condition includes the window starting at position `i` when `i + size == n` exactly (the window fits perfectly at the end of the list). With `<`, this last valid full window is excluded. The bug only manifests when a window fits exactly at the end — inputs where `(len(items) - start) % stride == 0` and the final window aligns perfectly. It requires understanding the boundary between strict and non-strict comparisons in window iteration.",
+  "location": {
+    "path": "data/functions/raw/strided_windows.py",
+    "start_line": 27,
+    "end_line": 27
+  },
+  "reference_fix": {
+    "start_line": 27,
+    "end_line": 27,
+    "replacement": "    while i + size <= n:"
+  },
+  "test_suite_ref": "data/ground_truth/tests/strided_windows_t2_test.py"
+}

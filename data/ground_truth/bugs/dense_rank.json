@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "dense_rank",
+  "source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
+  "bug_id": "dense_rank.BUG01",
+  "bug_category": "off_by_one",
+  "bug_description": "The enumerate call uses `start=0` instead of `start=1`, causing all dense ranks to be zero-based (0, 1, 2, ...) rather than 1-based (1, 2, 3, ...). The function contract specifies 1-based dense ranks, so every returned rank is off by one. The bug is non-trivial: it requires knowing that Python's enumerate defaults to 0 and that dense rank semantics are 1-indexed.",
+  "location": {
+    "path": "data/functions/raw/dense_rank.py",
+    "start_line": 25,
+    "end_line": 25
+  },
+  "reference_fix": {
+    "start_line": 25,
+    "end_line": 25,
+    "replacement": "    for rank, val in enumerate(sorted_unique, start=1):"
+  },
+  "test_suite_ref": "data/ground_truth/tests/dense_rank_t2_test.py"
+}

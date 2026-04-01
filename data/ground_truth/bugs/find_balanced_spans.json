@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "find_balanced_spans",
+  "source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
+  "bug_id": "find_balanced_spans.BUG01",
+  "bug_category": "missing_boundary_check",
+  "bug_description": "The `span_start` tracking omits the `if depth == 0:` guard before assigning `span_start = i`. Without the guard, `span_start` is overwritten on every open bracket, including nested ones. When a top-level span contains nested brackets, `span_start` is updated to point at the innermost open bracket position. The reported span start is therefore the last nested open bracket, not the outermost one — producing wrong (start, end) pairs for any input with nesting depth > 1.",
+  "location": {
+    "path": "data/functions/raw/find_balanced_spans.py",
+    "start_line": 29,
+    "end_line": 31
+  },
+  "reference_fix": {
+    "start_line": 29,
+    "end_line": 31,
+    "replacement": "        if ch == open_char:\n            if depth == 0:\n                span_start = i\n            depth += 1"
+  },
+  "test_suite_ref": "data/ground_truth/tests/find_balanced_spans_t2_test.py"
+}

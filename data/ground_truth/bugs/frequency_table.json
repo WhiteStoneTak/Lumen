@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "frequency_table",
+  "source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
+  "bug_id": "frequency_table.BUG01",
+  "bug_category": "incorrect_variable_reference",
+  "bug_description": "The cumulative fraction is computed as `count / total` instead of `cumulative / total`. Using `count` (the individual value's count) rather than `cumulative` (the running total up to and including this value) gives a per-value relative frequency, not a cumulative fraction. All values except the last will have wrong cumulative_fraction values. The bug requires understanding the difference between per-item and running-sum semantics — the variable `cumulative` is updated correctly on the previous line but then not used in the fraction computation.",
+  "location": {
+    "path": "data/functions/raw/frequency_table.py",
+    "start_line": 37,
+    "end_line": 37
+  },
+  "reference_fix": {
+    "start_line": 37,
+    "end_line": 37,
+    "replacement": "        cumulative_fraction = cumulative / total"
+  },
+  "test_suite_ref": "data/ground_truth/tests/frequency_table_t2_test.py"
+}

@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "chunk_on_change",
+  "source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
+  "bug_id": "chunk_on_change.BUG01",
+  "bug_category": "incorrect_variable_reference",
+  "bug_description": "When starting a new chunk on a key change, `current_key` is not updated to the new item's key. The variable continues to hold the previous chunk's key, so the very next item is compared against the old key rather than the just-started chunk's key. This causes any run of three or more distinct consecutive keys to merge incorrectly: the second distinct key is started as a new chunk, but because `current_key` is never refreshed, subsequent items that differ from the original key but match the second key will incorrectly trigger yet another split.",
+  "location": {
+    "path": "data/functions/raw/chunk_on_change.py",
+    "start_line": 40,
+    "end_line": 40
+  },
+  "reference_fix": {
+    "start_line": 40,
+    "end_line": 40,
+    "replacement": "            current_key = item_key"
+  },
+  "test_suite_ref": "data/ground_truth/tests/chunk_on_change_t2_test.py"
+}

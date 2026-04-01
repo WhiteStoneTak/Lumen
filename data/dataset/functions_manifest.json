@@ -966,6 +966,382 @@
         "ir_source_hash": null,
         "t1_source_hash": null
       }
+    },
+    {
+      "func_id": "dense_rank",
+      "source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/dense_rank.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/dense_rank.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_second_wave_v1",
+        "raw_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
+        "ast_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "chunk_on_change",
+      "source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/chunk_on_change.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/chunk_on_change.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_second_wave_v1",
+        "raw_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
+        "ast_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "antidiagonals",
+      "source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/antidiagonals.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/antidiagonals.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_second_wave_v1",
+        "raw_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
+        "ast_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "camel_to_snake",
+      "source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/camel_to_snake.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/camel_to_snake.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_second_wave_v1",
+        "raw_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
+        "ast_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "find_balanced_spans",
+      "source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/find_balanced_spans.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/find_balanced_spans.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_second_wave_v1",
+        "raw_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
+        "ast_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "frequency_table",
+      "source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/frequency_table.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/frequency_table.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_second_wave_v1",
+        "raw_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
+        "ast_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "sorted_list_intersection",
+      "source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/sorted_list_intersection.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/sorted_list_intersection.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_second_wave_v1",
+        "raw_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
+        "ast_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "strided_windows",
+      "source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/strided_windows.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/strided_windows.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_second_wave_v1",
+        "raw_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
+        "ast_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
     }
   ]
 }

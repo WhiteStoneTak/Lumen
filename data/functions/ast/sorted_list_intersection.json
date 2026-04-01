@@ -1,0 +1,509 @@
+{
+  "lumen_schema": "ast-v1",
+  "func_id": "sorted_list_intersection",
+  "source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "sorted_list_intersection",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "a",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "int",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "b",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "int",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return the intersection of two sorted lists, preserving duplicate counts.\n\n    Each value appears in the result min(count_in_a, count_in_b) times.\n    Result is sorted.\n\n    Args:\n        a: Sorted list of integers (non-decreasing).\n        b: Sorted list of integers (non-decreasing).\n\n    Returns:\n        Sorted list of integers representing the multiset intersection.\n\n    Examples:\n        sorted_list_intersection([1, 2, 2, 3], [2, 2, 3, 4]) == [2, 2, 3]\n        sorted_list_intersection([1, 2, 3], [4, 5, 6]) == []\n        sorted_list_intersection([], [1, 2]) == []\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Name",
+                "id": "int",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "i",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "j",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "While",
+            "test": {
+              "_type": "BoolOp",
+              "op": {
+                "_type": "And"
+              },
+              "values": [
+                {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "i",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "Lt"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Name",
+                        "id": "len",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Name",
+                          "id": "a",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  ]
+                },
+                {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "j",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "Lt"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Name",
+                        "id": "len",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Name",
+                          "id": "b",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  ]
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Subscript",
+                    "value": {
+                      "_type": "Name",
+                      "id": "a",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "slice": {
+                      "_type": "Name",
+                      "id": "i",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "Eq"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "b",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "Name",
+                        "id": "j",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "result",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Subscript",
+                          "value": {
+                            "_type": "Name",
+                            "id": "a",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "slice": {
+                            "_type": "Name",
+                            "id": "i",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  },
+                  {
+                    "_type": "AugAssign",
+                    "target": {
+                      "_type": "Name",
+                      "id": "i",
+                      "ctx": {
+                        "_type": "Store"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "value": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    }
+                  },
+                  {
+                    "_type": "AugAssign",
+                    "target": {
+                      "_type": "Name",
+                      "id": "j",
+                      "ctx": {
+                        "_type": "Store"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "value": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "If",
+                    "test": {
+                      "_type": "Compare",
+                      "left": {
+                        "_type": "Subscript",
+                        "value": {
+                          "_type": "Name",
+                          "id": "a",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "slice": {
+                          "_type": "Name",
+                          "id": "i",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ops": [
+                        {
+                          "_type": "Lt"
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "_type": "Subscript",
+                          "value": {
+                            "_type": "Name",
+                            "id": "b",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "slice": {
+                            "_type": "Name",
+                            "id": "j",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ]
+                    },
+                    "body": [
+                      {
+                        "_type": "AugAssign",
+                        "target": {
+                          "_type": "Name",
+                          "id": "i",
+                          "ctx": {
+                            "_type": "Store"
+                          }
+                        },
+                        "op": {
+                          "_type": "Add"
+                        },
+                        "value": {
+                          "_type": "Constant",
+                          "value": 1,
+                          "kind": null
+                        }
+                      }
+                    ],
+                    "orelse": [
+                      {
+                        "_type": "AugAssign",
+                        "target": {
+                          "_type": "Name",
+                          "id": "j",
+                          "ctx": {
+                            "_type": "Store"
+                          }
+                        },
+                        "op": {
+                          "_type": "Add"
+                        },
+                        "value": {
+                          "_type": "Constant",
+                          "value": 1,
+                          "kind": null
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Name",
+            "id": "int",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

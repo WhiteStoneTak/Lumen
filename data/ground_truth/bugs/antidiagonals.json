@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "antidiagonals",
+  "source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
+  "bug_id": "antidiagonals.BUG01",
+  "bug_category": "off_by_one",
+  "bug_description": "The starting row of each antidiagonal is computed as `max(0, d - cols)` instead of the correct `max(0, d - cols + 1)`. For diagonals that span beyond the rightmost column, this shifts `r_start` one row too low, causing the first element of those diagonals to reference an out-of-bounds column index `c = d - r` that is negative (or incorrect). The bug affects all antidiagonals with index `d >= cols`, i.e., all diagonals in the lower-left portion of non-square and square matrices wider than one column.",
+  "location": {
+    "path": "data/functions/raw/antidiagonals.py",
+    "start_line": 29,
+    "end_line": 29
+  },
+  "reference_fix": {
+    "start_line": 29,
+    "end_line": 29,
+    "replacement": "        r_start = max(0, d - cols + 1)"
+  },
+  "test_suite_ref": "data/ground_truth/tests/antidiagonals_t2_test.py"
+}
