@@ -308,7 +308,7 @@
     {
       "func_id": "max_subarray_bounds",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "stateful_scan",
@@ -319,15 +319,17 @@
       "stage2_subscores": {"location": 0, "diagnosis": 0, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "all_maximal_subarrays",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=1.0, ceiling_risk."
+      ]
     },
     {
       "func_id": "longest_plateau",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "stateful_scan",
@@ -338,15 +340,17 @@
       "stage2_subscores": {"location": 0, "diagnosis": 0, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "last_tie_policy",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=1.0, ceiling_risk."
+      ]
     },
     {
       "func_id": "group_and_aggregate",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "grouping_partitioning",
@@ -357,15 +361,17 @@
       "stage2_subscores": {"location": 0, "diagnosis": 0, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "mean_range_aggregation",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=1.0, ceiling_risk."
+      ]
     },
     {
       "func_id": "two_sum_sorted_pairs",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "two_pointer",
@@ -376,15 +382,17 @@
       "stage2_subscores": {"location": 0, "diagnosis": 1, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "index_pair_return",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=1.0, ceiling_risk."
+      ]
     },
     {
       "func_id": "top_k_by",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "ordering_tie_policy",
@@ -395,15 +403,17 @@
       "stage2_subscores": {"location": 0, "diagnosis": 1, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "bottom_k_inversion",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=1.0, ceiling_risk."
+      ]
     },
     {
       "func_id": "tokenize_arithmetic",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "string_sequence",
@@ -414,15 +424,17 @@
       "stage2_subscores": {"location": 0, "diagnosis": 1, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "split_operator_token_types",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=1.0, ceiling_risk."
+      ]
     },
     {
       "func_id": "spiral_order",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "index_arithmetic",
@@ -433,15 +445,17 @@
       "stage2_subscores": {"location": 0, "diagnosis": 0, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "counterclockwise_traversal",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=1.0, ceiling_risk."
+      ]
     },
     {
       "func_id": "welford_running_stats",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "multi_field_accumulation",
@@ -452,15 +466,17 @@
       "stage2_subscores": {"location": 0, "diagnosis": 1, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "sample_variance_switch",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=1.0, ceiling_risk."
+      ]
     },
     {
       "func_id": "merge_intervals",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "two_pointer",
@@ -471,15 +487,17 @@
       "stage2_subscores": {"location": 0, "diagnosis": 1, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "covered_points_count",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=1.0, ceiling_risk."
+      ]
     },
     {
       "func_id": "equal_width_buckets",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_stage1_triage_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "index_arithmetic",
@@ -490,10 +508,12 @@
       "stage2_subscores": {"location": 0, "diagnosis": 0, "fix": 1},
       "stage2_run_id": "t2_screen_wave2",
       "stage2_annotated_at": "2026-03-31",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": []
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 0.9,
+      "t3_transform_family_draft": "equal_frequency_buckets",
+      "advisory_notes": [
+        "Wave2 T3/C2 advisory (run t3_screen_wave2, gpt-5.4, T3/C2, 2026-03-31): score=0.9, ceiling_risk."
+      ]
     }
   ]
 }

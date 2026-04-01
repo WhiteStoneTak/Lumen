@@ -399,5 +399,5 @@
     "balancing_note": "All 7 families represented in first-wave shortlist of 10. index_arithmetic and stateful_scan each have 2 shortlisted; all other families have 1. No family exceeds 2 in first wave."
   },
   "final_decision": "WAVE2 FIRST-WAVE SHORTLIST READY — PROCEED TO AUTHORING",
-  "next_action": "Author wave2 first-wave truth assets (T2 bug annotations, reference fixes, ground truth) for the 10 shortlisted candidates"
+  "next_action": "Wave2 T3/C2 advisory screen complete (run t3_screen_wave2, 2026-03-31): 9/10 ceiling_risk at score=1.0, 1/10 ceiling_risk at score=0.9 (equal_width_buckets, 9/10 tests). CEILING PERSISTS across all wave2 functions. Next action: design harder T3 transforms (C3/C4 conditions) or escalate to wave3 with structurally different function families."
 }
