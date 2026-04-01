@@ -328,9 +328,10 @@ class TestExecutorMock(unittest.TestCase):
         result = executor._resolve_model_id("claude-sonnet-4-6")
         self.assertEqual(result, "claude-sonnet-4-6")
 
-    def test_invalid_mode_raises(self) -> None:
+    def test_invalid_backend_raises(self) -> None:
+        # Unknown backend names raise ValueError in _dispatch
         with self.assertRaises(ValueError):
-            executor.call("test", model_id="sonnet", mode="invalid_mode_xyz")
+            executor._dispatch("test", "claude-sonnet-4-6", "no_such_backend_xyz")
 
 
 # ---------------------------------------------------------------------------
@@ -658,6 +659,502 @@ class TestModelConfig(unittest.TestCase):
         cfg = lumen.load_model_config()
         resolved = lumen.resolve_model_id("claude-opus-4-6", cfg)
         self.assertEqual(resolved, "claude-opus-4-6")
+
+
+# ---------------------------------------------------------------------------
+# Executor backend selection tests
+# ---------------------------------------------------------------------------
+
+class TestExecutorBackends(unittest.TestCase):
+
+    def test_infer_backend_claude(self) -> None:
+        self.assertEqual(executor._infer_backend("claude-sonnet-4-6"), "anthropic_direct")
+        self.assertEqual(executor._infer_backend("claude-opus-4-6"), "anthropic_direct")
+
+    def test_infer_backend_gpt(self) -> None:
+        self.assertEqual(executor._infer_backend("gpt-4o"), "openai_direct")
+        self.assertEqual(executor._infer_backend("gpt-5.4"), "openai_direct")
+
+    def test_infer_backend_openai_variants(self) -> None:
+        self.assertEqual(executor._infer_backend("o1-mini"), "openai_direct")
+        self.assertEqual(executor._infer_backend("o3-turbo"), "openai_direct")
+        self.assertEqual(executor._infer_backend("o4-mini"), "openai_direct")
+        self.assertEqual(executor._infer_backend("codex-mini"), "openai_direct")
+
+    def test_infer_backend_unknown_falls_back(self) -> None:
+        self.assertEqual(executor._infer_backend("unknown-model-xyz"), "anthropic_direct")
+
+    def test_active_backend_explicit_wins(self) -> None:
+        # explicit backend= takes priority over everything
+        result = executor._active_backend("claude-sonnet-4-6", "mock")
+        self.assertEqual(result, "mock")
+
+    def test_active_backend_env_lumen_backend(self) -> None:
+        orig = os.environ.get("LUMEN_BACKEND")
+        orig_legacy = os.environ.get("LUMEN_EXECUTOR")
+        os.environ["LUMEN_BACKEND"] = "openai_direct"
+        os.environ.pop("LUMEN_EXECUTOR", None)
+        try:
+            result = executor._active_backend("claude-sonnet-4-6", None)
+            self.assertEqual(result, "openai_direct")
+        finally:
+            os.environ.pop("LUMEN_BACKEND", None)
+            if orig is not None:
+                os.environ["LUMEN_BACKEND"] = orig
+            if orig_legacy is not None:
+                os.environ["LUMEN_EXECUTOR"] = orig_legacy
+
+    def test_active_backend_legacy_mock(self) -> None:
+        orig_b = os.environ.get("LUMEN_BACKEND")
+        orig_e = os.environ.get("LUMEN_EXECUTOR")
+        os.environ.pop("LUMEN_BACKEND", None)
+        os.environ["LUMEN_EXECUTOR"] = "mock"
+        try:
+            result = executor._active_backend("claude-sonnet-4-6", None)
+            self.assertEqual(result, "mock")
+        finally:
+            os.environ.pop("LUMEN_EXECUTOR", None)
+            if orig_b is not None:
+                os.environ["LUMEN_BACKEND"] = orig_b
+            if orig_e is not None:
+                os.environ["LUMEN_EXECUTOR"] = orig_e
+
+    def test_active_backend_legacy_manual(self) -> None:
+        orig_b = os.environ.get("LUMEN_BACKEND")
+        orig_e = os.environ.get("LUMEN_EXECUTOR")
+        os.environ.pop("LUMEN_BACKEND", None)
+        os.environ["LUMEN_EXECUTOR"] = "manual"
+        try:
+            result = executor._active_backend("claude-sonnet-4-6", None)
+            self.assertEqual(result, "manual")
+        finally:
+            os.environ.pop("LUMEN_EXECUTOR", None)
+            if orig_b is not None:
+                os.environ["LUMEN_BACKEND"] = orig_b
+            if orig_e is not None:
+                os.environ["LUMEN_EXECUTOR"] = orig_e
+
+    def test_active_backend_inferred_when_unset(self) -> None:
+        orig_b = os.environ.get("LUMEN_BACKEND")
+        orig_e = os.environ.get("LUMEN_EXECUTOR")
+        os.environ.pop("LUMEN_BACKEND", None)
+        os.environ.pop("LUMEN_EXECUTOR", None)
+        try:
+            result = executor._active_backend("claude-opus-4-6", None)
+            self.assertEqual(result, "anthropic_direct")
+        finally:
+            if orig_b is not None:
+                os.environ["LUMEN_BACKEND"] = orig_b
+            if orig_e is not None:
+                os.environ["LUMEN_EXECUTOR"] = orig_e
+
+    def test_backend_unavailable_claude_code_cli(self) -> None:
+        # shutil.which("claude") → None means BackendUnavailableError
+        with unittest.mock.patch("shutil.which", return_value=None):
+            with self.assertRaises(executor.BackendUnavailableError):
+                executor._call_claude_code_cli("hello", "claude-sonnet-4-6")
+
+    def test_backend_unavailable_codex_cli(self) -> None:
+        with unittest.mock.patch("shutil.which", return_value=None):
+            with self.assertRaises(executor.BackendUnavailableError):
+                executor._call_codex_cli("hello", "gpt-codex-5.3-high")
+
+    def test_dispatch_unknown_backend_raises(self) -> None:
+        with self.assertRaises(ValueError):
+            executor._dispatch("prompt", "claude-sonnet-4-6", "no_such_backend")
+
+    def test_dispatch_live_delegates_to_inferred(self) -> None:
+        # "live" should route to anthropic_direct for a claude model
+        # mock _call_anthropic_direct so no real API call is made
+        with unittest.mock.patch.object(executor, "_call_anthropic_direct", return_value="ok") as m:
+            result = executor._dispatch("p", "claude-sonnet-4-6", "live")
+        self.assertEqual(result, "ok")
+        m.assert_called_once()
+
+    def test_execute_with_context_empty_prompt_returns_error(self) -> None:
+        import context as ctx_module
+        import result as result_module
+        ctx = ctx_module.ExecutionContext(
+            task_brief="brief",
+            execution_prompt="",
+            structure_design="",
+            constraints="",
+            previous_decisions="",
+            session_id="test",
+            phase="execution",
+            model_id="claude-sonnet-4-6",
+            backend="mock",
+            max_tokens=4096,
+            temperature=0.0,
+        )
+        result = executor.execute_with_context(ctx)
+        self.assertEqual(result.status, "error")
+        self.assertIsNotNone(result.error_message)
+
+    def test_execute_with_context_mock_backend(self) -> None:
+        import context as ctx_module
+        ctx = ctx_module.ExecutionContext(
+            task_brief="brief",
+            execution_prompt="Do something useful.",
+            structure_design="",
+            constraints="",
+            previous_decisions="",
+            session_id="test",
+            phase="execution",
+            model_id="claude-sonnet-4-6",
+            backend="mock",
+            max_tokens=4096,
+            temperature=0.0,
+        )
+        result = executor.execute_with_context(ctx)
+        self.assertIn(result.status, ("success", "partial", "failed"))
+        self.assertIsInstance(result.raw_output, str)
+        self.assertGreater(len(result.raw_output), 0)
+
+
+# ---------------------------------------------------------------------------
+# Context builder tests
+# ---------------------------------------------------------------------------
+
+class TestContextBuilder(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.state_dir = Path(self.tmp.name)
+
+    def tearDown(self) -> None:
+        self.tmp.cleanup()
+
+    def _write(self, name: str, content: str) -> None:
+        (self.state_dir / name).write_text(content, encoding="utf-8")
+
+    def test_build_from_empty_state_dir(self) -> None:
+        import context as ctx_module
+        ctx = ctx_module.build_from_state(
+            self.state_dir, model_id="claude-sonnet-4-6", backend="mock"
+        )
+        self.assertEqual(ctx.task_brief, "")
+        self.assertEqual(ctx.execution_prompt, "")
+        self.assertEqual(ctx.phase, "default")
+        self.assertEqual(ctx.model_id, "claude-sonnet-4-6")
+
+    def test_build_reads_state_files(self) -> None:
+        import context as ctx_module
+        self._write("task_brief.md", "# My Task\n")
+        self._write("execution_prompt.md", "Do the thing.\n")
+        self._write("structure_design.md", "## Design\n")
+        ctx = ctx_module.build_from_state(
+            self.state_dir, model_id="claude-sonnet-4-6", backend="mock"
+        )
+        self.assertIn("My Task", ctx.task_brief)
+        self.assertIn("Do the thing", ctx.execution_prompt)
+        self.assertIn("Design", ctx.structure_design)
+
+    def test_build_reads_session_phase(self) -> None:
+        import context as ctx_module, json as _json
+        session = {"session_id": "sess_abc", "phase": "planning", "task_history": []}
+        (self.state_dir / "session.json").write_text(
+            _json.dumps(session), encoding="utf-8"
+        )
+        ctx = ctx_module.build_from_state(
+            self.state_dir, model_id="claude-sonnet-4-6", backend="mock"
+        )
+        self.assertEqual(ctx.phase, "planning")
+        self.assertEqual(ctx.session_id, "sess_abc")
+
+    def test_build_max_tokens_override(self) -> None:
+        import context as ctx_module
+        ctx = ctx_module.build_from_state(
+            self.state_dir,
+            model_id="claude-sonnet-4-6",
+            backend="mock",
+            max_tokens_override=1234,
+        )
+        self.assertEqual(ctx.max_tokens, 1234)
+
+    def test_resolve_token_budget_known_phase(self) -> None:
+        import context as ctx_module
+        budget = ctx_module._resolve_token_budget("planning")
+        self.assertEqual(budget, 8192)
+
+    def test_resolve_token_budget_execution(self) -> None:
+        import context as ctx_module
+        budget = ctx_module._resolve_token_budget("execution")
+        self.assertEqual(budget, 8192)
+
+    def test_resolve_token_budget_unknown_phase(self) -> None:
+        import context as ctx_module
+        budget = ctx_module._resolve_token_budget("unknown_phase_xyz")
+        # Should return the default, not crash
+        self.assertIsInstance(budget, int)
+        self.assertGreater(budget, 0)
+
+    def test_to_dict_shape(self) -> None:
+        import context as ctx_module
+        ctx = ctx_module.build_from_state(
+            self.state_dir, model_id="claude-sonnet-4-6", backend="mock"
+        )
+        d = ctx_module.to_dict(ctx)
+        for key in ("session_id", "phase", "model_id", "backend", "max_tokens",
+                    "temperature", "assembled_at", "task_brief_chars",
+                    "execution_prompt_chars"):
+            self.assertIn(key, d, f"to_dict missing key: {key}")
+
+    def test_to_json_valid(self) -> None:
+        import context as ctx_module
+        ctx = ctx_module.build_from_state(
+            self.state_dir, model_id="claude-sonnet-4-6", backend="mock"
+        )
+        j = ctx_module.to_json(ctx)
+        parsed = json.loads(j)
+        self.assertIn("session_id", parsed)
+
+
+# ---------------------------------------------------------------------------
+# Result normalization tests
+# ---------------------------------------------------------------------------
+
+class TestResultNormalization(unittest.TestCase):
+
+    def test_normalize_error_message(self) -> None:
+        import result as result_module
+        r = result_module.normalize(
+            "", backend="mock", model_id="claude-sonnet-4-6",
+            error_message="something blew up"
+        )
+        self.assertEqual(r.status, "error")
+        self.assertEqual(r.backend, "mock")
+        self.assertIn("something blew up", r.error_message)
+        self.assertTrue(r.retryable)
+
+    def test_normalize_success_no_errors(self) -> None:
+        import result as result_module
+        text = "All 10 tests passed. Implementation complete."
+        r = result_module.normalize(text, backend="mock", model_id="claude-sonnet-4-6")
+        self.assertEqual(r.status, "success")
+        self.assertEqual(r.raw_output, text)
+        self.assertIsNone(r.error_message)
+
+    def test_normalize_detects_error_signals(self) -> None:
+        import result as result_module
+        text = "Traceback (most recent call last):\n  File 'x.py'\nNameError: name 'foo' not defined"
+        r = result_module.normalize(text, backend="mock", model_id="claude-sonnet-4-6")
+        self.assertEqual(r.status, "partial")
+
+    def test_normalize_extracts_test_counts(self) -> None:
+        import result as result_module
+        text = "pytest run: 12 passed, 2 failed in 0.5s"
+        r = result_module.normalize(text, backend="mock", model_id="claude-sonnet-4-6")
+        self.assertEqual(r.tests_passed, 12)
+        self.assertEqual(r.tests_failed, 2)
+        self.assertEqual(r.tests_run, 14)
+        self.assertEqual(r.status, "partial")
+
+    def test_normalize_extracts_files_touched(self) -> None:
+        import result as result_module
+        text = "Created `automation/foo.py` and Modified data/bar.json successfully."
+        r = result_module.normalize(text, backend="mock", model_id="claude-sonnet-4-6")
+        joined = " ".join(r.files_touched)
+        self.assertTrue(
+            any("foo.py" in f or "bar.json" in f for f in r.files_touched),
+            f"Expected file paths in files_touched, got: {r.files_touched}"
+        )
+
+    def test_normalize_extracts_summary_section(self) -> None:
+        import result as result_module
+        text = "## Summary\n\nDid the thing. Everything looks good.\n\n## Details\nMore text."
+        r = result_module.normalize(text, backend="mock", model_id="claude-sonnet-4-6")
+        self.assertIn("Did the thing", r.summary)
+
+    def test_normalize_extracts_todo_issues(self) -> None:
+        import result as result_module
+        text = "TODO: fix the imports\nFIXME: handle edge case\nDone."
+        r = result_module.normalize(text, backend="mock", model_id="claude-sonnet-4-6")
+        self.assertTrue(len(r.unresolved_issues) >= 1)
+
+    def test_normalize_extracts_blocker(self) -> None:
+        import result as result_module
+        text = "[BLOCKING] missing API key prevents execution"
+        r = result_module.normalize(text, backend="mock", model_id="claude-sonnet-4-6")
+        self.assertIsNotNone(r.blocker)
+        self.assertIn("missing API key", r.blocker)
+
+    def test_to_json_from_json_roundtrip(self) -> None:
+        import result as result_module
+        r = result_module.normalize(
+            "All done.", backend="anthropic_direct", model_id="claude-sonnet-4-6"
+        )
+        j = result_module.to_json(r)
+        r2 = result_module.from_json(j)
+        self.assertEqual(r.status, r2.status)
+        self.assertEqual(r.backend, r2.backend)
+        self.assertEqual(r.model_id, r2.model_id)
+        self.assertEqual(r.raw_output, r2.raw_output)
+
+    def test_to_markdown_contains_status(self) -> None:
+        import result as result_module
+        r = result_module.normalize("Done.", backend="mock", model_id="claude-sonnet-4-6")
+        md = result_module.to_markdown(r)
+        self.assertIn("Status", md)
+        self.assertIn(r.status, md)
+
+    def test_to_markdown_truncates_long_raw_output(self) -> None:
+        import result as result_module
+        long_text = "x" * 10000
+        r = result_module.normalize(long_text, backend="mock", model_id="claude-sonnet-4-6")
+        md = result_module.to_markdown(r)
+        self.assertIn("truncated", md)
+
+    def test_normalize_token_fields_propagated(self) -> None:
+        import result as result_module
+        r = result_module.normalize(
+            "ok", backend="mock", model_id="claude-sonnet-4-6",
+            prompt_tokens=100, completion_tokens=200
+        )
+        self.assertEqual(r.prompt_tokens, 100)
+        self.assertEqual(r.completion_tokens, 200)
+
+
+# ---------------------------------------------------------------------------
+# Token budget config tests
+# ---------------------------------------------------------------------------
+
+class TestTokenBudget(unittest.TestCase):
+
+    def test_models_json_has_token_budgets(self) -> None:
+        path = AUTO_DIR / "config" / "models.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        self.assertIn("token_budgets", data, "models.json must have token_budgets section")
+
+    def test_token_budgets_all_required_phases(self) -> None:
+        path = AUTO_DIR / "config" / "models.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        budgets = data["token_budgets"]
+        for phase in ("planning", "prompt_synthesis", "execution", "review",
+                      "next_task", "handoff", "default"):
+            self.assertIn(phase, budgets, f"token_budgets missing phase: {phase}")
+
+    def test_token_budgets_are_positive_ints(self) -> None:
+        path = AUTO_DIR / "config" / "models.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for phase, budget in data["token_budgets"].items():
+            if phase.startswith("_"):
+                continue
+            self.assertIsInstance(budget, int, f"budget for {phase} must be int")
+            self.assertGreater(budget, 0, f"budget for {phase} must be > 0")
+
+    def test_planning_budget_is_8192(self) -> None:
+        path = AUTO_DIR / "config" / "models.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(data["token_budgets"]["planning"], 8192)
+
+    def test_context_builder_respects_budget_per_phase(self) -> None:
+        import context as ctx_module
+        with tempfile.TemporaryDirectory() as td:
+            state_dir = Path(td)
+            import json as _json
+            session = {"session_id": "s", "phase": "planning", "task_history": []}
+            (state_dir / "session.json").write_text(_json.dumps(session), encoding="utf-8")
+            ctx = ctx_module.build_from_state(
+                state_dir, model_id="claude-sonnet-4-6", backend="mock"
+            )
+        self.assertEqual(ctx.max_tokens, 8192)
+
+
+# ---------------------------------------------------------------------------
+# cmd_execute tests
+# ---------------------------------------------------------------------------
+
+class TestExecuteCommand(unittest.TestCase):
+    """Test that cmd_execute saves execution_result.json and .md in mock mode."""
+
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.tmp_path = Path(self.tmp.name)
+        self._orig_state = lumen.STATE_DIR
+        self._orig_history = lumen.HISTORY_DIR
+        lumen.STATE_DIR = self.tmp_path / "state"
+        lumen.HISTORY_DIR = self.tmp_path / "history"
+        lumen.STATE_DIR.mkdir(parents=True)
+        lumen.HISTORY_DIR.mkdir(parents=True)
+        self._orig_backend = os.environ.get("LUMEN_BACKEND")
+        self._orig_executor = os.environ.get("LUMEN_EXECUTOR")
+        os.environ.pop("LUMEN_BACKEND", None)
+        os.environ["LUMEN_EXECUTOR"] = "mock"
+
+    def tearDown(self) -> None:
+        lumen.STATE_DIR = self._orig_state
+        lumen.HISTORY_DIR = self._orig_history
+        os.environ.pop("LUMEN_BACKEND", None)
+        if self._orig_backend is not None:
+            os.environ["LUMEN_BACKEND"] = self._orig_backend
+        if self._orig_executor is None:
+            os.environ.pop("LUMEN_EXECUTOR", None)
+        else:
+            os.environ["LUMEN_EXECUTOR"] = self._orig_executor
+        self.tmp.cleanup()
+
+    def _init_with_prompt(self) -> None:
+        import argparse, io
+        with unittest.mock.patch("sys.stdout", io.StringIO()):
+            lumen.cmd_init(argparse.Namespace(force=True))
+        lumen.save_text(
+            lumen.STATE_DIR / "execution_prompt.md",
+            "# Execution Prompt\n\nDo something useful.\n"
+        )
+
+    def test_execute_saves_result_json(self) -> None:
+        import argparse, io
+        self._init_with_prompt()
+        with unittest.mock.patch("sys.stdout", io.StringIO()):
+            lumen.cmd_execute(argparse.Namespace(model=None, backend=None))
+        self.assertTrue((lumen.STATE_DIR / "execution_result.json").exists())
+
+    def test_execute_saves_result_md(self) -> None:
+        import argparse, io
+        self._init_with_prompt()
+        with unittest.mock.patch("sys.stdout", io.StringIO()):
+            lumen.cmd_execute(argparse.Namespace(model=None, backend=None))
+        self.assertTrue((lumen.STATE_DIR / "execution_result.md").exists())
+
+    def test_execute_result_json_valid(self) -> None:
+        import argparse, io
+        self._init_with_prompt()
+        with unittest.mock.patch("sys.stdout", io.StringIO()):
+            lumen.cmd_execute(argparse.Namespace(model=None, backend=None))
+        data = json.loads(
+            (lumen.STATE_DIR / "execution_result.json").read_text(encoding="utf-8")
+        )
+        self.assertIn("status", data)
+        self.assertIn("backend", data)
+        self.assertIn("model_id", data)
+
+    def test_execute_advances_phase(self) -> None:
+        import argparse, io
+        self._init_with_prompt()
+        with unittest.mock.patch("sys.stdout", io.StringIO()):
+            lumen.cmd_execute(argparse.Namespace(model=None, backend=None))
+        session = lumen.load_session()
+        self.assertEqual(session["phase"], "result_ingest")
+
+    def test_execute_archives_result(self) -> None:
+        import argparse, io
+        self._init_with_prompt()
+        with unittest.mock.patch("sys.stdout", io.StringIO()):
+            lumen.cmd_execute(argparse.Namespace(model=None, backend=None))
+        session = lumen.load_session()
+        history_dir = lumen.HISTORY_DIR / session["session_id"]
+        history_files = list(history_dir.glob("*execution_result*"))
+        self.assertGreaterEqual(len(history_files), 1)
+
+    def test_execute_no_prompt_exits(self) -> None:
+        import argparse, io
+        # Init but do NOT write execution_prompt.md
+        with unittest.mock.patch("sys.stdout", io.StringIO()):
+            lumen.cmd_init(argparse.Namespace(force=True))
+        # execution_prompt.md is blank/missing → should SystemExit
+        with self.assertRaises(SystemExit):
+            lumen.cmd_execute(argparse.Namespace(model=None, backend=None))
 
 
 if __name__ == "__main__":

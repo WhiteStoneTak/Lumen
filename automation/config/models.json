@@ -1,15 +1,18 @@
 {
-  "_comment": "Model routing config for the Lumen automation layer. Edit here to change which models are used for each role.",
+  "_comment": "Model routing and token budget config for the Lumen automation layer.",
+
   "defaults": {
     "planner": "opus",
     "synthesizer": "opus",
     "executor": "sonnet"
   },
+
   "models": {
     "sonnet": {
       "model_id": "claude-sonnet-4-6",
       "provider": "anthropic",
-      "description": "Claude Sonnet 4.6 — fast, capable, good for implementation tasks",
+      "backend": "anthropic_direct",
+      "description": "Claude Sonnet 4.6 — fast, capable, best for implementation tasks",
       "strengths": ["code generation", "structured output", "fast iteration"],
       "call_params": {
         "temperature": 0.0,
@@ -19,6 +22,7 @@
     "opus": {
       "model_id": "claude-opus-4-6",
       "provider": "anthropic",
+      "backend": "anthropic_direct",
       "description": "Claude Opus 4.6 — highest reasoning quality, best for planning and synthesis",
       "strengths": ["complex reasoning", "constraint preservation", "planning", "handoff generation"],
       "call_params": {
@@ -29,7 +33,8 @@
     "gpt54": {
       "model_id": "gpt-5.4",
       "provider": "openai",
-      "description": "GPT-5.4 — strong general-purpose model, used as primary screening model in Lumen",
+      "backend": "openai_direct",
+      "description": "GPT-5.4 — strong general-purpose, used as primary screening model in Lumen",
       "strengths": ["general reasoning", "code understanding", "screening runs"],
       "call_params": {
         "temperature": 0.0,
@@ -39,12 +44,26 @@
     "codex": {
       "model_id": "gpt-codex-5.3-high",
       "provider": "openai",
-      "description": "GPT Codex 5.3 high — high-compute coding specialist",
+      "backend": "codex_cli",
+      "description": "GPT Codex 5.3 high — high-compute coding specialist (requires codex CLI)",
       "strengths": ["deep code generation", "complex refactors", "high-quality implementations"],
       "call_params": {
         "temperature": 0.0,
         "max_tokens": 8192
       }
     }
+  },
+
+  "token_budgets": {
+    "_comment": "Per-phase token budgets for the automation executor. These override call_params.max_tokens when context.build_from_state() resolves the budget by phase. Units: output tokens.",
+    "intake": 2048,
+    "planning": 8192,
+    "prompt_synthesis": 8192,
+    "execution": 8192,
+    "result_ingest": 2048,
+    "review": 8192,
+    "next_task": 4096,
+    "handoff": 8192,
+    "default": 4096
   }
 }

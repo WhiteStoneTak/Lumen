@@ -9,6 +9,7 @@ Commands:
     status    Show current session state and available state files
     plan      Render the structure-design prompt (→ planning phase)
     prompt    Render the execution-prompt synthesis prompt (→ prompt_synthesis)
+    execute   Execute execution_prompt via a real backend (→ result_ingest)
     ingest    Save an execution result from an external file (→ result_ingest)
     review    Render the execution-result review prompt (→ review)
     next      Render the next-task generation prompt (→ intake)
@@ -236,11 +237,19 @@ def today() -> str:
 
 
 def execute_prompt(prompt: str, model_id: str) -> str:
-    """Submit prompt to model via automation/executor.py."""
-    if str(AUTO_DIR) not in sys.path:
-        sys.path.insert(0, str(AUTO_DIR))
+    """Submit prompt to model via automation/executor.py.
+
+    Always uses the direct SDK path — never routes through
+    src/utils/llm_client.py, which enforces MAX_TOKENS=1024.
+    """
+    _ensure_auto_dir_on_path()
     import executor as _exec  # type: ignore[import]
     return _exec.call(prompt, model_id=model_id)
+
+
+def _ensure_auto_dir_on_path() -> None:
+    if str(AUTO_DIR) not in sys.path:
+        sys.path.insert(0, str(AUTO_DIR))
 
 
 # ---------------------------------------------------------------------------
@@ -413,6 +422,90 @@ def cmd_ingest(args: argparse.Namespace) -> None:
 
     print(f"Ingested: {source} → automation/state/execution_result.md")
     print("Next: python automation/lumen.py review")
+
+
+def cmd_execute(args: argparse.Namespace) -> None:
+    """Execute the current execution_prompt against a real backend.
+
+    This is the command that closes the manual copy/paste loop.
+    It assembles a full ExecutionContext from state, submits the
+    execution_prompt to the chosen backend, normalizes the result,
+    and saves both execution_result.json and execution_result.md.
+
+    Workflow position: after `prompt` (or `prompt --execute`), before `review`.
+    """
+    session = require_session()
+    _ensure_auto_dir_on_path()
+
+    import context as _ctx_module   # type: ignore[import]
+    import executor as _exec        # type: ignore[import]
+    import result as _result_module  # type: ignore[import]
+
+    cfg = load_model_config()
+    model_key = getattr(args, "model", None) or cfg.get("defaults", {}).get("executor", "sonnet")
+    model_id = resolve_model_id(model_key, cfg) or model_key
+
+    # Resolve backend: --backend flag → LUMEN_BACKEND env → infer from model
+    backend = getattr(args, "backend", None) or None  # None → executor infers
+
+    # Check execution_prompt exists
+    ep_path = STATE_DIR / "execution_prompt.md"
+    if not ep_path.exists() or not ep_path.read_text(encoding="utf-8").strip():
+        _die(
+            "No execution_prompt.md found in state. "
+            "Run `python automation/lumen.py prompt --execute` first."
+        )
+
+    # Assemble state-aware context
+    ctx = _ctx_module.build_from_state(
+        state_dir=STATE_DIR,
+        model_id=model_id,
+        backend=backend or "auto",
+    )
+
+    _info(f"Executing with model={model_id} backend={backend or 'auto (inferred)'}")
+    _info(f"Token budget: {ctx.max_tokens} (phase: {ctx.phase})")
+    _info(f"Prompt length: {len(ctx.execution_prompt)} chars")
+
+    # Log context metadata to history
+    ctx_json = _ctx_module.to_json(ctx)
+    archive(session["session_id"], "execution_context.json", ctx_json)
+
+    # Execute
+    exec_result = _exec.execute_with_context(ctx)
+
+    # Save normalized outputs
+    result_json = _result_module.to_json(exec_result)
+    result_md = _result_module.to_markdown(exec_result)
+
+    save_text(STATE_DIR / "execution_result.json", result_json)
+    save_text(STATE_DIR / "execution_result.md", result_md)
+    archive(session["session_id"], "execution_result.json", result_json)
+    archive(session["session_id"], "execution_result.md", result_md)
+
+    session["phase"] = "result_ingest"
+    session.setdefault("executions", []).append({
+        "model_id": model_id,
+        "backend": exec_result.backend,
+        "status": exec_result.status,
+        "timestamp": exec_result.timestamp,
+    })
+    save_session(session)
+
+    # Print summary
+    print(f"Status  : {exec_result.status}")
+    print(f"Backend : {exec_result.backend}")
+    print(f"Model   : {exec_result.model_id}")
+    if exec_result.files_touched:
+        print(f"Files   : {', '.join(exec_result.files_touched[:5])}")
+    if exec_result.tests_run is not None:
+        print(f"Tests   : {exec_result.tests_passed}/{exec_result.tests_run} passed")
+    if exec_result.blocker:
+        print(f"Blocker : {exec_result.blocker}")
+    print()
+    print(exec_result.summary)
+    _info("Saved → automation/state/execution_result.md + execution_result.json")
+    _info("Next: python automation/lumen.py review")
 
 
 def cmd_review(args: argparse.Namespace) -> None:
@@ -623,6 +716,22 @@ def _build_parser() -> argparse.ArgumentParser:
     p_ingest = sub.add_parser("ingest", help="Save an execution result file into state")
     p_ingest.add_argument("file", help="Path to the execution result file")
 
+    # execute
+    p_execute = sub.add_parser(
+        "execute",
+        help="Execute execution_prompt against a real backend (closes the copy/paste loop)",
+    )
+    p_execute.add_argument(
+        "--model", default=None,
+        help="Model key (sonnet/opus/gpt54) or bare model ID (default: config executor)",
+    )
+    p_execute.add_argument(
+        "--backend", default=None,
+        choices=["anthropic_direct", "openai_direct", "claude_code_cli",
+                 "codex_cli", "mock", "manual"],
+        help="Backend override (default: infer from model ID)",
+    )
+
     # review
     p_review = sub.add_parser("review", help="Render execution-result review prompt")
     p_review.add_argument("--execute", action="store_true",
@@ -656,6 +765,7 @@ def main(argv: list[str] | None = None) -> None:
         "plan": cmd_plan,
         "prompt": cmd_prompt,
         "ingest": cmd_ingest,
+        "execute": cmd_execute,
         "review": cmd_review,
         "next": cmd_next,
         "handoff": cmd_handoff,
