@@ -1,0 +1,50 @@
+{
+  "_comment": "Model routing config for the Lumen automation layer. Edit here to change which models are used for each role.",
+  "defaults": {
+    "planner": "opus",
+    "synthesizer": "opus",
+    "executor": "sonnet"
+  },
+  "models": {
+    "sonnet": {
+      "model_id": "claude-sonnet-4-6",
+      "provider": "anthropic",
+      "description": "Claude Sonnet 4.6 — fast, capable, good for implementation tasks",
+      "strengths": ["code generation", "structured output", "fast iteration"],
+      "call_params": {
+        "temperature": 0.0,
+        "max_tokens": 8192
+      }
+    },
+    "opus": {
+      "model_id": "claude-opus-4-6",
+      "provider": "anthropic",
+      "description": "Claude Opus 4.6 — highest reasoning quality, best for planning and synthesis",
+      "strengths": ["complex reasoning", "constraint preservation", "planning", "handoff generation"],
+      "call_params": {
+        "temperature": 0.0,
+        "max_tokens": 8192
+      }
+    },
+    "gpt54": {
+      "model_id": "gpt-5.4",
+      "provider": "openai",
+      "description": "GPT-5.4 — strong general-purpose model, used as primary screening model in Lumen",
+      "strengths": ["general reasoning", "code understanding", "screening runs"],
+      "call_params": {
+        "temperature": 0.0,
+        "max_tokens": 8192
+      }
+    },
+    "codex": {
+      "model_id": "gpt-codex-5.3-high",
+      "provider": "openai",
+      "description": "GPT Codex 5.3 high — high-compute coding specialist",
+      "strengths": ["deep code generation", "complex refactors", "high-quality implementations"],
+      "call_params": {
+        "temperature": 0.0,
+        "max_tokens": 8192
+      }
+    }
+  }
+}

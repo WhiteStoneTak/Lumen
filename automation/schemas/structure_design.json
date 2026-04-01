@@ -1,0 +1,14 @@
+{
+  "schema_id": "structure-design-v1",
+  "description": "Output of the planning phase. Produced by the planner model from the task brief.",
+  "fields": {
+    "problem_restatement": "Precise restatement of the task goal in implementation terms",
+    "scope_boundary": "Explicit statement of what is and is not in scope",
+    "constraints_analysis": "Each constraint from the task brief, with implications for implementation",
+    "data_model": "Key data structures, schemas, or state transitions involved",
+    "component_breakdown": "Implementation components with responsibilities and interfaces",
+    "dependencies": "Existing code/files this implementation depends on or must not break",
+    "open_questions": "Unresolved ambiguities that the executor should surface, not guess",
+    "execution_notes": "Guidance specific to the target execution model"
+  }
+}

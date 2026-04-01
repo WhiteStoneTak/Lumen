@@ -1,0 +1,128 @@
+# Lumen experiment runner — Makefile
+#
+# Prerequisites:
+#   - .env file in the repo root with ANTHROPIC_API_KEY and OPENAI_API_KEY
+#   - pip install -e . (or pip install anthropic)
+#
+# Common usage:
+#   make summarize-candidates
+#   make t2-screen-wave1 SCREEN_FUNC_IDS="my_func another_func"
+#   make ingest-stage2
+#   make t3-screen-wave1 SCREEN_FUNC_IDS="my_func"
+#   make ingest-stage3
+
+# ---------------------------------------------------------------------------
+# Configurable defaults
+# ---------------------------------------------------------------------------
+
+# Model used for screening runs.  Override: make t2-screen-wave1 SCREEN_MODEL=claude-opus-4-6
+SCREEN_MODEL ?= gpt-5.4
+
+# Space-separated list of func_ids for screening.
+# If empty, the wrapper auto-detects eligible candidates from the tracker.
+SCREEN_FUNC_IDS ?=
+
+# Run IDs for the two screening waves.
+T2_SCREEN_RUN_ID ?= t2_screen_wave1
+T3_SCREEN_RUN_ID ?= t3_screen_wave1
+
+# ---------------------------------------------------------------------------
+# Phony targets
+# ---------------------------------------------------------------------------
+
+.PHONY: t2-screen-wave1 t3-screen-wave1 \
+        ingest-stage2 ingest-stage3 \
+        summarize-candidates init-candidates \
+        list-candidates validate-candidates \
+        test
+
+# ---------------------------------------------------------------------------
+# Candidate tracker tooling
+# ---------------------------------------------------------------------------
+
+init-candidates:
+	PYTHONPATH=src python -m experiment.init_candidates --seed-anchors
+
+summarize-candidates:
+	PYTHONPATH=src python -m experiment.summarize_candidates
+
+# Candidate management (manual intake and Stage 1 workflow)
+# Add a candidate:  make add-candidate ID=my_func SOURCE="authored" LINES=14
+# Update Stage 1:   make stage1 ID=my_func RESULT=PASS
+#                   make stage1 ID=my_func RESULT=EXCLUDE REASON="Too trivial"
+list-candidates:
+	PYTHONPATH=src python -m experiment.manage_candidates list
+
+validate-candidates:
+	PYTHONPATH=src python -m experiment.manage_candidates validate
+
+# ---------------------------------------------------------------------------
+# Screening runs
+#
+# .env is sourced in the same shell as the python command so that API keys
+# are available.  All recipe lines are joined with && so they run in a single
+# shell process.
+#
+# If SCREEN_FUNC_IDS is not set, auto-detect from tracker.
+# ---------------------------------------------------------------------------
+
+t2-screen-wave1:
+	@set -a && source .env && set +a && \
+	if [ -z "$(SCREEN_FUNC_IDS)" ]; then \
+	  FUNC_IDS=$$(PYTHONPATH=src python -m experiment.summarize_candidates --list stage2-eligible 2>/dev/null || true); \
+	else \
+	  FUNC_IDS="$(SCREEN_FUNC_IDS)"; \
+	fi && \
+	if [ -z "$$FUNC_IDS" ]; then \
+	  echo "No Stage 2-eligible candidates found. Add and approve candidates first." >&2; exit 1; \
+	fi && \
+	echo "Running T2 C1 screen for: $$FUNC_IDS" && \
+	PYTHONPATH=src python -m experiment.run_pilot \
+	  --run-mode full \
+	  --tasks T2 \
+	  --conditions C1 \
+	  --models $(SCREEN_MODEL) \
+	  --run-id $(T2_SCREEN_RUN_ID) \
+	  --func-ids $$FUNC_IDS
+
+t3-screen-wave1:
+	@set -a && source .env && set +a && \
+	if [ -z "$(SCREEN_FUNC_IDS)" ]; then \
+	  FUNC_IDS=$$(PYTHONPATH=src python -m experiment.summarize_candidates --list stage3-eligible 2>/dev/null || true); \
+	else \
+	  FUNC_IDS="$(SCREEN_FUNC_IDS)"; \
+	fi && \
+	if [ -z "$$FUNC_IDS" ]; then \
+	  echo "No Stage 3-eligible candidates found. Run Stage 2 screen first." >&2; exit 1; \
+	fi && \
+	echo "Running T3 C2 screen for: $$FUNC_IDS" && \
+	PYTHONPATH=src python -m experiment.run_pilot \
+	  --run-mode full \
+	  --tasks T3 \
+	  --conditions C2 \
+	  --models $(SCREEN_MODEL) \
+	  --run-id $(T3_SCREEN_RUN_ID) \
+	  --func-ids $$FUNC_IDS
+
+# ---------------------------------------------------------------------------
+# Result ingestion
+# ---------------------------------------------------------------------------
+
+ingest-stage2:
+	PYTHONPATH=src python -m experiment.update_candidates_from_run \
+	  --run-id $(T2_SCREEN_RUN_ID) \
+	  --stage 2 \
+	  --model $(SCREEN_MODEL)
+
+ingest-stage3:
+	PYTHONPATH=src python -m experiment.update_candidates_from_run \
+	  --run-id $(T3_SCREEN_RUN_ID) \
+	  --stage 3 \
+	  --model $(SCREEN_MODEL)
+
+# ---------------------------------------------------------------------------
+# Tests
+# ---------------------------------------------------------------------------
+
+test:
+	python3 -m unittest discover -s tests -v

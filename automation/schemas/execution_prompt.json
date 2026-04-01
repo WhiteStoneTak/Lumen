@@ -1,0 +1,14 @@
+{
+  "schema_id": "execution-prompt-v1",
+  "description": "An execution prompt is the final instruction artifact delivered to an executor model. It is produced by the `prompt` command and saved to automation/state/execution_prompt.md.",
+  "fields": {
+    "objective": "One-sentence imperative goal statement",
+    "constraints": "Numbered checklist of hard constraints the executor must honor",
+    "inputs": "Exact file paths and content the executor needs to read",
+    "outputs": "Exact file paths and schemas the executor must produce",
+    "procedure": "Step-by-step implementation instructions in dependency order",
+    "validation": "Checks the executor must run before calling the task complete",
+    "output_format": "Structure of the executor's final response (file list + summary)"
+  },
+  "note": "This schema is informational. The execution_prompt.md artifact is free-form Markdown. The fields above describe the expected structure so that the synthesizer model produces consistent prompts and the review step can assess completeness."
+}

@@ -1,0 +1,16 @@
+{
+  "schema_id": "next-steps-v1",
+  "description": "The next steps artifact is the output of the `next` command. It is a complete, ready-to-use task brief for the following workflow iteration.",
+  "fields": {
+    "title": "Short label used in the session history index",
+    "goal": "Precise, testable statement of what must be true when the task is done",
+    "context": "Current repo/dataset/experiment state relevant to the task",
+    "constraints": "Numbered list of hard constraints, carried forward and updated from the review",
+    "inputs": "Files or artifacts the executor will need, with paths",
+    "outputs": "Files or artifacts that must exist when done, with paths",
+    "execution_model_preference": "sonnet / opus / gpt54 / codex",
+    "notes": "Anything a fresh executor needs to understand that is not captured above",
+    "rationale": "Why this is the right next task and what it unblocks"
+  },
+  "note": "The next_steps.md artifact is free-form Markdown. When the `next --execute` path is used, the output should be copy-pasted directly into automation/state/task_brief.md to start the next loop."
+}

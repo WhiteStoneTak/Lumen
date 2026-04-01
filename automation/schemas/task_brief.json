@@ -1,0 +1,15 @@
+{
+  "schema_id": "task-brief-v1",
+  "description": "A task brief is the entry point for one workflow iteration. Fill it in before running `plan`.",
+  "fields": {
+    "title": "Short label for this task (used in history index)",
+    "goal": "What must be true when this task is complete? Be precise.",
+    "context": "What is the relevant current state of the repo / dataset / experiment?",
+    "constraints": "Hard constraints that cannot be violated (protocol refs, scope limits, naming rules, etc.)",
+    "inputs": "Files, artifacts, or data that the executor will need (with paths)",
+    "outputs": "Files or artifacts that must exist when the task is done (with paths)",
+    "execution_model_preference": "Optional: which model key to target (sonnet/opus/gpt54/codex)",
+    "related_phases": "Which workflow phases does this task span? (e.g. planning + execution)"
+  },
+  "blank_template": "# Task Brief\n\n## Title\n<!-- Short label for history index -->\n\n## Goal\n<!-- What must be true when this task is done? Be specific and testable. -->\n\n## Context\n<!-- Current repo / dataset / experiment state relevant to this task -->\n\n## Constraints\n<!-- Hard constraints: protocol refs, scope limits, naming conventions, do-nots -->\n\n## Inputs\n<!-- Files or artifacts the executor needs. Include paths relative to repo root. -->\n\n## Outputs\n<!-- Files or artifacts that must exist when done. Include paths. -->\n\n## Execution model preference\n<!-- Optional: sonnet / opus / gpt54 / codex -->\n\n## Notes\n<!-- Anything else a fresh reader needs to understand this task -->\n"
+}

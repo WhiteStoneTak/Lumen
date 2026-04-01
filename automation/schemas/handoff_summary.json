@@ -1,0 +1,20 @@
+{
+  "schema_id": "handoff-summary-v1",
+  "description": "A handoff summary is the output of the `handoff` command. It is a self-contained context document for starting a new conversation with no prior session history.",
+  "fields": {
+    "project_state": "3-5 sentence description: what Lumen is, current phase, current focus",
+    "session_accomplishments": "Bulleted list of concrete artifacts, decisions, and confirmed constraints from this session",
+    "active_constraints": "Complete numbered list of constraints that must carry forward — exhaustive, not summarized",
+    "decisions_made": "Table of architectural or protocol decisions made this session: decision | rationale | impact",
+    "open_items": "Bulleted list of unresolved questions and blockers, flagged as BLOCKING or BACKGROUND",
+    "critical_files": "Bulleted list of files a fresh context must read before proceeding, with one-line descriptions",
+    "next_action": "Exactly one next action, structured as a mini task brief: title + goal + model preference + first step"
+  },
+  "quality_requirements": [
+    "Must be complete enough to resume work without any clarifying questions",
+    "Must list every active constraint — omitting any is a correctness defect",
+    "Must be compact — no prose where a list suffices",
+    "Must not introduce new interpretations — records what was done, not what could have been done",
+    "Must be usable as the first message in a new conversation"
+  ]
+}

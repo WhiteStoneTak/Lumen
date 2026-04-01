@@ -1,0 +1,13 @@
+{
+  "schema_id": "execution-result-v1",
+  "description": "An execution result is any text artifact produced by running an execution prompt through a model. Ingested via `python automation/lumen.py ingest FILE`.",
+  "fields": {
+    "source": "Where this result came from (model name, tool, or manual)",
+    "files_changed": "List of files created or modified",
+    "validation_status": "Did any automated checks (tests, contracts) pass or fail?",
+    "deviations": "Anything the executor did that diverged from the execution prompt",
+    "blockers": "Errors, missing inputs, or ambiguities that stopped execution",
+    "summary": "2-4 sentence summary of what was accomplished"
+  },
+  "note": "This schema is informational. The ingest command accepts any text file — structured or free-form. Prefer structured summaries for cleaner next-task generation."
+}
