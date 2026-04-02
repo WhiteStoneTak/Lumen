@@ -1,0 +1,245 @@
+{
+  "lumen_schema": "ast-v1",
+  "func_id": "group_by_key",
+  "source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "group_by_key",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "pairs",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "tuple",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Group a list of (key, value) pairs into a dict of value-lists.\n\n    Keys maintain insertion order (Python 3.7+ dict ordering).\n    Values within each key group preserve original relative order.\n\n    Args:\n        pairs: List of (key, value) tuples. Key must be hashable.\n\n    Returns:\n        Dict mapping each key to the list of values associated with it,\n        in the order they appeared.\n\n    Examples:\n        group_by_key([(\"a\", 1), (\"b\", 2), (\"a\", 3), (\"c\", 1), (\"b\", 4)]) == {\"a\": [1, 3], \"b\": [2, 4], \"c\": [1]}\n        group_by_key([]) == {}\n        group_by_key([(\"x\", 10)]) == {\"x\": [10]}\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Name",
+              "id": "dict",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "Dict",
+              "keys": [],
+              "values": []
+            },
+            "simple": 1
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "key",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "value",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Name",
+              "id": "pairs",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "key",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "NotIn"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Name",
+                      "id": "result",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Subscript",
+                        "value": {
+                          "_type": "Name",
+                          "id": "result",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "slice": {
+                          "_type": "Name",
+                          "id": "key",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "List",
+                      "elts": [],
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  }
+                ],
+                "orelse": []
+              },
+              {
+                "_type": "Expr",
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Attribute",
+                    "value": {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "result",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "Name",
+                        "id": "key",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "value",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Name",
+          "id": "dict",
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

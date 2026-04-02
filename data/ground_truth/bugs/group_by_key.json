@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "group_by_key",
+  "source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
+  "bug_id": "group_by_key.BUG01",
+  "bug_category": "incorrect_variable_reference",
+  "bug_description": "The append call uses `key` instead of `value` (`result[key].append(key)`), causing each group's value list to be populated with the key itself repeated, rather than the actual associated values. For example, `group_by_key([(\"a\", 1), (\"a\", 2)])` returns `{\"a\": [\"a\", \"a\"]}` instead of `{\"a\": [1, 2]}`. The bug is non-trivial because the group structure (keys, ordering, counts per key) is fully correct — only the contents of each value list are wrong. On inputs where the key and value happen to be equal the bug is invisible, making it detectable only on inputs where key != value.",
+  "location": {
+    "path": "data/functions/raw/group_by_key.py",
+    "start_line": 24,
+    "end_line": 24
+  },
+  "reference_fix": {
+    "start_line": 24,
+    "end_line": 24,
+    "replacement": "        result[key].append(value)"
+  },
+  "test_suite_ref": "data/ground_truth/tests/group_by_key_t2_test.py"
+}

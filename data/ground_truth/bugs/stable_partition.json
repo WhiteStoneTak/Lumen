@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "stable_partition",
+  "source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
+  "bug_id": "stable_partition.BUG01",
+  "bug_category": "swapped_arguments",
+  "bug_description": "The return statement yields `(false_group, true_group)` instead of the correct `(true_group, false_group)`, swapping the two partitions in the returned tuple. The function contract guarantees that the first element of the tuple is the group for which the predicate returns True, and the second is the group for which it returns False. With the swap, callers that unpack `true_g, false_g = stable_partition(...)` silently receive the wrong partition in each variable. The bug produces wrong results whenever the predicate does not produce a 50/50 symmetric split; both groups are always fully computed and correctly populated, making the swap easy to miss without a focused return-value test.",
+  "location": {
+    "path": "data/functions/raw/stable_partition.py",
+    "start_line": 35,
+    "end_line": 35
+  },
+  "reference_fix": {
+    "start_line": 35,
+    "end_line": 35,
+    "replacement": "    return (true_group, false_group)"
+  },
+  "test_suite_ref": "data/ground_truth/tests/stable_partition_t2_test.py"
+}

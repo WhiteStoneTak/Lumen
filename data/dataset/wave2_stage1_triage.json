@@ -33,6 +33,7 @@
       "exec_lines": 16,
       "first_wave": false,
       "first_wave_rank": null,
+      "third_wave": true,
       "rationale": "Simple dual-condition scan over interior elements (range 1..len-1). Each element test is two independent strict-inequality comparisons. Only injectable T2 bugs are > vs >= operator flips. T3: changing to non-strict (include plateaus) or admitting boundary elements are single-operator changes. Behavior almost fully obvious from name and docstring. Profile matches wave1 easy family (count_true_segments). BLOCKED on both T2 and T3 criteria."
     },
     {
@@ -63,6 +64,7 @@
       "exec_lines": 13,
       "first_wave": false,
       "first_wave_rank": null,
+      "third_wave": true,
       "rationale": "13 executable lines. Segment tracking with trailing-flush after loop. T2: only injectable bug is > vs >= (strict vs inclusive threshold boundary) — single operator flip. T3: changing threshold strictness is trivial; returning (start_idx, end_idx) pairs instead of value sublists is the only non-trivial transform, but most obvious T3 is optional-parameter collapse (add inclusive parameter). Not worth shortlisting given T2 weakness."
     },
     {
@@ -124,6 +126,7 @@
       "exec_lines": 8,
       "first_wave": false,
       "first_wave_rank": null,
+      "third_wave": true,
       "rationale": "8 executable lines in function body. Single loop appending to one of two lists based on predicate. T2: only trivial bug — append to wrong list or invert predicate. T3: swap return order (false_group, true_group) is a single swap — effectively constant substitution. Return indices instead of items is slightly more interesting but still minimal. Behavior completely obvious from name and docstring. Profile squarely matches wave1 easy family. EXCLUDED."
     },
     {
@@ -170,6 +173,7 @@
       "exec_lines": 8,
       "first_wave": false,
       "first_wave_rank": null,
+      "third_wave": true,
       "rationale": "8 executable lines in function body. Dict of lists with insertion-order semantics. T2: only trivial — forget to initialize list, or append value before key check. T3: natural optional-param collapse trap (add first_only or last_only parameter defaulting to current behavior). No non-trivial structural T3 transform exists. Behavior obvious from name. Wave1-easy profile. EXCLUDED."
     },
     {

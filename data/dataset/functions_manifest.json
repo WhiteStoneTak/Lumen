@@ -1342,6 +1342,198 @@
         "ir_source_hash": null,
         "t1_source_hash": null
       }
+    },
+    {
+      "func_id": "peak_valley_indices",
+      "source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/peak_valley_indices.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/peak_valley_indices.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+          "test_suite_ref": "data/ground_truth/tests/peak_valley_indices_t2_test.py"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_third_wave_v1",
+        "raw_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
+        "ast_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "segments_above_threshold",
+      "source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/segments_above_threshold.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/segments_above_threshold.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+          "test_suite_ref": "data/ground_truth/tests/segments_above_threshold_t2_test.py"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_third_wave_v1",
+        "raw_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
+        "ast_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "stable_partition",
+      "source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/stable_partition.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/stable_partition.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+          "test_suite_ref": "data/ground_truth/tests/stable_partition_t2_test.py"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_third_wave_v1",
+        "raw_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
+        "ast_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
+    },
+    {
+      "func_id": "group_by_key",
+      "source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
+      "inclusion_status": "included",
+      "dataset_tier": "full",
+      "wave": "wave2",
+      "eligibility": {
+        "non_recursive": "eligible",
+        "single_function": "eligible"
+      },
+      "artifacts": {
+        "raw_source": "data/functions/raw/group_by_key.py",
+        "annotated_text": null,
+        "ast": "data/functions/ast/group_by_key.json",
+        "typed_ast": null,
+        "ir": null
+      },
+      "representations": {
+        "C1": true,
+        "C1+": false,
+        "C2": true,
+        "C3": false,
+        "C4": false
+      },
+      "tasks": {
+        "T1": {
+          "available": false,
+          "ground_truth_ref": null
+        },
+        "T2": {
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+          "test_suite_ref": "data/ground_truth/tests/group_by_key_t2_test.py"
+        },
+        "T3": {
+          "available": false,
+          "ground_truth_ref": null
+        }
+      },
+      "lineage": {
+        "source": "wave2_third_wave_v1",
+        "raw_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
+        "ast_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
+        "typed_ast_source_hash": null,
+        "ir_source_hash": null,
+        "t1_source_hash": null
+      }
     }
   ]
 }

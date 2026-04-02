@@ -1,0 +1,19 @@
+{
+  "lumen_schema": "t2-bug-v1",
+  "func_id": "segments_above_threshold",
+  "source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
+  "bug_id": "segments_above_threshold.BUG01",
+  "bug_category": "wrong_comparison_operator",
+  "bug_description": "The threshold check uses `>=` instead of `>` (`if val >= threshold`), causing elements exactly equal to the threshold to be included in segments. The function contract specifies 'strictly greater than threshold' (exclusive lower bound). With `>=`, threshold-equal values are incorrectly admitted into segments, so calls like `segments_above_threshold([4, 5, 6], 4)` return `[[4, 5, 6]]` instead of `[[5, 6]]`. The bug produces wrong results on any input containing values exactly equal to the threshold but passes on inputs where no value equals the threshold, making it non-trivially detectable.",
+  "location": {
+    "path": "data/functions/raw/segments_above_threshold.py",
+    "start_line": 22,
+    "end_line": 22
+  },
+  "reference_fix": {
+    "start_line": 22,
+    "end_line": 22,
+    "replacement": "        if val > threshold:"
+  },
+  "test_suite_ref": "data/ground_truth/tests/segments_above_threshold_t2_test.py"
+}
