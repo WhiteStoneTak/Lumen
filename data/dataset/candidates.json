@@ -703,16 +703,18 @@
       "stage1_notes": "promoted from wave2 reserve to second-wave batch; blocker assessed as minor (wave1 structural similarity risk, not a T2 difficulty issue)",
       "stage1_first_wave_rank": null,
       "stage2_result": "INCLUDE",
-      "stage2_score": 2.0,
-      "stage2_run_id": "t2_screen_wave2_second",
+      "stage2_score": 1.0,
+      "stage2_run_id": "t2_rescore_sli_r1",
       "stage2_annotated_at": "2026-04-01",
       "stage3_result": null,
       "stage3_t3_c2_screen_score": null,
       "t3_transform_family_draft": null,
-      "advisory_notes": [],
+      "advisory_notes": [
+        "Phase 5B-fix: original t2_screen_wave2_second scored as scorer_error with manual exception 2.0; automated rescore under t2_rescore_sli_r1 confirmed score=1.0, exception closed 2026-04-01."
+      ],
       "stage2_subscores": {
         "location": 0,
-        "diagnosis": 1,
+        "diagnosis": 0,
         "fix": 1
       }
     },

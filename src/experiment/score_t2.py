@@ -544,6 +544,38 @@ def _extract_best_fix_line(
                     reindented = ["    " + ln for ln in block]
                     return "\n".join(reindented)
 
+    elif func_id == "sorted_list_intersection":
+        # The fix is a 4-line block: `if a[i] == b[j]:` + 3 body lines.
+        # The generic fallback would grab only the `if` header, producing an
+        # IndentationError when applied.  Extract the full if-block explicitly.
+        for i, line in enumerate(fix_lines):
+            if re.search(r"if\s+a\[i\]\s*==\s*b\[j\]\s*:", line.strip()):
+                block: list[str] = [line]
+                for subsequent in fix_lines[i + 1:]:
+                    stripped_sub = subsequent.strip()
+                    if not stripped_sub:
+                        break
+                    # Stop at the next elif/else that belongs to the outer while
+                    if re.search(r"^\s*(elif|else)\b", subsequent) and (
+                        len(subsequent) - len(subsequent.lstrip())
+                        <= len(line) - len(line.lstrip())
+                    ):
+                        break
+                    block.append(subsequent)
+                if len(block) >= 2:
+                    # Normalize indent: if-header at 8 spaces, body at 12 spaces
+                    normalized: list[str] = []
+                    for bl in block:
+                        stripped_bl = bl.strip()
+                        if not stripped_bl or stripped_bl.startswith("#"):
+                            continue
+                        if stripped_bl.startswith("if "):
+                            normalized.append("        " + stripped_bl)
+                        else:
+                            normalized.append("            " + stripped_bl)
+                    if len(normalized) >= 2:
+                        return "\n".join(normalized)
+
     elif func_id == "two_sum_sorted_pairs":
         # The fix is a two-line block: the left-pointer while loop + the missing
         # right-pointer while loop.  Extract both while loops from the model's fix
