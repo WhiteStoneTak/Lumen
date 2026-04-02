@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "camel_to_snake",
+  "source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
+  "transform_id": "camel_to_snake.TR01",
+  "instruction": "Change the return type from a snake_case string to a list of the individual word segments extracted during conversion. For example, camel_to_snake('camelCase') must return ['camel', 'case'] instead of 'camel_case'. camel_to_snake('myVariableName') must return ['my', 'variable', 'name']. All segments are lowercase with no underscores. Acronyms (consecutive uppercase letters) are treated as a single segment following the same rules as the original function (e.g. 'XMLParser' returns ['xml', 'parser'], 'getHTTPSResponse' returns ['get', 'https', 'response']). An empty string input returns an empty list [].",
+  "test_suite_ref": "data/ground_truth/tests/camel_to_snake_t3_test.py"
+}

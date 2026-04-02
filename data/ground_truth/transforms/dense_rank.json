@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "dense_rank",
+  "source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
+  "transform_id": "dense_rank.TR01",
+  "instruction": "Change the ranking from dense rank to standard competition rank (also called '1224' ranking). In standard competition rank, tied items all get the LOWEST rank in their group, and the next rank after a tie group skips by the size of the tie. Example: scores [100, 90, 90, 80] must return [1, 2, 2, 4] (not dense [1, 2, 2, 3]). Another example: [5, 5, 5, 1] must return [1, 1, 1, 4]. Ranks are 1-based integers. Return a list of integer ranks in input order.",
+  "test_suite_ref": "data/ground_truth/tests/dense_rank_t3_test.py"
+}

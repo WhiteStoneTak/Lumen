@@ -45,7 +45,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": true,
-      "notes": "Pilot calibration anchor. Stage 2 scores from pilot_full_gpt54_opus46_02 (gpt-5.4). final_decision=INCLUDE overrides stage2_result=EXCLUDE by anchor policy. T3 was a single-constant extension (add 'y' as vowel) \u2014 too easy for expanded set."
+      "notes": "Pilot calibration anchor. Stage 2 scores from pilot_full_gpt54_opus46_02 (gpt-5.4). final_decision=INCLUDE overrides stage2_result=EXCLUDE by anchor policy. T3 was a single-constant extension (add 'y' as vowel) — too easy for expanded set."
     },
     {
       "candidate_id": "is_sorted",
@@ -91,7 +91,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: result[-1] vs items[-1] in deduplication loop. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (13/13), ceiling_risk. Transform: add key callable parameter. Test defect found and corrected during Phase 3C: test_key_all_same_under_key_reduces_to_one had wrong input [1,-1,2,-2] \u2192 expected [1] (correct is [1,2]); corrected to input [1,-1,1,-1] \u2192 expected [1]. Re-run after correction: score=1.0. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = output-structure change (return (list, removed_count) tuple). score=1.0 (12/12), ceiling_risk persists. t3_transform_family_draft updated to tuple_return.",
+      "notes": "Wave 1 first-wave authoring. Bug: result[-1] vs items[-1] in deduplication loop. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (13/13), ceiling_risk. Transform: add key callable parameter. Test defect found and corrected during Phase 3C: test_key_all_same_under_key_reduces_to_one had wrong input [1,-1,2,-2] → expected [1] (correct is [1,2]); corrected to input [1,-1,1,-1] → expected [1]. Re-run after correction: score=1.0. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = output-structure change (return (list, removed_count) tuple). score=1.0 (12/12), ceiling_risk persists. t3_transform_family_draft updated to tuple_return.",
       "advisory_notes": [
         "Phase 3E T3/C3 advisory (run t3_advisory_wave1_c3_r1, gpt-5.4, T3/C3, 2026-03-31): score=1.0, ceiling_risk."
       ],
@@ -199,7 +199,7 @@
       "stage3_result": "ceiling_risk",
       "final_decision": "INCLUDE",
       "is_anchor": false,
-      "notes": "Wave 1 first-wave authoring. Bug: counts on segment exit not entry; trailing True segment missed. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (14/14), ceiling_risk. Transform: add min_length filter with ValueError for min_length<1. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = output-structure change (return list of segment lengths). score=1.0 (13/13), ceiling_risk persists. HISTORICAL NOTE (2026-03-30, Phase 2E audit): original t2_screen_wave1 run scored fix=0 (score=1.0) due to a combined scorer + annotation defect: (1) SCORER: generic fallback in _extract_best_fix_line picked 'if flag:' from the diagnostic code block instead of the fix block \u2014 no function-specific handler existed; (2) ANNOTATION: reference_fix span was 15-19, which omitted buggy line 20 (the last line of the elif body), so even with a corrected extractor the patched source would have retained a stray orphaned statement. Both defects were independently required for fix=0; neither alone was the sole cause. RESOLUTION (2026-03-30, Phase 2E-B, provenance corrected 2026-03-30 Phase 2E-C): COMBINED SCORER + ANNOTATION AMENDMENT. Added count_true_segments-specific extractor in _extract_best_fix_line; extended reference_fix span to 15-20 and updated replacement to include the for-loop header; added multi-line patch support to _apply_fix_to_source. Re-scored under run t2_cts_rescore_v1: score=2.0, subscores={loc:0, diag:1, fix:1}. Score=2.0 is the authoritative Stage 2 result under the amended scoring path and corrected annotation.",
+      "notes": "Wave 1 first-wave authoring. Bug: counts on segment exit not entry; trailing True segment missed. Phase 3C advisory (run t3_advisory_wave1_c2, gpt-5.4, T3/C2, 2026-03-30): score=1.0 (14/14), ceiling_risk. Transform: add min_length filter with ValueError for min_length<1. Phase 3D recalibration (run t3_advisory_wave1_c2_r2, gpt-5.4, T3/C2, 2026-03-30): new transform = output-structure change (return list of segment lengths). score=1.0 (13/13), ceiling_risk persists. HISTORICAL NOTE (2026-03-30, Phase 2E audit): original t2_screen_wave1 run scored fix=0 (score=1.0) due to a combined scorer + annotation defect: (1) SCORER: generic fallback in _extract_best_fix_line picked 'if flag:' from the diagnostic code block instead of the fix block — no function-specific handler existed; (2) ANNOTATION: reference_fix span was 15-19, which omitted buggy line 20 (the last line of the elif body), so even with a corrected extractor the patched source would have retained a stray orphaned statement. Both defects were independently required for fix=0; neither alone was the sole cause. RESOLUTION (2026-03-30, Phase 2E-B, provenance corrected 2026-03-30 Phase 2E-C): COMBINED SCORER + ANNOTATION AMENDMENT. Added count_true_segments-specific extractor in _extract_best_fix_line; extended reference_fix span to 15-20 and updated replacement to include the for-loop header; added multi-line patch support to _apply_fix_to_source. Re-scored under run t2_cts_rescore_v1: score=2.0, subscores={loc:0, diag:1, fix:1}. Score=2.0 is the authoritative Stage 2 result under the amended scoring path and corrected annotation.",
       "advisory_notes": [
         "Phase 3E T3/C3 advisory (run t3_advisory_wave1_c3_r1, gpt-5.4, T3/C3, 2026-03-31): score=1.0, ceiling_risk."
       ],
@@ -558,7 +558,7 @@
     {
       "func_id": "dense_rank",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_second_wave_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "ordering_tie_policy",
@@ -568,10 +568,12 @@
       "stage2_score": 1.0,
       "stage2_run_id": "t2_screen_wave2_second",
       "stage2_annotated_at": "2026-04-01",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": [],
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "competition_rank_semantics",
+      "advisory_notes": [
+        "Wave2 second-wave T3/C2 advisory (run t3_advisory_wave2_second, gpt-5.4, T3/C2, 2026-04-01): score=1.0, ceiling_risk."
+      ],
       "stage2_subscores": {
         "location": 0,
         "diagnosis": 0,
@@ -581,7 +583,7 @@
     {
       "func_id": "chunk_on_change",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_second_wave_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "grouping_partitioning",
@@ -591,10 +593,12 @@
       "stage2_score": 2.0,
       "stage2_run_id": "t2_screen_wave2_second",
       "stage2_annotated_at": "2026-04-01",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": [],
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "key_chunk_tuple_output",
+      "advisory_notes": [
+        "Wave2 second-wave T3/C2 advisory (run t3_advisory_wave2_second, gpt-5.4, T3/C2, 2026-04-01): score=1.0, ceiling_risk."
+      ],
       "stage2_subscores": {
         "location": 0,
         "diagnosis": 1,
@@ -604,7 +608,7 @@
     {
       "func_id": "antidiagonals",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_second_wave_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "index_arithmetic",
@@ -614,10 +618,12 @@
       "stage2_score": 2.0,
       "stage2_run_id": "t2_screen_wave2_second",
       "stage2_annotated_at": "2026-04-01",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": [],
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "reversed_inner_diagonal_order",
+      "advisory_notes": [
+        "Wave2 second-wave T3/C2 advisory (run t3_advisory_wave2_second, gpt-5.4, T3/C2, 2026-04-01): score=1.0, ceiling_risk."
+      ],
       "stage2_subscores": {
         "location": 0,
         "diagnosis": 1,
@@ -627,7 +633,7 @@
     {
       "func_id": "camel_to_snake",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_second_wave_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "string_sequence",
@@ -637,10 +643,12 @@
       "stage2_score": 2.0,
       "stage2_run_id": "t2_screen_wave2_second",
       "stage2_annotated_at": "2026-04-01",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": [],
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "segment_list_return",
+      "advisory_notes": [
+        "Wave2 second-wave T3/C2 advisory (run t3_advisory_wave2_second, gpt-5.4, T3/C2, 2026-04-01): score=1.0, ceiling_risk."
+      ],
       "stage2_subscores": {
         "location": 0,
         "diagnosis": 1,
@@ -650,7 +658,7 @@
     {
       "func_id": "find_balanced_spans",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_second_wave_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "string_sequence",
@@ -660,10 +668,12 @@
       "stage2_score": 1.0,
       "stage2_run_id": "t2_screen_wave2_second",
       "stage2_annotated_at": "2026-04-01",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": [],
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "all_spans_including_nested",
+      "advisory_notes": [
+        "Wave2 second-wave T3/C2 advisory (run t3_advisory_wave2_second, gpt-5.4, T3/C2, 2026-04-01): score=1.0, ceiling_risk."
+      ],
       "stage2_subscores": {
         "location": 0,
         "diagnosis": 0,
@@ -673,7 +683,7 @@
     {
       "func_id": "frequency_table",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_second_wave_v1",
       "stage1_decision": "PASS-READY",
       "stage1_family": "multi_field_accumulation",
@@ -683,10 +693,12 @@
       "stage2_score": 1.0,
       "stage2_run_id": "t2_screen_wave2_second",
       "stage2_annotated_at": "2026-04-01",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": [],
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "descending_count_sort",
+      "advisory_notes": [
+        "Wave2 second-wave T3/C2 advisory (run t3_advisory_wave2_second, gpt-5.4, T3/C2, 2026-04-01): score=1.0, ceiling_risk."
+      ],
       "stage2_subscores": {
         "location": 0,
         "diagnosis": 0,
@@ -696,7 +708,7 @@
     {
       "func_id": "sorted_list_intersection",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_second_wave_v1",
       "stage1_decision": "PASS-BLOCKED",
       "stage1_family": "two_pointer",
@@ -706,11 +718,12 @@
       "stage2_score": 1.0,
       "stage2_run_id": "t2_rescore_sli_r1",
       "stage2_annotated_at": "2026-04-01",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "multiset_symmetric_difference",
       "advisory_notes": [
-        "Phase 5B-fix: original t2_screen_wave2_second scored as scorer_error with manual exception 2.0; automated rescore under t2_rescore_sli_r1 confirmed score=1.0, exception closed 2026-04-01."
+        "Phase 5B-fix: original t2_screen_wave2_second scored as scorer_error with manual exception 2.0; automated rescore under t2_rescore_sli_r1 confirmed score=1.0, exception closed 2026-04-01.",
+        "Wave2 second-wave T3/C2 advisory (run t3_advisory_wave2_second, gpt-5.4, T3/C2, 2026-04-01): score=1.0, ceiling_risk."
       ],
       "stage2_subscores": {
         "location": 0,
@@ -721,20 +734,22 @@
     {
       "func_id": "strided_windows",
       "wave": "wave2",
-      "stage": "stage2_complete",
+      "stage": "stage3_complete",
       "source": "wave2_second_wave_v1",
       "stage1_decision": "PASS-BLOCKED",
       "stage1_family": "index_arithmetic",
-      "stage1_notes": "promoted from wave2 reserve to second-wave batch; blocker assessed as minor (T3 optional-param trap, not a T2 difficulty issue \u2014 T2 is valid medium-difficulty off-by-one)",
+      "stage1_notes": "promoted from wave2 reserve to second-wave batch; blocker assessed as minor (T3 optional-param trap, not a T2 difficulty issue — T2 is valid medium-difficulty off-by-one)",
       "stage1_first_wave_rank": null,
       "stage2_result": "INCLUDE",
       "stage2_score": 2.0,
       "stage2_run_id": "t2_screen_wave2_second",
       "stage2_annotated_at": "2026-04-01",
-      "stage3_result": null,
-      "stage3_t3_c2_screen_score": null,
-      "t3_transform_family_draft": null,
-      "advisory_notes": [],
+      "stage3_result": "ceiling_risk",
+      "stage3_t3_c2_screen_score": 1.0,
+      "t3_transform_family_draft": "reversed_window_order",
+      "advisory_notes": [
+        "Wave2 second-wave T3/C2 advisory (run t3_advisory_wave2_second, gpt-5.4, T3/C2, 2026-04-01): score=1.0, ceiling_risk."
+      ],
       "stage2_subscores": {
         "location": 0,
         "diagnosis": 1,

@@ -1001,8 +1001,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/dense_rank.json"
         }
       },
       "lineage": {
@@ -1048,8 +1048,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/chunk_on_change.json"
         }
       },
       "lineage": {
@@ -1095,8 +1095,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/antidiagonals.json"
         }
       },
       "lineage": {
@@ -1142,8 +1142,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/camel_to_snake.json"
         }
       },
       "lineage": {
@@ -1189,8 +1189,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/find_balanced_spans.json"
         }
       },
       "lineage": {
@@ -1236,8 +1236,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/frequency_table.json"
         }
       },
       "lineage": {
@@ -1283,8 +1283,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/sorted_list_intersection.json"
         }
       },
       "lineage": {
@@ -1330,8 +1330,8 @@
           "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json"
         },
         "T3": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/transforms/strided_windows.json"
         }
       },
       "lineage": {

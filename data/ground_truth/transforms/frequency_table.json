@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "frequency_table",
+  "source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
+  "transform_id": "frequency_table.TR01",
+  "instruction": "Change the sort order of rows: instead of sorting by value ascending, sort by count DESCENDING (most frequent value first). For values with equal counts, use ascending value order as the tiebreaker. The row structure (value, count, cumulative_fraction) is preserved, but the cumulative_fraction must be recomputed in the new sorted order (cumulative sum of counts divided by total, in the new order). For example, frequency_table([1, 1, 1, 2, 2, 3]) must return [(1, 3, 0.5), (2, 2, 5/6), (3, 1, 1.0)] — value 1 has the highest count so it comes first.",
+  "test_suite_ref": "data/ground_truth/tests/frequency_table_t3_test.py"
+}

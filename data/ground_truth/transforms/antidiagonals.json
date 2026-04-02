@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "antidiagonals",
+  "source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
+  "transform_id": "antidiagonals.TR01",
+  "instruction": "Reverse the traversal direction within each anti-diagonal. Instead of collecting elements from top-right to bottom-left (increasing row order), collect them from bottom-left to top-right (decreasing row order). The order of the diagonals in the outer list remains unchanged; only the inner element order within each diagonal is reversed. For example, antidiagonals([[1, 2], [3, 4]]) currently returns [[1], [2, 3], [4]]; the transformed version must return [[1], [3, 2], [4]] (the middle diagonal [2, 3] becomes [3, 2]).",
+  "test_suite_ref": "data/ground_truth/tests/antidiagonals_t3_test.py"
+}

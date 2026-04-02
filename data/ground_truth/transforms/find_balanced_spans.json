@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "find_balanced_spans",
+  "source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
+  "transform_id": "find_balanced_spans.TR01",
+  "instruction": "Change the function to return ALL balanced spans including nested ones, instead of only the outermost spans. Every matching open_char/close_char pair at any nesting depth must appear as a (start, end) tuple in the result. For example, find_balanced_spans('((()))', '(', ')') must return [(0, 5), (1, 4), (2, 3)] — all three nested spans. find_balanced_spans('()()', '(', ')') returns [(0, 1), (2, 3)] (unchanged since there is no nesting). Results must be returned in order of the opening bracket's position (ascending start index).",
+  "test_suite_ref": "data/ground_truth/tests/find_balanced_spans_t3_test.py"
+}

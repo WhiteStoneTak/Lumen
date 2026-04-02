@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "chunk_on_change",
+  "source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
+  "transform_id": "chunk_on_change.TR01",
+  "instruction": "Change the output format from a list of chunks (sublists of values) to a list of (key, chunk) tuples, where key is the result of applying the key function to the first element of each chunk and chunk is the list of values in that run. For example, chunk_on_change([1, 1, 2, 3, 3], key=lambda x: x) must return [(1, [1, 1]), (2, [2]), (3, [3, 3])]. When no key function is provided (key=None), use identity as before. Each element of the returned list must be a 2-tuple of (key_value, list_of_items).",
+  "test_suite_ref": "data/ground_truth/tests/chunk_on_change_t3_test.py"
+}

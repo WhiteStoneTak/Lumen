@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "strided_windows",
+  "source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
+  "transform_id": "strided_windows.TR01",
+  "instruction": "Change the function to return the windows in REVERSE order — the last window appears first and the first window appears last. The contents of each individual window remain unchanged; only the ordering of windows in the output list is reversed. For example, strided_windows([1, 2, 3, 4, 5], 3, 1) currently returns [[1, 2, 3], [2, 3, 4], [3, 4, 5]]; the transformed version must return [[3, 4, 5], [2, 3, 4], [1, 2, 3]]. An empty input or input that produces no windows must still return [].",
+  "test_suite_ref": "data/ground_truth/tests/strided_windows_t3_test.py"
+}

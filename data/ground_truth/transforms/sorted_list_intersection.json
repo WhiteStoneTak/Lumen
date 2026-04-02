@@ -1,0 +1,8 @@
+{
+  "lumen_schema": "t3-transform-v1",
+  "func_id": "sorted_list_intersection",
+  "source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
+  "transform_id": "sorted_list_intersection.TR01",
+  "instruction": "Change the function from multiset intersection to multiset symmetric difference. The symmetric difference contains elements that appear in exactly ONE of the two lists (counting duplicates). If element x appears m times in list a and n times in list b, include abs(m - n) copies of x in the result when m != n, and 0 copies when m == n. The result must be returned as a sorted list. Examples: sorted_list_intersection([1, 1, 2, 3], [1, 1, 1, 3, 3]) must return [1, 2, 3] (1 appears 2 vs 3 times: 1 extra copy; 2 appears 1 vs 0: 1 copy; 3 appears 1 vs 2: 1 copy). sorted_list_intersection([2, 2, 2], [2, 2]) must return [2] (3 vs 2: 1 copy). sorted_list_intersection([1, 3, 5], [2, 4, 6]) must return [1, 2, 3, 4, 5, 6]. sorted_list_intersection([], [1, 2]) must return [1, 2].",
+  "test_suite_ref": "data/ground_truth/tests/sorted_list_intersection_t3_test.py"
+}
