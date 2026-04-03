@@ -1,0 +1,154 @@
+{
+  "lumen_schema": "confirmatory-governance-v1",
+  "record_date": "2026-04-02",
+  "description": "Durable confirmatory-readiness and analysis-freeze governance record for the Lumen Route A study. Created at Phase 6B-2 closure, prior to full data collection.",
+
+  "model_freeze": {
+    "status": "FROZEN",
+    "freeze_date": "2026-04-02",
+    "test_subject_A": {
+      "role": "Test subject A",
+      "provider": "OpenAI",
+      "model_label": "GPT-5.4",
+      "api_identifier": "gpt-5.4",
+      "execution_surface": "OpenAI Messages API (openai Python SDK)",
+      "temperature": 0.0,
+      "max_output_tokens": "to be recorded on first full run",
+      "access_date": "to be recorded on first full run"
+    },
+    "test_subject_B": {
+      "role": "Test subject B",
+      "provider": "Anthropic",
+      "model_label": "Claude Opus 4.6",
+      "api_identifier": "claude-opus-4-6",
+      "execution_surface": "Anthropic Messages API (anthropic Python SDK)",
+      "temperature": 0.0,
+      "max_output_tokens": "to be recorded on first full run",
+      "access_date": "to be recorded on first full run"
+    },
+    "separation_constraint": "claude-sonnet-4-6 (contract-generation LLM) must not be used as a test subject. Verified: neither frozen test subject is claude-sonnet-4-6.",
+    "protocol_reference": "docs/experimental-protocol.md §8.1 and §8.4"
+  },
+
+  "analysis_freeze": {
+    "status": "FROZEN",
+    "freeze_date": "2026-04-02",
+    "frozen_script": "src/experiment/analyze_confirmatory.py",
+    "confirmatory_family": {
+      "n_tests": 9,
+      "hypotheses": [
+        {
+          "id": "H1",
+          "label": "Structure at constant information",
+          "comparison": "C4 > C1+",
+          "tasks": ["T1", "T2", "T3"]
+        },
+        {
+          "id": "H2",
+          "label": "Total enrichment",
+          "comparison": "C4 > C1",
+          "tasks": ["T1", "T2", "T3"]
+        },
+        {
+          "id": "H3",
+          "label": "Information enrichment in text",
+          "comparison": "C1+ > C1",
+          "tasks": ["T1", "T2", "T3"]
+        }
+      ],
+      "primary_endpoint": "H1 on T2 (bug detection composite score 0-3)",
+      "test_method": "Wilcoxon signed-rank (one-sided, alternative='greater', zero_method='wilcox')",
+      "effect_size": "rank-biserial correlation r_rb",
+      "correction": "Holm-Bonferroni across 9 tests at alpha=0.05",
+      "aggregation": "per-function mean score across both frozen models before testing"
+    },
+    "protocol_reference": "docs/experimental-protocol.md §9 and §10; constitution §5"
+  },
+
+  "full_t2_plan": {
+    "description": "Pre-validated full T2 confirmatory run plan for 30 retained functions × 5 conditions × 2 models.",
+    "planned_items": 300,
+    "n_functions": 30,
+    "n_conditions": 5,
+    "conditions": ["C1", "C1+", "C2", "C3", "C4"],
+    "n_models": 2,
+    "models": ["gpt-5.4", "claude-opus-4-6"],
+    "task": "T2",
+    "retained_func_ids": [
+      "antidiagonals",
+      "batch_list",
+      "camel_to_snake",
+      "chunk_on_change",
+      "count_true_segments",
+      "dense_rank",
+      "equal_width_buckets",
+      "find_balanced_spans",
+      "first_index_of_max",
+      "frequency_table",
+      "group_and_aggregate",
+      "group_by_key",
+      "longest_plateau",
+      "max_subarray_bounds",
+      "merge_intervals",
+      "merge_sorted",
+      "peak_valley_indices",
+      "remove_adjacent_dups",
+      "rle_encode",
+      "rotate_list",
+      "segments_above_threshold",
+      "sliding_window_max",
+      "sorted_list_intersection",
+      "spiral_order",
+      "stable_partition",
+      "strided_windows",
+      "tokenize_arithmetic",
+      "top_k_by",
+      "two_sum_sorted_pairs",
+      "welford_running_stats"
+    ],
+    "planner_command": "PYTHONPATH=src /Users/takumi/.pyenv/versions/3.11.5/bin/python3 -m experiment.run_pilot --models gpt-5.4 claude-opus-4-6 --tasks T2 --conditions C1 C1+ C2 C3 C4 --run-id full_t2_confirmatory --dry-run",
+    "validation_status": "VALIDATED",
+    "validation_date": "2026-04-02",
+    "validation_planned_count": 300
+  },
+
+  "dataset_readiness": {
+    "retained_count": 30,
+    "minimum_line_met": true,
+    "target_50_met": false,
+    "wave2_pool_exhausted": true,
+    "crossed_t2_artifacts_complete": {
+      "C1_buggy_source": true,
+      "C1plus_buggy_annotated_text": true,
+      "C2_buggy_ast": true,
+      "C3_buggy_typed_ast": true,
+      "C4_buggy_ir": true,
+      "basis": "Phase 6B-1 closure commit d375c86 (2026-04-02)"
+    },
+    "manifest_flags_post_6b1": {
+      "C1_available": 30,
+      "C1plus_available": 30,
+      "C2_available": 30,
+      "C3_available": 30,
+      "C4_available": 30,
+      "T2_available": 30,
+      "note": "C1+ and C3/C4 availability flags updated in functions_manifest.json by Phase 6B-1"
+    }
+  },
+
+  "open_items": {
+    "t2_test_quality": {
+      "stub_like_t2_test_count": 18,
+      "note": "18 T2 test stubs lack live test cases. These stubs satisfy validate_dataset_contracts but do not provide runtime verification of T2 fix correctness. Upgrading stubs to live tests is a pre-collection quality gate (non-blocking for plan validation, blocking for first run launch).",
+      "resolution_required_before": "first full_t2_confirmatory run launch"
+    },
+    "reproducibility_record": {
+      "note": "Access dates and max output token limits for gpt-5.4 and claude-opus-4-6 must be filled in docs/experimental-protocol.md §8.2 on the day of first full experimental run.",
+      "fields_remaining": ["access_date", "max_output_tokens"]
+    },
+    "t1_t3_full_runs": {
+      "note": "This governance record covers T2 only. T1 and T3 full runs require separate planning once T2 confirmatory analysis is complete.",
+      "status": "deferred"
+    }
+  }
+}

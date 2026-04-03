@@ -366,8 +366,8 @@ T3 "minimal modification" metric: **dropped** (constitution v0.2.2 §14.3).
 
 | Role | Provider | Model | API / UI identifier |
 |------|----------|-------|---------------------|
-| Test subject A | OpenAI | GPT-5.4 | TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT |
-| Test subject B | Anthropic | Claude Opus 4.6 | TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT |
+| Test subject A | OpenAI | GPT-5.4 | `gpt-5.4` |
+| Test subject B | Anthropic | Claude Opus 4.6 | `claude-opus-4-6` |
 | Contract-generation LLM | Anthropic | Claude Sonnet 4.6 | `claude-sonnet-4-6` |
 
 **Separation constraint (binding):** The contract-generation LLM (Claude Sonnet 4.6)
@@ -389,25 +389,25 @@ model version change; do not overwrite prior records.
 ```
 --- Test subject A ---
 Provider:              OpenAI
-Execution surface:     TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-Exact model identifier (API):  TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-UI display label (if no API ID):  TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-Access date (YYYY-MM-DD):  TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-Prompt version:        TO BE FILLED (see src/experiment/run_experiment.py)
+Execution surface:     OpenAI Messages API (openai Python SDK)
+Exact model identifier (API):  gpt-5.4
+UI display label (if no API ID):  N/A — exact API identifier in use
+Access date (YYYY-MM-DD):  TO BE FILLED ON FIRST FULL EXPERIMENTAL RUN
+Prompt version:        pilot-v1 (PROMPT_VERSION in src/experiment/runner.py)
 Decoding — temperature:  0.0
 Decoding — other:      provider defaults (see §8.3)
-Max output tokens:     TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
+Max output tokens:     TO BE FILLED ON FIRST FULL EXPERIMENTAL RUN
 
 --- Test subject B ---
 Provider:              Anthropic
-Execution surface:     TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-Exact model identifier (API):  TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-UI display label (if no API ID):  TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-Access date (YYYY-MM-DD):  TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
-Prompt version:        TO BE FILLED (see src/experiment/run_experiment.py)
+Execution surface:     Anthropic Messages API (anthropic Python SDK)
+Exact model identifier (API):  claude-opus-4-6
+UI display label (if no API ID):  N/A — exact API identifier in use
+Access date (YYYY-MM-DD):  TO BE FILLED ON FIRST FULL EXPERIMENTAL RUN
+Prompt version:        pilot-v1 (PROMPT_VERSION in src/experiment/runner.py)
 Decoding — temperature:  0.0
 Decoding — other:      provider defaults (see §8.3)
-Max output tokens:     TO BE FILLED FROM ACTUAL EXECUTION ENVIRONMENT
+Max output tokens:     TO BE FILLED ON FIRST FULL EXPERIMENTAL RUN
 
 --- Contract-generation LLM ---
 Provider:              Anthropic
@@ -443,8 +443,11 @@ added to this document (append to §8.4; do not overwrite). The amendment must s
 the previous assignment, the new assignment, the reason for the change, and whether
 any already-collected data is affected.
 
-Model freeze status: **NOT YET FROZEN** — freeze required before Phase 2 data
-collection begins.
+Model freeze status: **FROZEN 2026-04-02** — gpt-5.4 (Test subject A) and
+claude-opus-4-6 (Test subject B). See data/dataset/confirmatory_governance.json.
+
+Any model change after this date requires a dated amendment below. Per §8.4:
+state the previous assignment, new assignment, reason, and affected data.
 
 ---
 
@@ -465,7 +468,8 @@ collection begins.
 
 - Confirmatory analysis scripts (`analyze_confirmatory.py`) must be **frozen before
   data collection begins**.
-- Freeze date: _TBD — record here before Phase 2 starts_.
+- **Freeze date: 2026-04-02** — `analyze_confirmatory.py` frozen prior to full T2 run.
+  See `data/dataset/confirmatory_governance.json` for the durable governance record.
 - Any post-hoc addition to `analyze_confirmatory.py` requires a dated amendment note
   at the top of the file explaining what was added and why.
 - Post-hoc analyses go in `analyze_exploratory.py` only and must be clearly labeled.
