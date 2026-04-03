@@ -1,0 +1,187 @@
+{
+  "lumen_schema": "t2-dataset-sufficiency-audit-v1",
+  "audit_date": "2026-04-02",
+  "scope": "T2 dataset sufficiency assessment and confirmatory-readiness audit after wave2 third-wave closure",
+  "authoritative_sources": {
+    "candidate_tracker": "data/dataset/candidates.json",
+    "dataset_manifest": "data/dataset/functions_manifest.json",
+    "wave2_pool_inventory": "data/dataset/wave2_raw_pool_inventory.json",
+    "wave2_stage1_triage": "data/dataset/wave2_stage1_triage.json",
+    "protocol": "docs/experimental-protocol.md",
+    "constitution": "docs/design-constitution.tex",
+    "third_wave_run_index": "results/runs/t2_screen_wave2_third/index.json",
+    "third_wave_run_audit": "results/runs/t2_screen_wave2_third/audit.json"
+  },
+  "retained_inventory": {
+    "selection_rule": "stage2_result == INCLUDE in data/dataset/candidates.json",
+    "retained_count": 30,
+    "retained_count_breakdown": {
+      "wave1": 8,
+      "wave2_first": 10,
+      "wave2_second": 8,
+      "wave2_third": 4
+    },
+    "retained_source_breakdown": {
+      "wave1-authored": 8,
+      "wave2_stage1_triage_v1": 10,
+      "wave2_second_wave_v1": 8,
+      "wave2_third_wave_v1": 4
+    },
+    "retained_ids": [
+      "antidiagonals",
+      "batch_list",
+      "camel_to_snake",
+      "chunk_on_change",
+      "count_true_segments",
+      "dense_rank",
+      "equal_width_buckets",
+      "find_balanced_spans",
+      "first_index_of_max",
+      "frequency_table",
+      "group_and_aggregate",
+      "group_by_key",
+      "longest_plateau",
+      "max_subarray_bounds",
+      "merge_intervals",
+      "merge_sorted",
+      "peak_valley_indices",
+      "remove_adjacent_dups",
+      "rle_encode",
+      "rotate_list",
+      "segments_above_threshold",
+      "sliding_window_max",
+      "sorted_list_intersection",
+      "spiral_order",
+      "stable_partition",
+      "strided_windows",
+      "tokenize_arithmetic",
+      "top_k_by",
+      "two_sum_sorted_pairs",
+      "welford_running_stats"
+    ]
+  },
+  "wave2_pool_reconciliation": {
+    "pool_total": 22,
+    "wave2_rows_in_tracker": 22,
+    "pool_minus_tracker": [],
+    "tracker_minus_pool": [],
+    "wave2_source_breakdown": {
+      "wave2_stage1_triage_v1": 10,
+      "wave2_second_wave_v1": 8,
+      "wave2_third_wave_v1": 4
+    },
+    "wave2_stage2_result_breakdown": {
+      "INCLUDE": 22
+    },
+    "interpretation": "Wave2 raw pool is exhausted in-repo; all 22 pool items have tracker rows and Stage 2 outcomes."
+  },
+  "third_wave_closure_verification": {
+    "run_id": "t2_screen_wave2_third",
+    "planned_items": 4,
+    "completed_items": 4,
+    "failed_items": 0,
+    "missing_expected_output_count": 0,
+    "all_four_stage2_include_in_tracker": true,
+    "third_wave_ids": [
+      "peak_valley_indices",
+      "segments_above_threshold",
+      "stable_partition",
+      "group_by_key"
+    ]
+  },
+  "confirmatory_readiness_findings": {
+    "protocol_requirements_verified": {
+      "t2_is_primary_endpoint": true,
+      "crossed_design_required": true,
+      "conditions_required": [
+        "C1",
+        "C1+",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "c1_plus_required_information_parity_control": true,
+      "dataset_minimum": 30,
+      "dataset_target": 50
+    },
+    "manifest_flags_among_retained": {
+      "representations_true_counts": {
+        "C1": 30,
+        "C1+": 0,
+        "C2": 30,
+        "C3": 8,
+        "C4": 8
+      },
+      "task_available_counts": {
+        "T1": 0,
+        "T2": 30,
+        "T3": 26
+      }
+    },
+    "t2_buggy_artifact_presence_among_retained": {
+      "raw_correct_missing": 0,
+      "t2_bug_annotation_missing": 0,
+      "buggy_source_missing": 0,
+      "t2_test_missing": 0,
+      "buggy_c1_plus_missing": 30,
+      "buggy_c2_missing": 30,
+      "buggy_c3_missing": 30,
+      "buggy_c4_missing": 30
+    },
+    "t2_test_quality_flags": {
+      "stub_like_t2_test_count": 18,
+      "stub_like_ids": [
+        "antidiagonals",
+        "camel_to_snake",
+        "chunk_on_change",
+        "dense_rank",
+        "equal_width_buckets",
+        "find_balanced_spans",
+        "frequency_table",
+        "group_and_aggregate",
+        "longest_plateau",
+        "max_subarray_bounds",
+        "merge_intervals",
+        "sorted_list_intersection",
+        "spiral_order",
+        "strided_windows",
+        "tokenize_arithmetic",
+        "top_k_by",
+        "two_sum_sorted_pairs",
+        "welford_running_stats"
+      ]
+    },
+    "crossed_t2_plan_feasibility": {
+      "single_model_expected_full_cross_items": 150,
+      "single_model_plannable_items_now": 76,
+      "two_model_expected_full_cross_items": 300,
+      "two_model_plannable_items_now": 152,
+      "retained_with_all_5_conditions_plannable": 0,
+      "blocking_reason": "No retained function has C1+ available in manifest; 22 retained also lack C3/C4."
+    },
+    "analysis_governance_status": {
+      "model_freeze_status_from_protocol": "NOT YET FROZEN",
+      "analyze_confirmatory_py_implemented": false,
+      "analyze_confirmatory_py_status": "placeholder TODO / NotImplementedError"
+    },
+    "scorer_exception_status": {
+      "open_unresolved_exception_found": false,
+      "closed_exception_notes_present": [
+        "count_true_segments historical scorer+annotation defect resolved via t2_cts_rescore_v1",
+        "sorted_list_intersection scorer_error manual exception closed via t2_rescore_sli_r1"
+      ]
+    }
+  },
+  "dataset_sufficiency_finding": {
+    "minimum_line_reached": true,
+    "target_50_reached": false,
+    "sufficiency_proven": false,
+    "evidence_for_30_vs_50": "No in-repo pilot power analysis artifact or effect-size sanity-check artifact determining 30 vs 50 sufficiency was found.",
+    "protocol_dependency": "design-constitution requires a pilot power analysis or effect-size sanity check to decide whether 30 suffices or expansion to 50 is needed."
+  },
+  "branch_decision": {
+    "selected_mainline_branch": "confirmatory-readiness / dataset-sufficiency closure / full-T2-run planning",
+    "why_not_wave3_expansion_mainline": "Minimum line is met (30 retained) and wave2 pool is exhausted; current blockers are readiness/closure blockers inside retained-30 artifacts and analysis freeze prerequisites, not a proven need for immediate wave3 raw-function authoring.",
+    "execution_guardrail": "Do not start confirmatory execution until crossed T2 artifact completeness and freeze prerequisites are closed."
+  }
+}
