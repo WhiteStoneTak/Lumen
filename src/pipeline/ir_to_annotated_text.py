@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import ast
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -62,9 +63,19 @@ def _strip_builtin_prefix(mypy_type: str) -> str:
     'builtins.list[Any]' -> 'list[Any]'
     'str'                -> 'str'  (no-op if prefix absent)
     """
-    if mypy_type.startswith(_BUILTIN_PREFIX):
-        return mypy_type[len(_BUILTIN_PREFIX):]
-    return mypy_type
+    rendered = mypy_type.replace(_BUILTIN_PREFIX, "")
+    if rendered == "NoneType":
+        return "None"
+
+    # mypy can emit callable signatures like:
+    #   def (*Any, **Any) -> Any | None
+    # Convert them to a valid Python typing form.
+    m = re.match(r"^def\s*\(.*\)\s*->\s*(.+)$", rendered)
+    if m:
+        return_type = m.group(1).strip().replace("NoneType", "None")
+        return f"Callable[..., {return_type}]"
+
+    return rendered
 
 
 def _collect_rendered_types(type_info: dict) -> list[str]:
@@ -135,9 +146,15 @@ def _validate_ir(ir: dict, func_id: str) -> None:
     if not isinstance(ir_ast, dict) or ir_ast.get("_type") != "Module":
         raise ValueError("IR ast is not a Module node.")
     body = ir_ast.get("body", [])
-    if not body or not isinstance(body[0], dict) or body[0].get("_type") != "FunctionDef":
-        raise ValueError("IR ast body does not begin with a FunctionDef node.")
-    fdef = body[0]
+    if not body or not isinstance(body, list):
+        raise ValueError("IR ast body is missing or malformed.")
+    fdef = None
+    for node in body:
+        if isinstance(node, dict) and node.get("_type") == "FunctionDef":
+            fdef = node
+            break
+    if fdef is None:
+        raise ValueError("IR ast body has no FunctionDef node.")
     if fdef.get("name") != func_id:
         raise ValueError(
             f"IR ast FunctionDef name '{fdef.get('name')}' "
@@ -324,7 +341,19 @@ def render_function(ir: dict) -> str:
     func_id: str = ir["func_id"]
     type_info: dict = ir["type_info"]
     contracts: dict = ir["contracts"]
-    func_def_dict: dict = ir["ast"]["body"][0]  # FunctionDef, pre-validated
+    module_body: list[dict] = ir["ast"]["body"]  # pre-validated in _validate_ir
+
+    leading_imports: list[dict] = []
+    func_def_dict: dict | None = None
+    for node in module_body:
+        if node.get("_type") in {"Import", "ImportFrom"} and func_def_dict is None:
+            leading_imports.append(node)
+            continue
+        if node.get("_type") == "FunctionDef":
+            func_def_dict = node
+            break
+    if func_def_dict is None:
+        raise ValueError("IR ast body has no FunctionDef node for rendering.")
 
     # Determine if 'from typing import Any' is needed.
     rendered_types = _collect_rendered_types(type_info)
@@ -332,7 +361,14 @@ def render_function(ir: dict) -> str:
 
     lines: list[str] = []
 
+    for imp_dict in leading_imports:
+        imp_node = _dict_to_ast_node(imp_dict)
+        ast.fix_missing_locations(imp_node)
+        lines.append(ast.unparse(imp_node))
+
     if needs_any_import:
+        if lines:
+            lines.append("")
         lines.append("from typing import Any")
         lines.append("")
 

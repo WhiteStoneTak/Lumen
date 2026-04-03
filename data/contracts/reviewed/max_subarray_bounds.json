@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "max_subarray_bounds",
+  "source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Return the (start, end, total) of the maximum-sum contiguous subarray"
+  ],
+  "invariants": []
+}

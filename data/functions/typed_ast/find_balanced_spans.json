@@ -1,0 +1,585 @@
+{
+  "lumen_schema": "typed_ast-v1",
+  "func_id": "find_balanced_spans",
+  "source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
+  "mypy_version": "1.19.1",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (s: builtins.str, open_char: builtins.str, close_char: builtins.str) -> builtins.list[tuple[builtins.int, builtins.int]]",
+    "params": [
+      {
+        "name": "s",
+        "mypy_type": "builtins.str",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "open_char",
+        "mypy_type": "builtins.str",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "close_char",
+        "mypy_type": "builtins.str",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.list[tuple[builtins.int, builtins.int]]"
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "find_balanced_spans",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "s",
+              "annotation": {
+                "_type": "Name",
+                "id": "str",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "open_char",
+              "annotation": {
+                "_type": "Name",
+                "id": "str",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "close_char",
+              "annotation": {
+                "_type": "Name",
+                "id": "str",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Find all top-level balanced bracket spans in a string.\n\n    Returns the (start, end) index pairs of the outermost matching pairs,\n    where start is the index of open_char and end is the index of the\n    matching close_char.\n\n    Nested brackets are not returned separately — only the outermost span.\n    Unmatched brackets are ignored.\n\n    Args:\n        s: Input string.\n        open_char: The opening bracket character (single char).\n        close_char: The closing bracket character (single char).\n\n    Returns:\n        List of (start, end) index tuples in order of appearance.\n\n    Examples:\n        find_balanced_spans(\"a(b(c)d)e(f)\", \"(\", \")\") == [(1, 7), (9, 11)]\n        find_balanced_spans(\"((()))\", \"(\", \")\") == [(0, 5)]\n        find_balanced_spans(\"no brackets\", \"(\", \")\") == []\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "tuple",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Tuple",
+                  "elts": [
+                    {
+                      "_type": "Name",
+                      "id": "int",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    {
+                      "_type": "Name",
+                      "id": "int",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "depth",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "span_start",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "UnaryOp",
+              "op": {
+                "_type": "USub"
+              },
+              "operand": {
+                "_type": "Constant",
+                "value": 1,
+                "kind": null
+              }
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "i",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "ch",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "enumerate",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "s",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "ch",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "Eq"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Name",
+                      "id": "open_char",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "If",
+                    "test": {
+                      "_type": "Compare",
+                      "left": {
+                        "_type": "Name",
+                        "id": "depth",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ops": [
+                        {
+                          "_type": "Eq"
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "_type": "Constant",
+                          "value": 0,
+                          "kind": null
+                        }
+                      ]
+                    },
+                    "body": [
+                      {
+                        "_type": "Assign",
+                        "targets": [
+                          {
+                            "_type": "Name",
+                            "id": "span_start",
+                            "ctx": {
+                              "_type": "Store"
+                            }
+                          }
+                        ],
+                        "value": {
+                          "_type": "Name",
+                          "id": "i",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "type_comment": null
+                      }
+                    ],
+                    "orelse": []
+                  },
+                  {
+                    "_type": "AugAssign",
+                    "target": {
+                      "_type": "Name",
+                      "id": "depth",
+                      "ctx": {
+                        "_type": "Store"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "value": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "If",
+                    "test": {
+                      "_type": "Compare",
+                      "left": {
+                        "_type": "Name",
+                        "id": "ch",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ops": [
+                        {
+                          "_type": "Eq"
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "_type": "Name",
+                          "id": "close_char",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ]
+                    },
+                    "body": [
+                      {
+                        "_type": "If",
+                        "test": {
+                          "_type": "Compare",
+                          "left": {
+                            "_type": "Name",
+                            "id": "depth",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ops": [
+                            {
+                              "_type": "Gt"
+                            }
+                          ],
+                          "comparators": [
+                            {
+                              "_type": "Constant",
+                              "value": 0,
+                              "kind": null
+                            }
+                          ]
+                        },
+                        "body": [
+                          {
+                            "_type": "AugAssign",
+                            "target": {
+                              "_type": "Name",
+                              "id": "depth",
+                              "ctx": {
+                                "_type": "Store"
+                              }
+                            },
+                            "op": {
+                              "_type": "Sub"
+                            },
+                            "value": {
+                              "_type": "Constant",
+                              "value": 1,
+                              "kind": null
+                            }
+                          },
+                          {
+                            "_type": "If",
+                            "test": {
+                              "_type": "Compare",
+                              "left": {
+                                "_type": "Name",
+                                "id": "depth",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "ops": [
+                                {
+                                  "_type": "Eq"
+                                }
+                              ],
+                              "comparators": [
+                                {
+                                  "_type": "Constant",
+                                  "value": 0,
+                                  "kind": null
+                                }
+                              ]
+                            },
+                            "body": [
+                              {
+                                "_type": "Expr",
+                                "value": {
+                                  "_type": "Call",
+                                  "func": {
+                                    "_type": "Attribute",
+                                    "value": {
+                                      "_type": "Name",
+                                      "id": "result",
+                                      "ctx": {
+                                        "_type": "Load"
+                                      }
+                                    },
+                                    "attr": "append",
+                                    "ctx": {
+                                      "_type": "Load"
+                                    }
+                                  },
+                                  "args": [
+                                    {
+                                      "_type": "Tuple",
+                                      "elts": [
+                                        {
+                                          "_type": "Name",
+                                          "id": "span_start",
+                                          "ctx": {
+                                            "_type": "Load"
+                                          }
+                                        },
+                                        {
+                                          "_type": "Name",
+                                          "id": "i",
+                                          "ctx": {
+                                            "_type": "Load"
+                                          }
+                                        }
+                                      ],
+                                      "ctx": {
+                                        "_type": "Load"
+                                      }
+                                    }
+                                  ],
+                                  "keywords": []
+                                }
+                              },
+                              {
+                                "_type": "Assign",
+                                "targets": [
+                                  {
+                                    "_type": "Name",
+                                    "id": "span_start",
+                                    "ctx": {
+                                      "_type": "Store"
+                                    }
+                                  }
+                                ],
+                                "value": {
+                                  "_type": "UnaryOp",
+                                  "op": {
+                                    "_type": "USub"
+                                  },
+                                  "operand": {
+                                    "_type": "Constant",
+                                    "value": 1,
+                                    "kind": null
+                                  }
+                                },
+                                "type_comment": null
+                              }
+                            ],
+                            "orelse": []
+                          }
+                        ],
+                        "orelse": []
+                      }
+                    ],
+                    "orelse": []
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Subscript",
+            "value": {
+              "_type": "Name",
+              "id": "tuple",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "slice": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "int",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "int",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

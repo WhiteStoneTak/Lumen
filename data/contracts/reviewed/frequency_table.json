@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "frequency_table",
+  "source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Build a frequency table from a list of values"
+  ],
+  "invariants": []
+}

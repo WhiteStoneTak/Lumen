@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "group_by_key",
+  "source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Group a list of (key, value) pairs into a dict of value-lists"
+  ],
+  "invariants": []
+}

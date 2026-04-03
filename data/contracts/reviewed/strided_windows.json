@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "strided_windows",
+  "source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Extract overlapping or non-overlapping windows from a list"
+  ],
+  "invariants": []
+}

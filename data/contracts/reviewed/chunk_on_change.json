@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "chunk_on_change",
+  "source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Split items into chunks, starting a new chunk whenever key(item) changes"
+  ],
+  "invariants": []
+}

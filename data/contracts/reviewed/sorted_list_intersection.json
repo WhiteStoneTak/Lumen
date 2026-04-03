@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "sorted_list_intersection",
+  "source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Return the intersection of two sorted lists, preserving duplicate counts"
+  ],
+  "invariants": []
+}

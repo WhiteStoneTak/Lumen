@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "merge_intervals",
+  "source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Merge all overlapping intervals and return sorted non-overlapping result"
+  ],
+  "invariants": []
+}

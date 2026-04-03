@@ -1,0 +1,781 @@
+{
+  "lumen_schema": "typed_ast-v1",
+  "func_id": "camel_to_snake",
+  "source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
+  "mypy_version": "1.19.1",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (name: builtins.str) -> builtins.str",
+    "params": [
+      {
+        "name": "name",
+        "mypy_type": "builtins.str",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.str"
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "camel_to_snake",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "name",
+              "annotation": {
+                "_type": "Name",
+                "id": "str",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Convert a camelCase or PascalCase identifier to snake_case.\n\n    Rules:\n    - Insert underscore before each uppercase letter that follows a lowercase\n      letter or digit.\n    - Insert underscore before each uppercase letter that is followed by a\n      lowercase letter and is preceded by another uppercase letter\n      (handles abbreviations like \"XMLParser\" -> \"xml_parser\").\n    - Convert all characters to lowercase.\n    - Leading/trailing underscores are not added.\n\n    Args:\n        name: A camelCase or PascalCase identifier string.\n\n    Returns:\n        The snake_case version.\n\n    Examples:\n        camel_to_snake(\"camelCase\") == \"camel_case\"\n        camel_to_snake(\"XMLParser\") == \"xml_parser\"\n        camel_to_snake(\"getHTTPSResponse\") == \"get_https_response\"\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "UnaryOp",
+              "op": {
+                "_type": "Not"
+              },
+              "operand": {
+                "_type": "Name",
+                "id": "name",
+                "ctx": {
+                  "_type": "Load"
+                }
+              }
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "Name",
+                  "id": "name",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "chars",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "name",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Name",
+                "id": "str",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "i",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "ch",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "enumerate",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "chars",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Attribute",
+                    "value": {
+                      "_type": "Name",
+                      "id": "ch",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "attr": "isupper",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [],
+                  "keywords": []
+                },
+                "body": [
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "prev_lower_or_digit",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "BoolOp",
+                      "op": {
+                        "_type": "And"
+                      },
+                      "values": [
+                        {
+                          "_type": "Compare",
+                          "left": {
+                            "_type": "Name",
+                            "id": "i",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ops": [
+                            {
+                              "_type": "Gt"
+                            }
+                          ],
+                          "comparators": [
+                            {
+                              "_type": "Constant",
+                              "value": 0,
+                              "kind": null
+                            }
+                          ]
+                        },
+                        {
+                          "_type": "BoolOp",
+                          "op": {
+                            "_type": "Or"
+                          },
+                          "values": [
+                            {
+                              "_type": "Call",
+                              "func": {
+                                "_type": "Attribute",
+                                "value": {
+                                  "_type": "Subscript",
+                                  "value": {
+                                    "_type": "Name",
+                                    "id": "chars",
+                                    "ctx": {
+                                      "_type": "Load"
+                                    }
+                                  },
+                                  "slice": {
+                                    "_type": "BinOp",
+                                    "left": {
+                                      "_type": "Name",
+                                      "id": "i",
+                                      "ctx": {
+                                        "_type": "Load"
+                                      }
+                                    },
+                                    "op": {
+                                      "_type": "Sub"
+                                    },
+                                    "right": {
+                                      "_type": "Constant",
+                                      "value": 1,
+                                      "kind": null
+                                    }
+                                  },
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                },
+                                "attr": "islower",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "args": [],
+                              "keywords": []
+                            },
+                            {
+                              "_type": "Call",
+                              "func": {
+                                "_type": "Attribute",
+                                "value": {
+                                  "_type": "Subscript",
+                                  "value": {
+                                    "_type": "Name",
+                                    "id": "chars",
+                                    "ctx": {
+                                      "_type": "Load"
+                                    }
+                                  },
+                                  "slice": {
+                                    "_type": "BinOp",
+                                    "left": {
+                                      "_type": "Name",
+                                      "id": "i",
+                                      "ctx": {
+                                        "_type": "Load"
+                                      }
+                                    },
+                                    "op": {
+                                      "_type": "Sub"
+                                    },
+                                    "right": {
+                                      "_type": "Constant",
+                                      "value": 1,
+                                      "kind": null
+                                    }
+                                  },
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                },
+                                "attr": "isdigit",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "args": [],
+                              "keywords": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "next_is_lower",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "BoolOp",
+                      "op": {
+                        "_type": "And"
+                      },
+                      "values": [
+                        {
+                          "_type": "Compare",
+                          "left": {
+                            "_type": "BinOp",
+                            "left": {
+                              "_type": "Name",
+                              "id": "i",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "op": {
+                              "_type": "Add"
+                            },
+                            "right": {
+                              "_type": "Constant",
+                              "value": 1,
+                              "kind": null
+                            }
+                          },
+                          "ops": [
+                            {
+                              "_type": "Lt"
+                            }
+                          ],
+                          "comparators": [
+                            {
+                              "_type": "Call",
+                              "func": {
+                                "_type": "Name",
+                                "id": "len",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "args": [
+                                {
+                                  "_type": "Name",
+                                  "id": "chars",
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                }
+                              ],
+                              "keywords": []
+                            }
+                          ]
+                        },
+                        {
+                          "_type": "Call",
+                          "func": {
+                            "_type": "Attribute",
+                            "value": {
+                              "_type": "Subscript",
+                              "value": {
+                                "_type": "Name",
+                                "id": "chars",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "slice": {
+                                "_type": "BinOp",
+                                "left": {
+                                  "_type": "Name",
+                                  "id": "i",
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                },
+                                "op": {
+                                  "_type": "Add"
+                                },
+                                "right": {
+                                  "_type": "Constant",
+                                  "value": 1,
+                                  "kind": null
+                                }
+                              },
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "attr": "islower",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "args": [],
+                          "keywords": []
+                        }
+                      ]
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "prev_is_upper",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "BoolOp",
+                      "op": {
+                        "_type": "And"
+                      },
+                      "values": [
+                        {
+                          "_type": "Compare",
+                          "left": {
+                            "_type": "Name",
+                            "id": "i",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ops": [
+                            {
+                              "_type": "Gt"
+                            }
+                          ],
+                          "comparators": [
+                            {
+                              "_type": "Constant",
+                              "value": 0,
+                              "kind": null
+                            }
+                          ]
+                        },
+                        {
+                          "_type": "Call",
+                          "func": {
+                            "_type": "Attribute",
+                            "value": {
+                              "_type": "Subscript",
+                              "value": {
+                                "_type": "Name",
+                                "id": "chars",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "slice": {
+                                "_type": "BinOp",
+                                "left": {
+                                  "_type": "Name",
+                                  "id": "i",
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                },
+                                "op": {
+                                  "_type": "Sub"
+                                },
+                                "right": {
+                                  "_type": "Constant",
+                                  "value": 1,
+                                  "kind": null
+                                }
+                              },
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "attr": "isupper",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "args": [],
+                          "keywords": []
+                        }
+                      ]
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "If",
+                    "test": {
+                      "_type": "Name",
+                      "id": "prev_lower_or_digit",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "body": [
+                      {
+                        "_type": "Expr",
+                        "value": {
+                          "_type": "Call",
+                          "func": {
+                            "_type": "Attribute",
+                            "value": {
+                              "_type": "Name",
+                              "id": "result",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "attr": "append",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "args": [
+                            {
+                              "_type": "Constant",
+                              "value": "_",
+                              "kind": null
+                            }
+                          ],
+                          "keywords": []
+                        }
+                      }
+                    ],
+                    "orelse": [
+                      {
+                        "_type": "If",
+                        "test": {
+                          "_type": "BoolOp",
+                          "op": {
+                            "_type": "And"
+                          },
+                          "values": [
+                            {
+                              "_type": "Name",
+                              "id": "prev_is_upper",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            {
+                              "_type": "Name",
+                              "id": "next_is_lower",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            }
+                          ]
+                        },
+                        "body": [
+                          {
+                            "_type": "Expr",
+                            "value": {
+                              "_type": "Call",
+                              "func": {
+                                "_type": "Attribute",
+                                "value": {
+                                  "_type": "Name",
+                                  "id": "result",
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                },
+                                "attr": "append",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "args": [
+                                {
+                                  "_type": "Constant",
+                                  "value": "_",
+                                  "kind": null
+                                }
+                              ],
+                              "keywords": []
+                            }
+                          }
+                        ],
+                        "orelse": []
+                      }
+                    ]
+                  },
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "result",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Call",
+                          "func": {
+                            "_type": "Attribute",
+                            "value": {
+                              "_type": "Name",
+                              "id": "ch",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "attr": "lower",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "args": [],
+                          "keywords": []
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "result",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Name",
+                          "id": "ch",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Attribute",
+                "value": {
+                  "_type": "Constant",
+                  "value": "",
+                  "kind": null
+                },
+                "attr": "join",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "result",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Name",
+          "id": "str",
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

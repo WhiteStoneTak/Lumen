@@ -148,14 +148,14 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/remove_adjacent_dups.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/remove_adjacent_dups.py",
         "ast": "data/functions/ast/remove_adjacent_dups.json",
         "typed_ast": "data/functions/typed_ast/remove_adjacent_dups.json",
         "ir": "data/functions/ir/remove_adjacent_dups.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
         "C3": true,
         "C4": true
@@ -193,14 +193,14 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/batch_list.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/batch_list.py",
         "ast": "data/functions/ast/batch_list.json",
         "typed_ast": "data/functions/typed_ast/batch_list.json",
         "ir": "data/functions/ir/batch_list.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
         "C3": true,
         "C4": true
@@ -238,14 +238,14 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/sliding_window_max.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/sliding_window_max.py",
         "ast": "data/functions/ast/sliding_window_max.json",
         "typed_ast": "data/functions/typed_ast/sliding_window_max.json",
         "ir": "data/functions/ir/sliding_window_max.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
         "C3": true,
         "C4": true
@@ -283,14 +283,14 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/rle_encode.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/rle_encode.py",
         "ast": "data/functions/ast/rle_encode.json",
         "typed_ast": "data/functions/typed_ast/rle_encode.json",
         "ir": "data/functions/ir/rle_encode.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
         "C3": true,
         "C4": true
@@ -328,14 +328,14 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/count_true_segments.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/count_true_segments.py",
         "ast": "data/functions/ast/count_true_segments.json",
         "typed_ast": "data/functions/typed_ast/count_true_segments.json",
         "ir": "data/functions/ir/count_true_segments.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
         "C3": true,
         "C4": true
@@ -373,14 +373,14 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/merge_sorted.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/merge_sorted.py",
         "ast": "data/functions/ast/merge_sorted.json",
         "typed_ast": "data/functions/typed_ast/merge_sorted.json",
         "ir": "data/functions/ir/merge_sorted.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
         "C3": true,
         "C4": true
@@ -418,14 +418,14 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/first_index_of_max.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/first_index_of_max.py",
         "ast": "data/functions/ast/first_index_of_max.json",
         "typed_ast": "data/functions/typed_ast/first_index_of_max.json",
         "ir": "data/functions/ir/first_index_of_max.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
         "C3": true,
         "C4": true
@@ -463,14 +463,14 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/rotate_list.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/rotate_list.py",
         "ast": "data/functions/ast/rotate_list.json",
         "typed_ast": "data/functions/typed_ast/rotate_list.json",
         "ir": "data/functions/ir/rotate_list.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
         "C3": true,
         "C4": true
@@ -509,17 +509,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/max_subarray_bounds.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/max_subarray_bounds.py",
         "ast": "data/functions/ast/max_subarray_bounds.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/max_subarray_bounds.json",
+        "ir": "data/functions/ir/max_subarray_bounds.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -539,8 +539,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
         "ast_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
+        "ir_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
         "t1_source_hash": null
       }
     },
@@ -556,17 +556,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/longest_plateau.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/longest_plateau.py",
         "ast": "data/functions/ast/longest_plateau.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/longest_plateau.json",
+        "ir": "data/functions/ir/longest_plateau.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -586,8 +586,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
         "ast_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
+        "ir_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
         "t1_source_hash": null
       }
     },
@@ -603,17 +603,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/group_and_aggregate.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/group_and_aggregate.py",
         "ast": "data/functions/ast/group_and_aggregate.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/group_and_aggregate.json",
+        "ir": "data/functions/ir/group_and_aggregate.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -633,8 +633,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
         "ast_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
+        "ir_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
         "t1_source_hash": null
       }
     },
@@ -650,17 +650,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/two_sum_sorted_pairs.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/two_sum_sorted_pairs.py",
         "ast": "data/functions/ast/two_sum_sorted_pairs.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/two_sum_sorted_pairs.json",
+        "ir": "data/functions/ir/two_sum_sorted_pairs.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -680,8 +680,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
         "ast_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
+        "ir_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
         "t1_source_hash": null
       }
     },
@@ -697,17 +697,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/top_k_by.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/top_k_by.py",
         "ast": "data/functions/ast/top_k_by.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/top_k_by.json",
+        "ir": "data/functions/ir/top_k_by.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -727,8 +727,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
         "ast_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
+        "ir_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
         "t1_source_hash": null
       }
     },
@@ -744,17 +744,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/tokenize_arithmetic.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/tokenize_arithmetic.py",
         "ast": "data/functions/ast/tokenize_arithmetic.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/tokenize_arithmetic.json",
+        "ir": "data/functions/ir/tokenize_arithmetic.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -774,8 +774,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
         "ast_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
+        "ir_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
         "t1_source_hash": null
       }
     },
@@ -791,17 +791,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/spiral_order.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/spiral_order.py",
         "ast": "data/functions/ast/spiral_order.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/spiral_order.json",
+        "ir": "data/functions/ir/spiral_order.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -821,8 +821,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
         "ast_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
+        "ir_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
         "t1_source_hash": null
       }
     },
@@ -838,17 +838,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/welford_running_stats.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/welford_running_stats.py",
         "ast": "data/functions/ast/welford_running_stats.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/welford_running_stats.json",
+        "ir": "data/functions/ir/welford_running_stats.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -868,8 +868,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
         "ast_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
+        "ir_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
         "t1_source_hash": null
       }
     },
@@ -885,17 +885,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/merge_intervals.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/merge_intervals.py",
         "ast": "data/functions/ast/merge_intervals.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/merge_intervals.json",
+        "ir": "data/functions/ir/merge_intervals.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -915,8 +915,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
         "ast_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
+        "ir_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
         "t1_source_hash": null
       }
     },
@@ -932,17 +932,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/equal_width_buckets.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/equal_width_buckets.py",
         "ast": "data/functions/ast/equal_width_buckets.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/equal_width_buckets.json",
+        "ir": "data/functions/ir/equal_width_buckets.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -962,8 +962,8 @@
         "source": "wave2_pool_expansion_v1",
         "raw_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
         "ast_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
+        "ir_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
         "t1_source_hash": null
       }
     },
@@ -979,17 +979,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/dense_rank.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/dense_rank.py",
         "ast": "data/functions/ast/dense_rank.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/dense_rank.json",
+        "ir": "data/functions/ir/dense_rank.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1009,8 +1009,8 @@
         "source": "wave2_second_wave_v1",
         "raw_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
         "ast_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
+        "ir_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
         "t1_source_hash": null
       }
     },
@@ -1026,17 +1026,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/chunk_on_change.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/chunk_on_change.py",
         "ast": "data/functions/ast/chunk_on_change.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/chunk_on_change.json",
+        "ir": "data/functions/ir/chunk_on_change.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1056,8 +1056,8 @@
         "source": "wave2_second_wave_v1",
         "raw_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
         "ast_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
+        "ir_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
         "t1_source_hash": null
       }
     },
@@ -1073,17 +1073,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/antidiagonals.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/antidiagonals.py",
         "ast": "data/functions/ast/antidiagonals.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/antidiagonals.json",
+        "ir": "data/functions/ir/antidiagonals.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1103,8 +1103,8 @@
         "source": "wave2_second_wave_v1",
         "raw_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
         "ast_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
+        "ir_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
         "t1_source_hash": null
       }
     },
@@ -1120,17 +1120,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/camel_to_snake.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/camel_to_snake.py",
         "ast": "data/functions/ast/camel_to_snake.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/camel_to_snake.json",
+        "ir": "data/functions/ir/camel_to_snake.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1150,8 +1150,8 @@
         "source": "wave2_second_wave_v1",
         "raw_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
         "ast_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
+        "ir_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
         "t1_source_hash": null
       }
     },
@@ -1167,17 +1167,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/find_balanced_spans.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/find_balanced_spans.py",
         "ast": "data/functions/ast/find_balanced_spans.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/find_balanced_spans.json",
+        "ir": "data/functions/ir/find_balanced_spans.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1197,8 +1197,8 @@
         "source": "wave2_second_wave_v1",
         "raw_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
         "ast_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
+        "ir_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
         "t1_source_hash": null
       }
     },
@@ -1214,17 +1214,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/frequency_table.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/frequency_table.py",
         "ast": "data/functions/ast/frequency_table.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/frequency_table.json",
+        "ir": "data/functions/ir/frequency_table.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1244,8 +1244,8 @@
         "source": "wave2_second_wave_v1",
         "raw_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
         "ast_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
+        "ir_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
         "t1_source_hash": null
       }
     },
@@ -1261,17 +1261,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/sorted_list_intersection.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/sorted_list_intersection.py",
         "ast": "data/functions/ast/sorted_list_intersection.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/sorted_list_intersection.json",
+        "ir": "data/functions/ir/sorted_list_intersection.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1291,8 +1291,8 @@
         "source": "wave2_second_wave_v1",
         "raw_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
         "ast_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
+        "ir_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
         "t1_source_hash": null
       }
     },
@@ -1308,17 +1308,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/strided_windows.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/strided_windows.py",
         "ast": "data/functions/ast/strided_windows.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/strided_windows.json",
+        "ir": "data/functions/ir/strided_windows.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1338,8 +1338,8 @@
         "source": "wave2_second_wave_v1",
         "raw_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
         "ast_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
+        "ir_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
         "t1_source_hash": null
       }
     },
@@ -1355,17 +1355,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/peak_valley_indices.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/peak_valley_indices.py",
         "ast": "data/functions/ast/peak_valley_indices.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/peak_valley_indices.json",
+        "ir": "data/functions/ir/peak_valley_indices.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1386,8 +1386,8 @@
         "source": "wave2_third_wave_v1",
         "raw_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
         "ast_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
+        "ir_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
         "t1_source_hash": null
       }
     },
@@ -1403,17 +1403,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/segments_above_threshold.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/segments_above_threshold.py",
         "ast": "data/functions/ast/segments_above_threshold.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/segments_above_threshold.json",
+        "ir": "data/functions/ir/segments_above_threshold.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1434,8 +1434,8 @@
         "source": "wave2_third_wave_v1",
         "raw_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
         "ast_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
+        "ir_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
         "t1_source_hash": null
       }
     },
@@ -1451,17 +1451,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/stable_partition.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/stable_partition.py",
         "ast": "data/functions/ast/stable_partition.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/stable_partition.json",
+        "ir": "data/functions/ir/stable_partition.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1482,8 +1482,8 @@
         "source": "wave2_third_wave_v1",
         "raw_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
         "ast_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
+        "ir_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
         "t1_source_hash": null
       }
     },
@@ -1499,17 +1499,17 @@
       },
       "artifacts": {
         "raw_source": "data/functions/raw/group_by_key.py",
-        "annotated_text": null,
+        "annotated_text": "data/functions/annotated_text/group_by_key.py",
         "ast": "data/functions/ast/group_by_key.json",
-        "typed_ast": null,
-        "ir": null
+        "typed_ast": "data/functions/typed_ast/group_by_key.json",
+        "ir": "data/functions/ir/group_by_key.json"
       },
       "representations": {
         "C1": true,
-        "C1+": false,
+        "C1+": true,
         "C2": true,
-        "C3": false,
-        "C4": false
+        "C3": true,
+        "C4": true
       },
       "tasks": {
         "T1": {
@@ -1530,8 +1530,8 @@
         "source": "wave2_third_wave_v1",
         "raw_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
         "ast_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
-        "typed_ast_source_hash": null,
-        "ir_source_hash": null,
+        "typed_ast_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
+        "ir_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
         "t1_source_hash": null
       }
     }

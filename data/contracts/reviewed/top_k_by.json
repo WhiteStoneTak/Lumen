@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "top_k_by",
+  "source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Return the top-k items by a primary key, with stable tiebreaking"
+  ],
+  "invariants": []
+}

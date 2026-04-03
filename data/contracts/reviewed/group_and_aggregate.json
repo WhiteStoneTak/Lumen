@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "group_and_aggregate",
+  "source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Group (key, value) pairs and compute per-group statistics"
+  ],
+  "invariants": []
+}

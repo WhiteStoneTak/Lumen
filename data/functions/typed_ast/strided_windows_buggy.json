@@ -1,0 +1,491 @@
+{
+  "lumen_schema": "typed_ast-v1",
+  "func_id": "strided_windows",
+  "source_hash": "fe7fad4c2bb15f46095d4bd59ec51151c0686dc24d8ad6ca7ac50768d40e11c6",
+  "mypy_version": "1.19.1",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (items: builtins.list[Any], size: builtins.int, stride: builtins.int, include_partial: builtins.bool =) -> builtins.list[builtins.list[Any]]",
+    "params": [
+      {
+        "name": "items",
+        "mypy_type": "builtins.list[Any]",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "size",
+        "mypy_type": "builtins.int",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "stride",
+        "mypy_type": "builtins.int",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "include_partial",
+        "mypy_type": "builtins.bool",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.list[builtins.list[Any]]"
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "strided_windows",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "items",
+              "annotation": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "size",
+              "annotation": {
+                "_type": "Name",
+                "id": "int",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "stride",
+              "annotation": {
+                "_type": "Name",
+                "id": "int",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "include_partial",
+              "annotation": {
+                "_type": "Name",
+                "id": "bool",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": [
+            {
+              "_type": "Constant",
+              "value": false,
+              "kind": null
+            }
+          ]
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Extract overlapping or non-overlapping windows from a list.\n\n    Windows start at indices 0, stride, 2*stride, ... Each window has `size`\n    elements. If include_partial is True, trailing windows that don't have\n    enough remaining elements are included as shorter lists. If include_partial\n    is False (default), only full-sized windows are returned.\n\n    Args:\n        items: Input list.\n        size: Window size (>= 1).\n        stride: Step between window start positions (>= 1).\n        include_partial: If True, include trailing partial windows.\n\n    Returns:\n        List of windows (each a list of items).\n\n    Examples:\n        strided_windows([1, 2, 3, 4, 5], 3, 1) == [[1, 2, 3], [2, 3, 4], [3, 4, 5]]\n        strided_windows([1, 2, 3, 4, 5], 3, 2) == [[1, 2, 3], [3, 4, 5]]\n        strided_windows([1, 2, 3, 4, 5], 3, 2, include_partial=True) == [[1, 2, 3], [3, 4, 5], [5]]\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "n",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "len",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "items",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "i",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "While",
+            "test": {
+              "_type": "Compare",
+              "left": {
+                "_type": "BinOp",
+                "left": {
+                  "_type": "Name",
+                  "id": "i",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "op": {
+                  "_type": "Add"
+                },
+                "right": {
+                  "_type": "Name",
+                  "id": "size",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              },
+              "ops": [
+                {
+                  "_type": "Lt"
+                }
+              ],
+              "comparators": [
+                {
+                  "_type": "Name",
+                  "id": "n",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Expr",
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Attribute",
+                    "value": {
+                      "_type": "Name",
+                      "id": "result",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Name",
+                        "id": "list",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Subscript",
+                          "value": {
+                            "_type": "Name",
+                            "id": "items",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "slice": {
+                            "_type": "Slice",
+                            "lower": {
+                              "_type": "Name",
+                              "id": "i",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "upper": {
+                              "_type": "BinOp",
+                              "left": {
+                                "_type": "Name",
+                                "id": "i",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "op": {
+                                "_type": "Add"
+                              },
+                              "right": {
+                                "_type": "Name",
+                                "id": "size",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              }
+                            },
+                            "step": null
+                          },
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  ],
+                  "keywords": []
+                }
+              },
+              {
+                "_type": "AugAssign",
+                "target": {
+                  "_type": "Name",
+                  "id": "i",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                "op": {
+                  "_type": "Add"
+                },
+                "value": {
+                  "_type": "Name",
+                  "id": "stride",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "BoolOp",
+              "op": {
+                "_type": "And"
+              },
+              "values": [
+                {
+                  "_type": "Name",
+                  "id": "include_partial",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "i",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "Lt"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Name",
+                      "id": "n",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Expr",
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Attribute",
+                    "value": {
+                      "_type": "Name",
+                      "id": "result",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Name",
+                        "id": "list",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Subscript",
+                          "value": {
+                            "_type": "Name",
+                            "id": "items",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "slice": {
+                            "_type": "Slice",
+                            "lower": {
+                              "_type": "Name",
+                              "id": "i",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "upper": null,
+                            "step": null
+                          },
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  ],
+                  "keywords": []
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

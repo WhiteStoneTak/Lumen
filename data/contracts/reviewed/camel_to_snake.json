@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "camel_to_snake",
+  "source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Convert a camelCase or PascalCase identifier to snake_case"
+  ],
+  "invariants": []
+}

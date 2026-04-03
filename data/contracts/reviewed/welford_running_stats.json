@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "welford_running_stats",
+  "source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Compute running statistics using Welford's online algorithm"
+  ],
+  "invariants": []
+}

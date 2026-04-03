@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "two_sum_sorted_pairs",
+  "source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Return all unique pairs (a, b) from a sorted list where a + b == target"
+  ],
+  "invariants": []
+}

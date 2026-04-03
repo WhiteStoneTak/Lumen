@@ -1,0 +1,265 @@
+{
+  "lumen_schema": "typed_ast-v1",
+  "func_id": "remove_adjacent_dups",
+  "source_hash": "4620d9d448e40f9bb71a342f44a6e2ce01094bc5df3f3abe2f6bc6037b0dcb34",
+  "mypy_version": "1.19.1",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (items: builtins.list[Any]) -> builtins.list[Any]",
+    "params": [
+      {
+        "name": "items",
+        "mypy_type": "builtins.list[Any]",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.list[Any]"
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "remove_adjacent_dups",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "items",
+              "annotation": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return a copy of items with adjacent duplicate values collapsed.\n\n    Consecutive equal values are reduced to a single occurrence.\n    Non-adjacent duplicates are preserved.  Order is maintained.\n    An empty list is returned unchanged.\n\n    Examples:\n        remove_adjacent_dups([1, 1, 2, 3, 3, 3, 2]) == [1, 2, 3, 2]\n        remove_adjacent_dups([])                     == []\n        remove_adjacent_dups([7])                    == [7]\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "UnaryOp",
+              "op": {
+                "_type": "Not"
+              },
+              "operand": {
+                "_type": "Name",
+                "id": "items",
+                "ctx": {
+                  "_type": "Load"
+                }
+              }
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "List",
+                  "elts": [],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "result",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "List",
+              "elts": [
+                {
+                  "_type": "Subscript",
+                  "value": {
+                    "_type": "Name",
+                    "id": "items",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "slice": {
+                    "_type": "Constant",
+                    "value": 0,
+                    "kind": null
+                  },
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "item",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "items",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Slice",
+                "lower": {
+                  "_type": "Constant",
+                  "value": 1,
+                  "kind": null
+                },
+                "upper": null,
+                "step": null
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "item",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "NotEq"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "items",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "UnaryOp",
+                        "op": {
+                          "_type": "USub"
+                        },
+                        "operand": {
+                          "_type": "Constant",
+                          "value": 1,
+                          "kind": null
+                        }
+                      },
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "result",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Name",
+                          "id": "item",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ],
+                "orelse": []
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Name",
+          "id": "list",
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

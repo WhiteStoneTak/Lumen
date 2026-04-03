@@ -1,0 +1,502 @@
+{
+  "lumen_schema": "typed_ast-v1",
+  "func_id": "group_and_aggregate",
+  "source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
+  "mypy_version": "1.19.1",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (pairs: builtins.list[builtins.tuple[Any, ...]]) -> builtins.dict[Any, Any]",
+    "params": [
+      {
+        "name": "pairs",
+        "mypy_type": "builtins.list[builtins.tuple[Any, ...]]",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.dict[Any, Any]"
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "group_and_aggregate",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "pairs",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "tuple",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Group (key, value) pairs and compute per-group statistics.\n\n    For each unique key, compute: count, sum, min, and max of associated values.\n\n    Args:\n        pairs: List of (key, value) tuples. Key must be hashable. Value is numeric.\n\n    Returns:\n        Dict mapping each key to a dict with keys:\n        \"count\" (int), \"sum\" (float), \"min\" (float), \"max\" (float).\n        Keys appear in insertion order.\n\n    Examples:\n        group_and_aggregate([(\"a\", 3), (\"b\", 1), (\"a\", 7)]) == {\"a\": {\"count\": 2, \"sum\": 10, \"min\": 3, \"max\": 7}, \"b\": {\"count\": 1, \"sum\": 1, \"min\": 1, \"max\": 1}}\n        group_and_aggregate([]) == {}\n        group_and_aggregate([(\"x\", 5), (\"x\", 5)]) == {\"x\": {\"count\": 2, \"sum\": 10, \"min\": 5, \"max\": 5}}\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Name",
+              "id": "dict",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "Dict",
+              "keys": [],
+              "values": []
+            },
+            "simple": 1
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "key",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "value",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Name",
+              "id": "pairs",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "key",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "NotIn"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Name",
+                      "id": "result",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Subscript",
+                        "value": {
+                          "_type": "Name",
+                          "id": "result",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "slice": {
+                          "_type": "Name",
+                          "id": "key",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Dict",
+                      "keys": [
+                        {
+                          "_type": "Constant",
+                          "value": "count",
+                          "kind": null
+                        },
+                        {
+                          "_type": "Constant",
+                          "value": "sum",
+                          "kind": null
+                        },
+                        {
+                          "_type": "Constant",
+                          "value": "min",
+                          "kind": null
+                        },
+                        {
+                          "_type": "Constant",
+                          "value": "max",
+                          "kind": null
+                        }
+                      ],
+                      "values": [
+                        {
+                          "_type": "Constant",
+                          "value": 1,
+                          "kind": null
+                        },
+                        {
+                          "_type": "Name",
+                          "id": "value",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        {
+                          "_type": "Name",
+                          "id": "value",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        {
+                          "_type": "Name",
+                          "id": "value",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ]
+                    },
+                    "type_comment": null
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "entry",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "result",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "Name",
+                        "id": "key",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "AugAssign",
+                    "target": {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "entry",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "Constant",
+                        "value": "count",
+                        "kind": null
+                      },
+                      "ctx": {
+                        "_type": "Store"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "value": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    }
+                  },
+                  {
+                    "_type": "AugAssign",
+                    "target": {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "entry",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "Constant",
+                        "value": "sum",
+                        "kind": null
+                      },
+                      "ctx": {
+                        "_type": "Store"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "value": {
+                      "_type": "Name",
+                      "id": "value",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  },
+                  {
+                    "_type": "If",
+                    "test": {
+                      "_type": "Compare",
+                      "left": {
+                        "_type": "Name",
+                        "id": "value",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ops": [
+                        {
+                          "_type": "Lt"
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "_type": "Subscript",
+                          "value": {
+                            "_type": "Name",
+                            "id": "entry",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "slice": {
+                            "_type": "Constant",
+                            "value": "min",
+                            "kind": null
+                          },
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ]
+                    },
+                    "body": [
+                      {
+                        "_type": "Assign",
+                        "targets": [
+                          {
+                            "_type": "Subscript",
+                            "value": {
+                              "_type": "Name",
+                              "id": "entry",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "slice": {
+                              "_type": "Constant",
+                              "value": "min",
+                              "kind": null
+                            },
+                            "ctx": {
+                              "_type": "Store"
+                            }
+                          }
+                        ],
+                        "value": {
+                          "_type": "Name",
+                          "id": "value",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "type_comment": null
+                      }
+                    ],
+                    "orelse": []
+                  },
+                  {
+                    "_type": "If",
+                    "test": {
+                      "_type": "Compare",
+                      "left": {
+                        "_type": "Name",
+                        "id": "value",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ops": [
+                        {
+                          "_type": "Gt"
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "_type": "Subscript",
+                          "value": {
+                            "_type": "Name",
+                            "id": "entry",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "slice": {
+                            "_type": "Constant",
+                            "value": "max",
+                            "kind": null
+                          },
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ]
+                    },
+                    "body": [
+                      {
+                        "_type": "Assign",
+                        "targets": [
+                          {
+                            "_type": "Subscript",
+                            "value": {
+                              "_type": "Name",
+                              "id": "entry",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "slice": {
+                              "_type": "Constant",
+                              "value": "max",
+                              "kind": null
+                            },
+                            "ctx": {
+                              "_type": "Store"
+                            }
+                          }
+                        ],
+                        "value": {
+                          "_type": "Name",
+                          "id": "value",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "type_comment": null
+                      }
+                    ],
+                    "orelse": []
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Name",
+          "id": "dict",
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

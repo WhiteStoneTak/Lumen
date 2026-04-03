@@ -1,0 +1,636 @@
+{
+  "lumen_schema": "ir-v1",
+  "func_id": "antidiagonals",
+  "source_hash": "4dd395ca4b695cf67d105d93688ae96e81a7ee641f5586ed229d3ab88272be66",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (matrix: builtins.list[builtins.list[Any]]) -> builtins.list[builtins.list[Any]]",
+    "params": [
+      {
+        "name": "matrix",
+        "mypy_type": "builtins.list[builtins.list[Any]]",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.list[builtins.list[Any]]"
+  },
+  "contracts": {
+    "preconditions": [],
+    "postconditions": [
+      "Return the antidiagonals of a 2D matrix as a list of lists"
+    ],
+    "invariants": []
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "antidiagonals",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "matrix",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return the antidiagonals of a 2D matrix as a list of lists.\n\n    Antidiagonals run from top-right to bottom-left. The first antidiagonal\n    contains matrix[0][0]. The second contains matrix[0][1] and matrix[1][0].\n    Elements within each antidiagonal are listed in row-ascending order\n    (top to bottom, i.e. increasing row index).\n\n    Args:\n        matrix: List of rows. All rows have equal length. May be empty.\n\n    Returns:\n        List of antidiagonals, each a list of elements.\n\n    Examples:\n        antidiagonals([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [[1], [2, 4], [3, 5, 7], [6, 8], [9]]\n        antidiagonals([[1, 2], [3, 4]]) == [[1], [2, 3], [4]]\n        antidiagonals([]) == []\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "BoolOp",
+              "op": {
+                "_type": "Or"
+              },
+              "values": [
+                {
+                  "_type": "UnaryOp",
+                  "op": {
+                    "_type": "Not"
+                  },
+                  "operand": {
+                    "_type": "Name",
+                    "id": "matrix",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  }
+                },
+                {
+                  "_type": "UnaryOp",
+                  "op": {
+                    "_type": "Not"
+                  },
+                  "operand": {
+                    "_type": "Subscript",
+                    "value": {
+                      "_type": "Name",
+                      "id": "matrix",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "slice": {
+                      "_type": "Constant",
+                      "value": 0,
+                      "kind": null
+                    },
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  }
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "List",
+                  "elts": [],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "rows",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "len",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "matrix",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "cols",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "len",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Subscript",
+                  "value": {
+                    "_type": "Name",
+                    "id": "matrix",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "slice": {
+                    "_type": "Constant",
+                    "value": 0,
+                    "kind": null
+                  },
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "d",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "range",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "BinOp",
+                  "left": {
+                    "_type": "BinOp",
+                    "left": {
+                      "_type": "Name",
+                      "id": "rows",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "right": {
+                      "_type": "Name",
+                      "id": "cols",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  },
+                  "op": {
+                    "_type": "Sub"
+                  },
+                  "right": {
+                    "_type": "Constant",
+                    "value": 1,
+                    "kind": null
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "_type": "AnnAssign",
+                "target": {
+                  "_type": "Name",
+                  "id": "diagonal",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                "annotation": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "value": {
+                  "_type": "List",
+                  "elts": [],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "simple": 1
+              },
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "r_start",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "max",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Constant",
+                      "value": 0,
+                      "kind": null
+                    },
+                    {
+                      "_type": "BinOp",
+                      "left": {
+                        "_type": "Name",
+                        "id": "d",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "op": {
+                        "_type": "Sub"
+                      },
+                      "right": {
+                        "_type": "Name",
+                        "id": "cols",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      }
+                    }
+                  ],
+                  "keywords": []
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "r_end",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "min",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "rows",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    {
+                      "_type": "BinOp",
+                      "left": {
+                        "_type": "Name",
+                        "id": "d",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "op": {
+                        "_type": "Add"
+                      },
+                      "right": {
+                        "_type": "Constant",
+                        "value": 1,
+                        "kind": null
+                      }
+                    }
+                  ],
+                  "keywords": []
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "For",
+                "target": {
+                  "_type": "Name",
+                  "id": "r",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                "iter": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "range",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "r_start",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    {
+                      "_type": "Name",
+                      "id": "r_end",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                },
+                "body": [
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "c",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "BinOp",
+                      "left": {
+                        "_type": "Name",
+                        "id": "d",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "op": {
+                        "_type": "Sub"
+                      },
+                      "right": {
+                        "_type": "Name",
+                        "id": "r",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      }
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "diagonal",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Subscript",
+                          "value": {
+                            "_type": "Subscript",
+                            "value": {
+                              "_type": "Name",
+                              "id": "matrix",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "slice": {
+                              "_type": "Name",
+                              "id": "r",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "slice": {
+                            "_type": "Name",
+                            "id": "c",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ],
+                "orelse": [],
+                "type_comment": null
+              },
+              {
+                "_type": "Expr",
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Attribute",
+                    "value": {
+                      "_type": "Name",
+                      "id": "result",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "diagonal",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

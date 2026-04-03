@@ -1,0 +1,633 @@
+{
+  "lumen_schema": "ast-v1",
+  "func_id": "peak_valley_indices",
+  "source_hash": "f9adca7c4d3b1f8cfdc6c90d190855551c328416f67b457420b6b3de934f0573",
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "peak_valley_indices",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "nums",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "float",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return the indices of strict local peaks and valleys in order.\n\n    A strict local peak at index i satisfies nums[i] > nums[i-1] and\n    nums[i] > nums[i+1]. A strict local valley satisfies nums[i] < nums[i-1]\n    and nums[i] < nums[i+1]. Boundary elements (index 0 and last) are never\n    peaks or valleys. Plateaus are not included.\n\n    Args:\n        nums: List of floats (or ints).\n\n    Returns:\n        List of (\"peak\", i) or (\"valley\", i) tuples in index order.\n\n    Examples:\n        peak_valley_indices([1, 3, 2, 0, 4, 1]) == [(\"peak\", 1), (\"valley\", 3), (\"peak\", 4)]\n        peak_valley_indices([1, 2, 3]) == []\n        peak_valley_indices([3, 1, 3, 1]) == [(\"valley\", 1), (\"peak\", 2)]\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "tuple",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Tuple",
+                  "elts": [
+                    {
+                      "_type": "Name",
+                      "id": "str",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    {
+                      "_type": "Name",
+                      "id": "int",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "Compare",
+              "left": {
+                "_type": "Call",
+                "func": {
+                  "_type": "Name",
+                  "id": "len",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "args": [
+                  {
+                    "_type": "Name",
+                    "id": "nums",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  }
+                ],
+                "keywords": []
+              },
+              "ops": [
+                {
+                  "_type": "Lt"
+                }
+              ],
+              "comparators": [
+                {
+                  "_type": "Constant",
+                  "value": 3,
+                  "kind": null
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "Name",
+                  "id": "result",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "i",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "range",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Constant",
+                  "value": 1,
+                  "kind": null
+                },
+                {
+                  "_type": "BinOp",
+                  "left": {
+                    "_type": "Call",
+                    "func": {
+                      "_type": "Name",
+                      "id": "len",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "args": [
+                      {
+                        "_type": "Name",
+                        "id": "nums",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      }
+                    ],
+                    "keywords": []
+                  },
+                  "op": {
+                    "_type": "Sub"
+                  },
+                  "right": {
+                    "_type": "Constant",
+                    "value": 1,
+                    "kind": null
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "left",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Subscript",
+                  "value": {
+                    "_type": "Name",
+                    "id": "nums",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "slice": {
+                    "_type": "BinOp",
+                    "left": {
+                      "_type": "Name",
+                      "id": "i",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "op": {
+                      "_type": "Sub"
+                    },
+                    "right": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    }
+                  },
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "mid",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Subscript",
+                  "value": {
+                    "_type": "Name",
+                    "id": "nums",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "slice": {
+                    "_type": "Name",
+                    "id": "i",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "right",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Subscript",
+                  "value": {
+                    "_type": "Name",
+                    "id": "nums",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "slice": {
+                    "_type": "BinOp",
+                    "left": {
+                      "_type": "Name",
+                      "id": "i",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "right": {
+                      "_type": "Constant",
+                      "value": 1,
+                      "kind": null
+                    }
+                  },
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "BoolOp",
+                  "op": {
+                    "_type": "And"
+                  },
+                  "values": [
+                    {
+                      "_type": "Compare",
+                      "left": {
+                        "_type": "Name",
+                        "id": "mid",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ops": [
+                        {
+                          "_type": "GtE"
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "_type": "Name",
+                          "id": "left",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "_type": "Compare",
+                      "left": {
+                        "_type": "Name",
+                        "id": "mid",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ops": [
+                        {
+                          "_type": "GtE"
+                        }
+                      ],
+                      "comparators": [
+                        {
+                          "_type": "Name",
+                          "id": "right",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "result",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Tuple",
+                          "elts": [
+                            {
+                              "_type": "Constant",
+                              "value": "peak",
+                              "kind": null
+                            },
+                            {
+                              "_type": "Name",
+                              "id": "i",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            }
+                          ],
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "If",
+                    "test": {
+                      "_type": "BoolOp",
+                      "op": {
+                        "_type": "And"
+                      },
+                      "values": [
+                        {
+                          "_type": "Compare",
+                          "left": {
+                            "_type": "Name",
+                            "id": "mid",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ops": [
+                            {
+                              "_type": "Lt"
+                            }
+                          ],
+                          "comparators": [
+                            {
+                              "_type": "Name",
+                              "id": "left",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "_type": "Compare",
+                          "left": {
+                            "_type": "Name",
+                            "id": "mid",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ops": [
+                            {
+                              "_type": "Lt"
+                            }
+                          ],
+                          "comparators": [
+                            {
+                              "_type": "Name",
+                              "id": "right",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "body": [
+                      {
+                        "_type": "Expr",
+                        "value": {
+                          "_type": "Call",
+                          "func": {
+                            "_type": "Attribute",
+                            "value": {
+                              "_type": "Name",
+                              "id": "result",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "attr": "append",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "args": [
+                            {
+                              "_type": "Tuple",
+                              "elts": [
+                                {
+                                  "_type": "Constant",
+                                  "value": "valley",
+                                  "kind": null
+                                },
+                                {
+                                  "_type": "Name",
+                                  "id": "i",
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                }
+                              ],
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            }
+                          ],
+                          "keywords": []
+                        }
+                      }
+                    ],
+                    "orelse": []
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Subscript",
+            "value": {
+              "_type": "Name",
+              "id": "tuple",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "slice": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "str",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "int",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

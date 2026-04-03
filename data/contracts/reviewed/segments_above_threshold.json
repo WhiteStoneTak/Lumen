@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "segments_above_threshold",
+  "source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Return all maximal contiguous sublists where every element is strictly greater than threshold"
+  ],
+  "invariants": []
+}

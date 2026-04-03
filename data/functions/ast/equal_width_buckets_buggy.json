@@ -1,0 +1,437 @@
+{
+  "lumen_schema": "ast-v1",
+  "func_id": "equal_width_buckets",
+  "source_hash": "17e1db3507b1390f82ae746ce641bf8709e349d9ad3bc5d4a3310f1a36d45674",
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "equal_width_buckets",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "values",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "float",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "n_buckets",
+              "annotation": {
+                "_type": "Name",
+                "id": "int",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Assign each value to one of n_buckets equal-width buckets (0-indexed).\n\n    Buckets span [min_val + i*width, min_val + (i+1)*width) for i=0..n-2,\n    and [min_val + (n-1)*width, max_val] (inclusive on both ends) for the\n    last bucket. Values equal to max_val always go in the last bucket.\n\n    If all values are equal, all go in bucket 0.\n    Requires n_buckets >= 1 and len(values) >= 1.\n\n    Args:\n        values: Non-empty list of floats.\n        n_buckets: Number of equal-width buckets (>= 1).\n\n    Returns:\n        List of bucket indices (0-indexed) in the same order as values.\n\n    Examples:\n        equal_width_buckets([1.0, 2.0, 3.0, 4.0, 5.0], 2) == [0, 0, 1, 1, 1]\n        equal_width_buckets([10, 20, 30], 3) == [0, 1, 2]\n        equal_width_buckets([5, 5, 5], 3) == [0, 0, 0]\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "min_val",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "min",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "values",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "max_val",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "max",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "values",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "Compare",
+              "left": {
+                "_type": "Name",
+                "id": "min_val",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ops": [
+                {
+                  "_type": "Eq"
+                }
+              ],
+              "comparators": [
+                {
+                  "_type": "Name",
+                  "id": "max_val",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "BinOp",
+                  "left": {
+                    "_type": "List",
+                    "elts": [
+                      {
+                        "_type": "Constant",
+                        "value": 0,
+                        "kind": null
+                      }
+                    ],
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "op": {
+                    "_type": "Mult"
+                  },
+                  "right": {
+                    "_type": "Call",
+                    "func": {
+                      "_type": "Name",
+                      "id": "len",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "args": [
+                      {
+                        "_type": "Name",
+                        "id": "values",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      }
+                    ],
+                    "keywords": []
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "width",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "BinOp",
+              "left": {
+                "_type": "BinOp",
+                "left": {
+                  "_type": "Name",
+                  "id": "max_val",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "op": {
+                  "_type": "Sub"
+                },
+                "right": {
+                  "_type": "Name",
+                  "id": "min_val",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              },
+              "op": {
+                "_type": "Div"
+              },
+              "right": {
+                "_type": "Name",
+                "id": "n_buckets",
+                "ctx": {
+                  "_type": "Load"
+                }
+              }
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Name",
+                "id": "int",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "v",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Name",
+              "id": "values",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "bucket",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "int",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "BinOp",
+                      "left": {
+                        "_type": "BinOp",
+                        "left": {
+                          "_type": "Name",
+                          "id": "v",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "op": {
+                          "_type": "Sub"
+                        },
+                        "right": {
+                          "_type": "Name",
+                          "id": "min_val",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      },
+                      "op": {
+                        "_type": "Div"
+                      },
+                      "right": {
+                        "_type": "Name",
+                        "id": "width",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      }
+                    }
+                  ],
+                  "keywords": []
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "Expr",
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Attribute",
+                    "value": {
+                      "_type": "Name",
+                      "id": "result",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "bucket",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Name",
+            "id": "int",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

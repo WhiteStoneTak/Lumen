@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "antidiagonals",
+  "source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Return the antidiagonals of a 2D matrix as a list of lists"
+  ],
+  "invariants": []
+}

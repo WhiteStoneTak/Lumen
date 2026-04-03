@@ -1,0 +1,613 @@
+{
+  "lumen_schema": "typed_ast-v1",
+  "func_id": "top_k_by",
+  "source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
+  "mypy_version": "1.19.1",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (items: builtins.list[Any], k: builtins.int, key: def (*Any, **Any) -> Any, tiebreak_key: def (*Any, **Any) -> Any | None =) -> builtins.list[Any]",
+    "params": [
+      {
+        "name": "items",
+        "mypy_type": "builtins.list[Any]",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "k",
+        "mypy_type": "builtins.int",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "key",
+        "mypy_type": "def (*Any, **Any) -> Any",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "tiebreak_key",
+        "mypy_type": "def (*Any, **Any) -> Any | None",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.list[Any]"
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "ImportFrom",
+        "module": "typing",
+        "names": [
+          {
+            "_type": "alias",
+            "name": "Callable",
+            "asname": null
+          },
+          {
+            "_type": "alias",
+            "name": "Optional",
+            "asname": null
+          }
+        ],
+        "level": 0
+      },
+      {
+        "_type": "FunctionDef",
+        "name": "top_k_by",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "items",
+              "annotation": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "k",
+              "annotation": {
+                "_type": "Name",
+                "id": "int",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "key",
+              "annotation": {
+                "_type": "Name",
+                "id": "Callable",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "tiebreak_key",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "Optional",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "Callable",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": [
+            {
+              "_type": "Constant",
+              "value": null,
+              "kind": null
+            }
+          ]
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return the top-k items by a primary key, with stable tiebreaking.\n\n    Items are sorted by key(item) descending. When primary keys are equal\n    and tiebreak_key is provided, sort by tiebreak_key(item) ascending as\n    the secondary key. When keys are still equal, preserve original order\n    (stable). Returns at most k items; fewer if len(items) < k.\n\n    Args:\n        items: List of items.\n        k: Number of top items to return. If k <= 0, return [].\n        key: Primary key callable (higher = ranked higher).\n        tiebreak_key: Secondary key callable for ties (lower = ranked higher).\n                      If None, original order breaks ties.\n\n    Returns:\n        List of up to k items, sorted from best to kth-best.\n\n    Examples:\n        top_k_by([3, 1, 4, 1, 5], 3, key=lambda x: x) == [5, 4, 3]\n        top_k_by([\"b\", \"a\", \"c\", \"a\"], 3, key=lambda s: len(s), tiebreak_key=lambda s: s) == [\"a\", \"a\", \"b\"]\n        top_k_by([1, 2], 5, key=lambda x: x) == [2, 1]\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "Compare",
+              "left": {
+                "_type": "Name",
+                "id": "k",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ops": [
+                {
+                  "_type": "LtE"
+                }
+              ],
+              "comparators": [
+                {
+                  "_type": "Constant",
+                  "value": 0,
+                  "kind": null
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "List",
+                  "elts": [],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "indexed",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "enumerate",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "items",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "Compare",
+              "left": {
+                "_type": "Name",
+                "id": "tiebreak_key",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ops": [
+                {
+                  "_type": "IsNot"
+                }
+              ],
+              "comparators": [
+                {
+                  "_type": "Constant",
+                  "value": null,
+                  "kind": null
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "sorted_indexed",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "sorted",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "indexed",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": [
+                    {
+                      "_type": "keyword",
+                      "arg": "key",
+                      "value": {
+                        "_type": "Lambda",
+                        "args": {
+                          "_type": "arguments",
+                          "posonlyargs": [],
+                          "args": [
+                            {
+                              "_type": "arg",
+                              "arg": "pair",
+                              "annotation": null,
+                              "type_comment": null
+                            }
+                          ],
+                          "vararg": null,
+                          "kwonlyargs": [],
+                          "kw_defaults": [],
+                          "kwarg": null,
+                          "defaults": []
+                        },
+                        "body": {
+                          "_type": "Tuple",
+                          "elts": [
+                            {
+                              "_type": "UnaryOp",
+                              "op": {
+                                "_type": "USub"
+                              },
+                              "operand": {
+                                "_type": "Call",
+                                "func": {
+                                  "_type": "Name",
+                                  "id": "key",
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                },
+                                "args": [
+                                  {
+                                    "_type": "Subscript",
+                                    "value": {
+                                      "_type": "Name",
+                                      "id": "pair",
+                                      "ctx": {
+                                        "_type": "Load"
+                                      }
+                                    },
+                                    "slice": {
+                                      "_type": "Constant",
+                                      "value": 1,
+                                      "kind": null
+                                    },
+                                    "ctx": {
+                                      "_type": "Load"
+                                    }
+                                  }
+                                ],
+                                "keywords": []
+                              }
+                            },
+                            {
+                              "_type": "Call",
+                              "func": {
+                                "_type": "Name",
+                                "id": "tiebreak_key",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "args": [
+                                {
+                                  "_type": "Subscript",
+                                  "value": {
+                                    "_type": "Name",
+                                    "id": "pair",
+                                    "ctx": {
+                                      "_type": "Load"
+                                    }
+                                  },
+                                  "slice": {
+                                    "_type": "Constant",
+                                    "value": 1,
+                                    "kind": null
+                                  },
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                }
+                              ],
+                              "keywords": []
+                            },
+                            {
+                              "_type": "Subscript",
+                              "value": {
+                                "_type": "Name",
+                                "id": "pair",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "slice": {
+                                "_type": "Constant",
+                                "value": 0,
+                                "kind": null
+                              },
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            }
+                          ],
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "type_comment": null
+              }
+            ],
+            "orelse": [
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "sorted_indexed",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "sorted",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "indexed",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": [
+                    {
+                      "_type": "keyword",
+                      "arg": "key",
+                      "value": {
+                        "_type": "Lambda",
+                        "args": {
+                          "_type": "arguments",
+                          "posonlyargs": [],
+                          "args": [
+                            {
+                              "_type": "arg",
+                              "arg": "pair",
+                              "annotation": null,
+                              "type_comment": null
+                            }
+                          ],
+                          "vararg": null,
+                          "kwonlyargs": [],
+                          "kw_defaults": [],
+                          "kwarg": null,
+                          "defaults": []
+                        },
+                        "body": {
+                          "_type": "Tuple",
+                          "elts": [
+                            {
+                              "_type": "UnaryOp",
+                              "op": {
+                                "_type": "USub"
+                              },
+                              "operand": {
+                                "_type": "Call",
+                                "func": {
+                                  "_type": "Name",
+                                  "id": "key",
+                                  "ctx": {
+                                    "_type": "Load"
+                                  }
+                                },
+                                "args": [
+                                  {
+                                    "_type": "Subscript",
+                                    "value": {
+                                      "_type": "Name",
+                                      "id": "pair",
+                                      "ctx": {
+                                        "_type": "Load"
+                                      }
+                                    },
+                                    "slice": {
+                                      "_type": "Constant",
+                                      "value": 1,
+                                      "kind": null
+                                    },
+                                    "ctx": {
+                                      "_type": "Load"
+                                    }
+                                  }
+                                ],
+                                "keywords": []
+                              }
+                            },
+                            {
+                              "_type": "Subscript",
+                              "value": {
+                                "_type": "Name",
+                                "id": "pair",
+                                "ctx": {
+                                  "_type": "Load"
+                                }
+                              },
+                              "slice": {
+                                "_type": "Constant",
+                                "value": 0,
+                                "kind": null
+                              },
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            }
+                          ],
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "type_comment": null
+              }
+            ]
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "ListComp",
+              "elt": {
+                "_type": "Name",
+                "id": "item",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "generators": [
+                {
+                  "_type": "comprehension",
+                  "target": {
+                    "_type": "Tuple",
+                    "elts": [
+                      {
+                        "_type": "Name",
+                        "id": "_",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      },
+                      {
+                        "_type": "Name",
+                        "id": "item",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  },
+                  "iter": {
+                    "_type": "Subscript",
+                    "value": {
+                      "_type": "Name",
+                      "id": "sorted_indexed",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "slice": {
+                      "_type": "Slice",
+                      "lower": null,
+                      "upper": {
+                        "_type": "Name",
+                        "id": "k",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "step": null
+                    },
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ifs": [],
+                  "is_async": 0
+                }
+              ]
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Name",
+          "id": "list",
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

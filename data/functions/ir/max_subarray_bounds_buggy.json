@@ -1,0 +1,631 @@
+{
+  "lumen_schema": "ir-v1",
+  "func_id": "max_subarray_bounds",
+  "source_hash": "d4882c86437e132efd3ea10d67a46a34bf5d03a3b3bcd1f96d9c4ab11fe998ce",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (nums: builtins.list[builtins.int]) -> tuple[builtins.int, builtins.int, builtins.int]",
+    "params": [
+      {
+        "name": "nums",
+        "mypy_type": "builtins.list[builtins.int]",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "tuple[builtins.int, builtins.int, builtins.int]"
+  },
+  "contracts": {
+    "preconditions": [],
+    "postconditions": [
+      "Return the (start, end, total) of the maximum-sum contiguous subarray"
+    ],
+    "invariants": []
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "max_subarray_bounds",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "nums",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "int",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return the (start, end, total) of the maximum-sum contiguous subarray.\n\n    Uses a modified Kadane's algorithm. Both indices are inclusive.\n    If multiple subarrays tie for the maximum sum, return the one that\n    starts earliest. If nums is empty, return (0, 0, 0). If all values\n    are negative, return the single element with the largest value.\n\n    Args:\n        nums: List of integers.\n\n    Returns:\n        A tuple (start, end, total) where start and end are inclusive\n        0-based indices and total is the subarray sum.\n\n    Examples:\n        max_subarray_bounds([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == (3, 6, 6)\n        max_subarray_bounds([1]) == (0, 0, 1)\n        max_subarray_bounds([-3, -1, -2]) == (1, 1, -1)\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "UnaryOp",
+              "op": {
+                "_type": "Not"
+              },
+              "operand": {
+                "_type": "Name",
+                "id": "nums",
+                "ctx": {
+                  "_type": "Load"
+                }
+              }
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "Tuple",
+                  "elts": [
+                    {
+                      "_type": "Constant",
+                      "value": 0,
+                      "kind": null
+                    },
+                    {
+                      "_type": "Constant",
+                      "value": 0,
+                      "kind": null
+                    },
+                    {
+                      "_type": "Constant",
+                      "value": 0,
+                      "kind": null
+                    }
+                  ],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "best_sum",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "nums",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Constant",
+                "value": 0,
+                "kind": null
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "best_start",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "best_end",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "cur_sum",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "nums",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Constant",
+                "value": 0,
+                "kind": null
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "cur_start",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "i",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "range",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Constant",
+                  "value": 1,
+                  "kind": null
+                },
+                {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "len",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "nums",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "BinOp",
+                    "left": {
+                      "_type": "Name",
+                      "id": "cur_sum",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "op": {
+                      "_type": "Add"
+                    },
+                    "right": {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "nums",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "Name",
+                        "id": "i",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "Lt"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "nums",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "Name",
+                        "id": "i",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "cur_sum",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "nums",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "Name",
+                        "id": "i",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "cur_start",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Name",
+                      "id": "i",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "cur_sum",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "BinOp",
+                      "left": {
+                        "_type": "Name",
+                        "id": "cur_sum",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "op": {
+                        "_type": "Add"
+                      },
+                      "right": {
+                        "_type": "Subscript",
+                        "value": {
+                          "_type": "Name",
+                          "id": "nums",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "slice": {
+                          "_type": "Name",
+                          "id": "i",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      }
+                    },
+                    "type_comment": null
+                  }
+                ]
+              },
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "cur_sum",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "GtE"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Name",
+                      "id": "best_sum",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "best_sum",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Name",
+                      "id": "cur_sum",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "best_start",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Name",
+                      "id": "cur_start",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "best_end",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Name",
+                      "id": "i",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  }
+                ],
+                "orelse": []
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "best_start",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "best_end",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "best_sum",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "tuple",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Tuple",
+            "elts": [
+              {
+                "_type": "Name",
+                "id": "int",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              {
+                "_type": "Name",
+                "id": "int",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              {
+                "_type": "Name",
+                "id": "int",
+                "ctx": {
+                  "_type": "Load"
+                }
+              }
+            ],
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

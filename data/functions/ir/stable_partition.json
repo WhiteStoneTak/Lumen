@@ -1,0 +1,355 @@
+{
+  "lumen_schema": "ir-v1",
+  "func_id": "stable_partition",
+  "source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (items: builtins.list[Any], predicate: def (*Any, **Any) -> Any) -> tuple[builtins.list[Any], builtins.list[Any]]",
+    "params": [
+      {
+        "name": "items",
+        "mypy_type": "builtins.list[Any]",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "predicate",
+        "mypy_type": "def (*Any, **Any) -> Any",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "tuple[builtins.list[Any], builtins.list[Any]]"
+  },
+  "contracts": {
+    "preconditions": [],
+    "postconditions": [
+      "Partition items into (true_group, false_group) using a predicate"
+    ],
+    "invariants": []
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "ImportFrom",
+        "module": "typing",
+        "names": [
+          {
+            "_type": "alias",
+            "name": "Callable",
+            "asname": null
+          },
+          {
+            "_type": "alias",
+            "name": "TypeVar",
+            "asname": null
+          }
+        ],
+        "level": 0
+      },
+      {
+        "_type": "Assign",
+        "targets": [
+          {
+            "_type": "Name",
+            "id": "T",
+            "ctx": {
+              "_type": "Store"
+            }
+          }
+        ],
+        "value": {
+          "_type": "Call",
+          "func": {
+            "_type": "Name",
+            "id": "TypeVar",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "args": [
+            {
+              "_type": "Constant",
+              "value": "T",
+              "kind": null
+            }
+          ],
+          "keywords": []
+        },
+        "type_comment": null
+      },
+      {
+        "_type": "FunctionDef",
+        "name": "stable_partition",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "items",
+              "annotation": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "predicate",
+              "annotation": {
+                "_type": "Name",
+                "id": "Callable",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Partition items into (true_group, false_group) using a predicate.\n\n    Preserves the relative order of items within each group.\n    Items for which predicate returns True go in the first group.\n\n    Args:\n        items: List of items.\n        predicate: Callable that accepts one item and returns bool.\n\n    Returns:\n        A tuple (true_group, false_group) where true_group contains items\n        for which predicate(item) is True, and false_group the rest, both\n        in original relative order.\n\n    Examples:\n        stable_partition([1, 2, 3, 4, 5], lambda x: x % 2 == 0) == ([2, 4], [1, 3, 5])\n        stable_partition([], lambda x: True) == ([], [])\n        stable_partition([\"a\", \"b\", \"c\"], lambda x: x > \"a\") == ([\"b\", \"c\"], [\"a\"])\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "true_group",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Name",
+              "id": "list",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "false_group",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Name",
+              "id": "list",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "item",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Name",
+              "id": "items",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "predicate",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "item",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                },
+                "body": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "true_group",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Name",
+                          "id": "item",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "false_group",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Name",
+                          "id": "item",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "true_group",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "false_group",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "tuple",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Tuple",
+            "elts": [
+              {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              }
+            ],
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

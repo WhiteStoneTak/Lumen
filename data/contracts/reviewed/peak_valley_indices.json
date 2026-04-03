@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "peak_valley_indices",
+  "source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Return the indices of strict local peaks and valleys in order"
+  ],
+  "invariants": []
+}

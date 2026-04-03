@@ -1,0 +1,342 @@
+{
+  "lumen_schema": "ir-v1",
+  "func_id": "dense_rank",
+  "source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (values: builtins.list[builtins.float]) -> builtins.list[builtins.int]",
+    "params": [
+      {
+        "name": "values",
+        "mypy_type": "builtins.list[builtins.float]",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.list[builtins.int]"
+  },
+  "contracts": {
+    "preconditions": [],
+    "postconditions": [
+      "Assign dense ranks to a list of values (1-based)"
+    ],
+    "invariants": []
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "dense_rank",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "values",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "float",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Assign dense ranks to a list of values (1-based).\n\n    Tied values receive the same rank. The next distinct value receives\n    rank+1 (not rank+count_of_ties). Returned ranks correspond to the\n    original input positions.\n\n    Args:\n        values: List of floats (or ints).\n\n    Returns:\n        List of integer ranks in the same order as input values.\n\n    Examples:\n        dense_rank([3.0, 1.0, 4.0, 1.0, 5.0]) == [2, 1, 3, 1, 4]\n        dense_rank([5, 5, 5]) == [1, 1, 1]\n        dense_rank([]) == []\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "UnaryOp",
+              "op": {
+                "_type": "Not"
+              },
+              "operand": {
+                "_type": "Name",
+                "id": "values",
+                "ctx": {
+                  "_type": "Load"
+                }
+              }
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "List",
+                  "elts": [],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "sorted_unique",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "sorted",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "set",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "values",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "rank_map",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Name",
+              "id": "dict",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "Dict",
+              "keys": [],
+              "values": []
+            },
+            "simple": 1
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "rank",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "val",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "enumerate",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "sorted_unique",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": [
+                {
+                  "_type": "keyword",
+                  "arg": "start",
+                  "value": {
+                    "_type": "Constant",
+                    "value": 1,
+                    "kind": null
+                  }
+                }
+              ]
+            },
+            "body": [
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Subscript",
+                    "value": {
+                      "_type": "Name",
+                      "id": "rank_map",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "slice": {
+                      "_type": "Name",
+                      "id": "val",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Name",
+                  "id": "rank",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "type_comment": null
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "ListComp",
+              "elt": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "rank_map",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "v",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "generators": [
+                {
+                  "_type": "comprehension",
+                  "target": {
+                    "_type": "Name",
+                    "id": "v",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  },
+                  "iter": {
+                    "_type": "Name",
+                    "id": "values",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ifs": [],
+                  "is_async": 0
+                }
+              ]
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Name",
+            "id": "int",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

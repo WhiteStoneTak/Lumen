@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "stable_partition",
+  "source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Partition items into (true_group, false_group) using a predicate"
+  ],
+  "invariants": []
+}

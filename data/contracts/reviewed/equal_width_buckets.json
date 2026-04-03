@@ -1,0 +1,14 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "equal_width_buckets",
+  "source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [
+    "n_buckets >= 1 and len(values) >= 1."
+  ],
+  "postconditions": [
+    "Assign each value to one of n_buckets equal-width buckets (0-indexed)"
+  ],
+  "invariants": []
+}

@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "spiral_order",
+  "source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Return the elements of a 2D matrix in clockwise spiral order"
+  ],
+  "invariants": []
+}

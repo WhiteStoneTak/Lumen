@@ -1,0 +1,12 @@
+{
+  "lumen_schema": "contract-reviewed-v1",
+  "func_id": "longest_plateau",
+  "source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
+  "generation_model": "manual-reviewed-bootstrap-v1",
+  "generation_attempt": 0,
+  "preconditions": [],
+  "postconditions": [
+    "Return the start index, end index (inclusive), and value of the longest run of consecutive equal elements"
+  ],
+  "invariants": []
+}

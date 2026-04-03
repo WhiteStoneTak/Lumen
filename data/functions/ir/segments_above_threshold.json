@@ -1,0 +1,422 @@
+{
+  "lumen_schema": "ir-v1",
+  "func_id": "segments_above_threshold",
+  "source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (nums: builtins.list[builtins.float], threshold: builtins.float) -> builtins.list[builtins.list[builtins.float]]",
+    "params": [
+      {
+        "name": "nums",
+        "mypy_type": "builtins.list[builtins.float]",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "threshold",
+        "mypy_type": "builtins.float",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.list[builtins.list[builtins.float]]"
+  },
+  "contracts": {
+    "preconditions": [],
+    "postconditions": [
+      "Return all maximal contiguous sublists where every element is strictly greater than threshold"
+    ],
+    "invariants": []
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "segments_above_threshold",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "nums",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "float",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "threshold",
+              "annotation": {
+                "_type": "Name",
+                "id": "float",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Return all maximal contiguous sublists where every element is\n    strictly greater than threshold.\n\n    Args:\n        nums: List of floats.\n        threshold: The threshold value (exclusive lower bound).\n\n    Returns:\n        List of sublists, each being a maximal contiguous run of values\n        strictly greater than threshold. Empty if no such elements exist.\n\n    Examples:\n        segments_above_threshold([1, 5, 6, 2, 8, 9, 3], 4) == [[5, 6], [8, 9]]\n        segments_above_threshold([1, 2, 3], 5) == []\n        segments_above_threshold([6, 6, 6], 5) == [[6, 6, 6]]\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "float",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "current_segment",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Name",
+                "id": "float",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "val",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Name",
+              "id": "nums",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "val",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "Gt"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Name",
+                      "id": "threshold",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "current_segment",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Name",
+                          "id": "val",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "If",
+                    "test": {
+                      "_type": "Name",
+                      "id": "current_segment",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "body": [
+                      {
+                        "_type": "Expr",
+                        "value": {
+                          "_type": "Call",
+                          "func": {
+                            "_type": "Attribute",
+                            "value": {
+                              "_type": "Name",
+                              "id": "result",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            },
+                            "attr": "append",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "args": [
+                            {
+                              "_type": "Name",
+                              "id": "current_segment",
+                              "ctx": {
+                                "_type": "Load"
+                              }
+                            }
+                          ],
+                          "keywords": []
+                        }
+                      },
+                      {
+                        "_type": "Assign",
+                        "targets": [
+                          {
+                            "_type": "Name",
+                            "id": "current_segment",
+                            "ctx": {
+                              "_type": "Store"
+                            }
+                          }
+                        ],
+                        "value": {
+                          "_type": "List",
+                          "elts": [],
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "type_comment": null
+                      }
+                    ],
+                    "orelse": []
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "Name",
+              "id": "current_segment",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "Expr",
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Attribute",
+                    "value": {
+                      "_type": "Name",
+                      "id": "result",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "current_segment",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Subscript",
+            "value": {
+              "_type": "Name",
+              "id": "list",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "slice": {
+              "_type": "Name",
+              "id": "float",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

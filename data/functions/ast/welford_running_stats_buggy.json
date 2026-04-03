@@ -1,0 +1,511 @@
+{
+  "lumen_schema": "ast-v1",
+  "func_id": "welford_running_stats",
+  "source_hash": "1d72ea5a46f438329f5399f6c98cf4376614539bf032a179f03e779fcd5e54d3",
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "FunctionDef",
+        "name": "welford_running_stats",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "values",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "list",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "float",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Compute running statistics using Welford's online algorithm.\n\n    At each step i (1-indexed), return (count, mean, variance) where variance\n    is the population variance (divided by count, not count-1).\n\n    Args:\n        values: List of floats.\n\n    Returns:\n        List of (count, mean, variance) tuples, one per input value, in order.\n        Variance at count=1 is 0.0.\n\n    Examples:\n        welford_running_stats([2.0, 4.0, 6.0]) == [(1, 2.0, 0.0), (2, 3.0, 1.0), (3, 4.0, 8/3)]\n        welford_running_stats([]) == []\n        welford_running_stats([5.0]) == [(1, 5.0, 0.0)]\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "tuple",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Tuple",
+                  "elts": [
+                    {
+                      "_type": "Name",
+                      "id": "int",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    {
+                      "_type": "Name",
+                      "id": "float",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    {
+                      "_type": "Name",
+                      "id": "float",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "n",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "mean",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0.0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "M2",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Constant",
+              "value": 0.0,
+              "kind": null
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "x",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Name",
+              "id": "values",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "body": [
+              {
+                "_type": "AugAssign",
+                "target": {
+                  "_type": "Name",
+                  "id": "n",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                "op": {
+                  "_type": "Add"
+                },
+                "value": {
+                  "_type": "Constant",
+                  "value": 1,
+                  "kind": null
+                }
+              },
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "delta",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "BinOp",
+                  "left": {
+                    "_type": "Name",
+                    "id": "x",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "op": {
+                    "_type": "Sub"
+                  },
+                  "right": {
+                    "_type": "Name",
+                    "id": "mean",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  }
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "AugAssign",
+                "target": {
+                  "_type": "Name",
+                  "id": "mean",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                "op": {
+                  "_type": "Add"
+                },
+                "value": {
+                  "_type": "BinOp",
+                  "left": {
+                    "_type": "Name",
+                    "id": "delta",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "op": {
+                    "_type": "Div"
+                  },
+                  "right": {
+                    "_type": "Name",
+                    "id": "n",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  }
+                }
+              },
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "delta2",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "BinOp",
+                  "left": {
+                    "_type": "Name",
+                    "id": "x",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "op": {
+                    "_type": "Sub"
+                  },
+                  "right": {
+                    "_type": "Name",
+                    "id": "mean",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  }
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "AugAssign",
+                "target": {
+                  "_type": "Name",
+                  "id": "M2",
+                  "ctx": {
+                    "_type": "Store"
+                  }
+                },
+                "op": {
+                  "_type": "Add"
+                },
+                "value": {
+                  "_type": "BinOp",
+                  "left": {
+                    "_type": "Name",
+                    "id": "delta",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "op": {
+                    "_type": "Mult"
+                  },
+                  "right": {
+                    "_type": "Name",
+                    "id": "delta",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  }
+                }
+              },
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "variance",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "BinOp",
+                  "left": {
+                    "_type": "Name",
+                    "id": "M2",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "op": {
+                    "_type": "Div"
+                  },
+                  "right": {
+                    "_type": "Name",
+                    "id": "n",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  }
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "Expr",
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Attribute",
+                    "value": {
+                      "_type": "Name",
+                      "id": "result",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "attr": "append",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Tuple",
+                      "elts": [
+                        {
+                          "_type": "Name",
+                          "id": "n",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        {
+                          "_type": "Name",
+                          "id": "mean",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        {
+                          "_type": "Name",
+                          "id": "variance",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Subscript",
+            "value": {
+              "_type": "Name",
+              "id": "tuple",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "slice": {
+              "_type": "Tuple",
+              "elts": [
+                {
+                  "_type": "Name",
+                  "id": "int",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "float",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                {
+                  "_type": "Name",
+                  "id": "float",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}

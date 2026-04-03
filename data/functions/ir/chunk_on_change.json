@@ -1,0 +1,680 @@
+{
+  "lumen_schema": "ir-v1",
+  "func_id": "chunk_on_change",
+  "source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
+  "type_info": {
+    "extraction_status": "ok",
+    "extraction_notes": [
+      "local variable types: not extracted (see module docstring)"
+    ],
+    "func_type": "def (items: builtins.list[Any], key: def (*Any, **Any) -> Any | None =) -> builtins.list[builtins.list[Any]]",
+    "params": [
+      {
+        "name": "items",
+        "mypy_type": "builtins.list[Any]",
+        "has_explicit_annotation": true
+      },
+      {
+        "name": "key",
+        "mypy_type": "def (*Any, **Any) -> Any | None",
+        "has_explicit_annotation": true
+      }
+    ],
+    "return_type": "builtins.list[builtins.list[Any]]"
+  },
+  "contracts": {
+    "preconditions": [],
+    "postconditions": [
+      "Split items into chunks, starting a new chunk whenever key(item) changes"
+    ],
+    "invariants": []
+  },
+  "ast": {
+    "_type": "Module",
+    "body": [
+      {
+        "_type": "ImportFrom",
+        "module": "typing",
+        "names": [
+          {
+            "_type": "alias",
+            "name": "Callable",
+            "asname": null
+          },
+          {
+            "_type": "alias",
+            "name": "Optional",
+            "asname": null
+          }
+        ],
+        "level": 0
+      },
+      {
+        "_type": "FunctionDef",
+        "name": "chunk_on_change",
+        "args": {
+          "_type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "_type": "arg",
+              "arg": "items",
+              "annotation": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            },
+            {
+              "_type": "arg",
+              "arg": "key",
+              "annotation": {
+                "_type": "Subscript",
+                "value": {
+                  "_type": "Name",
+                  "id": "Optional",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "slice": {
+                  "_type": "Name",
+                  "id": "Callable",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": [
+            {
+              "_type": "Constant",
+              "value": null,
+              "kind": null
+            }
+          ]
+        },
+        "body": [
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Constant",
+              "value": "Split items into chunks, starting a new chunk whenever key(item) changes.\n\n    Consecutive items with the same key value are grouped together.\n    If key is None, uses the item itself as the key.\n\n    Args:\n        items: List of items.\n        key: Optional callable mapping an item to its group key. If None,\n             uses identity.\n\n    Returns:\n        List of non-empty sublists, each a maximal run of items with equal\n        key values.\n\n    Examples:\n        chunk_on_change([1, 1, 2, 2, 1, 3]) == [[1, 1], [2, 2], [1], [3]]\n        chunk_on_change([\"ab\", \"ac\", \"b\", \"bc\"], key=lambda s: s[0]) == [[\"ab\", \"ac\"], [\"b\", \"bc\"]]\n        chunk_on_change([]) == []\n    ",
+              "kind": null
+            }
+          },
+          {
+            "_type": "If",
+            "test": {
+              "_type": "UnaryOp",
+              "op": {
+                "_type": "Not"
+              },
+              "operand": {
+                "_type": "Name",
+                "id": "items",
+                "ctx": {
+                  "_type": "Load"
+                }
+              }
+            },
+            "body": [
+              {
+                "_type": "Return",
+                "value": {
+                  "_type": "List",
+                  "elts": [],
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            ],
+            "orelse": []
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "key_fn",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Name",
+              "id": "Callable",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "IfExp",
+              "test": {
+                "_type": "Compare",
+                "left": {
+                  "_type": "Name",
+                  "id": "key",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "ops": [
+                  {
+                    "_type": "IsNot"
+                  }
+                ],
+                "comparators": [
+                  {
+                    "_type": "Constant",
+                    "value": null,
+                    "kind": null
+                  }
+                ]
+              },
+              "body": {
+                "_type": "Name",
+                "id": "key",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "orelse": {
+                "_type": "Lambda",
+                "args": {
+                  "_type": "arguments",
+                  "posonlyargs": [],
+                  "args": [
+                    {
+                      "_type": "arg",
+                      "arg": "x",
+                      "annotation": null,
+                      "type_comment": null
+                    }
+                  ],
+                  "vararg": null,
+                  "kwonlyargs": [],
+                  "kw_defaults": [],
+                  "kwarg": null,
+                  "defaults": []
+                },
+                "body": {
+                  "_type": "Name",
+                  "id": "x",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Subscript",
+              "value": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "slice": {
+                "_type": "Name",
+                "id": "list",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "AnnAssign",
+            "target": {
+              "_type": "Name",
+              "id": "current_chunk",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "annotation": {
+              "_type": "Name",
+              "id": "list",
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "value": {
+              "_type": "List",
+              "elts": [
+                {
+                  "_type": "Subscript",
+                  "value": {
+                    "_type": "Name",
+                    "id": "items",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "slice": {
+                    "_type": "Constant",
+                    "value": 0,
+                    "kind": null
+                  },
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "ctx": {
+                "_type": "Load"
+              }
+            },
+            "simple": 1
+          },
+          {
+            "_type": "Assign",
+            "targets": [
+              {
+                "_type": "Name",
+                "id": "current_key",
+                "ctx": {
+                  "_type": "Store"
+                }
+              }
+            ],
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "key_fn",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Subscript",
+                  "value": {
+                    "_type": "Name",
+                    "id": "items",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "slice": {
+                    "_type": "Constant",
+                    "value": 0,
+                    "kind": null
+                  },
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            },
+            "type_comment": null
+          },
+          {
+            "_type": "For",
+            "target": {
+              "_type": "Name",
+              "id": "i",
+              "ctx": {
+                "_type": "Store"
+              }
+            },
+            "iter": {
+              "_type": "Call",
+              "func": {
+                "_type": "Name",
+                "id": "range",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Constant",
+                  "value": 1,
+                  "kind": null
+                },
+                {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "len",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Name",
+                      "id": "items",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            },
+            "body": [
+              {
+                "_type": "Assign",
+                "targets": [
+                  {
+                    "_type": "Name",
+                    "id": "item_key",
+                    "ctx": {
+                      "_type": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "_type": "Call",
+                  "func": {
+                    "_type": "Name",
+                    "id": "key_fn",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "_type": "Subscript",
+                      "value": {
+                        "_type": "Name",
+                        "id": "items",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "slice": {
+                        "_type": "Name",
+                        "id": "i",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                },
+                "type_comment": null
+              },
+              {
+                "_type": "If",
+                "test": {
+                  "_type": "Compare",
+                  "left": {
+                    "_type": "Name",
+                    "id": "item_key",
+                    "ctx": {
+                      "_type": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "_type": "Eq"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "_type": "Name",
+                      "id": "current_key",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    }
+                  ]
+                },
+                "body": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "current_chunk",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Subscript",
+                          "value": {
+                            "_type": "Name",
+                            "id": "items",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "slice": {
+                            "_type": "Name",
+                            "id": "i",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  }
+                ],
+                "orelse": [
+                  {
+                    "_type": "Expr",
+                    "value": {
+                      "_type": "Call",
+                      "func": {
+                        "_type": "Attribute",
+                        "value": {
+                          "_type": "Name",
+                          "id": "result",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        },
+                        "attr": "append",
+                        "ctx": {
+                          "_type": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "_type": "Name",
+                          "id": "current_chunk",
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "current_chunk",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "List",
+                      "elts": [
+                        {
+                          "_type": "Subscript",
+                          "value": {
+                            "_type": "Name",
+                            "id": "items",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "slice": {
+                            "_type": "Name",
+                            "id": "i",
+                            "ctx": {
+                              "_type": "Load"
+                            }
+                          },
+                          "ctx": {
+                            "_type": "Load"
+                          }
+                        }
+                      ],
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  },
+                  {
+                    "_type": "Assign",
+                    "targets": [
+                      {
+                        "_type": "Name",
+                        "id": "current_key",
+                        "ctx": {
+                          "_type": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "_type": "Name",
+                      "id": "item_key",
+                      "ctx": {
+                        "_type": "Load"
+                      }
+                    },
+                    "type_comment": null
+                  }
+                ]
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
+            "_type": "Expr",
+            "value": {
+              "_type": "Call",
+              "func": {
+                "_type": "Attribute",
+                "value": {
+                  "_type": "Name",
+                  "id": "result",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                },
+                "attr": "append",
+                "ctx": {
+                  "_type": "Load"
+                }
+              },
+              "args": [
+                {
+                  "_type": "Name",
+                  "id": "current_chunk",
+                  "ctx": {
+                    "_type": "Load"
+                  }
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "_type": "Return",
+            "value": {
+              "_type": "Name",
+              "id": "result",
+              "ctx": {
+                "_type": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": {
+          "_type": "Subscript",
+          "value": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "slice": {
+            "_type": "Name",
+            "id": "list",
+            "ctx": {
+              "_type": "Load"
+            }
+          },
+          "ctx": {
+            "_type": "Load"
+          }
+        },
+        "type_comment": null
+      }
+    ],
+    "type_ignores": []
+  }
+}
