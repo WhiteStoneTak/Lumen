@@ -138,9 +138,11 @@
 
   "open_items": {
     "t2_test_quality": {
-      "stub_like_t2_test_count": 18,
-      "note": "18 T2 test stubs lack live test cases. These stubs satisfy validate_dataset_contracts but do not provide runtime verification of T2 fix correctness. Upgrading stubs to live tests is a pre-collection quality gate (non-blocking for plan validation, blocking for first run launch).",
-      "resolution_required_before": "first full_t2_confirmatory run launch"
+      "stub_like_t2_test_count": 0,
+      "note": "All 30 retained T2 test files upgraded to live tests in Phase 6B-3 (2026-04-08). Each file has at least two real test methods with assertions. Previously 18 stubs; all closed.",
+      "resolution_status": "CLOSED",
+      "resolution_date": "2026-04-08",
+      "resolution_commit": "phase6b3"
     },
     "reproducibility_record": {
       "note": "Access dates and max output token limits for gpt-5.4 and claude-opus-4-6 must be filled in docs/experimental-protocol.md §8.2 on the day of first full experimental run.",
