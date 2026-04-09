@@ -392,22 +392,22 @@ Provider:              OpenAI
 Execution surface:     OpenAI Messages API (openai Python SDK)
 Exact model identifier (API):  gpt-5.4
 UI display label (if no API ID):  N/A — exact API identifier in use
-Access date (YYYY-MM-DD):  TO BE FILLED ON FIRST FULL EXPERIMENTAL RUN
+Access date (YYYY-MM-DD):  2026-04-09
 Prompt version:        pilot-v1 (PROMPT_VERSION in src/experiment/runner.py)
 Decoding — temperature:  0.0
 Decoding — other:      provider defaults (see §8.3)
-Max output tokens:     TO BE FILLED ON FIRST FULL EXPERIMENTAL RUN
+Max output tokens:     1024
 
 --- Test subject B ---
 Provider:              Anthropic
 Execution surface:     Anthropic Messages API (anthropic Python SDK)
 Exact model identifier (API):  claude-opus-4-6
 UI display label (if no API ID):  N/A — exact API identifier in use
-Access date (YYYY-MM-DD):  TO BE FILLED ON FIRST FULL EXPERIMENTAL RUN
+Access date (YYYY-MM-DD):  2026-04-09
 Prompt version:        pilot-v1 (PROMPT_VERSION in src/experiment/runner.py)
 Decoding — temperature:  0.0
 Decoding — other:      provider defaults (see §8.3)
-Max output tokens:     TO BE FILLED ON FIRST FULL EXPERIMENTAL RUN
+Max output tokens:     1024
 
 --- Contract-generation LLM ---
 Provider:              Anthropic
