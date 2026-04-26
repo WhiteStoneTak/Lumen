@@ -386,6 +386,9 @@ def _apply_fix_to_source(
     return "".join(fixed_lines)
 
 
+_TEST_TIMEOUT_SECONDS = 180  # max wall-clock seconds for a single test run
+
+
 def _run_tests_against_patched_source(
     patched_source: str,
     func_id: str,
@@ -398,7 +401,13 @@ def _run_tests_against_patched_source(
     The test files load source via ``_load_func(_SOURCE)`` at module import
     time. We load the patched function from a temp file, then load the test
     module fresh and monkey-patch ``func_id`` in it before running.
+
+    A SIGALRM-based timeout of _TEST_TIMEOUT_SECONDS prevents infinite loops
+    in the patched code (e.g. a buggy while-loop that never terminates) from
+    hanging the scorer indefinitely.
     """
+    import signal
+
     # Write patched source to a temp file
     with tempfile.NamedTemporaryFile(
         mode="w", suffix=".py", delete=False, encoding="utf-8"
@@ -406,9 +415,25 @@ def _run_tests_against_patched_source(
         f.write(patched_source)
         tmp_path = f.name
 
+    patched_mod_name = f"_patched_{func_id}_{os.getpid()}"
+    unique_name = f"_t2_test_{func_id}_{os.getpid()}"
+
+    def _alarm_handler(signum: int, frame: object) -> None:  # noqa: ARG001
+        raise TimeoutError(
+            f"Test execution timed out after {_TEST_TIMEOUT_SECONDS}s — "
+            "the patched code may contain an infinite loop."
+        )
+
     try:
+        # Arm the timeout (SIGALRM is Unix-only; on other platforms this is a no-op)
+        try:
+            signal.signal(signal.SIGALRM, _alarm_handler)
+            signal.alarm(_TEST_TIMEOUT_SECONDS)
+        except (AttributeError, OSError):
+            pass  # SIGALRM not available (e.g. Windows)
+
         # Load function from temp file
-        spec = importlib.util.spec_from_file_location(f"_patched_{func_id}", tmp_path)
+        spec = importlib.util.spec_from_file_location(patched_mod_name, tmp_path)
         if spec is None or spec.loader is None:
             return False, "could not create module spec from temp file"
         mod = importlib.util.module_from_spec(spec)
@@ -419,7 +444,6 @@ def _run_tests_against_patched_source(
 
         # Load test module fresh (use a unique name to avoid caching)
         test_path = (repo_root() / test_suite_ref).resolve()
-        unique_name = f"_t2_test_{func_id}_{os.getpid()}"
         test_spec = importlib.util.spec_from_file_location(unique_name, test_path)
         if test_spec is None or test_spec.loader is None:
             return False, f"could not load test module from {test_suite_ref}"
@@ -460,7 +484,26 @@ def _run_tests_against_patched_source(
                 f"{len(result.failures)} failure(s), {len(result.errors)} error(s): "
                 f"{failures[:3]}",
             )
+
+    except TimeoutError as exc:
+        return False, f"test_timeout: {exc}"
+
+    except SyntaxError as exc:
+        # The patched source has invalid Python syntax — the model's fix introduced
+        # a syntax error (e.g. wrong indentation, incomplete expression).
+        # Treat this as a test failure with fix_score=0; do NOT raise as scorer_error.
+        return False, f"syntax_error: {exc}"
+
     finally:
+        # Cancel the alarm before cleanup
+        try:
+            signal.alarm(0)
+        except (AttributeError, OSError):
+            pass
+        # Remove dynamically-loaded modules from sys.modules to prevent memory growth
+        # across many scored items in the same process run.
+        for mod_name in (patched_mod_name, unique_name):
+            sys.modules.pop(mod_name, None)
         try:
             os.unlink(tmp_path)
         except OSError:
@@ -575,6 +618,50 @@ def _extract_best_fix_line(
                             normalized.append("            " + stripped_bl)
                     if len(normalized) >= 2:
                         return "\n".join(normalized)
+
+    elif func_id == "tokenize_arithmetic":
+        # The fix replaces the single while-loop condition line.
+        # Models typically show the buggy version first then the fix, so we must
+        # pick the last `while j < n` line that also mentions `expr[j] == "."` (in any
+        # form), since that is the corrected version rather than the buggy one.
+        # We look for the LAST match to prefer the fix shown after the buggy context.
+        best_ta_fix = None
+        for line in fix_lines:
+            if re.search(r"while\s+j\s*<\s*n", line) and re.search(r"""['"]\.['"]""", line):
+                # Any while j < n line that mentions a literal '.' is a fix candidate
+                best_ta_fix = line
+        if best_ta_fix is not None:
+            return best_ta_fix
+        # Fallback: find any while line that adds decimal handling in the condition
+        for line in fix_lines:
+            if re.search(r"while\s+j\s*<\s*n", line) and re.search(r"dot_seen|isdigit.*or|or.*isdigit", line):
+                best_ta_fix = line
+        if best_ta_fix is not None:
+            return best_ta_fix
+
+    elif func_id == "top_k_by":
+        # The bug is the sort key uses `key(pair[1])` (ascending) instead of
+        # `-key(pair[1])` (descending).  The fix is any line that contains the
+        # negated primary key: `-key(pair[1])`.  Pick the LAST match.
+        best_tk_fix = None
+        for line in fix_lines:
+            if re.search(r"-key\(pair\[1\]\)", line):
+                best_tk_fix = line
+        if best_tk_fix is not None:
+            stripped = best_tk_fix.strip()
+            # If it's already in key=lambda form, return as-is with correct indent
+            if stripped.startswith("key=lambda"):
+                return "            " + stripped.rstrip(",") + ","
+            # If it's a full sorted() call condensed to one line, extract the
+            # key= argument.  The reference fix spans only line 35 (the key= arg).
+            # We need: `            key=lambda pair: (-key(...), tiebreak_key(...), pair[0]),`
+            # Strategy: find `key=lambda pair: (` then grab everything until `))` at the end
+            m = re.search(r"key=lambda pair:\s*\((.+)\)\)", best_tk_fix)
+            if m:
+                inner = m.group(1)
+                return f"            key=lambda pair: ({inner}),"
+            # Fallback: strip the line as-is
+            return best_tk_fix
 
     elif func_id == "two_sum_sorted_pairs":
         # The fix is a two-line block: the left-pointer while loop + the missing
@@ -773,6 +860,16 @@ def score_t2(
     # However if there was no fix to attempt at all, status = parse_failure.
     if fix_score == 0 and fix_detail and fix_detail.startswith("test_failure"):
         # Tests ran but failed — scorer ran correctly
+        status = "ok"
+        failure_reason = None
+    if fix_score == 0 and fix_detail and fix_detail.startswith("test_timeout"):
+        # Tests timed out (infinite loop in patched code) — scorer ran correctly,
+        # the model's fix simply created an infinite loop and earns fix_score=0.
+        status = "ok"
+        failure_reason = None
+    if fix_score == 0 and fix_detail and fix_detail.startswith("syntax_error"):
+        # Patched source has invalid Python — model's fix has wrong indentation or
+        # incomplete code. Scorer ran correctly; model earns fix_score=0.
         status = "ok"
         failure_reason = None
 

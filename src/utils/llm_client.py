@@ -31,7 +31,7 @@ def _call_anthropic(prompt: str, model: str, temperature: float) -> str:
     if not api_key:
         raise EnvironmentError("ANTHROPIC_API_KEY environment variable is not set.")
 
-    client = anthropic.Anthropic(api_key=api_key)
+    client = anthropic.Anthropic(api_key=api_key, timeout=120.0)
     message = client.messages.create(
         model=model,
         max_tokens=MAX_TOKENS,
@@ -54,7 +54,7 @@ def _call_openai(prompt: str, model: str, temperature: float) -> str:
     if not api_key:
         raise EnvironmentError("OPENAI_API_KEY environment variable is not set.")
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key=api_key, timeout=120.0)
     response = client.chat.completions.create(
         model=model,
         max_completion_tokens=MAX_TOKENS,
