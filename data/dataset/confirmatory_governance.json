@@ -152,5 +152,59 @@
       "note": "This governance record covers T2 only. T1 and T3 full runs require separate planning once T2 confirmatory analysis is complete.",
       "status": "deferred"
     }
+  },
+
+  "confirmatory_run_attempts": {
+    "description": "Authoritative log of full confirmatory T2 launch attempts. Only one attempt may be marked AUTHORITATIVE at a time. Failed attempts are preserved as diagnostic-only and must not be used as input to confirmatory closure.",
+    "attempts": [
+      {
+        "attempt_index": 1,
+        "run_id": "full_t2_confirmatory",
+        "run_dir": "results/runs/full_t2_confirmatory/",
+        "status": "FAILED_ARCHIVED",
+        "authoritative": false,
+        "started_at": "2026-04-09T04:00:37+00:00",
+        "last_activity_at": "2026-04-26T10:54:00+00:00",
+        "final_counts": {
+          "total_items": 300,
+          "completed": 270,
+          "failed": 30,
+          "running": 0,
+          "skipped": 0
+        },
+        "failure_classes": [
+          {
+            "code": "filesystem_timeout_during_artifact_read",
+            "count": 9,
+            "evidence": "index.json failure_reason 'unhandled_runner_error: [Errno 60] Operation timed out' raised in src/experiment/runner.py:388 (resolve_representation_artifact -> pathlib.read_text)"
+          },
+          {
+            "code": "stub_typeerror_never_re_attempted",
+            "count": 21,
+            "evidence": "index.json failure_reason 'model_invocation_failed: TypeError: unsupported operand type(s) for |: type and NoneType' from the original 2026-04-08/09 Python-3.9 first attempt; the 2026-04-25/26 resume crashed in _write_analysis_export at runner.py:1137 with [Errno 60] before iterating to these tail-of-queue items"
+          }
+        ],
+        "protocol_blocker": {
+          "code": "within_run_scorer_version_drift",
+          "evidence": "src/experiment/score_t2.py modified in working tree at 2026-04-25 11:41:45; 132 score files generated under HEAD 16269a2 scorer + 138 under the modified scorer in the same run; for tokenize_arithmetic and top_k_by the modification touches a score-affecting code path (_extract_best_fix_line)"
+        },
+        "environment_factors": {
+          "icloud_drive_sync_active_on_repo_path": true,
+          "disk_capacity_at_archive_time": "100% (1.6 GiB free of 460 GiB)"
+        },
+        "in_place_repairs_applied_during_R_A_audit": [
+          "orphan repair: segments_above_threshold::T2::C4::gpt-5.4 index status running -> completed (response and score artifacts already on disk with status=ok score=1.0)",
+          "targeted re-score (under working-tree scorer; no score-affecting paths for these func_ids): chunk_on_change_T2_C2_claude-opus-4-6, chunk_on_change_T2_C2_gpt-5.4, find_balanced_spans_T2_C4_gpt-5.4"
+        ],
+        "in_dir_marker": "results/runs/full_t2_confirmatory/ARCHIVED.md"
+      }
+    ],
+    "next_attempt": {
+      "attempt_index": 2,
+      "planned_run_id": "full_t2_confirmatory_v2",
+      "planned_run_dir": "results/runs/full_t2_confirmatory_v2/",
+      "status": "PENDING_ENVIRONMENT_STABILIZATION",
+      "scope_unchanged_from_full_t2_plan": true
+    }
   }
 }
