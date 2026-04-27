@@ -145,8 +145,11 @@
       "resolution_commit": "phase6b3"
     },
     "reproducibility_record": {
-      "note": "Access dates and max output token limits for gpt-5.4 and claude-opus-4-6 must be filled in docs/experimental-protocol.md §8.2 on the day of first full experimental run.",
-      "fields_remaining": ["access_date", "max_output_tokens"]
+      "note": "Access dates and max output token limits for gpt-5.4 and claude-opus-4-6 were filled in docs/experimental-protocol.md §8.2 in commit 16269a2 (2026-04-09). Same MAX_TOKENS=1024 in src/utils/llm_client.py governed both the archived attempt 1 and the authoritative attempt 2 (full_t2_confirmatory_v2).",
+      "fields_remaining": [],
+      "resolution_status": "CLOSED",
+      "resolution_date": "2026-04-09",
+      "resolution_commit": "16269a2"
     },
     "t1_t3_full_runs": {
       "note": "This governance record covers T2 only. T1 and T3 full runs require separate planning once T2 confirmatory analysis is complete.",
@@ -197,14 +200,64 @@
           "targeted re-score (under working-tree scorer; no score-affecting paths for these func_ids): chunk_on_change_T2_C2_claude-opus-4-6, chunk_on_change_T2_C2_gpt-5.4, find_balanced_spans_T2_C4_gpt-5.4"
         ],
         "in_dir_marker": "results/runs/full_t2_confirmatory/ARCHIVED.md"
+      },
+      {
+        "attempt_index": 2,
+        "run_id": "full_t2_confirmatory_v2",
+        "run_dir": "results/runs/full_t2_confirmatory_v2/",
+        "status": "COMPLETED",
+        "authoritative": true,
+        "started_at": "2026-04-27T07:44:45.881910+00:00",
+        "finished_at": "2026-04-27T08:20:59.497186+00:00",
+        "wall_clock_minutes": 36,
+        "final_counts": {
+          "total_items": 300,
+          "completed": 300,
+          "failed": 0,
+          "running": 0,
+          "skipped": 0
+        },
+        "scope": {
+          "task": "T2",
+          "models": ["gpt-5.4", "claude-opus-4-6"],
+          "conditions": ["C1", "C1+", "C2", "C3", "C4"],
+          "n_functions": 30,
+          "func_set_matches_retained_30_byte_exact": true,
+          "execution_behavior": "overwrite",
+          "run_mode": "full"
+        },
+        "canonical_execution_state": {
+          "head_at_launch": "140ba95",
+          "scorer_freeze_commit": "9217a26",
+          "score_t2_path": "src/experiment/score_t2.py",
+          "llm_client_path": "src/utils/llm_client.py",
+          "score_files_under_canonical_scorer": 300,
+          "score_files_under_other_scorer": 0,
+          "evidence": "git diff 9217a26 HEAD -- src/experiment/score_t2.py src/utils/llm_client.py returns 0 lines; all 300 score files have mtime > canonical commit timestamp 2026-04-26T14:42:37Z"
+        },
+        "validation_summary": {
+          "index_completed": 300,
+          "index_failed": 0,
+          "index_running": 0,
+          "index_skipped": 0,
+          "score_files_present": 300,
+          "score_files_status_ok": 300,
+          "score_files_scoring_error": 0,
+          "response_files_present": 300,
+          "response_files_with_provider_error": 0,
+          "response_files_empty": 0,
+          "response_files_malformed_json": 0,
+          "csv_rows": 300,
+          "csv_item_status_completed": 300,
+          "csv_scorer_status_ok": 300,
+          "audit_counts_match_index": true,
+          "score_distribution": {"2.0": 192, "1.0": 89, "0.0": 19}
+        },
+        "planned_zero_explanation": "The runner's `planned` counter reflects items currently in the `planned` lifecycle state. Once the runner has iterated to and started every item, no item remains in `planned`; the value 0 is the literal correct count, not an artifact inconsistency. The total executed is captured by `started=300` and `total_items=300` in the same index; cross-checked against audit.json and analysis_long.csv (300 rows).",
+        "execution_path_note": "The launch was executed from /Users/takumi/Documents/GitHub/Lumen (the iCloud-Documents-managed working copy) rather than from the relocated /Users/takumi/Code/Lumen non-iCloud copy. Both copies were on HEAD 140ba95 with byte-identical canonical execution code. The iCloud sync risk did not materialize during the 36-minute run window; nevertheless, future long-running invocations should use the non-iCloud path as the safer environment per the Phase 4 preflight guidance.",
+        "supersedes_for_authority": "full_t2_confirmatory (attempt 1, FAILED_ARCHIVED)"
       }
     ],
-    "next_attempt": {
-      "attempt_index": 2,
-      "planned_run_id": "full_t2_confirmatory_v2",
-      "planned_run_dir": "results/runs/full_t2_confirmatory_v2/",
-      "status": "PENDING_ENVIRONMENT_STABILIZATION",
-      "scope_unchanged_from_full_t2_plan": true
-    }
+    "current_authoritative_attempt": "full_t2_confirmatory_v2"
   }
 }
