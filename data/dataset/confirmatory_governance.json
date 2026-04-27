@@ -259,5 +259,68 @@
       }
     ],
     "current_authoritative_attempt": "full_t2_confirmatory_v2"
+  },
+
+  "exploratory_replications": {
+    "description": "Post-confirmatory exploratory replication runs. NEVER authoritative for the pre-registered confirmatory family (H1/H2/H3 x T1/T2/T3). These runs do not replace, overwrite, or amend the authoritative confirmatory run recorded in confirmatory_run_attempts. They are reported separately and interpreted as exploratory robustness evidence only.",
+    "runs": [
+      {
+        "run_id": "t2_frontier_successor_replication",
+        "role": "post_confirmatory_exploratory_replication",
+        "status": "PLANNED",
+        "authoritative": false,
+        "exploratory": true,
+        "replaces_confirmatory_run": false,
+        "base_confirmatory_run": "full_t2_confirmatory_v2",
+        "task": "T2",
+        "models": ["gpt-5.5", "claude-opus-4-7"],
+        "conditions": ["C1", "C1+", "C2", "C3", "C4"],
+        "expected_items": 300,
+        "retained_func_ids_source": "data/dataset/confirmatory_governance.json#/full_t2_plan/retained_func_ids (byte-exact; same retained-30 as the confirmatory T2 run)",
+        "primary_replication_focus": "H1/T2 C4 > C1+",
+        "interpretation_rule": "Exploratory only; not part of the pre-registered confirmatory family. Per-model analysis remains exploratory under the protocol. The frozen confirmatory analysis (Wilcoxon signed-rank + rank-biserial correlation + Holm-Bonferroni) may be reused for comparability with the confirmatory run, but outputs and reports must be labeled exploratory replication and stored separately from confirmatory artifacts.",
+        "planned_head_commit": "22c09ad",
+        "planned_at": "2026-04-27",
+        "execution_state_references": {
+          "canonical_scorer_freeze_commit": "9217a26",
+          "confirmatory_closure_commit": "10beff2",
+          "temperature_compatibility_commit": "22c09ad",
+          "scorer_path": "src/experiment/score_t2.py",
+          "llm_client_path": "src/utils/llm_client.py",
+          "runner_path": "src/experiment/run_pilot.py"
+        },
+        "temperature_policy": {
+          "confirmatory_pair_temperature": 0.0,
+          "successor_pair_temperature": "provider_default (parameter omitted)",
+          "rationale": "Both OpenAI gpt-5.5 and Anthropic claude-opus-4-7 reject any non-default temperature value with HTTP 400 (gpt-5.5: 'Unsupported value: temperature does not support 0 with this model. Only the default (1) value is supported.'; claude-opus-4-7: 'temperature is deprecated for this model.'). Per the temperature suppression set _TEMPERATURE_UNSUPPORTED_MODELS in src/utils/llm_client.py introduced in commit 22c09ad, the runner omits the temperature keyword entirely for these two model ids and accepts the provider default. The confirmatory pair gpt-5.4 and claude-opus-4-6 is intentionally NOT in this set; its execution path is byte-identical to the v2 confirmatory run.",
+          "known_confound": "The confirmatory pair was deterministic (temperature=0); the successor pair effectively samples at the provider default. This temperature asymmetry is a known confound for any direct comparison between the two runs. Replication results must be interpreted as exploratory robustness evidence, not as a temperature-controlled head-to-head. If a temperature-controlled successor evaluation is later required, it would be a separate, additionally documented run."
+        },
+        "scope_constraints": {
+          "must_match_confirmatory": [
+            "retained-30 function set (byte-exact)",
+            "T2 only",
+            "conditions C1 C1+ C2 C3 C4",
+            "prompts",
+            "representation artifacts",
+            "scorer (frozen at 9217a26)",
+            "runner",
+            "MAX_TOKENS=1024"
+          ],
+          "differs_from_confirmatory_only_in": [
+            "model pair: {gpt-5.5, claude-opus-4-7} instead of {gpt-5.4, claude-opus-4-6}",
+            "temperature handling for the successor pair (suppressed; see temperature_policy)"
+          ]
+        },
+        "do_not": [
+          "modify current_authoritative_attempt",
+          "modify the full_t2_confirmatory_v2 run dir or its index/audit/scores/responses",
+          "merge replication results into the confirmatory_run_attempts list",
+          "describe this run as confirmatory in any analysis output",
+          "add a third model or extra task or extra condition"
+        ],
+        "expected_artifact_path": "results/runs/t2_frontier_successor_replication/",
+        "expected_log_path": "lumen_run_frontier_successor_replication.log"
+      }
+    ]
   }
 }
