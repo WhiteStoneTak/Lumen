@@ -17,6 +17,15 @@ import os
 # Recorded in the protocol §8.2 reproducibility record for the contract-generation LLM.
 MAX_TOKENS = 1024
 
+# Models for which the provider rejects any non-default `temperature` value.
+# For these models we omit the `temperature` parameter entirely and accept the
+# provider's default. The confirmatory pair (gpt-5.4, claude-opus-4-6) is NOT in
+# this set and continues to receive the caller-supplied temperature unchanged.
+_TEMPERATURE_UNSUPPORTED_MODELS = frozenset({
+    "gpt-5.5",
+    "claude-opus-4-7",
+})
+
 
 def _call_anthropic(prompt: str, model: str, temperature: float) -> str:
     """Send *prompt* through the Anthropic Messages API."""
@@ -32,12 +41,14 @@ def _call_anthropic(prompt: str, model: str, temperature: float) -> str:
         raise EnvironmentError("ANTHROPIC_API_KEY environment variable is not set.")
 
     client = anthropic.Anthropic(api_key=api_key, timeout=120.0)
-    message = client.messages.create(
-        model=model,
-        max_tokens=MAX_TOKENS,
-        temperature=temperature,
-        messages=[{"role": "user", "content": prompt}],
-    )
+    kwargs: dict = {
+        "model": model,
+        "max_tokens": MAX_TOKENS,
+        "messages": [{"role": "user", "content": prompt}],
+    }
+    if model not in _TEMPERATURE_UNSUPPORTED_MODELS:
+        kwargs["temperature"] = temperature
+    message = client.messages.create(**kwargs)
     return message.content[0].text
 
 
@@ -55,12 +66,14 @@ def _call_openai(prompt: str, model: str, temperature: float) -> str:
         raise EnvironmentError("OPENAI_API_KEY environment variable is not set.")
 
     client = OpenAI(api_key=api_key, timeout=120.0)
-    response = client.chat.completions.create(
-        model=model,
-        max_completion_tokens=MAX_TOKENS,
-        temperature=temperature,
-        messages=[{"role": "user", "content": prompt}],
-    )
+    kwargs: dict = {
+        "model": model,
+        "max_completion_tokens": MAX_TOKENS,
+        "messages": [{"role": "user", "content": prompt}],
+    }
+    if model not in _TEMPERATURE_UNSUPPORTED_MODELS:
+        kwargs["temperature"] = temperature
+    response = client.chat.completions.create(**kwargs)
     return response.choices[0].message.content
 
 
