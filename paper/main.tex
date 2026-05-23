@@ -29,6 +29,20 @@
 
 \graphicspath{{figures/}}
 
+% Build-level shim (skeleton-compile task): render missing figure files as
+% labeled placeholder boxes so the skeleton produces a PDF before real
+% figures exist. Remove once figures/F*.pdf land.
+\makeatletter
+\let\LumenOrigIncludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \IfFileExists{figures/#2}{\LumenOrigIncludegraphics[#1]{#2}}{%
+    \fbox{\begin{minipage}[c][2.5cm][c]{0.6\textwidth}%
+      \centering\textbf{[PLACEHOLDER]}\\[2pt]\texttt{figures/#2}\\[2pt]\textit{file not yet generated}%
+    \end{minipage}}%
+  }%
+}
+\makeatother
+
 \title{Information-Parity Testing for Code Representation Effects on
   Frontier LLMs: Methodology and Diagnostic Findings from a
   Bug-Detection Pilot}
