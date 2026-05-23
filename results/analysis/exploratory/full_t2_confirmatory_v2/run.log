@@ -1,0 +1,34 @@
+==============================================================================
+LUMEN EXPLORATORY ANALYSIS — non-confirmatory results
+Run: full_t2_confirmatory_v2
+Analyzed at: 2026-04-27T18:25:37.571777+00:00
+git HEAD: 865fbe0174acad670902c926ca12d1a69bd82861
+Schema: exploratory-analysis-v1
+Wilcoxon alternative: greater
+Bootstrap: 10000 resamples, 95% percentile, seed=20260427
+Correction: none  alpha: 0.05
+Records: 300 scanned, 0 excluded (status!=ok), 300 analytical
+Models in data: ['claude-opus-4-6', 'gpt-5.4']
+Conditions in data: ['C1', 'C1+', 'C2', 'C3', 'C4']
+Tasks in data: ['T2']
+func_ids used: 30
+------------------------------------------------------------------------------
+
+[e1_e3_decomposition]
+Hyp  Task  A     B     Model                n pos neg tie    med_d         W    rawP   holmP    r_rb    CIlo    CIhi  status
+E1   T2    C2    C1    -                   30   9   6  15    0.000    75.000   0.173     nan   0.250  -0.273   0.732  ok
+E2   T2    C3    C2    -                   30   4   6  20    0.000    22.000   0.828     nan  -0.200  -0.778   0.429  ok
+E3   T2    C4    C3    -                   30   5   3  22    0.000    22.500   0.363     nan   0.250  -0.500   1.000  ok
+
+[per_model_split_h1_h2_h3]
+Hyp  Task  A     B     Model                n pos neg tie    med_d         W    rawP   holmP    r_rb    CIlo    CIhi  status
+H1   T2    C4    C1+   claude-opus-4-6     30   6   1  23    0.000    24.500   0.055     nan   0.750   0.142   1.000  ok
+H2   T2    C4    C1    claude-opus-4-6     30   4   1  25    0.000    12.000   0.188     nan   0.600  -0.333   1.000  ok
+H3   T2    C1+   C1    claude-opus-4-6     30   3   6  21    0.000    15.000   0.910     nan  -0.333  -1.000   0.333  ok
+H1   T2    C4    C1+   gpt-5.4             30   7   4  19    0.000    46.000   0.135     nan   0.394  -0.250   0.864  ok
+H2   T2    C4    C1    gpt-5.4             30   5   5  20    0.000    30.000   0.500     nan   0.091  -0.600   0.714  ok
+H3   T2    C1+   C1    gpt-5.4             30   3   6  21    0.000    13.500   0.926     nan  -0.400  -1.000   0.333  ok
+==============================================================================
+
+JSON: /Users/takumi/Code/Lumen/results/analysis/exploratory/full_t2_confirmatory_v2/exploratory_results.json
+CSV:  /Users/takumi/Code/Lumen/results/analysis/exploratory/full_t2_confirmatory_v2/exploratory_results.csv

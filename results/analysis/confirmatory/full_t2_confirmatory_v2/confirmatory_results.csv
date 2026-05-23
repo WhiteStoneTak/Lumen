@@ -1,0 +1,10 @@
+hypothesis,task,condition_A,condition_B,n_complete_pairs,wilcoxon_statistic,p_value_one_sided,rank_biserial_r,holm_bonferroni_rejected,interpretation
+H1,T1,C4,C1+,0,nan,nan,0.0,False,Insufficient data
+H1,T2,C4,C1+,30,83.0,0.022765,0.580952,False,Fail to reject H₀ at α=0.05 (Holm–Bonferroni corrected)
+H1,T3,C4,C1+,0,nan,nan,0.0,False,Insufficient data
+H2,T1,C4,C1,0,nan,nan,0.0,False,Insufficient data
+H2,T2,C4,C1,30,63.0,0.233427,0.2,False,Fail to reject H₀ at α=0.05 (Holm–Bonferroni corrected)
+H2,T3,C4,C1,0,nan,nan,0.0,False,Insufficient data
+H3,T1,C1+,C1,0,nan,nan,0.0,False,Insufficient data
+H3,T2,C1+,C1,30,24.0,0.96875,-0.472527,False,Fail to reject H₀ at α=0.05 (Holm–Bonferroni corrected)
+H3,T3,C1+,C1,0,nan,nan,0.0,False,Insufficient data

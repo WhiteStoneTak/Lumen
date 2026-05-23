@@ -1,0 +1,10 @@
+analysis,hypothesis,task,cond_a,cond_b,model,n_pairs,n_pos,n_neg,n_tie,median_diff,statistic,raw_p,holm_p,r_rb,ci_low,ci_high,status
+e1_e3_decomposition,E1,T2,C2,C1,,30,5,8,17,0.0,30.0,0.9149169921875,,-0.34065934065934067,-0.8055555555555556,0.2383928571428528,ok
+e1_e3_decomposition,E2,T2,C3,C2,,30,4,3,23,0.0,17.5,0.3828125,,0.25,-0.6666666666666666,1.0,ok
+e1_e3_decomposition,E3,T2,C4,C3,,30,2,3,25,0.0,5.0,0.84375,,-0.3333333333333333,-1.0,1.0,ok
+per_model_split_h1_h2_h3,H1,T2,C4,C1+,claude-opus-4-7,30,7,3,20,0.0,41.5,0.0927734375,,0.509090909090909,-0.14285714285714285,1.0,ok
+per_model_split_h1_h2_h3,H2,T2,C4,C1,claude-opus-4-7,30,2,5,23,0.0,8.0,0.9375,,-0.42857142857142855,-1.0,0.3333333333333333,ok
+per_model_split_h1_h2_h3,H3,T2,C1+,C1,claude-opus-4-7,30,0,8,22,0.0,0.0,1.0,,-1.0,-1.0,-1.0,ok
+per_model_split_h1_h2_h3,H1,T2,C4,C1+,gpt-5.5,26,4,1,21,0.0,12.0,0.1875,,0.6,-0.3333333333333333,1.0,ok
+per_model_split_h1_h2_h3,H2,T2,C4,C1,gpt-5.5,27,4,4,19,0.0,18.0,0.63671875,,0.0,-0.7142857142857143,0.75,ok
+per_model_split_h1_h2_h3,H3,T2,C1+,C1,gpt-5.5,28,1,3,24,0.0,2.5,0.9375,,-0.5,-1.0,1.0,ok

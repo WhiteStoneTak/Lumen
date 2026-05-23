@@ -1,0 +1,34 @@
+==============================================================================
+LUMEN EXPLORATORY ANALYSIS — non-confirmatory results
+Run: t2_frontier_successor_replication
+Analyzed at: 2026-04-27T18:25:45.892673+00:00
+git HEAD: 865fbe0174acad670902c926ca12d1a69bd82861
+Schema: exploratory-analysis-v1
+Wilcoxon alternative: greater
+Bootstrap: 10000 resamples, 95% percentile, seed=20260427
+Correction: none  alpha: 0.05
+Records: 300 scanned, 12 excluded (status!=ok), 288 analytical
+Models in data: ['claude-opus-4-7', 'gpt-5.5']
+Conditions in data: ['C1', 'C1+', 'C2', 'C3', 'C4']
+Tasks in data: ['T2']
+func_ids used: 30
+------------------------------------------------------------------------------
+
+[e1_e3_decomposition]
+Hyp  Task  A     B     Model                n pos neg tie    med_d         W    rawP   holmP    r_rb    CIlo    CIhi  status
+E1   T2    C2    C1    -                   30   5   8  17    0.000    30.000   0.915     nan  -0.341  -0.806   0.238  ok
+E2   T2    C3    C2    -                   30   4   3  23    0.000    17.500   0.383     nan   0.250  -0.667   1.000  ok
+E3   T2    C4    C3    -                   30   2   3  25    0.000     5.000   0.844     nan  -0.333  -1.000   1.000  ok
+
+[per_model_split_h1_h2_h3]
+Hyp  Task  A     B     Model                n pos neg tie    med_d         W    rawP   holmP    r_rb    CIlo    CIhi  status
+H1   T2    C4    C1+   claude-opus-4-7     30   7   3  20    0.000    41.500   0.093     nan   0.509  -0.143   1.000  ok
+H2   T2    C4    C1    claude-opus-4-7     30   2   5  23    0.000     8.000   0.938     nan  -0.429  -1.000   0.333  ok
+H3   T2    C1+   C1    claude-opus-4-7     30   0   8  22    0.000     0.000   1.000     nan  -1.000  -1.000  -1.000  ok
+H1   T2    C4    C1+   gpt-5.5             26   4   1  21    0.000    12.000   0.188     nan   0.600  -0.333   1.000  ok
+H2   T2    C4    C1    gpt-5.5             27   4   4  19    0.000    18.000   0.637     nan   0.000  -0.714   0.750  ok
+H3   T2    C1+   C1    gpt-5.5             28   1   3  24    0.000     2.500   0.938     nan  -0.500  -1.000   1.000  ok
+==============================================================================
+
+JSON: /Users/takumi/Code/Lumen/results/analysis/exploratory/t2_frontier_successor_replication/exploratory_results.json
+CSV:  /Users/takumi/Code/Lumen/results/analysis/exploratory/t2_frontier_successor_replication/exploratory_results.csv
