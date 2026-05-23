@@ -1,0 +1,49 @@
+% Appendix E — Reproducibility manifest
+% Verbatim block per outline v2.1 §"Appendices" and §3.5 bootstrap-CI provenance.
+
+\section*{Appendix E: Reproducibility manifest}
+\label{app:E}
+
+\begin{verbatim}
+Repository
+    git@github.com:WhiteStoneTak/Lumen.git
+    HEAD at submission preparation: 54e722c
+
+Key commit hashes (also Appendix B)
+    Pre-registration              : Constitution v0.2.2
+                                    (committed before data collection)
+    Analysis machinery freeze     : 9217a26
+    Confirmatory closure          : 10beff2
+    Successor plan registration   : 9c91347
+    Exploratory tooling           : 865fbe0
+    analyze_exploratory.py        : 54e722c
+
+Run wall-clocks
+    full_t2_confirmatory_v2           : 36 min 13 s
+    t2_frontier_successor_replication : 45 min 25 s
+
+API endpoint snapshot dates
+    % TODO: record API snapshot dates for the confirmatory and
+    %       successor runs (provider-side endpoint version on the
+    %       data-collection day).
+
+Raw response archives
+    Confirmatory : results/runs/full_t2_confirmatory_v2/responses/
+    Successor    : results/runs/t2_frontier_successor_replication/responses/
+    (Score JSONs alongside, under .../scores/.)
+
+Bootstrap CI scratch-script provenance (confirmatory effect sizes)
+    Script        : scratch/bootstrap_ci_confirmatory.py
+    Results JSON  : scratch/bootstrap_ci_results.json
+    RNG seed      : 20260427
+    Resamples     : 10,000
+    Method        : percentile bootstrap on rank-biserial r
+    Verification  : point estimates re-computed by the script and
+                    matched analyze_confirmatory.py output to <0.001
+                    on r and to identical W and raw p-values on the
+                    Wilcoxon decisions.
+
+    The frozen analyze_confirmatory.py does not compute CI; the scratch
+    script is a sibling implementation that adds CI reporting only and
+    does not modify any pre-registered hypothesis-testing decision.
+\end{verbatim}

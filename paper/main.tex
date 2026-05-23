@@ -1,25 +1,706 @@
-% Lumen — manuscript placeholder
-% TODO: write paper after study completion
+% Lumen — workshop paper LaTeX skeleton
+% Constructed from outline v2.1 (verification-integrated).
+% Status: SECTION-STUB skeleton. Each section/subsection carries a 1–3 sentence
+% stub; full prose drafting is deferred to a later session.
+%
+% Document class: article (initial). Switch to LLM4Code template only after
+% venue confirmation.
+%
+% Tables: numerical values populated from outline v2.1 verified figures and
+% from the analysis JSONs (results/analysis/.../*.json). No [TBD] cells.
+%
+% Figures: placeholders only. Source data files named in % TODO comments.
 
 \documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
 
-\title{\textbf{Lumen}\\[0.4em]
-  \large Structured Code Representations for LLM Code Reasoning:\\
-  A Controlled Empirical Study}
-\author{Lumen Project}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{todonotes}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\usepackage[capitalize, noabbrev]{cleveref}
+
+\graphicspath{{figures/}}
+
+\title{Information-Parity Testing for Code Representation Effects on
+  Frontier LLMs: Methodology and Diagnostic Findings from a
+  Bug-Detection Pilot}
+
+\author{Takumi%
+  \thanks{Affiliation: \texttt{\% TODO: institutional affiliation}.
+          Correspondence: \texttt{\% TODO: contact email}.}}
+
 \date{}
 
 \begin{document}
 \maketitle
 
-% TODO: Abstract
-% TODO: Introduction
-% TODO: Related Work
-% TODO: Study Design
-% TODO: Results
-% TODO: Discussion
-% TODO: Conclusion
+% =============================================================
+% Abstract
+% =============================================================
+\begin{abstract}
+% STUB: refine after §7 drafting (§7 == post-skeleton prose pass).
+% Pasted verbatim from outline v2.1 abstract; H1 sentence carries the
+% verified 95% bootstrap CI [+0.08, +0.92] excluding zero.
+Frontier LLMs are increasingly applied to code reasoning, yet whether the
+\emph{format} of input code affects reasoning quality, independent of the
+\emph{information content} of the representation, is rarely tested with
+controls. We present a methodology for such testing --- a 5-condition design
+with an information-parity control (C1+) projecting a contract-augmented IR
+back into Python source --- and instantiate it on T2 bug detection across 30
+retained non-recursive Python functions, two confirmatory frontier LLMs, and
+a successor pair (post-confirmatory exploratory replication). The primary
+endpoint H1 (C4 $>$ C1+) yields a moderate positive effect (rank-biserial
+$r = +0.58$, 95\% CI $[+0.08, +0.92]$ excludes zero) but does not reach
+Holm-corrected significance under the pre-registered 9-test family
+(corrected $p = 0.205$). Exploratory analyses surface a directional pattern:
+H3 (in-text information enrichment helps) inverts on all four model-runs
+spanning two LLM generations. Post-hoc inspection reveals that the T2
+composite score saturates near $2/3$, compressing the effective Wilcoxon $n$
+from 30 to 13--14 and constituting the structural source of confirmatory
+underpowering. We discuss implications for both the empirical claim and the
+methodology, and propose rubric refinement and T1/T3 collection as the next
+steps.
+\end{abstract}
+
+% =============================================================
+% 1. Introduction
+% =============================================================
+\section{Introduction}
+\label{sec:1}
+
+\subsection{The question}
+\label{sec:1.1}
+% STUB: Frontier LLMs are ubiquitous in code reasoning workflows; most input
+% pipelines serialize code as plain text. Whether this format is optimal — and
+% whether format effects are separable from information-content effects — is
+% rarely tested with controls.
+
+\subsection{Why this is hard to test cleanly}
+\label{sec:1.2}
+% STUB: Naive comparisons (text vs AST) confound representation format with
+% information content. Prior work either trains models on different
+% representations (confounding format with training signal) or applies
+% structured prompting heuristically without controls; no prior controlled
+% study combines a frozen-frontier-LLM target, an information-parity control,
+% and pre-registered family-wise correction.
+
+\subsection{Contributions}
+\label{sec:1.3}
+% STUB: Three contributions: (1) an information-parity testing methodology
+% with a 5-condition design and a C1+ parity control isolating the structure
+% axis; (2) a pre-registered 9-test confirmatory family (3 hypotheses × 3
+% metrics) under Holm-Bonferroni at α=0.05; (3) diagnostic findings from a
+% 30-function pilot — direction-consistent but Holm-non-significant primary
+% endpoint, exploratory H3 inversion across all four model-runs, and a
+% structural rubric-ceiling source of underpowering motivating refinement.
+
+\subsection{The single-sentence proposition}
+\label{sec:1.4}
+% STUB: Verbatim insertion of the central proposition (5–7 lines).
+\begin{quote}
+We propose a controlled experimental methodology for measuring
+code-representation effects on frozen frontier LLMs, instantiate it on bug
+detection across 30 retained Python functions and two LLM generations, and
+report a primary endpoint that is direction-consistent but underpowered,
+alongside an exploratory directional inversion of the
+in-text-information-enrichment hypothesis and a structural source of
+underpowering inherent to the as-implemented scoring rubric.
+\end{quote}
+
+\subsection{Headline empirical findings (preview)}
+\label{sec:1.5}
+% STUB: Preview the four headline numbers — H1/T2 r=+0.58, CI [+0.08, +0.92],
+% raw p=0.023, Holm p=0.205; H1 4/4 model-runs positive (one CI excludes zero);
+% H3 4/4 model-runs inverted; T2 raw 3/3 achieved in 0/300 records, effective
+% Wilcoxon n=13–14.
+
+% =============================================================
+% 2. Related Work
+% =============================================================
+\section{Related Work}
+\label{sec:2}
+
+\subsection{Code representation for LLMs (training-time and inference-time)}
+\label{sec:2.1}
+% STUB: Two prior lines — (a) training-time integration of structure
+% (CodeBERT, GraphCodeBERT, TreeBERT, InCoder; \citep{feng2020codebert,
+% guo2021graphcodebert, jiang2021treebert, fried2022incoder}) where
+% representation is baked into model weights; (b) inference-time structured
+% prompting (chain-of-thought \citep{wei2022cot}, schemas, code sketches)
+% adopted heuristically without controls. Lumen does not retrain and treats
+% representation format as a controlled independent variable.
+
+\subsection{The closest ancestor: Namavar et al. (2022)}
+\label{sec:2.2}
+% STUB: \citet{namavar2022coderepr} train generative repair models from
+% scratch on multiple representations (tokens / ASTs / graphs); we differ on
+% three axes — target (frozen frontier LLM evaluation, not training),
+% information control (C1+ parity control vs unmatched representations), and
+% discipline (pre-registered confirmatory family with Holm correction).
+
+\subsection{LLM prompt-format sensitivity}
+\label{sec:2.3}
+% STUB: Cite \citet{sclar2024formatsensitivity} and
+% \citet{salinas2024butterfly} establishing surface-format sensitivity of
+% frontier LLMs independent of content; Lumen lifts this concern from
+% prompt-design folklore into a domain-specific controlled study, with the
+% format axis operationalized as a hierarchy of code representations and the
+% information axis via the C1+ parity control.
+
+\subsection{Novelty, circumscribed}
+\label{sec:2.4}
+% STUB: The contribution is the controlled combination
+% (information-parity + frozen-LLM + pre-registered correction), not any
+% individual ingredient. Long-term inspirations (content-addressed code,
+% projectional editing) inform the broader research program but are out of
+% scope.
+
+% =============================================================
+% 3. Methodology
+% =============================================================
+\section{Methodology}
+\label{sec:3}
+
+\subsection{Study phases}
+\label{sec:3.0}
+% STUB (§3.0 NEW IN v2.1): the 90-day study (Constitution v0.2.2 §13) ran in
+% three phases — (1) pipeline construction and dataset curation, (2) a pilot
+% phase calibrating runner and scorer (pilot data NOT pooled with
+% confirmatory data; confirmatory analysis derives solely from a fresh
+% data-collection on the 30 retained functions, full_t2_confirmatory_v2),
+% (3) confirmatory data collection (T2 only), post-confirmatory exploratory
+% successor replication, and analysis. The runner module is named
+% src/experiment/run_pilot.py — a naming artifact from Phase 2, retained
+% without modification for the confirmatory collection. The name reflects
+% implementation history, not methodological status.
+
+\subsection{Conditions and dataset}
+\label{sec:3.1}
+
+\subsubsection{The five conditions}
+\label{sec:3.1.1}
+% STUB: Five conditions; the central comparison is C4 vs C1+, holding type
+% and contract content constant while varying only format (structured vs
+% textual).
+
+\begin{table}[h]
+\centering
+\small
+\caption{The five experimental conditions. Information content is held
+constant between C1+ and C4 by construction; format differs (textual vs
+structured).}
+\label{tab:conditions}
+\begin{tabular}{llllll}
+\toprule
+Cond & Label & Format & Info & Purpose \\
+\midrule
+C1   & Source text             & Text       & Base       & Baseline \\
+\textbf{C1+} & \textbf{Annotated text} & \textbf{Text}       & \textbf{Enriched}   & \textbf{Information-parity control} \\
+C2   & Raw AST                 & Structured & Base       & Pure structure \\
+C3   & Typed AST               & Structured & + Types    & Type effect \\
+C4   & Contract-augmented IR   & Structured & + Contracts & Full enrichment, structured \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Dataset composition}
+\label{sec:3.1.2}
+% STUB (REVISED IN v2.2): 30 retained non-recursive single Python functions,
+% predominantly list and array manipulation (20 of 30), with smaller
+% representation from descriptive statistics (6), string processing (2),
+% arithmetic (1), and control-flow / parser-like logic (1). The
+% list-operations bias reflects standard-library/algorithmic-task prevalence
+% rather than intentional curation; we acknowledge this as an
+% external-validity limitation in §5.5. A static recursion-exclusion check
+% rejects self-recursive and mutually recursive helpers; non-recursive
+% restriction follows Constitution §17.5. Per-function ground-truth
+% artifacts include a buggy variant (Constitution §17.3 categories), the
+% location/category annotation, and a reference-fix test suite. Full
+% per-func categorization is in Appendix A (\cref{app:A}).
+
+\subsection{Information parity: operational definition and construction}
+\label{sec:3.2}
+% STUB: Information content := the set of typed propositions derivable from
+% a representation (signature types, parameter/return contracts: pre, post,
+% invariant). Under this definition, C1+ and C4 are equivalent by
+% construction. C1+ is constructed by projecting C4's annotations into
+% Python source: PEP 484 inline type hints in the signature plus a fixed
+% structured-docstring template carrying the contract clauses
+% (src/pipeline/ir_to_annotated_text.py). Residual asymmetry — AST
+% node-kind metadata, syntactic child-ordering, and explicit
+% cross-reference structure between contract clauses — is not "information"
+% under our operational definition; a more demanding definition (Shannon
+% bits, recoverability of the source IR) would assign C4 higher information
+% than C1+. Round-trip validation (C4 → C1+ → C4') is journal-version
+% follow-on work (Appendix D, \cref{app:D}). Contracts are LLM-generated by
+% a non-test-subject model and reviewed by the author per Constitution
+% §17.2 (allowed edits: factual correction, vacuous-clause deletion, single
+% missing-clause addition); provenance is logged for every function.
+
+\subsection{Tasks and primary endpoint}
+\label{sec:3.3}
+% STUB: T1 (code understanding), T2 (bug detection), T3 (code
+% transformation) defined; the 90-day study collected ONLY T2. T1 and T3
+% are uncollected; the 6 corresponding cells in the confirmatory family are
+% insufficient-data placeholders. T2 was pre-registered as the primary
+% endpoint (Constitution §17.4) for objectivity: the 0–3 composite (location
+% + diagnosis + fix) is fully automated. We honor that pre-registration by
+% reporting H1/T2 in §4 with the strongest interpretive weight.
+
+\subsection{Models and sampling regime}
+\label{sec:3.4}
+% STUB: Confirmatory pair = gpt-5.4 + claude-opus-4-6 at temperature=0.
+% Successor pair (post-confirmatory exploratory replication) = gpt-5.5 +
+% claude-opus-4-7 at provider-default temperature (the successor models
+% reject temperature=0; provider default is a hard constraint). This
+% introduces a sampling-regime asymmetry; we frame the §4.3 cross-pair
+% finding as ROBUSTNESS UNDER TEMPERATURE RELAXATION, not as
+% cross-generation replication. Successor models chosen as same-provider
+% successor frontier models to keep representation effect (rather than
+% provider drift) as the primary axis of interest.
+
+\subsection{Statistical plan}
+\label{sec:3.5}
+% STUB: Pre-registered confirmatory family = 3 hypotheses × 3 primary
+% metrics = 9 tests. H1: C4>C1+ (structure at constant information).
+% H2: C4>C1 (total enrichment). H3: C1+>C1 (information enrichment in
+% text). Per test: per-function paired difference (2-model averaged) →
+% Wilcoxon signed-rank (one-sided "greater", zero_method='wilcox') →
+% rank-biserial r = (T+ − T−)/(T+ + T−) on the same non-zero-diff set →
+% Holm-Bonferroni at α=0.05 across the 9-test family → 95% percentile
+% bootstrap CI (10,000 resamples, seed 20260427).
+%
+% On the correction: m=9 honored as pre-registered; six cells are
+% insufficient-data placeholders (T1/T3 uncollected). We distinguish in
+% reporting between collected-and-tested (3) and scope-limited-uncollected
+% (6) without retroactive m-reduction. Effective n per test is 13–14
+% (vs n_pairs=30) — the binding power constraint, see §3.6. Per-model
+% analysis is exploratory (Constitution §17.4); per-model results in §4.3
+% are uncorrected and labeled exploratory.
+%
+% On bootstrap CI provenance: Constitution §17.4 mandates 95% bootstrap CI
+% on effect sizes. The frozen analyze_confirmatory.py does NOT compute CI;
+% we compute CI via a sibling implementation
+% (scratch/bootstrap_ci_confirmatory.py) verified against the frozen
+% analyzer's point estimates. CI computation does not modify any
+% pre-registered hypothesis-testing decision; it adds reporting fidelity.
+% Confirmatory CIs reported in §4 alongside point estimates. (Provenance
+% manifest: Appendix E, \cref{app:E}.)
+
+\subsection{Score rubric and its empirical distribution}
+\label{sec:3.6}
+% STUB: T2 composite = location (0/1) + diagnosis (0/1) + fix (0/1);
+% per-model {0,1,2,3}; 2-model averaged {0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0}.
+% In the 300-record confirmatory run the per-model raw distribution is
+% 0:19 (6%), 1:89 (30%), 2:192 (64%), 3:0 (0%). NO model achieved 3/3 on
+% any T2 item; the location sub-score is the empirical bottleneck. After
+% 2-model averaging, supports 2.5 and 3.0 are both empty; effective range
+% [0.0, 2.0], mode 2.0. ≥53% of paired diffs are zero across H1/H2/H3,
+% reducing Wilcoxon's effective n to 13–14. The ceiling is a property of
+% the AS-IMPLEMENTED rubric, not of the data; expanding n alone does not
+% solve underpowering. Path forward (§6): rubric refinement, or
+% supplementing the composite with a continuous-valued T2 metric.
+%
+% Score histograms: Figure F3 (\cref{fig:f3}).
+
+\subsection{Pre-registration}
+\label{sec:3.7}
+% STUB: The Lumen Design Constitution v0.2.2, including the full
+% statistical plan, was committed to the public repository before data
+% collection began. Pre-registration timeline and key commit hashes
+% (constitution v0.2.2; analysis machinery freeze 9217a26; confirmatory
+% closure 10beff2; successor plan registration 9c91347; exploratory
+% tooling 865fbe0, 54e722c) are in Appendix B (\cref{app:B}).
+
+% =============================================================
+% 4. Results
+% =============================================================
+\section{Results}
+\label{sec:4}
+
+\subsection{Confirmatory: H1/T2 primary endpoint}
+\label{sec:4.1}
+% STUB (REVISED IN v2.1: CI inserted): Primary-endpoint key-value table
+% below; the 95% CI on r excludes zero and the raw one-sided p=0.023 would
+% reject in isolation; failure occurs at the family-correction stage with
+% m=9. Decision: fail to reject H₀ at α=0.05 corrected. Per Constitution §9
+% this places the study at "minimum success" — experiment completed,
+% materials released, no confirmatory hypothesis rejected. Structural
+% source of under-rejection documented in §3.6 and discussed in §5.3.
+
+\begin{table}[h]
+\centering
+\small
+\caption{H1/T2 primary-endpoint (\emph{Confirmatory analysis}).
+Bootstrap parameters: seed 20260427, 10\,000 resamples, percentile method.
+The 95\% CI on $r$ \textbf{excludes zero}.}
+\label{tab:h1-t2-primary}
+\begin{tabular}{lr}
+\toprule
+Field & Value \\
+\midrule
+Wilcoxon $W$                          & $83.0$ \\
+Raw $p$ (one-sided ``greater'')       & $0.023$ \\
+Holm-corrected $p$ ($m = 9$)          & $0.205$ \\
+Rank-biserial $r$                     & $+0.581$ \\
+\textbf{95\% bootstrap CI on $r$}     & $\mathbf{[+0.077,\ +0.917]}$ \\
+$n_{\text{pairs}}$                    & $30$ \\
+$n_{+}$ / $n_{-}$ / $n_{=}$           & $10$ / $4$ / $16$ \\
+Effective Wilcoxon $n$                & $14$ \\
+Median paired difference              & $0.0$ \\
+Mean paired difference                & $+0.183$ \\
+\midrule
+\multicolumn{2}{l}{\textbf{Decision: fail to reject $H_0$ at $\alpha=0.05$ corrected.}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Confirmatory: secondary T2 layer and family completeness}
+\label{sec:4.2}
+% STUB (REVISED IN v2.1: CI columns added): Two remaining T2 cells (H2/T2,
+% H3/T2) and the six uncollected T1/T3 cells; of three tested cells,
+% H1/T2 and H2/T2 yield positive r consistent with their pre-registered
+% direction, H3/T2 yields NEGATIVE r=−0.473 opposite the pre-registered
+% direction. None reaches Holm-corrected significance. H1/T2 is the only
+% test whose 95% CI excludes zero; H3/T2's CI upper bound (+0.077) just
+% crosses zero. The H3 directional inversion is the strongest exploratory
+% signal in the dataset and is taken up in §4.4.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\caption{Confirmatory 9-test family: three tested T2 cells and six
+uncollected T1/T3 cells (\emph{Confirmatory analysis}). $m=9$ honored as
+pre-registered; uncollected cells contribute Holm $p = 1.000$ by convention.}
+\label{tab:confirmatory-family}
+\begin{tabular}{llcrrrrlr}
+\toprule
+Hyp & Task & $n$ & $W$ & raw $p$ & Holm $p$ ($m=9$) & $r_{\text{rb}}$ & 95\% CI & Status \\
+\midrule
+H1 & T1 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H1 & T2 & 30  & $83.0$ & $0.023$ & $0.205$ & $+0.581$  & $[+0.077, +0.917]$   & tested \\
+H1 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H2 & T1 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H2 & T2 & 30  & $63.0$ & $0.233$ & $1.000$ & $+0.200$  & $[-0.333, +0.700]$   & tested \\
+H2 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H3 & T1 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H3 & T2 & 30  & $24.0$ & $0.969$ & $1.000$ & $-0.473$  & $[-0.885, +0.077]$   & tested \\
+H3 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Exploratory: H1 per-model direction concordance}
+\label{sec:4.3}
+% STUB: Exploratory by Constitution §17.4; not elevated to a confirmatory
+% claim. Across all four model-runs, the H1 direction (C4>C1+) is
+% consistent. claude-opus-4-6 95% CI excludes zero. The successor pair
+% preserves the direction under a relaxed sampling regime — robustness
+% evidence, not cross-generation replication (§3.4 asymmetry).
+
+\subsubsection{Confirmatory pair, T2}
+\label{sec:4.3.1}
+
+\begin{table}[h]
+\centering
+\small
+\caption{H1/T2 per-model rank-biserial, confirmatory pair
+(\emph{Exploratory analysis}, uncorrected).}
+\label{tab:h1-t2-confirmatory-permodel}
+\begin{tabular}{lcrrr}
+\toprule
+Model & $n$ & $r_{\text{rb}}$ & 95\% CI & raw $p$ (1-sided) \\
+\midrule
+\texttt{claude-opus-4-6} & 30 & $\mathbf{+0.750}$ & $\mathbf{[+0.142, +1.000]}$ & $0.055$ \\
+\texttt{gpt-5.4}         & 30 & $+0.394$          & $[-0.250, +0.864]$          & $0.135$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Successor pair, T2 (under temperature relaxation)}
+\label{sec:4.3.2}
+
+\begin{table}[h]
+\centering
+\small
+\caption{H1/T2 per-model rank-biserial, successor pair
+(\emph{Exploratory analysis}, uncorrected). Provider-default temperature.
+\texttt{gpt-5.5} $n = 26$ due to 12 parse-failure exclusions in the
+successor run, distributed across non-C1 conditions.}
+\label{tab:h1-t2-successor-permodel}
+\begin{tabular}{lcrrr}
+\toprule
+Model & $n$ & $r_{\text{rb}}$ & 95\% CI & raw $p$ (1-sided) \\
+\midrule
+\texttt{claude-opus-4-7} & 30 & $+0.509$ & $[-0.143, +1.000]$ & $0.093$ \\
+\texttt{gpt-5.5}         & 26 & $+0.600$ & $[-0.333, +1.000]$ & $0.188$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% TODO: F1 forest plot — H1/T2 per-model rank-biserial across both pairs
+% (4 rows). Source data: results/analysis/exploratory/.../exploratory_results.json
+% (per_model_split_h1_h2_h3, H1, T2 entries from the v2 and successor runs).
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{F1.pdf}
+\caption{Forest plot of H1/T2 per-model rank-biserial with 95\% CI across
+the confirmatory and successor pairs (4 rows). Vertical zero line
+indicated. \emph{Exploratory analysis.}}
+\label{fig:f1}
+\end{figure}
+\todo[inline]{F1: not yet generated. Source data:
+\texttt{results/analysis/exploratory/.../exploratory\_results.json}.
+Generation script TBD.}
+
+\subsection{Exploratory: H3 directional inversion across all four model-runs}
+\label{sec:4.4}
+% STUB: Across all four model-runs, H3 (C1+>C1, the prediction that
+% information enrichment in textual form helps T2) goes in the OPPOSITE
+% direction. Caveat reported in line: claude-opus-4-7 r=−1.000 with
+% collapsed CI reflects 0 pos vs 8 neg out of 30 (22 ties), saturating the
+% rank-biserial bound at small effective n — a CI artifact, not a strong
+% negative claim. Sign-test sanity check on 4 model-run sign observations
+% gives (1/2)^4 = 0.063 as upper-bound exploratory consistency check
+% (model-runs not strictly independent). Auxiliary: gpt-5.5 produced 0/30
+% parse failures on C1 but 12/120 on non-C1 — among non-C1, the
+% structured/enriched conditions destabilize output. The data exploratorily
+% suggest in-text type and contract annotations on top of plain Python
+% source do not aid — and may impede — frontier LLM bug detection at the
+% current scoring rubric. Consistent with, but does not confirm, the
+% structure-vs-information dissociation the C1+ control was designed to test.
+
+\begin{table}[h]
+\centering
+\small
+\caption{H3/T2 per-model rank-biserial across all four model-runs
+(\emph{Exploratory analysis}). All four directions are negative.
+The \texttt{claude-opus-4-7} row has a collapsed CI at $[-1.000, -1.000]$
+reflecting 0 positive vs 8 negative diffs in 30 pairs (22 ties); this is a
+CI artifact at small effective $n$, not a strong negative claim.}
+\label{tab:h3-t2-permodel}
+\begin{tabular}{llcrrl}
+\toprule
+Run & Model & $n_{\text{pairs}}$ & $r_{\text{rb}}$ & 95\% CI & $n_{+}/n_{-}/n_{=}$ \\
+\midrule
+confirmatory v2 & \texttt{claude-opus-4-6} & 30 & $-0.333$ & $[-1.000, +0.333]$  & 3/6/21 \\
+confirmatory v2 & \texttt{gpt-5.4}         & 30 & $-0.400$ & $[-1.000, +0.333]$  & 3/6/21 \\
+successor       & \texttt{claude-opus-4-7} & 30 & $-1.000$ & $[-1.000, -1.000]$  & 0/8/22 \\
+successor       & \texttt{gpt-5.5}         & 28 & $-0.500$ & $[-1.000, +1.000]$  & 1/3/24 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% TODO: F2 forest plot — H3/T2 per-model rank-biserial (4 rows).
+% Source data: results/analysis/exploratory/.../exploratory_results.json
+% (per_model_split_h1_h2_h3, H3, T2 entries from both runs).
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{F2.pdf}
+\caption{Forest plot of H3/T2 per-model rank-biserial with 95\% CI across
+the confirmatory and successor pairs (4 rows). Vertical zero line
+indicated. Demonstrates the inverted-direction pattern visually;
+complements \cref{fig:f1}. \emph{Exploratory analysis.}}
+\label{fig:f2}
+\end{figure}
+\todo[inline]{F2: not yet generated. Source data:
+\texttt{results/analysis/exploratory/.../exploratory\_results.json}.}
+
+\subsection{Exploratory: cumulative-decomposition E1--E3}
+\label{sec:4.5}
+% STUB: No single decomposition step reaches significance in either run.
+% Direction inverts between confirmatory and successor on E1 and E3. The
+% cumulative chain does NOT exhibit a clean monotone build-up of effect
+% through the four conditions. This pattern provides post-hoc support for
+% the central comparison being C4 vs C1+ rather than the cumulative chain
+% alone: the structure-vs-information axis carries the systematic signal
+% in the data, while the marginal information additions do not. Full table
+% in Appendix C (\cref{app:C}).
+
+\begin{table}[h]
+\centering
+\small
+\caption{Cumulative-decomposition per-pair effect sizes
+(\emph{Exploratory analysis}, 2-model averaged). Full numerical table in
+Appendix~\ref{app:C}.}
+\label{tab:e1-e3-summary}
+\begin{tabular}{lllrl}
+\toprule
+Run & Hyp & Pair & $r_{\text{rb}}$ & Direction \\
+\midrule
+v2        & E1 & C2 vs C1 & $+0.250$ & $+$ \\
+v2        & E2 & C3 vs C2 & $-0.200$ & $-$ \\
+v2        & E3 & C4 vs C3 & $+0.250$ & $+$ \\
+successor & E1 & C2 vs C1 & $-0.341$ & $-$ \\
+successor & E2 & C3 vs C2 & $+0.250$ & $+$ \\
+successor & E3 & C4 vs C3 & $-0.333$ & $-$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% TODO: F3 score-distribution histograms — per-model raw composite
+% (showing 3 absent) and per-function 2-model averaged composite (showing
+% 2.5 and 3.0 absent). Visual support for §3.6.
+% Source data: results/runs/full_t2_confirmatory_v2/scores/*.json.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\textwidth]{F3.pdf}
+\caption{Score distribution histograms. Left: per-model raw composite
+$\{0,1,2,3\}$ (composite $3$ absent in 300/300 records). Right:
+per-function 2-model averaged composite $\{0, 0.5, \dots, 3.0\}$ (supports
+$2.5$ and $3.0$ both absent in 30/30 functions). Visual support for
+\S\ref{sec:3.6}.}
+\label{fig:f3}
+\end{figure}
+\todo[inline]{F3: not yet generated. Source data:
+\texttt{results/runs/full\_t2\_confirmatory\_v2/scores/*.json}.}
+
+% TODO: F4 (optional, supplementary) — schematic of the five conditions
+% showing the cumulative chain C1→C2→C3→C4 and the parity branch C1→C1+.
+% No data source; pure schematic.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{F4.pdf}
+\caption{Schematic of the five conditions: cumulative chain
+C1$\rightarrow$C2$\rightarrow$C3$\rightarrow$C4 and information-parity
+branch C1$\rightarrow$C1+. (Optional supplementary figure.)}
+\label{fig:f4}
+\end{figure}
+\todo[inline]{F4: schematic, not yet drawn; no data source.}
+
+% =============================================================
+% 5. Discussion
+% =============================================================
+\section{Discussion}
+\label{sec:5}
+
+\subsection{What the primary endpoint does and does not support}
+\label{sec:5.1}
+% STUB (REVISED IN v2.1: CI use): The H1/T2 non-rejection is not evidence
+% of no effect. Point estimate r=+0.58 is moderate, AND the 95% bootstrap
+% CI [+0.077, +0.917] EXCLUDES ZERO; the one-sided raw p=0.023 would
+% reject in isolation; failure is at the family-correction stage with
+% m=9, six of which are insufficient-data placeholders. Honest reading:
+% data are CONSISTENT WITH the pre-registered direction at moderate
+% effect size with a CI that excludes zero, and the current effective
+% power (n≈14 after ties) does not support a confirmatory claim. Rubric
+% refinement, not n alone, is the path forward.
+
+\subsection{Cross-run direction concordance: what it permits and forbids}
+\label{sec:5.2}
+% STUB: H1 direction positive in all four model-runs; H3 direction
+% negative in all four. While exploratory and not multiplicity-controlled,
+% this pattern constrains the space of explanations: a single-model
+% artifact for H1 is ruled out, and the H3 inversion is not noise on a
+% single run. Exploratory signals do NOT promote H1 to confirmatory
+% status, but they do shift the prior on what a properly-powered
+% follow-up would find.
+
+\subsection{The score-rubric ceiling is a structural finding, not a side issue}
+\label{sec:5.3}
+% STUB: The location sub-score's empirical near-saturation (§3.6) is the
+% binding constraint on confirmatory power. This is a property of the
+% as-implemented T2 rubric, not of the dataset or models. Scaling n from
+% 30 to 50 or 100 would not change the saturation rate; it would only
+% multiply tied paired differences. The follow-up should refine the
+% location sub-score or supplement with a continuous T2 metric BEFORE
+% expanding n. Methodological finding with re-use value beyond this study.
+
+\subsection{Implications for the long-term Lumen vision}
+\label{sec:5.4}
+% STUB: Constitution v0.2.2 §3 specifies a reassessment threshold for
+% the canonical-core-over-surface-text bet: an outcome of C1+≥C4 on all
+% primary metrics across both confirmatory models would have triggered
+% formal reassessment. The observed outcome — C4>C1+ in direction with
+% moderate effect size and a CI excluding zero, failing Holm — does NOT
+% trigger reassessment, nor confirmatory support. The bet's empirical
+% motivation remains intact at the level of point estimates and weakened
+% at the level of statistical confirmation; the project continues at the
+% architectural level pending T1/T3 collection, rubric refinement, and a
+% properly-powered confirmatory re-test.
+
+\subsection{Threats to validity (consolidated)}
+\label{sec:5.5}
+% STUB (REVISED IN v2.1: domain skew added): we acknowledge —
+%   • n=30 with effective n=13–14 after ties (power bound)
+%   • T1 and T3 uncollected — six confirmatory cells scope-limited
+%   • Dataset domain skew — approximately two-thirds (20 of 30) of
+%     retained functions are list/array operations; results may not
+%     generalize uniformly to arithmetic, parsing, or string-heavy
+%     domains.
+%   • Author-reviewed contracts — single-evaluator residual variance,
+%     held constant between C1+ and C4 by construction
+%   • Two providers, two generations — frontier LLM landscape not
+%     fully covered
+%   • Non-recursive single-function — Constitution-mandated 90-day
+%     scope restriction
+%   • Information parity is operational, not absolute — see §3.2
+%     residual asymmetry note; round-trip validation is journal-version
+%     follow-on work (Appendix D).
+
+% =============================================================
+% 6. Conclusion
+% =============================================================
+\section{Conclusion}
+\label{sec:6}
+
+\subsection{Summary}
+\label{sec:6.1}
+% STUB (REVISED IN v2.1: CI nuance): we proposed a methodology for
+% information-parity testing of code-representation effects on frozen
+% frontier LLMs and instantiated it on T2 bug detection. Primary endpoint
+% direction-consistent (point estimate +0.58, 95% CI excludes zero) but
+% Holm-non-significant; exploratory analyses surface a robust H1
+% direction across two LLM generations and a systematic H3 inversion;
+% post-hoc inspection identifies a scoring-rubric ceiling as the
+% structural source of underpowering.
+
+\subsection{Immediate follow-on}
+\label{sec:6.2}
+% STUB (REVISED IN v2.1: domain-broadening item added): refine the T2
+% scoring rubric (location sub-score saturation §3.6, §5.3), the binding
+% constraint to address before n expansion; collect T1 and T3 data under
+% separate confirmatory pre-registration; implement C4→C1+→C4'
+% round-trip validation (§3.2); back-port bootstrap CI into the frozen
+% analyze_confirmatory.py via a structurally-equivalent re-implementation;
+% expand n to 50 under separate pre-registration AFTER rubric refinement;
+% broaden dataset domain coverage to dilute the list-operations skew (§5.5).
+
+\subsection{Long-term}
+\label{sec:6.3}
+% STUB: the study tests a precondition for the broader Lumen vision (a
+% canonical core IR with text and LLM-facing notations as projections):
+% that representation form materially affects external-agent reasoning.
+% Direction-consistent confirmatory point estimate (with a CI excluding
+% zero) plus cross-generation exploratory robustness keep that
+% precondition plausible. A definitive empirical case awaits T1/T3
+% collection and rubric refinement; the architectural bet remains active
+% and is reassessed only on stronger contrary evidence than the present
+% data provide.
+
+% =============================================================
+% References
+% =============================================================
+\bibliographystyle{plainnat}
+\bibliography{lumen}
+
+% =============================================================
+% Appendices
+% =============================================================
+\appendix
+
+\input{appendices/appendix_a_funcids}
+\input{appendices/appendix_b_provenance}
+\input{appendices/appendix_c_full_e1_e3}
+\input{appendices/appendix_d_roundtrip}
+\input{appendices/appendix_e_repro}
 
 \end{document}

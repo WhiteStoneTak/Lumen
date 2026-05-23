@@ -1,0 +1,75 @@
+% Appendix A — Retained 30 func_ids and domain categorization
+% Source: results/analysis/exploratory/full_t2_confirmatory_v2/exploratory_results.json
+%         (input_summary.func_ids_used)
+%
+% Aggregate (verified against data/functions/raw/ headers):
+%   arithmetic 1, list_operations 20, string_processing 2,
+%   statistics 6, control_flow 1.  Sum = 30.
+
+\section*{Appendix A: Retained 30 \texttt{func\_id}s and domain categorization}
+\label{app:A}
+
+The 30 retained non-recursive Python functions used for the confirmatory and
+successor T2 runs are listed below in the order recorded by
+\texttt{input\_summary.func\_ids\_used}.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Retained 30 \texttt{func\_id}s with their domain categorization in
+\{\texttt{arithmetic}, \texttt{list\_operations}, \texttt{string\_processing},
+\texttt{statistics}, \texttt{control\_flow}\}. Categories derived from each
+function's signature and docstring in \texttt{data/functions/raw/}.}
+\label{tab:appendix-a-funcids}
+\begin{tabular}{rll}
+\toprule
+\# & \texttt{func\_id} & Domain \\
+\midrule
+ 1 & \texttt{antidiagonals}            & \texttt{list\_operations} \\
+ 2 & \texttt{batch\_list}              & \texttt{list\_operations} \\
+ 3 & \texttt{camel\_to\_snake}         & \texttt{string\_processing} \\
+ 4 & \texttt{chunk\_on\_change}        & \texttt{list\_operations} \\
+ 5 & \texttt{count\_true\_segments}    & \texttt{list\_operations} \\
+ 6 & \texttt{dense\_rank}              & \texttt{statistics} \\
+ 7 & \texttt{equal\_width\_buckets}    & \texttt{statistics} \\
+ 8 & \texttt{find\_balanced\_spans}    & \texttt{control\_flow} \\
+ 9 & \texttt{first\_index\_of\_max}    & \texttt{list\_operations} \\
+10 & \texttt{frequency\_table}         & \texttt{statistics} \\
+11 & \texttt{group\_and\_aggregate}    & \texttt{statistics} \\
+12 & \texttt{group\_by\_key}           & \texttt{list\_operations} \\
+13 & \texttt{longest\_plateau}         & \texttt{list\_operations} \\
+14 & \texttt{max\_subarray\_bounds}    & \texttt{arithmetic} \\
+15 & \texttt{merge\_intervals}         & \texttt{list\_operations} \\
+16 & \texttt{merge\_sorted}            & \texttt{list\_operations} \\
+17 & \texttt{peak\_valley\_indices}    & \texttt{list\_operations} \\
+18 & \texttt{remove\_adjacent\_dups}   & \texttt{list\_operations} \\
+19 & \texttt{rle\_encode}              & \texttt{list\_operations} \\
+20 & \texttt{rotate\_list}             & \texttt{list\_operations} \\
+21 & \texttt{segments\_above\_threshold} & \texttt{list\_operations} \\
+22 & \texttt{sliding\_window\_max}     & \texttt{list\_operations} \\
+23 & \texttt{sorted\_list\_intersection} & \texttt{list\_operations} \\
+24 & \texttt{spiral\_order}            & \texttt{list\_operations} \\
+25 & \texttt{stable\_partition}        & \texttt{list\_operations} \\
+26 & \texttt{strided\_windows}         & \texttt{list\_operations} \\
+27 & \texttt{tokenize\_arithmetic}     & \texttt{string\_processing} \\
+28 & \texttt{top\_k\_by}               & \texttt{statistics} \\
+29 & \texttt{two\_sum\_sorted\_pairs}  & \texttt{list\_operations} \\
+30 & \texttt{welford\_running\_stats}  & \texttt{statistics} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Aggregate.}
+\begin{itemize}
+  \item \texttt{arithmetic}: 1
+  \item \texttt{list\_operations}: 20
+  \item \texttt{string\_processing}: 2
+  \item \texttt{statistics}: 6
+  \item \texttt{control\_flow}: 1
+\end{itemize}
+Total: 30.
+
+\paragraph{Curation rule.}
+A static recursion-exclusion check at the dataset curation stage rejects any
+function with self-recursion or mutually recursive helpers; the 90-day study
+scope explicitly restricts to non-recursive code (Constitution \S17.5).

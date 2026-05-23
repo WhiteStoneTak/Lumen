@@ -1,0 +1,41 @@
+% Appendix C — Full E1–E3 results table (both runs)
+% Source: results/analysis/exploratory/full_t2_confirmatory_v2/exploratory_results.json
+%         results/analysis/exploratory/t2_frontier_successor_replication/exploratory_results.json
+% (analyses.e1_e3_decomposition)
+% Values populated from the analysis JSONs and consistent with the
+% directional summary in outline v2.1 §4.5.
+
+\section*{Appendix C: Full E1--E3 results, confirmatory v2 and successor runs}
+\label{app:C}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Full E1--E3 cumulative-decomposition results, confirmatory v2 run
+(\texttt{full\_t2\_confirmatory\_v2}, 2-model averaged) and successor run
+(\texttt{t2\_frontier\_successor\_replication}, 2-model averaged).
+\textit{Exploratory analysis.} Each row pairs the cumulative step
+(C2 vs C1, C3 vs C2, C4 vs C3) on T2.}
+\label{tab:appendix-c-e1-e3}
+\begin{tabular}{llrrrrrr}
+\toprule
+Run & Step & $n_{\text{pairs}}$ & $W$ & raw $p$ & $r_{\text{rb}}$ & 95\% CI & $n_{+}/n_{-}/n_{=}$ \\
+\midrule
+v2        & E1 (C2 vs C1) & 30 & 75.0 & 0.173 & $+0.250$ & $[-0.273, +0.732]$ & 9/6/15 \\
+v2        & E2 (C3 vs C2) & 30 & 22.0 & 0.828 & $-0.200$ & $[-0.778, +0.429]$ & 4/6/20 \\
+v2        & E3 (C4 vs C3) & 30 & 22.5 & 0.363 & $+0.250$ & $[-0.500, +1.000]$ & 5/3/22 \\
+\midrule
+successor & E1 (C2 vs C1) & 30 & 30.0 & 0.915 & $-0.341$ & $[-0.806, +0.238]$ & 5/8/17 \\
+successor & E2 (C3 vs C2) & 30 & 17.5 & 0.383 & $+0.250$ & $[-0.667, +1.000]$ & 4/3/23 \\
+successor & E3 (C4 vs C3) & 30 &  5.0 & 0.844 & $-0.333$ & $[-1.000, +1.000]$ & 2/3/25 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Notes.}
+Raw $p$-values are one-sided ``greater'' matching the pre-registered
+direction of each cumulative step. $W$ is the Wilcoxon signed-rank
+statistic. Confidence intervals are 95\% percentile bootstrap
+(seed 20260427, 10\,000 resamples). The high tie counts ($n_{=} \in
+\{15, 17, 20, 22, 23, 25\}$) are the same effective-$n$ compression
+phenomenon documented for the confirmatory family in \S\ref{sec:3.6}.

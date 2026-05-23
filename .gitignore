@@ -44,3 +44,5 @@ htmlcov/
 # The results/ directory exists in the repo for analysis/figures/raw artifacts;
 # only the auto-generated run subdirectories are gitignored.
 results/runs/
+scratch/
+paper-skeleton.zip
