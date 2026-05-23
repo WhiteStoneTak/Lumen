@@ -46,3 +46,4 @@ htmlcov/
 results/runs/
 scratch/
 paper-skeleton.zip
+lumen_run*.log
