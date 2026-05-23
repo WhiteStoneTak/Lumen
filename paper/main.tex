@@ -710,6 +710,9 @@ branch C1$\rightarrow$C1+. (Optional supplementary figure.)}
 % Appendices
 % =============================================================
 \appendix
+\makeatletter
+\renewcommand\@seccntformat[1]{Appendix~\csname the#1\endcsname\quad}
+\makeatother
 
 \input{appendices/appendix_a_funcids}
 \input{appendices/appendix_b_provenance}
