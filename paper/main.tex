@@ -772,67 +772,139 @@ branch C1$\rightarrow$C1+. (Optional supplementary figure.)}
 
 \subsection{What the primary endpoint does and does not support}
 \label{sec:5.1}
-% STUB (REVISED IN v2.1: CI use): The H1/T2 non-rejection is not evidence
-% of no effect. Point estimate r=+0.58 is moderate, AND the 95% bootstrap
-% CI [+0.077, +0.917] EXCLUDES ZERO; the one-sided raw p=0.023 would
-% reject in isolation; failure is at the family-correction stage with
-% m=9, six of which are insufficient-data placeholders. Honest reading:
-% data are CONSISTENT WITH the pre-registered direction at moderate
-% effect size with a CI that excludes zero, and the current effective
-% power (n≈14 after ties) does not support a confirmatory claim. Rubric
-% refinement, not n alone, is the path forward.
+The non-rejection of H1/T2 at the Holm-corrected family level
+(\S\ref{sec:4.1}) is not evidence of no effect. The honest reading
+of the primary endpoint splits across two clauses that must hold
+together; neither overrides the other.
+
+On the first clause: the point estimate $r_{\text{rb}} = +0.581$
+is moderate and lies in the pre-registered direction, the 95\%
+bootstrap CI $[+0.077, +0.917]$ excludes zero, and the one-sided
+raw $p = 0.023$ would reject $H_0$ in isolation. The data are
+consistent with the pre-registered direction at moderate effect
+size with a CI excluding zero. On the second clause: the failure
+occurs at the Holm--Bonferroni family-correction stage with
+$m = 9$ (\S\ref{sec:3.5}), six of whose cells are
+insufficient-data placeholders contributing Holm $p = 1.000$ by
+convention; the corrected $p = 0.205$; and the effective Wilcoxon
+$n \approx 14$, compressed from $n_{\text{pairs}} = 30$ by the
+rubric-induced tie distribution, does not support a confirmatory
+claim. The CI excluding zero qualifies the non-rejection; it does
+not overturn it.
+
+A back-of-the-envelope point reinforces the second clause. At the
+most-promising rank in $m = 9$, the Holm-corrected $\alpha$ is
+$\approx 0.0056$; detecting $r \approx +0.58$ at that threshold
+would require substantially larger non-tied effective $n$ than
+the present data provide. The implication, taken up in
+\S\ref{sec:5.3} and \S\ref{sec:6.2}, is that rubric refinement,
+not $n$ alone, is the path forward.
 
 \subsection{Cross-run direction concordance: what it permits and forbids}
 \label{sec:5.2}
-% STUB: H1 direction positive in all four model-runs; H3 direction
-% negative in all four. While exploratory and not multiplicity-controlled,
-% this pattern constrains the space of explanations: a single-model
-% artifact for H1 is ruled out, and the H3 inversion is not noise on a
-% single run. Exploratory signals do NOT promote H1 to confirmatory
-% status, but they do shift the prior on what a properly-powered
-% follow-up would find.
+The H1 direction is positive in all four model-runs across the
+confirmatory and successor pairs (\S\ref{sec:4.3}); the H3
+direction is negative in all four (\S\ref{sec:4.4}). These
+analyses are exploratory under Constitution \S17.4, uncorrected,
+and underpowered per cell, and cannot be promoted to confirmatory
+claims.
+
+What the concordance \emph{permits}. It constrains the explanation
+space. The positive H1 direction is not a single-model artifact,
+and it survives a relaxed sampling regime on the successor pair.
+The H3 inversion is not noise on one run; it appears in every
+run. Together these patterns shift the prior on what a properly
+powered confirmatory study would find, in opposite directions for
+the two hypotheses. What the concordance \emph{forbids}. It does
+not promote H1 to confirmatory status, and it does not establish
+the H3 inversion as a genuine direction. Multiplicity is
+unaddressed; the four model-runs share dataset, contracts, and
+rubric, so cross-run agreement does not deliver the independence a
+confirmatory test would require. The exploratory signals are
+inputs to follow-on design (\S\ref{sec:6.2}), not substitutes for
+it.
 
 \subsection{The score-rubric ceiling is a structural finding, not a side issue}
 \label{sec:5.3}
-% STUB: The location sub-score's empirical near-saturation (§3.6) is the
-% binding constraint on confirmatory power. This is a property of the
-% as-implemented T2 rubric, not of the dataset or models. Scaling n from
-% 30 to 50 or 100 would not change the saturation rate; it would only
-% multiply tied paired differences. The follow-up should refine the
-% location sub-score or supplement with a continuous T2 metric BEFORE
-% expanding n. Methodological finding with re-use value beyond this study.
+The location sub-score's empirical near-saturation
+(\S\ref{sec:3.6}) is the binding constraint on confirmatory power
+in this study. The rubric assigns $0$, $1$, or $2$ points to the
+location component of a T2 verdict; the saturation rate at the
+$2$-point ceiling, documented in the empirical distribution of
+\S\ref{sec:3.6}, leaves almost no headroom for C4 to outscore C1+
+on this component within a paired comparison. The compressed
+effective Wilcoxon $n$ on H1/T2---$14$ against $n_{\text{pairs}} =
+30$ (\S\ref{sec:4.1})---is the direct consequence: $16$ of $30$
+paired differences tie at zero, and the moderate point estimate
+must clear Holm correction with that compressed denominator.
+
+This is a property of the as-implemented T2 rubric, not of the
+dataset or the models, and the distinction determines the path
+forward. Scaling $n$ from $30$ to $50$ or $100$ would not change
+the saturation rate; it would multiply tied paired differences in
+the same proportion, leave effective $n$ in the same fraction,
+and leave the Holm-corrected $\alpha$-budget no easier to meet.
+$n$ expansion is necessary, but it is not sufficient and not
+first. The follow-on (\S\ref{sec:6.2}) must refine the location
+sub-score---finer ordinal categories, or a continuous-valued T2
+metric supplementing the composite---before expanding $n$. We
+state this as a methodological finding with reuse value beyond
+the present study: in any composite-rubric, paired-comparison
+design where one sub-score saturates against its ceiling, $n$
+expansion alone will be a costly and ineffective response to
+underpowering.
 
 \subsection{Implications for the long-term Lumen vision}
 \label{sec:5.4}
-% STUB: Constitution v0.2.2 §3 specifies a reassessment threshold for
-% the canonical-core-over-surface-text bet: an outcome of C1+≥C4 on all
-% primary metrics across both confirmatory models would have triggered
-% formal reassessment. The observed outcome — C4>C1+ in direction with
-% moderate effect size and a CI excluding zero, failing Holm — does NOT
-% trigger reassessment, nor confirmatory support. The bet's empirical
-% motivation remains intact at the level of point estimates and weakened
-% at the level of statistical confirmation; the project continues at the
-% architectural level pending T1/T3 collection, rubric refinement, and a
-% properly-powered confirmatory re-test.
+Constitution v0.2.2 \S3 specifies a reassessment threshold for
+the canonical-core-over-surface-text bet: an outcome of
+$C1+ \geq C4$ on all primary metrics across both confirmatory
+models would trigger formal reassessment. The observed outcome on
+H1/T2---$C4 > C1+$ in direction, moderate effect size, CI
+excluding zero, failing Holm correction at $m = 9$---does not
+meet that threshold and therefore does not trigger reassessment.
+
+It also does not constitute confirmatory support for the bet.
+The point estimate is consistent with the bet's direction; the
+statistical confirmation it would require has not been delivered.
+The empirical motivation for the bet is intact at the level of
+point estimates and weakened at the level of statistical
+confirmation. The project continues at the architectural level
+pending T1 and T3 collection, rubric refinement
+(\S\ref{sec:5.3}), and a properly powered confirmatory re-test
+(\S\ref{sec:6.2}). Neither overclaim nor write-off is warranted;
+both would misrepresent the data.
 
 \subsection{Threats to validity (consolidated)}
 \label{sec:5.5}
-% STUB (REVISED IN v2.1: domain skew added): we acknowledge —
-%   • n=30 with effective n=13–14 after ties (power bound)
-%   • T1 and T3 uncollected — six confirmatory cells scope-limited
-%   • Dataset domain skew — approximately two-thirds (20 of 30) of
-%     retained functions are list/array operations; results may not
-%     generalize uniformly to arithmetic, parsing, or string-heavy
-%     domains.
-%   • Author-reviewed contracts — single-evaluator residual variance,
-%     held constant between C1+ and C4 by construction
-%   • Two providers, two generations — frontier LLM landscape not
-%     fully covered
-%   • Non-recursive single-function — Constitution-mandated 90-day
-%     scope restriction
-%   • Information parity is operational, not absolute — see §3.2
-%     residual asymmetry note; round-trip validation is journal-version
-%     follow-on work (Appendix D).
+Several threats remain on the table and bound what the present
+results support.
+
+\begin{itemize}
+\item \textbf{Power.} $n_{\text{pairs}} = 30$ with effective
+  Wilcoxon $n = 13$--$14$ after rubric-induced ties
+  (\S\ref{sec:4.1}) bounds power on every confirmatory cell.
+\item \textbf{Family completeness.} T1 and T3 were uncollected
+  within the 90-day scope; six of the nine confirmatory family
+  cells are scope-limited (\S\ref{sec:4.2}), and the results do
+  not generalize to other task families.
+\item \textbf{Dataset domain skew.} Approximately two-thirds
+  ($20$ of $30$) of the retained functions are list and array
+  operations; results may not generalize uniformly to arithmetic,
+  parsing, or string-heavy domains.
+\item \textbf{Author-reviewed contracts.} Single-evaluator
+  residual variance enters the rubric inputs, held constant
+  between C1+ and C4 by construction (the same reviewed
+  contracts are used in both).
+\item \textbf{Two providers, two generations.} The
+  frontier-LLM landscape is not fully covered.
+\item \textbf{Non-recursive single-function scope.} A
+  Constitution-mandated 90-day scope restriction.
+\item \textbf{Information parity is operational, not absolute.}
+  The residual asymmetry note in \S\ref{sec:3.2} stands;
+  round-trip C4\,$\to$\,C1+\,$\to$\,C4$'$ validation is
+  journal-version follow-on work.
+\end{itemize}
 
 % =============================================================
 % 6. Conclusion
