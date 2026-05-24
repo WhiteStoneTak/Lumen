@@ -530,14 +530,20 @@ H3 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & unc
 
 \subsection{Exploratory: H1 per-model direction concordance}
 \label{sec:4.3}
-% STUB: Exploratory by Constitution §17.4; not elevated to a confirmatory
-% claim. Across all four model-runs, the H1 direction (C4>C1+) is
-% consistent. claude-opus-4-6 95% CI excludes zero. The successor pair
-% preserves the direction under a relaxed sampling regime — robustness
-% evidence, not cross-generation replication (§3.4 asymmetry).
+The analyses in this and the following two subsections are
+exploratory by Constitution \S17.4; they are reported uncorrected
+and are not elevated to confirmatory claims. The two per-model
+panels below report H1/T2 on the confirmatory and successor pairs
+in turn; their joint reading is then summarized.
 
 \subsubsection{Confirmatory pair, T2}
 \label{sec:4.3.1}
+Table~\ref{tab:h1-t2-confirmatory-permodel} reports H1/T2 split by
+model on the confirmatory pair. \texttt{claude-opus-4-6} yields
+$r_{\text{rb}} = +0.750$ with 95\% CI $[+0.142, +1.000]$ excluding
+zero (raw one-sided $p = 0.055$); \texttt{gpt-5.4} yields
+$r_{\text{rb}} = +0.394$ with CI $[-0.250, +0.864]$ (raw $p = 0.135$).
+Both per-model estimates point in the pre-registered direction.
 
 \begin{table}[h]
 \centering
@@ -557,6 +563,15 @@ Model & $n$ & $r_{\text{rb}}$ & 95\% CI & raw $p$ (1-sided) \\
 
 \subsubsection{Successor pair, T2 (under temperature relaxation)}
 \label{sec:4.3.2}
+Table~\ref{tab:h1-t2-successor-permodel} reports the same split on
+the successor pair, sampled at provider-default temperature
+(\S\ref{sec:3.4}). \texttt{claude-opus-4-7} yields
+$r_{\text{rb}} = +0.509$ (CI $[-0.143, +1.000]$, raw $p = 0.093$);
+\texttt{gpt-5.5} yields $r_{\text{rb}} = +0.600$
+(CI $[-0.333, +1.000]$, raw $p = 0.188$). The \texttt{gpt-5.5} row
+is computed on $n = 26$: twelve parse-failure exclusions in the
+successor run reduced its effective pair count, distributed across
+non-C1 conditions.
 
 \begin{table}[h]
 \centering
@@ -576,6 +591,16 @@ Model & $n$ & $r_{\text{rb}}$ & 95\% CI & raw $p$ (1-sided) \\
 \end{tabular}
 \end{table}
 
+Across all four model-runs the H1 direction is consistent, and the
+\texttt{claude-opus-4-6} CI excludes zero. The successor pair
+preserves the direction under a relaxed sampling regime, so the H1
+direction is not a single-model artifact and is not erased by
+stochastic sampling. We frame this as robustness evidence under
+temperature relaxation; the deterministic-versus-stochastic
+asymmetry between the two pairs (\S\ref{sec:3.4}) precludes a
+cross-generation-replication framing. Figure~\ref{fig:f1} renders
+the four rows as a forest plot with a vertical zero line.
+
 % TODO: F1 forest plot — H1/T2 per-model rank-biserial across both pairs
 % (4 rows). Source data: results/analysis/exploratory/.../exploratory_results.json
 % (per_model_split_h1_h2_h3, H1, T2 entries from the v2 and successor runs).
@@ -593,20 +618,43 @@ Generation script TBD.}
 
 \subsection{Exploratory: H3 directional inversion across all four model-runs}
 \label{sec:4.4}
-% STUB: Across all four model-runs, H3 (C1+>C1, the prediction that
-% information enrichment in textual form helps T2) goes in the OPPOSITE
-% direction. Caveat reported in line: claude-opus-4-7 r=−1.000 with
-% collapsed CI reflects 0 pos vs 8 neg out of 30 (22 ties), saturating the
-% rank-biserial bound at small effective n — a CI artifact, not a strong
-% negative claim. Sign-test sanity check on 4 model-run sign observations
-% gives (1/2)^4 = 0.063 as upper-bound exploratory consistency check
-% (model-runs not strictly independent). Auxiliary: gpt-5.5 produced 0/30
-% parse failures on C1 but 12/120 on non-C1 — among non-C1, the
-% structured/enriched conditions destabilize output. The data exploratorily
-% suggest in-text type and contract annotations on top of plain Python
-% source do not aid — and may impede — frontier LLM bug detection at the
-% current scoring rubric. Consistent with, but does not confirm, the
-% structure-vs-information dissociation the C1+ control was designed to test.
+All four model-runs show a negative H3 direction. The pre-registered
+prediction was $C1+ > C1$---that information enrichment in textual
+form would aid T2---but Table~\ref{tab:h3-t2-permodel} shows C1+
+underperforming C1 in every run: \texttt{claude-opus-4-6}
+$r_{\text{rb}} = -0.333$, \texttt{gpt-5.4} $-0.400$,
+\texttt{claude-opus-4-7} $-1.000$, and \texttt{gpt-5.5} $-0.500$.
+
+The \texttt{claude-opus-4-7} row warrants a caveat in line. Its
+$r_{\text{rb}} = -1.000$ with collapsed 95\% CI $[-1.000, -1.000]$
+reflects $0$ positive against $8$ negative paired differences in 30
+pairs (22 ties); under such sparse non-zero data the rank-biserial
+estimator saturates at its lower bound and the CI degenerates. This
+is an artifact of the estimator at small effective $n$, not a strong
+negative claim.
+
+Treating each model-run's H3 sign as a single observation under a
+null of no effect gives $(1/2)^{4} = 1/16 \approx 0.063$ for four
+negatives out of four. We report this as an upper-bound exploratory
+consistency check, not as an inferential test: the four runs share
+dataset and rubric, and the two members of each pair share inputs,
+so the runs are not strictly independent and the bound is loose.
+
+An auxiliary observation from parse logs: \texttt{gpt-5.5} produced
+unparseable responses on $0/30$ C1 items in the successor run but on
+$12/120$ non-C1 items; among the non-C1 conditions it is the
+structured and enriched ones that destabilize the model's output.
+The instability is concentrated where the input departs from plain
+source.
+
+Taken together, the data exploratorily suggest that in-text type
+and contract annotations on top of plain Python source do not
+aid---and may impede---frontier LLM bug detection at the current
+scoring rubric. This is consistent with, but does not confirm, the
+dissociation of representational structure from information content
+that the C1+ control was designed to test. Figure~\ref{fig:f2}
+renders the four rows as a forest plot and complements
+Figure~\ref{fig:f1}.
 
 \begin{table}[h]
 \centering
@@ -646,14 +694,24 @@ complements \cref{fig:f1}. \emph{Exploratory analysis.}}
 
 \subsection{Exploratory: cumulative-decomposition E1--E3}
 \label{sec:4.5}
-% STUB: No single decomposition step reaches significance in either run.
-% Direction inverts between confirmatory and successor on E1 and E3. The
-% cumulative chain does NOT exhibit a clean monotone build-up of effect
-% through the four conditions. This pattern provides post-hoc support for
-% the central comparison being C4 vs C1+ rather than the cumulative chain
-% alone: the structure-vs-information axis carries the systematic signal
-% in the data, while the marginal information additions do not. Full table
-% in Appendix C (\cref{app:C}).
+Table~\ref{tab:e1-e3-summary} reports the cumulative-decomposition
+effect sizes for E1 (C2 vs C1), E2 (C3 vs C2), and E3 (C4 vs C3) on
+both runs; the full numerical table---with $W$, raw $p$, CI, and tie
+counts---is in Appendix~\ref{app:C}. On the confirmatory pair,
+$r_{\text{rb}}$ values are E1 $+0.250$, E2 $-0.200$, E3 $+0.250$;
+on the successor pair, E1 $-0.341$, E2 $+0.250$, E3 $-0.333$.
+
+No single decomposition step reaches significance in either run,
+and the direction inverts between the confirmatory and successor
+runs on E1 and E3. The cumulative chain
+$C1 \to C2 \to C3 \to C4$ does not exhibit a clean monotone
+build-up of effect through the four conditions.
+
+This pattern provides post-hoc support for the choice of central
+comparison: the systematic signal in the data is carried by the
+structure-versus-information axis (C4 vs C1+, isolated by
+construction) rather than by the marginal information additions
+along the cumulative chain.
 
 \begin{table}[h]
 \centering
