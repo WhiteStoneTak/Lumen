@@ -144,38 +144,76 @@ underpowering inherent to the as-implemented scoring rubric.
 
 \subsection{Code representation for LLMs (training-time and inference-time)}
 \label{sec:2.1}
-% STUB: Two prior lines — (a) training-time integration of structure
-% (CodeBERT, GraphCodeBERT, TreeBERT, InCoder; \citep{feng2020codebert,
-% guo2021graphcodebert, jiang2021treebert, fried2022incoder}) where
-% representation is baked into model weights; (b) inference-time structured
-% prompting (chain-of-thought \citep{wei2022cot}, schemas, code sketches)
-% adopted heuristically without controls. Lumen does not retrain and treats
-% representation format as a controlled independent variable.
+Two lines of prior work bear on Lumen's question.
+
+\textbf{Training-time integration of structure.} Encoder and
+decoder models that bake code structure into their weights
+through specialized training objectives---CodeBERT
+\citep{feng2020codebert}, GraphCodeBERT \citep{guo2021graphcodebert},
+TreeBERT \citep{jiang2021treebert}, and InCoder
+\citep{fried2022incoder}---learn from ASTs, data-flow graphs, or
+tree-positional encodings. Lumen does not retrain; it varies the
+input representation supplied to a frozen frontier LLM and treats
+representation format as a controlled independent variable.
+
+\textbf{Inference-time structured prompting.} Chain-of-thought
+\citep{wei2022cot}, structured-output schemas, and code-sketch
+scaffolds introduce structure heuristically at the prompt
+boundary. They adopt structure as a design choice; representation
+format is not varied as an independent variable under explicit
+controls.
 
 \subsection{The closest ancestor: Namavar et al. (2022)}
 \label{sec:2.2}
-% STUB: \citet{namavar2022coderepr} train generative repair models from
-% scratch on multiple representations (tokens / ASTs / graphs); we differ on
-% three axes — target (frozen frontier LLM evaluation, not training),
-% information control (C1+ parity control vs unmatched representations), and
-% discipline (pre-registered confirmatory family with Holm correction).
+The direct intellectual ancestor of this work is
+\citet{namavar2022coderepr}, who run a controlled comparison of
+code representations---token sequences, ASTs, and graphs---for
+learning-based program repair. Lumen sits in that lineage and
+differs along three axes.
+
+\textbf{Target.} They train generative repair models from scratch
+on each representation; we evaluate frozen frontier LLMs and vary
+only the input representation. The shift reflects the
+2022$\to$2026 deployment context for LLM-based code reasoning
+rather than a deficiency in their design.
+
+\textbf{Information control.} Their representations differ in
+both format and information content; Lumen adds C1+
+(\S\ref{sec:3.2}), an information-parity textual control that
+holds information content constant against C4 and varies only
+format. To our knowledge no prior controlled study of
+code-representation effects on frontier-LLM reasoning has used
+such a parity control.
+
+\textbf{Discipline.} They do not pre-register a confirmatory
+family; Lumen pre-registers H1--H3 across three primary metrics
+and corrects the resulting nine-test family under
+Holm--Bonferroni at $\alpha = 0.05$ (\S\ref{sec:3.5}).
 
 \subsection{LLM prompt-format sensitivity}
 \label{sec:2.3}
-% STUB: Cite \citet{sclar2024formatsensitivity} and
-% \citet{salinas2024butterfly} establishing surface-format sensitivity of
-% frontier LLMs independent of content; Lumen lifts this concern from
-% prompt-design folklore into a domain-specific controlled study, with the
-% format axis operationalized as a hierarchy of code representations and the
-% information axis via the C1+ parity control.
+A separate line of work documents that frontier LLMs are
+sensitive to surface-level prompt-format choices independent of
+the underlying information content
+\citep{sclar2024formatsensitivity, salinas2024butterfly}. Lumen
+lifts that concern from prompt-design folklore into a
+domain-specific controlled study: the format axis is
+operationalized as a hierarchy of code representations
+(\S\ref{sec:3.1.1}) and the information axis is held by the C1+
+parity control (\S\ref{sec:3.2}).
 
 \subsection{Novelty, circumscribed}
 \label{sec:2.4}
-% STUB: The contribution is the controlled combination
-% (information-parity + frozen-LLM + pre-registered correction), not any
-% individual ingredient. Long-term inspirations (content-addressed code,
-% projectional editing) inform the broader research program but are out of
-% scope.
+The contribution claimed here is the controlled
+\emph{combination}---information-parity testing of frontier-LLM
+code reasoning under pre-registered family-wise
+correction---rather than any individual ingredient. ASTs, type
+annotations, contract-style specifications, frozen-LLM
+evaluation, and pre-registration each pre-exist; the novelty
+rides on the combination and on the control. Long-term
+inspirations from content-addressed code storage and
+projectional editing inform the broader Lumen research program
+but are out of scope for the present submission.
 
 % =============================================================
 % 3. Methodology
