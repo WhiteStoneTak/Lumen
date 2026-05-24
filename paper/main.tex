@@ -72,14 +72,14 @@ back into Python source --- and instantiate it on T2 bug detection across 30
 retained non-recursive Python functions, two confirmatory frontier LLMs, and
 a successor pair (post-confirmatory exploratory replication). The primary
 endpoint H1 (C4 $>$ C1+) yields a moderate positive effect (rank-biserial
-$r = +0.58$, 95\% CI $[+0.08, +0.92]$ excludes zero) but does not reach
-Holm-corrected significance under the pre-registered 9-test family
+$r_{\text{rb}} = +0.581$, 95\% CI $[+0.077, +0.917]$ excludes zero) but does
+not reach Holm-corrected significance under the pre-registered 9-test family
 (corrected $p = 0.205$). Exploratory analyses surface a directional pattern:
 H3 (in-text information enrichment helps) inverts on all four model-runs
-spanning two LLM generations. Post-hoc inspection reveals that the T2
-composite score saturates near $2/3$, compressing the effective Wilcoxon $n$
-from 30 to 13--14 and constituting the structural source of confirmatory
-underpowering. We discuss implications for both the empirical claim and the
+spanning two LLM generations. Post-hoc inspection reveals that the integer
+T2 composite score (range $0$--$3$) saturates at $2$ — its ceiling of $3$ is
+never attained — compressing the effective Wilcoxon $n$ from 30 to 13--14
+and constituting the structural source of confirmatory underpowering. We discuss implications for both the empirical claim and the
 methodology, and propose rubric refinement and T1/T3 collection as the next
 steps.
 \end{abstract}
@@ -138,7 +138,7 @@ This paper makes three contributions.
   Holm--Bonferroni at $\alpha = 0.05$ (\S\ref{sec:3.5}). The
   statistical machinery was frozen before data collection.
 
-\item \textbf{Diagnostic findings from a 30-function pilot
+\item \textbf{Diagnostic findings from a 30-function
   instantiation.} On a T2 bug-detection task we report a primary
   endpoint that is direction-consistent but Holm-non-significant
   (\S\ref{sec:4.1}); an exploratory directional inversion of H3
@@ -151,7 +151,6 @@ This paper makes three contributions.
 
 \subsection{The single-sentence proposition}
 \label{sec:1.4}
-% STUB: Verbatim insertion of the central proposition (5–7 lines).
 \begin{quote}
 We propose a controlled experimental methodology for measuring
 code-representation effects on frozen frontier LLMs, instantiate it on bug
@@ -173,10 +172,9 @@ in all four model-runs across the confirmatory and successor
 pairs, and the \texttt{claude-opus-4-6} per-model CI excludes
 zero (\S\ref{sec:4.3}). The H3 direction is negative in all four
 model-runs---opposite the pre-registered prediction
-(\S\ref{sec:4.4}). No T2 record in $300/300$ attains the
-composite ceiling of $3$ (\S\ref{sec:3.6}); the effective
-Wilcoxon $n$ collapses to $13$--$14$ on the central confirmatory
-cells.
+(\S\ref{sec:4.4}). No T2 record attains the composite ceiling of
+$3$ ($0/300$ records; \S\ref{sec:3.6}); the effective Wilcoxon
+$n$ collapses to $13$--$14$ on the central confirmatory cells.
 
 % =============================================================
 % 2. Related Work
@@ -389,10 +387,14 @@ logged for every function.
 \subsection{Tasks and primary endpoint}
 \label{sec:3.3}
 Three task types are defined: T1 (code understanding), T2 (bug
-detection), and T3 (code transformation). The 90-day study collected
-only T2; T1 and T3 are uncollected, and the six corresponding cells of
-the confirmatory family are insufficient-data placeholders
-(\S\ref{sec:3.5}, \S\ref{sec:4.2}).
+detection), and T3 (code transformation). T1 asks the model to
+summarize a function's behavior in natural language from its
+representation; T3 asks the model to produce a modified version
+of a function satisfying a contract-described change. Both are
+constitutional task families; the 90-day study collected only
+T2, so T1 and T3 are uncollected, and the six corresponding
+cells of the confirmatory family are insufficient-data
+placeholders (\S\ref{sec:3.5}, \S\ref{sec:4.2}).
 
 T2 was pre-registered as the primary endpoint (Constitution \S17.4)
 for objectivity: its 0--3 composite score---the sum of location,
@@ -421,6 +423,16 @@ successor pair was selected as the same-provider frontier successors
 so that representation effect, rather than provider drift, remains
 the axis of interest.
 
+A brief disambiguation on terminology. The successor run is called
+a ``replication'' in the abstract and in \S\ref{sec:3.0} as a
+description of the \emph{process}: a fresh run on a successor model
+pair, identified in the run logs as
+\texttt{t2\_frontier\_successor\_replication}. What this subsection
+denies is ``replication'' as an \emph{inferential framing} of the
+cross-pair evidence: the deterministic/stochastic asymmetry above
+precludes that framing, and \S\ref{sec:4.3} returns to the point.
+Both usages are correct; they refer to different things.
+
 \subsection{Statistical plan}
 \label{sec:3.5}
 The pre-registered confirmatory family comprises three hypotheses
@@ -429,11 +441,23 @@ three primary metrics (T1, T2, T3), giving nine tests. For each test
 we compute, per function, a paired difference between the two
 conditions after averaging the two model scores; we then apply the
 Wilcoxon signed-rank test with a one-sided ``greater'' alternative
-matching the pre-registered direction, take the rank-biserial
-correlation $r = (T^{+} - T^{-})/(T^{+} + T^{-})$ as the effect size,
-apply the Holm--Bonferroni step-down correction across the nine-test
-family at $\alpha = 0.05$, and report a 95\% percentile bootstrap CI
-on $r$ from 10{,}000 seeded resamples.
+matching the pre-registered direction. The effect size is the
+rank-biserial correlation
+\[
+  r_{\text{rb}} \;=\; \frac{T^{+} - T^{-}}{T^{+} + T^{-}},
+\]
+where $T^{+}$ and $T^{-}$ are the sums of the positive and negative
+signed ranks; we use the abbreviation $r_{\text{rb}}$ throughout
+\S\ref{sec:4} and \S\ref{sec:5}. We apply the Holm--Bonferroni
+step-down correction across the nine-test family at
+$\alpha = 0.05$. Holm--Bonferroni is a family-wise-error-rate
+correction that orders the raw $p$-values from smallest to largest
+and tests each in turn against a tightening threshold
+($\alpha/m$ at the smallest rank, $\alpha/(m{-}1)$ at the next, and
+so on up to $\alpha$ at the largest); a rank is rejected only if it
+and every earlier rank clear their thresholds. We also report a
+95\% percentile bootstrap CI on $r_{\text{rb}}$ from
+$10{,}000$ seeded resamples.
 
 We honor $m = 9$ as pre-registered. Six of the nine cells are
 insufficient-data placeholders because T1 and T3 were not collected
@@ -446,10 +470,11 @@ under the rules committed to before data were seen. Effective sample
 size per test is further compressed because Wilcoxon discards zero
 paired differences: against $n_{\text{pairs}} = 30$, the tie
 distribution induced by the rubric (\S\ref{sec:3.6}) leaves an
-effective $n$ of 13--14.
-
-Per-model analyses are exploratory by Constitution \S17.4 and are
-reported uncorrected with explicit exploratory labeling.
+effective $n$ of 13--14. The statistical plan also fixes the
+exploratory/confirmatory boundary so that downstream sections can
+quote it without re-deciding: per-model analyses are exploratory
+by Constitution \S17.4 and are reported uncorrected with explicit
+exploratory labeling.
 
 On bootstrap CI provenance: Constitution \S17.4 mandates 95\%
 bootstrap CIs on effect sizes. The frozen
@@ -468,9 +493,11 @@ support is therefore $\{0,1,2,3\}$; the per-function 2-model-averaged
 support is $\{0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0\}$.
 
 We surface the empirical distribution here---before results---because
-it constrains what the analysis can detect. In the 300-record
-confirmatory run the per-model raw composite distribution is $0$:
-19~records (6\%), $1$: 89 (30\%), $2$: 192 (64\%), and $3$: 0 (0\%).
+it constrains what the analysis can detect. The confirmatory run
+contains 300 per-model T2 records ($30$ functions
+$\times$ 2 models $\times$ 5 conditions); their raw composite
+distribution is $0$: 19~records (6\%), $1$: 89 (30\%), $2$: 192
+(64\%), and $3$: 0 (0\%).
 No model scored $3/3$ on any T2 item; the location sub-score is the
 empirical bottleneck. After 2-model averaging, composite supports
 $2.5$ and $3.0$ are both empty, leaving an effective range of
@@ -479,11 +506,18 @@ paired differences are exactly zero; Wilcoxon discards these, and
 the effective $n$ contracts to 13--14 from $n_{\text{pairs}} = 30$.
 
 The ceiling is a property of the as-implemented rubric, not of the
-data. Expanding $n$ alone does not solve underpowering: so long as
-the location sub-score saturates, additional functions produce ties
-at the same rate. The path forward (\S\ref{sec:6}) is rubric
-refinement, or supplementing the composite with a continuous-valued
-T2 metric. Score histograms are shown in Figure~\ref{fig:f3}.
+data. The location sub-score's saturation rate is a per-item
+property: each function independently lands somewhere in the
+$\{0,1,2,3\}$ raw composite distribution shown above, and that
+distribution is determined by what the rubric can score, not by
+how many functions are sampled. Expanding $n$ alone therefore
+does not solve underpowering --- additional functions arrive
+drawn from the same distribution and produce zero-valued paired
+differences at the same rate, so the effective Wilcoxon $n$
+stays in the same fraction of $n_{\text{pairs}}$. The path
+forward (\S\ref{sec:6}) is rubric refinement, or supplementing
+the composite with a continuous-valued T2 metric. Score
+histograms are shown in Figure~\ref{fig:f3}.
 
 \subsection{Pre-registration}
 \label{sec:3.7}
@@ -727,13 +761,25 @@ structured and enriched ones that destabilize the model's output.
 The instability is concentrated where the input departs from plain
 source.
 
-Taken together, the data exploratorily suggest that in-text type
-and contract annotations on top of plain Python source do not
-aid---and may impede---frontier LLM bug detection at the current
-scoring rubric. This is consistent with, but does not confirm, the
-dissociation of representational structure from information content
-that the C1+ control was designed to test. Figure~\ref{fig:f2}
-renders the four rows as a forest plot and complements
+This concentration also explains the per-pair $n$ asymmetry
+between Table~\ref{tab:h1-t2-successor-permodel} and
+Table~\ref{tab:h3-t2-permodel} on the \texttt{gpt-5.5} row. H1
+compares C4 to C1+, both of which are non-C1 and so vulnerable
+to parse failure, and the row drops to $n = 26$; H3 compares
+C1+ to C1, and C1 always parses, so only C1+ failures reduce
+the pair count and the row stands at $n = 28$.
+
+Taken together, the data exploratorily suggest a pattern about
+in-text annotation. On top of plain Python source, in-text type
+and contract annotations do not aid---and may impede---frontier
+LLM bug detection. The qualifier ``at the current scoring
+rubric'' is essential to the reading: the pattern is observed
+under the as-implemented T2 composite (\S\ref{sec:3.6}), and a
+refined rubric could re-position the comparison. The pattern is
+consistent with, but does not confirm, the dissociation of
+representational structure from information content that the
+C1+ control was designed to test. Figure~\ref{fig:f2} renders
+the four rows as a forest plot and complements
 Figure~\ref{fig:f1}.
 
 \begin{table}[h]
@@ -857,26 +903,31 @@ The non-rejection of H1/T2 at the Holm-corrected family level
 of the primary endpoint splits across two clauses that must hold
 together; neither overrides the other.
 
-On the first clause: the point estimate $r_{\text{rb}} = +0.581$
-is moderate and lies in the pre-registered direction, the 95\%
-bootstrap CI $[+0.077, +0.917]$ excludes zero, and the one-sided
-raw $p = 0.023$ would reject $H_0$ in isolation. The data are
+\textbf{First clause: the point estimate.} The point estimate
+$r_{\text{rb}} = +0.581$ is moderate and lies in the
+pre-registered direction, the 95\% bootstrap CI
+$[+0.077, +0.917]$ excludes zero, and the one-sided raw
+$p = 0.023$ would reject $H_0$ in isolation. The data are
 consistent with the pre-registered direction at moderate effect
-size with a CI excluding zero. On the second clause: the failure
+size with a CI excluding zero.
+
+\textbf{Second clause: the family correction.} The failure
 occurs at the Holm--Bonferroni family-correction stage with
 $m = 9$ (\S\ref{sec:3.5}), six of whose cells are
 insufficient-data placeholders contributing Holm $p = 1.000$ by
 convention; the corrected $p = 0.205$; and the effective Wilcoxon
 $n \approx 14$, compressed from $n_{\text{pairs}} = 30$ by the
 rubric-induced tie distribution, does not support a confirmatory
-claim. The CI excluding zero qualifies the non-rejection; it does
-not overturn it.
+claim.
+
+The CI excluding zero qualifies the non-rejection; it does not
+overturn it.
 
 A back-of-the-envelope point reinforces the second clause. At the
 most-promising rank in $m = 9$, the Holm-corrected $\alpha$ is
-$\approx 0.0056$; detecting $r \approx +0.58$ at that threshold
-would require substantially larger non-tied effective $n$ than
-the present data provide. The implication, taken up in
+$\alpha/m = 0.05/9 \approx 0.0056$; detecting
+$r \approx +0.58$ at that threshold would require substantially
+larger non-tied effective $n$ than the present data provide. The implication, taken up in
 \S\ref{sec:5.3} and \S\ref{sec:6.2}, is that rubric refinement,
 not $n$ alone, is the path forward.
 
@@ -937,8 +988,11 @@ underpowering.
 \subsection{Implications for the long-term Lumen vision}
 \label{sec:5.4}
 Constitution v0.2.2 \S3 specifies a reassessment threshold for
-the canonical-core-over-surface-text bet: an outcome of
-$C1+ \geq C4$ on all primary metrics across both confirmatory
+the canonical-core-over-surface-text bet --- the design wager
+that a structured canonical core IR with text and LLM-facing
+notations as projections will outperform surface-text
+representations for code reasoning. The threshold: an outcome
+of $C1+ \geq C4$ on all primary metrics across both confirmatory
 models would trigger formal reassessment. The observed outcome on
 H1/T2---$C4 > C1+$ in direction, moderate effect size, CI
 excluding zero, failing Holm correction at $m = 9$---does not
@@ -963,7 +1017,8 @@ results support.
 \begin{itemize}
 \item \textbf{Power.} $n_{\text{pairs}} = 30$ with effective
   Wilcoxon $n = 13$--$14$ after rubric-induced ties
-  (\S\ref{sec:4.1}) bounds power on every confirmatory cell.
+  (\S\ref{sec:3.5}, \S\ref{sec:3.6}) bounds power on every
+  confirmatory cell.
 \item \textbf{Family completeness.} T1 and T3 were uncollected
   within the 90-day scope; six of the nine confirmatory family
   cells are scope-limited (\S\ref{sec:4.2}), and the results do
