@@ -92,29 +92,62 @@ steps.
 
 \subsection{The question}
 \label{sec:1.1}
-% STUB: Frontier LLMs are ubiquitous in code reasoning workflows; most input
-% pipelines serialize code as plain text. Whether this format is optimal — and
-% whether format effects are separable from information-content effects — is
-% rarely tested with controls.
+Frontier large language models are increasingly ubiquitous in
+developer workflows for code reasoning. Almost without exception,
+the input pipelines that feed them serialize code as plain source
+text, sometimes with light annotation. Whether plain text is the
+appropriate representation---and whether the \emph{format} of the
+representation affects model reasoning \emph{independently} of
+the information content it carries---is rarely tested with
+controls.
 
 \subsection{Why this is hard to test cleanly}
 \label{sec:1.2}
-% STUB: Naive comparisons (text vs AST) confound representation format with
-% information content. Prior work either trains models on different
-% representations (confounding format with training signal) or applies
-% structured prompting heuristically without controls; no prior controlled
-% study combines a frozen-frontier-LLM target, an information-parity control,
-% and pre-registered family-wise correction.
+The naive comparison---text against AST, say---confounds two
+variables. Two representations almost never carry exactly the
+same information; differences in annotations, derived edges, or
+type detail accompany differences in format, and any observed
+effect cannot be partitioned between the two axes. Prior work
+has either trained models on different representations
+(\S\ref{sec:2.1}), confounding format with training signal, or
+applied structured prompting heuristically without controls
+(\S\ref{sec:2.3}). To our knowledge no prior controlled study of
+code-representation effects on frontier LLMs combines a
+frozen-evaluation target, an information-parity control, and
+pre-registered family-wise correction. The remainder of this
+paper addresses that gap.
 
 \subsection{Contributions}
 \label{sec:1.3}
-% STUB: Three contributions: (1) an information-parity testing methodology
-% with a 5-condition design and a C1+ parity control isolating the structure
-% axis; (2) a pre-registered 9-test confirmatory family (3 hypotheses × 3
-% metrics) under Holm-Bonferroni at α=0.05; (3) diagnostic findings from a
-% 30-function pilot — direction-consistent but Holm-non-significant primary
-% endpoint, exploratory H3 inversion across all four model-runs, and a
-% structural rubric-ceiling source of underpowering motivating refinement.
+This paper makes three contributions.
+
+\begin{enumerate}
+\item \textbf{A methodology for information-parity testing of
+  code-representation effects on frozen frontier LLMs.} We
+  define a five-condition design (\S\ref{sec:3.1.1}) in which the
+  central comparison is C4 against C1+: C1+ projects C4's
+  typed-and-contract-annotated intermediate representation back
+  into Python source, holding information content constant
+  against C4 and varying only format. The parity control
+  (\S\ref{sec:3.2}) isolates the structure axis from the
+  information axis.
+
+\item \textbf{A pre-registered confirmatory family with formal
+  multiplicity control.} Three hypotheses crossed with three
+  primary metrics constitute a nine-test family, corrected by
+  Holm--Bonferroni at $\alpha = 0.05$ (\S\ref{sec:3.5}). The
+  statistical machinery was frozen before data collection.
+
+\item \textbf{Diagnostic findings from a 30-function pilot
+  instantiation.} On a T2 bug-detection task we report a primary
+  endpoint that is direction-consistent but Holm-non-significant
+  (\S\ref{sec:4.1}); an exploratory directional inversion of H3
+  replicated across all four model-runs (\S\ref{sec:4.4}); and a
+  structural source of underpowering---a near-saturated location
+  sub-score that compresses the effective Wilcoxon sample
+  size---that motivates rubric refinement before further
+  empirical claims (\S\ref{sec:5.3}).
+\end{enumerate}
 
 \subsection{The single-sentence proposition}
 \label{sec:1.4}
@@ -131,10 +164,19 @@ underpowering inherent to the as-implemented scoring rubric.
 
 \subsection{Headline empirical findings (preview)}
 \label{sec:1.5}
-% STUB: Preview the four headline numbers — H1/T2 r=+0.58, CI [+0.08, +0.92],
-% raw p=0.023, Holm p=0.205; H1 4/4 model-runs positive (one CI excludes zero);
-% H3 4/4 model-runs inverted; T2 raw 3/3 achieved in 0/300 records, effective
-% Wilcoxon n=13–14.
+The primary endpoint on H1/T2 yields a rank-biserial
+$r = +0.581$ with $95\%$ bootstrap CI $[+0.077, +0.917]$ and
+one-sided raw $p = 0.023$; under Holm correction at $m = 9$ the
+corrected $p = 0.205$, and the family-level decision is
+fail-to-reject (\S\ref{sec:4.1}). The H1 direction is positive
+in all four model-runs across the confirmatory and successor
+pairs, and the \texttt{claude-opus-4-6} per-model CI excludes
+zero (\S\ref{sec:4.3}). The H3 direction is negative in all four
+model-runs---opposite the pre-registered prediction
+(\S\ref{sec:4.4}). No T2 record in $300/300$ attains the
+composite ceiling of $3$ (\S\ref{sec:3.6}); the effective
+Wilcoxon $n$ collapses to $13$--$14$ on the central confirmatory
+cells.
 
 % =============================================================
 % 2. Related Work
