@@ -185,25 +185,47 @@ underpowering inherent to the as-implemented scoring rubric.
 
 \subsection{Study phases}
 \label{sec:3.0}
-% STUB (§3.0 NEW IN v2.1): the 90-day study (Constitution v0.2.2 §13) ran in
-% three phases — (1) pipeline construction and dataset curation, (2) a pilot
-% phase calibrating runner and scorer (pilot data NOT pooled with
-% confirmatory data; confirmatory analysis derives solely from a fresh
-% data-collection on the 30 retained functions, full_t2_confirmatory_v2),
-% (3) confirmatory data collection (T2 only), post-confirmatory exploratory
-% successor replication, and analysis. The runner module is named
-% src/experiment/run_pilot.py — a naming artifact from Phase 2, retained
-% without modification for the confirmatory collection. The name reflects
-% implementation history, not methodological status.
+The study was conducted over a 90-day window (Constitution \S13) in
+three phases.
+
+\textbf{Phase~1 (days 1--25)} covered pipeline construction and dataset
+curation. We implemented the representation transformers, the contract
+generator, and the automated scoring scripts, and curated the 30
+retained non-recursive Python functions. This phase produced the
+conversion pipelines for C1 through C4 and the C4\,$\to$\,C1+
+projection.
+
+\textbf{Phase~2 (days 26--50)} was a pilot. A pilot run exercised a
+small subset---approximately three functions across all five
+conditions, all three tasks, and both models, on the order of ninety
+items per run---to calibrate the runner and the automated scoring
+scripts. Two pilot runs were executed; the second was clean. Pilot
+data is not pooled with confirmatory data: the confirmatory analysis
+derives solely from a fresh collection on the 30 retained functions
+(\texttt{full\_t2\_confirmatory\_v2}).
+
+\textbf{Phase~3 (days 51--90)} covered confirmatory data collection
+(T2 only), a post-confirmatory exploratory replication on a successor
+frontier model pair, and analysis.
+
+One naming artifact warrants explicit note. The runner module is
+\texttt{src/experiment/run\_pilot.py}, named during the Phase~2 pilot
+and reused without modification for confirmatory data collection. The
+name reflects implementation history, not methodological status: the
+confirmatory run is not a pilot.
 
 \subsection{Conditions and dataset}
 \label{sec:3.1}
 
 \subsubsection{The five conditions}
 \label{sec:3.1.1}
-% STUB: Five conditions; the central comparison is C4 vs C1+, holding type
-% and contract content constant while varying only format (structured vs
-% textual).
+Table~\ref{tab:conditions} summarizes the five experimental conditions.
+The cumulative chain C1\,$\to$\,C2\,$\to$\,C3\,$\to$\,C4 progressively
+enriches information, while the branch C1\,$\to$\,C1+ enriches
+information in textual form. The central comparison is C4 versus C1+:
+both carry the same type and contract annotations and differ only in
+format---structured IR versus annotated Python source. This pairing
+isolates the structure axis from the information axis.
 
 \begin{table}[h]
 \centering
@@ -227,47 +249,77 @@ C4   & Contract-augmented IR   & Structured & + Contracts & Full enrichment, str
 
 \subsubsection{Dataset composition}
 \label{sec:3.1.2}
-% STUB (REVISED IN v2.2): 30 retained non-recursive single Python functions,
-% predominantly list and array manipulation (20 of 30), with smaller
-% representation from descriptive statistics (6), string processing (2),
-% arithmetic (1), and control-flow / parser-like logic (1). The
-% list-operations bias reflects standard-library/algorithmic-task prevalence
-% rather than intentional curation; we acknowledge this as an
-% external-validity limitation in §5.5. A static recursion-exclusion check
-% rejects self-recursive and mutually recursive helpers; non-recursive
-% restriction follows Constitution §17.5. Per-function ground-truth
-% artifacts include a buggy variant (Constitution §17.3 categories), the
-% location/category annotation, and a reference-fix test suite. Full
-% per-func categorization is in Appendix A (\cref{app:A}).
+The dataset consists of 30 retained non-recursive single Python
+functions, manually curated within the 90-day scope. Their domain
+distribution (Appendix~\ref{app:A}) is predominantly list and
+array manipulation (20 of 30), with smaller representation from
+descriptive statistics (6), string processing (2), arithmetic (1),
+and control-flow or parser-like logic (1). This list-operations
+predominance reflects the prevalence of such functions in
+standard-library and algorithmic-task settings rather than
+intentional curation; we treat it as an external-validity limitation
+(\S\ref{sec:5.5}).
+
+A static recursion-exclusion check at the curation stage rejects any
+function with self-recursion or mutually recursive helpers; the
+90-day scope restricts the study to non-recursive code
+(Constitution \S17.5).
+
+For each function we prepare ground-truth artifacts: a single buggy
+variant whose defect falls into one of five categories (off-by-one,
+wrong comparison, missing boundary, incorrect variable, swapped
+arguments; Constitution \S17.3), an annotation of the bug location
+and category, and a reference-fix test suite.
 
 \subsection{Information parity: operational definition and construction}
 \label{sec:3.2}
-% STUB: Information content := the set of typed propositions derivable from
-% a representation (signature types, parameter/return contracts: pre, post,
-% invariant). Under this definition, C1+ and C4 are equivalent by
-% construction. C1+ is constructed by projecting C4's annotations into
-% Python source: PEP 484 inline type hints in the signature plus a fixed
-% structured-docstring template carrying the contract clauses
-% (src/pipeline/ir_to_annotated_text.py). Residual asymmetry — AST
-% node-kind metadata, syntactic child-ordering, and explicit
-% cross-reference structure between contract clauses — is not "information"
-% under our operational definition; a more demanding definition (Shannon
-% bits, recoverability of the source IR) would assign C4 higher information
-% than C1+. Round-trip validation (C4 → C1+ → C4') is journal-version
-% follow-on work (Appendix D, \cref{app:D}). Contracts are LLM-generated by
-% a non-test-subject model and reviewed by the author per Constitution
-% §17.2 (allowed edits: factual correction, vacuous-clause deletion, single
-% missing-clause addition); provenance is logged for every function.
+We define the \emph{information content} of a representation as the
+set of typed propositions derivable from it: the function signature
+types and the parameter and return contracts (precondition,
+postcondition, invariant). Under this definition C1+ and C4 are
+equivalent by construction.
+
+C1+ is produced by projecting C4's annotations into Python source:
+PEP~484 inline type hints in the signature, plus a structured
+docstring block carrying the contract clauses in a fixed template.
+The projection is implemented in
+\texttt{src/pipeline/ir\_to\_annotated\_text.py}.
+
+We acknowledge a residual asymmetry. The projection does not preserve
+AST node-kind metadata, IR-level syntactic child-ordering, or explicit
+cross-reference structure among contract clauses, which become
+free-form docstring text. Under our operational definition these are
+\emph{encoding}, not \emph{information}; a more demanding
+definition---Shannon-style bit count, or recoverability of the source
+IR from the projected text---would assign C4 strictly higher
+information content. We do not adopt that definition, because the
+empirical question is whether structure aids reasoning \emph{given the
+same propositional content}, not whether representations differ in
+arbitrary encoding bits. A round-trip validation measuring
+C4\,$\to$\,C1+\,$\to$\,C4$'$ structural recovery is identified as
+journal-version follow-on work (Appendix~\ref{app:D}).
+
+Contracts for C4, and therefore for C1+, are generated by an LLM that
+is not used as a test subject and are reviewed by the author under the
+contract review protocol (Constitution \S17.2): the allowed edits are
+factual correction, deletion of vacuously true clauses, and a single
+missing-clause addition. Provenance---raw, reviewed, and diff---is
+logged for every function.
 
 \subsection{Tasks and primary endpoint}
 \label{sec:3.3}
-% STUB: T1 (code understanding), T2 (bug detection), T3 (code
-% transformation) defined; the 90-day study collected ONLY T2. T1 and T3
-% are uncollected; the 6 corresponding cells in the confirmatory family are
-% insufficient-data placeholders. T2 was pre-registered as the primary
-% endpoint (Constitution §17.4) for objectivity: the 0–3 composite (location
-% + diagnosis + fix) is fully automated. We honor that pre-registration by
-% reporting H1/T2 in §4 with the strongest interpretive weight.
+Three task types are defined: T1 (code understanding), T2 (bug
+detection), and T3 (code transformation). The 90-day study collected
+only T2; T1 and T3 are uncollected, and the six corresponding cells of
+the confirmatory family are insufficient-data placeholders
+(\S\ref{sec:3.5}, \S\ref{sec:4.2}).
+
+T2 was pre-registered as the primary endpoint (Constitution \S17.4)
+for objectivity: its 0--3 composite score---the sum of location,
+diagnosis, and fix sub-scores---is fully automated and requires no
+human judgment at scoring time. We honor that pre-registration
+throughout \S\ref{sec:4}: H1 on T2 is the primary endpoint and
+carries the strongest interpretive weight.
 
 \subsection{Models and sampling regime}
 \label{sec:3.4}
