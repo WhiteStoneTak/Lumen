@@ -323,68 +323,99 @@ carries the strongest interpretive weight.
 
 \subsection{Models and sampling regime}
 \label{sec:3.4}
-% STUB: Confirmatory pair = gpt-5.4 + claude-opus-4-6 at temperature=0.
-% Successor pair (post-confirmatory exploratory replication) = gpt-5.5 +
-% claude-opus-4-7 at provider-default temperature (the successor models
-% reject temperature=0; provider default is a hard constraint). This
-% introduces a sampling-regime asymmetry; we frame the §4.3 cross-pair
-% finding as ROBUSTNESS UNDER TEMPERATURE RELAXATION, not as
-% cross-generation replication. Successor models chosen as same-provider
-% successor frontier models to keep representation effect (rather than
-% provider drift) as the primary axis of interest.
+The confirmatory pair comprised \texttt{gpt-5.4} and
+\texttt{claude-opus-4-6}, sampled at \texttt{temperature}\,$=$\,$0$.
+A post-confirmatory exploratory replication used the same-provider
+successor frontier pair---\texttt{gpt-5.5} and
+\texttt{claude-opus-4-7}---sampled at provider-default temperature.
+The successor models reject \texttt{temperature}\,$=$\,$0$ at the
+API level; provider-default temperature is therefore a hard
+constraint, not a methodological preference.
+
+This introduces a sampling-regime asymmetry: deterministic on the
+confirmatory pair, stochastic on the successor pair. We accordingly
+frame the cross-pair comparison as a robustness check under
+temperature relaxation, not as cross-generation replication; the two
+pairs are not directly comparable under a shared sampling regime. The
+successor pair was selected as the same-provider frontier successors
+so that representation effect, rather than provider drift, remains
+the axis of interest.
 
 \subsection{Statistical plan}
 \label{sec:3.5}
-% STUB: Pre-registered confirmatory family = 3 hypotheses × 3 primary
-% metrics = 9 tests. H1: C4>C1+ (structure at constant information).
-% H2: C4>C1 (total enrichment). H3: C1+>C1 (information enrichment in
-% text). Per test: per-function paired difference (2-model averaged) →
-% Wilcoxon signed-rank (one-sided "greater", zero_method='wilcox') →
-% rank-biserial r = (T+ − T−)/(T+ + T−) on the same non-zero-diff set →
-% Holm-Bonferroni at α=0.05 across the 9-test family → 95% percentile
-% bootstrap CI (10,000 resamples, seed 20260427).
-%
-% On the correction: m=9 honored as pre-registered; six cells are
-% insufficient-data placeholders (T1/T3 uncollected). We distinguish in
-% reporting between collected-and-tested (3) and scope-limited-uncollected
-% (6) without retroactive m-reduction. Effective n per test is 13–14
-% (vs n_pairs=30) — the binding power constraint, see §3.6. Per-model
-% analysis is exploratory (Constitution §17.4); per-model results in §4.3
-% are uncorrected and labeled exploratory.
-%
-% On bootstrap CI provenance: Constitution §17.4 mandates 95% bootstrap CI
-% on effect sizes. The frozen analyze_confirmatory.py does NOT compute CI;
-% we compute CI via a sibling implementation
-% (scratch/bootstrap_ci_confirmatory.py) verified against the frozen
-% analyzer's point estimates. CI computation does not modify any
-% pre-registered hypothesis-testing decision; it adds reporting fidelity.
-% Confirmatory CIs reported in §4 alongside point estimates. (Provenance
-% manifest: Appendix E, \cref{app:E}.)
+The pre-registered confirmatory family comprises three hypotheses
+(H1: C4\,$>$\,C1+; H2: C4\,$>$\,C1; H3: C1+\,$>$\,C1) crossed with
+three primary metrics (T1, T2, T3), giving nine tests. For each test
+we compute, per function, a paired difference between the two
+conditions after averaging the two model scores; we then apply the
+Wilcoxon signed-rank test with a one-sided ``greater'' alternative
+matching the pre-registered direction, take the rank-biserial
+correlation $r = (T^{+} - T^{-})/(T^{+} + T^{-})$ as the effect size,
+apply the Holm--Bonferroni step-down correction across the nine-test
+family at $\alpha = 0.05$, and report a 95\% percentile bootstrap CI
+on $r$ from 10{,}000 seeded resamples.
+
+We honor $m = 9$ as pre-registered. Six of the nine cells are
+insufficient-data placeholders because T1 and T3 were not collected
+(\S\ref{sec:3.3}); in reporting we distinguish the three
+collected-and-tested cells from the six scope-limited-uncollected
+cells, but we do not retroactively reduce $m$ to 3. Post-hoc
+$m$-reduction would forfeit the value of pre-registration: the cost
+is reduced corrected power, the benefit is that the result speaks
+under the rules committed to before data were seen. Effective sample
+size per test is further compressed because Wilcoxon discards zero
+paired differences: against $n_{\text{pairs}} = 30$, the tie
+distribution induced by the rubric (\S\ref{sec:3.6}) leaves an
+effective $n$ of 13--14.
+
+Per-model analyses are exploratory by Constitution \S17.4 and are
+reported uncorrected with explicit exploratory labeling.
+
+On bootstrap CI provenance: Constitution \S17.4 mandates 95\%
+bootstrap CIs on effect sizes. The frozen
+\texttt{analyze\_confirmatory.py} does not compute CIs; CIs were
+computed via a sibling implementation verified against the frozen
+analyzer's point estimates. CI computation does not alter any
+hypothesis-testing decision; it adds reporting fidelity. Confirmatory
+CIs are reported in \S\ref{sec:4} alongside point estimates;
+provenance is recorded in Appendix~\ref{app:E}.
 
 \subsection{Score rubric and its empirical distribution}
 \label{sec:3.6}
-% STUB: T2 composite = location (0/1) + diagnosis (0/1) + fix (0/1);
-% per-model {0,1,2,3}; 2-model averaged {0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0}.
-% In the 300-record confirmatory run the per-model raw distribution is
-% 0:19 (6%), 1:89 (30%), 2:192 (64%), 3:0 (0%). NO model achieved 3/3 on
-% any T2 item; the location sub-score is the empirical bottleneck. After
-% 2-model averaging, supports 2.5 and 3.0 are both empty; effective range
-% [0.0, 2.0], mode 2.0. ≥53% of paired diffs are zero across H1/H2/H3,
-% reducing Wilcoxon's effective n to 13–14. The ceiling is a property of
-% the AS-IMPLEMENTED rubric, not of the data; expanding n alone does not
-% solve underpowering. Path forward (§6): rubric refinement, or
-% supplementing the composite with a continuous-valued T2 metric.
-%
-% Score histograms: Figure F3 (\cref{fig:f3}).
+The T2 composite score is the integer sum of three binary
+sub-scores: location (0/1), diagnosis (0/1), and fix (0/1). Per-model
+support is therefore $\{0,1,2,3\}$; the per-function 2-model-averaged
+support is $\{0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0\}$.
+
+We surface the empirical distribution here---before results---because
+it constrains what the analysis can detect. In the 300-record
+confirmatory run the per-model raw composite distribution is $0$:
+19~records (6\%), $1$: 89 (30\%), $2$: 192 (64\%), and $3$: 0 (0\%).
+No model scored $3/3$ on any T2 item; the location sub-score is the
+empirical bottleneck. After 2-model averaging, composite supports
+$2.5$ and $3.0$ are both empty, leaving an effective range of
+$[0.0, 2.0]$ with mode $2.0$. Across H1, H2, and H3 at least 53\% of
+paired differences are exactly zero; Wilcoxon discards these, and
+the effective $n$ contracts to 13--14 from $n_{\text{pairs}} = 30$.
+
+The ceiling is a property of the as-implemented rubric, not of the
+data. Expanding $n$ alone does not solve underpowering: so long as
+the location sub-score saturates, additional functions produce ties
+at the same rate. The path forward (\S\ref{sec:6}) is rubric
+refinement, or supplementing the composite with a continuous-valued
+T2 metric. Score histograms are shown in Figure~\ref{fig:f3}.
 
 \subsection{Pre-registration}
 \label{sec:3.7}
-% STUB: The Lumen Design Constitution v0.2.2, including the full
-% statistical plan, was committed to the public repository before data
-% collection began. Pre-registration timeline and key commit hashes
-% (constitution v0.2.2; analysis machinery freeze 9217a26; confirmatory
-% closure 10beff2; successor plan registration 9c91347; exploratory
-% tooling 865fbe0, 54e722c) are in Appendix B (\cref{app:B}).
+The Lumen Design Constitution v0.2.2---including the full
+statistical plan---was committed to the public repository before
+data collection began (commit \texttt{6b83bca}). The constitutional
+document at \texttt{docs/design-constitution.tex} was committed at
+repository scaffolding and has not been edited since, which
+strengthens the pre-registration claim against post-hoc adjustment.
+The remaining pre-registration timeline---analysis-machinery freeze,
+confirmatory closure, successor-plan registration, and exploratory
+tooling---is recorded with commit hashes in Appendix~\ref{app:B}.
 
 % =============================================================
 % 4. Results
