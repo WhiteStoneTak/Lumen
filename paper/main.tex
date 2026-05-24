@@ -425,13 +425,29 @@ tooling---is recorded with commit hashes in Appendix~\ref{app:B}.
 
 \subsection{Confirmatory: H1/T2 primary endpoint}
 \label{sec:4.1}
-% STUB (REVISED IN v2.1: CI inserted): Primary-endpoint key-value table
-% below; the 95% CI on r excludes zero and the raw one-sided p=0.023 would
-% reject in isolation; failure occurs at the family-correction stage with
-% m=9. Decision: fail to reject H₀ at α=0.05 corrected. Per Constitution §9
-% this places the study at "minimum success" — experiment completed,
-% materials released, no confirmatory hypothesis rejected. Structural
-% source of under-rejection documented in §3.6 and discussed in §5.3.
+The primary endpoint of the study is the pre-registered H1 test on
+T2: under the C4-versus-C1+ comparison, does the structured-IR
+condition outperform its information-parity textual control on
+bug-detection composite score? Table~\ref{tab:h1-t2-primary} reports
+the full result.
+
+\textbf{Decision: fail to reject $H_0$ at $\alpha = 0.05$ corrected.}
+Under Constitution \S9 success criteria this places the study at
+minimum success---the experiment was completed, materials released,
+and no confirmatory hypothesis was rejected.
+
+The non-rejection is informative rather than empty. The point
+estimate $r_{\text{rb}} = +0.581$ is moderate and lies in the
+pre-registered direction; the 95\% percentile bootstrap CI
+$[+0.077, +0.917]$ excludes zero; and the one-sided raw $p = 0.023$
+would reject $H_0$ in isolation. The failure occurs at the
+Holm--Bonferroni family-correction stage with $m = 9$: the corrected
+$p = 0.205$, and at the present effective Wilcoxon $n = 14$
+(compressed from $n_{\text{pairs}} = 30$ by the rubric-induced tie
+distribution) the correction absorbs the moderate effect. The
+structural source of the under-rejection---the score-rubric
+ceiling---is documented in \S\ref{sec:3.6} and discussed in
+\S\ref{sec:5.3}.
 
 \begin{table}[h]
 \centering
@@ -462,14 +478,31 @@ Mean paired difference                & $+0.183$ \\
 
 \subsection{Confirmatory: secondary T2 layer and family completeness}
 \label{sec:4.2}
-% STUB (REVISED IN v2.1: CI columns added): Two remaining T2 cells (H2/T2,
-% H3/T2) and the six uncollected T1/T3 cells; of three tested cells,
-% H1/T2 and H2/T2 yield positive r consistent with their pre-registered
-% direction, H3/T2 yields NEGATIVE r=−0.473 opposite the pre-registered
-% direction. None reaches Holm-corrected significance. H1/T2 is the only
-% test whose 95% CI excludes zero; H3/T2's CI upper bound (+0.077) just
-% crosses zero. The H3 directional inversion is the strongest exploratory
-% signal in the dataset and is taken up in §4.4.
+Table~\ref{tab:confirmatory-family} reports the full nine-test
+confirmatory family: three hypotheses crossed with three primary
+metrics, with $m = 9$ honored as pre-registered.
+
+Of the three tested cells (all on T2), two yield rank-biserial $r$
+consistent with their pre-registered direction: H1/T2 with
+$r_{\text{rb}} = +0.581$ (CI $[+0.077, +0.917]$, raw $p = 0.023$)
+and H2/T2 with $r_{\text{rb}} = +0.200$ (CI $[-0.333, +0.700]$, raw
+$p = 0.233$). The third, H3/T2, yields $r_{\text{rb}} = -0.473$
+(CI $[-0.885, +0.077]$, raw $p = 0.969$)---\emph{opposite} the
+pre-registered direction. None of the three reaches Holm-corrected
+significance. H1/T2 is the only tested cell whose 95\% CI excludes
+zero; the H3/T2 upper bound ($+0.077$) only just crosses zero.
+
+The remaining six cells of the family are T1 and T3 hypotheses;
+T1 and T3 were uncollected within the 90-day scope
+(\S\ref{sec:3.3}) and contribute Holm $p = 1.000$ by convention.
+We do not retroactively reduce $m$. The distinction between
+collected-and-tested and scope-limited-uncollected cells is a
+reporting matter (\S\ref{sec:3.5}), not a multiplicity adjustment,
+and the six uncollected cells remain in the family.
+
+The H3/T2 directional inversion is the strongest exploratory signal
+in the dataset; its per-model decomposition is taken up in
+\S\ref{sec:4.4}.
 
 \begin{table}[h]
 \centering
