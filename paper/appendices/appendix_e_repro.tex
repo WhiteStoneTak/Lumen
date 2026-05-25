@@ -23,9 +23,19 @@ Run wall-clocks
     t2_frontier_successor_replication : 45 min 25 s
 
 API endpoint snapshot dates
-    % TODO: record API snapshot dates for the confirmatory and
-    %       successor runs (provider-side endpoint version on the
-    %       data-collection day).
+    Data collection day (both runs)   : 2026-04-27 (local time)
+        Confirmatory : 2026-04-27 00:44 -- 01:21 (36 min 13 s)
+        Successor    : 2026-04-27 09:09 -- 09:55 (45 min 25 s)
+    Requested model_ids (logical, as passed to the provider SDKs)
+        Confirmatory : claude-opus-4-6, gpt-5.4
+        Successor    : claude-opus-4-7, gpt-5.5
+    Provider-side dated snapshot identifiers (e.g., Anthropic dated
+    suffix, OpenAI system_fingerprint) were not captured at
+    collection time and are not recoverable from the saved response
+    archives, which store only model_id, response_text, prompt_tokens,
+    total_tokens, and error. We declare this as a provenance
+    limitation; future runs should record these fields at the SDK
+    call site.
 
 Raw response archives
     Confirmatory : results/runs/full_t2_confirmatory_v2/responses/
