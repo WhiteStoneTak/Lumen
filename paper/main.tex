@@ -84,6 +84,10 @@ methodology, and propose rubric refinement and T1/T3 collection as the next
 steps.
 \end{abstract}
 
+\clearpage
+\tableofcontents
+\clearpage
+
 % =============================================================
 % 1. Introduction
 % =============================================================
@@ -1049,37 +1053,65 @@ results support.
 
 \subsection{Summary}
 \label{sec:6.1}
-% STUB (REVISED IN v2.1: CI nuance): we proposed a methodology for
-% information-parity testing of code-representation effects on frozen
-% frontier LLMs and instantiated it on T2 bug detection. Primary endpoint
-% direction-consistent (point estimate +0.58, 95% CI excludes zero) but
-% Holm-non-significant; exploratory analyses surface a robust H1
-% direction across two LLM generations and a systematic H3 inversion;
-% post-hoc inspection identifies a scoring-rubric ceiling as the
-% structural source of underpowering.
+We proposed a methodology for information-parity testing of
+code-representation effects on frozen frontier LLMs and
+instantiated it on T2 bug detection. On the pre-registered
+primary endpoint the result is \emph{direction-consistent but
+Holm-non-significant}: the point estimate
+$r_{\text{rb}} = +0.581$ with 95\% bootstrap CI excluding zero
+lies in the pre-registered direction, but the corrected
+$p = 0.205$ at $m = 9$ does not reject $H_0$. Exploratory
+analyses surface a robust H1 direction across two LLM
+generations and a systematic H3 inversion across all four
+model-runs --- reported under exploratory labeling, not promoted
+to confirmatory claims. Post-hoc inspection identifies a
+scoring-rubric ceiling as the structural source of confirmatory
+underpowering.
 
 \subsection{Immediate follow-on}
 \label{sec:6.2}
-% STUB (REVISED IN v2.1: domain-broadening item added): refine the T2
-% scoring rubric (location sub-score saturation §3.6, §5.3), the binding
-% constraint to address before n expansion; collect T1 and T3 data under
-% separate confirmatory pre-registration; implement C4→C1+→C4'
-% round-trip validation (§3.2); back-port bootstrap CI into the frozen
-% analyze_confirmatory.py via a structurally-equivalent re-implementation;
-% expand n to 50 under separate pre-registration AFTER rubric refinement;
-% broaden dataset domain coverage to dilute the list-operations skew (§5.5).
+Several concrete steps follow from the present results. They are
+listed in priority order, with the first item as the binding
+constraint to address before any dataset expansion.
+
+\begin{itemize}
+\item \textbf{Refine the T2 scoring rubric} to address the
+  location-sub-score saturation (\S\ref{sec:3.6},
+  \S\ref{sec:5.3}). This is the binding constraint on
+  confirmatory power and precedes $n$ expansion.
+\item \textbf{Collect T1 and T3 data} under a separate
+  confirmatory pre-registration, so that the six
+  insufficient-data cells of the nine-test family
+  (\S\ref{sec:4.2}) become testable.
+\item \textbf{Implement the C4\,$\to$\,C1+\,$\to$\,C4$'$
+  round-trip validation} (\S\ref{sec:3.2},
+  Appendix~\ref{app:D}) to quantify the information-parity
+  residuals beyond the operational definition adopted here.
+\item \textbf{Back-port the bootstrap CI} into the frozen
+  \texttt{analyze\_confirmatory.py} via a structurally
+  equivalent re-implementation, now that the sibling CI
+  implementation has been verified against the frozen point
+  estimates (\S\ref{sec:3.5}, Appendix~\ref{app:E}).
+\item \textbf{Expand $n$} (e.g.\ to 50) under separate
+  pre-registration --- \emph{after} rubric refinement, not
+  before (\S\ref{sec:5.3}).
+\item \textbf{Broaden dataset domain coverage} to dilute the
+  list-operations skew documented in \S\ref{sec:5.5}.
+\end{itemize}
 
 \subsection{Long-term}
 \label{sec:6.3}
-% STUB: the study tests a precondition for the broader Lumen vision (a
-% canonical core IR with text and LLM-facing notations as projections):
-% that representation form materially affects external-agent reasoning.
-% Direction-consistent confirmatory point estimate (with a CI excluding
-% zero) plus cross-generation exploratory robustness keep that
-% precondition plausible. A definitive empirical case awaits T1/T3
-% collection and rubric refinement; the architectural bet remains active
-% and is reassessed only on stronger contrary evidence than the present
-% data provide.
+The study tests a precondition for the broader Lumen vision ---
+a canonical core IR with text and LLM-facing notations as
+projections: namely, that representation form materially affects
+external-agent reasoning. The direction-consistent confirmatory
+point estimate with a CI excluding zero, taken together with the
+cross-generation exploratory robustness of the H1 direction,
+keeps that precondition \emph{plausible}; it does not establish
+it. A definitive empirical case awaits T1 and T3 collection and
+rubric refinement; the canonical-core-over-surface-text bet
+(\S\ref{sec:5.4}) remains active, and is reassessed only on
+stronger contrary evidence than the present data provide.
 
 % =============================================================
 % References
