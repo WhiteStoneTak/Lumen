@@ -46,4 +46,43 @@ Bootstrap CI scratch-script provenance (confirmatory effect sizes)
     The frozen analyze_confirmatory.py does not compute CI; the scratch
     script is a sibling implementation that adds CI reporting only and
     does not modify any pre-registered hypothesis-testing decision.
+
+Figure provenance
+    F1 (H1/T2 per-model forest)
+        Script   : paper/figures/scripts/make_f1_f2_forest.py
+        Source   : results/analysis/exploratory/
+                       full_t2_confirmatory_v2/exploratory_results.json
+                   results/analysis/exploratory/
+                       t2_frontier_successor_replication/exploratory_results.json
+                   (per_model_split_h1_h2_h3; H1, T2 entries)
+        Output   : paper/figures/F1.pdf
+        Recompute: python3 paper/figures/scripts/make_f1_f2_forest.py
+        No statistics are recomputed; r and 95% bootstrap CI are read
+        verbatim from the analysis artifacts and plotted as-is.
+        Script asserts each row's r and CI against the values in
+        Tables 4-5 of the paper.
+
+    F2 (H3/T2 per-model forest)
+        Same script and same source files as F1
+        (per_model_split_h1_h2_h3; H3, T2 entries).
+        Output   : paper/figures/F2.pdf
+        Script asserts each row against Table 6, including the collapsed
+        CI [-1.000, -1.000] on the claude-opus-4-7 row.
+
+    F3 (T2 score distribution histograms)
+        Script   : paper/figures/scripts/make_f3_histograms.py
+        Source   : results/runs/full_t2_confirmatory_v2/scores/*.json
+                   (scorer-result-v1; 300 records)
+        Output   : paper/figures/F3.pdf
+        Descriptive count over the frozen confirmatory run (no
+        hypothesis test). Left panel = per-model raw composite over
+        300 records; right panel = per-(function, condition) 2-model
+        averaged composite over the 30 x 5 = 150 cells.
+        Script asserts the left-panel counts against section 3.7
+        ({0:19, 1:89, 2:192, 3:0}; total 300) and that the right-panel
+        2.5 and 3.0 supports are empty.
+
+    F4 (5-condition schematic)
+        No data source. Drawn inline in paper/main.tex as a TikZ
+        picture (no external file).
 \end{verbatim}
