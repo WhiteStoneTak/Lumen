@@ -212,8 +212,7 @@ one-sided raw $p = 0.023$; under Holm correction at $m = 9$ the
 corrected $p = 0.205$, and the family-level decision is
 fail-to-reject (\S\ref{sec:4.1}). The H1 direction is positive
 in all four model-runs across the confirmatory and successor
-pairs, and the \texttt{claude-opus-4-6} per-model CI excludes
-zero (\S\ref{sec:4.3}). The H3 direction is negative in all four
+pairs (\S\ref{sec:4.3}). The H3 direction is negative in all four
 model-runs---opposite the pre-registered prediction
 (\S\ref{sec:4.4}). No T2 record attains the composite ceiling of
 $3$ ($0/300$ records; \S\ref{sec:3.6}); the effective Wilcoxon
@@ -645,9 +644,14 @@ bug-detection composite score? Table~\ref{tab:h1-t2-primary} reports
 the full result.
 
 \textbf{Decision: fail to reject $H_0$ at $\alpha = 0.05$ corrected.}
-Under Constitution \S9 success criteria this places the study at
-minimum success---the experiment was completed, materials released,
-and no confirmatory hypothesis was rejected.
+With H2/T2 and H3/T2 also non-rejected at the family-corrected
+level (\S\ref{sec:4.2}), the confirmatory family yields no
+rejection on T2. Under Constitution \S9 the study therefore falls
+on the \emph{Informative Negative Outcomes} path rather than
+meeting the Minimum-success threshold, which requires at least one
+of H1--H3 to be rejected at the corrected significance level. The
+materials are publicly released in accordance with the same
+criterion.
 
 The non-rejection is informative rather than empty. The point
 estimate $r_{\text{rb}} = +0.581$ is moderate and lies in the
@@ -702,8 +706,7 @@ and H2/T2 with $r_{\text{rb}} = +0.200$ (CI $[-0.333, +0.700]$, raw
 $p = 0.233$). The third, H3/T2, yields $r_{\text{rb}} = -0.473$
 (CI $[-0.885, +0.077]$, raw $p = 0.969$)---\emph{opposite} the
 pre-registered direction. None of the three reaches Holm-corrected
-significance. H1/T2 is the only tested cell whose 95\% CI excludes
-zero; the H3/T2 upper bound ($+0.077$) only just crosses zero.
+significance. The H3/T2 upper bound ($+0.077$) only just crosses zero.
 
 The remaining six cells of the family are T1 and T3 hypotheses;
 T1 and T3 were uncollected within the 90-day scope
@@ -804,8 +807,9 @@ Model & $n$ & $r_{\text{rb}}$ & 95\% CI & raw $p$ (1-sided) \\
 \end{tabular}
 \end{table}
 
-Across all four model-runs the H1 direction is consistent, and the
-\texttt{claude-opus-4-6} CI excludes zero. The successor pair
+Across all four model-runs the H1 direction is consistent
+(per-model effect sizes and CIs in Tables~\ref{tab:h1-t2-confirmatory-permodel}
+and~\ref{tab:h1-t2-successor-permodel}). The successor pair
 preserves the direction under a relaxed sampling regime, so the H1
 direction is not a single-model artifact and is not erased by
 stochastic sampling. We frame this as robustness evidence under
@@ -934,8 +938,9 @@ runs on E1 and E3. The cumulative chain
 $C1 \to C2 \to C3 \to C4$ does not exhibit a clean monotone
 build-up of effect through the four conditions.
 
-This pattern provides post-hoc support for the choice of central
-comparison: the systematic signal in the data is carried by the
+This pattern, observed post hoc, is consistent with the
+pre-registered choice of central comparison: the systematic
+signal in the data is carried by the
 structure-versus-information axis (C4 vs C1+, isolated by
 construction) rather than by the marginal information additions
 along the cumulative chain.
@@ -995,11 +1000,9 @@ together; neither overrides the other.
 
 \textbf{First clause: the point estimate.} The point estimate
 $r_{\text{rb}} = +0.581$ is moderate and lies in the
-pre-registered direction, the 95\% bootstrap CI
-$[+0.077, +0.917]$ excludes zero, and the one-sided raw
-$p = 0.023$ would reject $H_0$ in isolation. The data are
-consistent with the pre-registered direction at moderate effect
-size with a CI excluding zero.
+pre-registered direction, and the one-sided raw $p = 0.023$
+would reject $H_0$ in isolation. The data are consistent with
+the pre-registered direction at moderate effect size.
 
 \textbf{Second clause: the family correction.} The failure
 occurs at the Holm--Bonferroni family-correction stage with
@@ -1084,9 +1087,9 @@ notations as projections will outperform surface-text
 representations for code reasoning. The threshold: an outcome
 of $C1+ \geq C4$ on all primary metrics across both confirmatory
 models would trigger formal reassessment. The observed outcome on
-H1/T2---$C4 > C1+$ in direction, moderate effect size, CI
-excluding zero, failing Holm correction at $m = 9$---does not
-meet that threshold and therefore does not trigger reassessment.
+H1/T2---$C4 > C1+$ in direction, moderate effect size, failing
+Holm correction at $m = 9$---does not meet that threshold and
+therefore does not trigger reassessment.
 
 It also does not constitute confirmatory support for the bet.
 The point estimate is consistent with the bet's direction; the
@@ -1144,9 +1147,8 @@ code-representation effects on frozen frontier LLMs and
 instantiated it on T2 bug detection. On the pre-registered
 primary endpoint the result is \emph{direction-consistent but
 Holm-non-significant}: the point estimate
-$r_{\text{rb}} = +0.581$ with 95\% bootstrap CI excluding zero
-lies in the pre-registered direction, but the corrected
-$p = 0.205$ at $m = 9$ does not reject $H_0$. Exploratory
+$r_{\text{rb}} = +0.581$ lies in the pre-registered direction,
+but the corrected $p = 0.205$ at $m = 9$ does not reject $H_0$. Exploratory
 analyses surface a robust H1 direction across two LLM
 generations and a systematic H3 inversion across all four
 model-runs---reported under exploratory labeling, not promoted
@@ -1191,10 +1193,9 @@ The study tests a precondition for the broader Lumen vision ---
 a canonical core IR with text and LLM-facing notations as
 projections: namely, that representation form materially affects
 external-agent reasoning. The direction-consistent confirmatory
-point estimate with a CI excluding zero, taken together with the
-cross-generation exploratory robustness of the H1 direction,
-keeps that precondition \emph{plausible}; it does not establish
-it. A definitive empirical case awaits T1 and T3 collection and
+point estimate, taken together with the cross-generation
+exploratory robustness of the H1 direction, keeps that
+precondition \emph{plausible}; it does not establish it. A definitive empirical case awaits T1 and T3 collection and
 rubric refinement; the canonical-core-over-surface-text bet
 (\S\ref{sec:5.4}) remains active, and is reassessed only on
 stronger contrary evidence than the present data provide.
