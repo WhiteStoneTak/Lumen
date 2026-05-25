@@ -15,7 +15,9 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[margin=1in]{geometry}
+\usepackage{microtype}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning, calc}
@@ -28,6 +30,14 @@
 \usepackage[round]{natbib}
 \usepackage[hidelinks]{hyperref}
 \usepackage[capitalize, noabbrev]{cleveref}
+\usepackage[font=small, labelfont=bf, labelsep=period, skip=4pt]{caption}
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\normalsize\bfseries\itshape}
+\titlespacing*{\section}{0pt}{12pt plus 2pt minus 2pt}{4pt}
+\titlespacing*{\subsection}{0pt}{8pt plus 1pt minus 1pt}{2pt}
+\titlespacing*{\subsubsection}{0pt}{6pt plus 1pt minus 1pt}{2pt}
 
 \graphicspath{{figures/}}
 
@@ -45,9 +55,9 @@
 }
 \makeatother
 
-\title{Information-Parity Testing for Code Representation Effects on
-  Frontier LLMs: Methodology and Diagnostic Findings from a
-  Bug-Detection Pilot}
+\title{Information-Parity Testing for Code Representation Effects \\
+       on Frontier LLMs: Methodology and Diagnostic Findings \\
+       from a Bug-Detection Pilot}
 
 \author{%
   \textbf{\large Takumi Shiraishi} \\[2pt]
