@@ -105,9 +105,9 @@
 Frontier LLMs are increasingly applied to code reasoning, yet whether the
 \emph{format} of input code affects reasoning quality, independent of the
 \emph{information content} of the representation, is rarely tested with
-controls. We present a methodology for such testing --- a 5-condition design
+controls. We present a methodology for such testing---a 5-condition design
 with an information-parity control (C1+) projecting a contract-augmented IR
-back into Python source --- and instantiate it on T2 bug detection across 30
+back into Python source---and instantiate it on T2 bug detection across 30
 retained non-recursive Python functions, two confirmatory frontier LLMs, and
 a successor pair (post-confirmatory exploratory replication). The primary
 endpoint H1 (C4 $>$ C1+) yields a moderate positive effect (rank-biserial
@@ -116,8 +116,8 @@ not reach Holm-corrected significance under the pre-registered 9-test family
 (corrected $p = 0.205$). Exploratory analyses surface a directional pattern:
 H3 (in-text information enrichment helps) inverts on all four model-runs
 spanning two LLM generations. Post-hoc inspection reveals that the integer
-T2 composite score (range $0$--$3$) saturates at $2$ --- its ceiling of $3$ is
-never attained --- compressing the effective Wilcoxon $n$ from 30 to 13--14
+T2 composite score (range $0$--$3$) saturates at $2$---its ceiling of $3$ is
+never attained---compressing the effective Wilcoxon $n$ from 30 to 13--14
 and constituting the structural source of confirmatory underpowering. We discuss implications for both the empirical claim and the
 methodology, and propose rubric refinement and T1/T3 collection as the next
 steps.
@@ -610,7 +610,7 @@ property: each function independently lands somewhere in the
 $\{0,1,2,3\}$ raw composite distribution shown above, and that
 distribution is determined by what the rubric can score, not by
 how many functions are sampled. Expanding $n$ alone therefore
-does not solve underpowering --- additional functions arrive
+does not solve underpowering---additional functions arrive
 drawn from the same distribution and produce zero-valued paired
 differences at the same rate, so the effective Wilcoxon $n$
 stays in the same fraction of $n_{\text{pairs}}$. The path
@@ -1078,7 +1078,7 @@ underpowering.
 \subsection{Implications for the long-term Lumen vision}
 \label{sec:5.4}
 Constitution v0.2.2 \S3 specifies a reassessment threshold for
-the canonical-core-over-surface-text bet --- the design wager
+the canonical-core-over-surface-text bet---the design wager
 that a structured canonical core IR with text and LLM-facing
 notations as projections will outperform surface-text
 representations for code reasoning. The threshold: an outcome
@@ -1149,7 +1149,7 @@ lies in the pre-registered direction, but the corrected
 $p = 0.205$ at $m = 9$ does not reject $H_0$. Exploratory
 analyses surface a robust H1 direction across two LLM
 generations and a systematic H3 inversion across all four
-model-runs --- reported under exploratory labeling, not promoted
+model-runs---reported under exploratory labeling, not promoted
 to confirmatory claims. Post-hoc inspection identifies a
 scoring-rubric ceiling as the structural source of confirmatory
 underpowering.
@@ -1179,7 +1179,7 @@ constraint to address before any dataset expansion.
   implementation has been verified against the frozen point
   estimates (\S\ref{sec:3.5}, Appendix~\ref{app:E}).
 \item \textbf{Expand $n$} (e.g.\ to 50) under separate
-  pre-registration --- \emph{after} rubric refinement, not
+  pre-registration---\emph{after} rubric refinement, not
   before (\S\ref{sec:5.3}).
 \item \textbf{Broaden dataset domain coverage} to dilute the
   list-operations skew documented in \S\ref{sec:5.5}.
