@@ -115,7 +115,7 @@ def plot(raw: collections.Counter, avg: collections.Counter, out: Path) -> None:
     avg_y = [avg.get(x, 0) for x in avg_x]
     axR.bar(avg_x, avg_y, color="0.35", edgecolor="black", linewidth=0.5, width=0.35)
     axR.set_xticks(avg_x)
-    axR.set_xlabel("per-(function, condition) 2-model averaged composite")
+    axR.set_xlabel("2-model averaged composite score")
     axR.set_ylabel("count")
     for x, y in zip(avg_x, avg_y):
         if y > 0:
