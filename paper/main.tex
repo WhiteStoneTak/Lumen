@@ -326,34 +326,38 @@ Figure~\ref{fig:f4}.
   ann/.style={font=\footnotesize, color=black!65, align=center},
   arr/.style={-{Stealth[length=4pt]}, thick},
   parity/.style={<->, dashed, thick, color=black!75},
-  node distance=1.0cm and 1.3cm
+  node distance=1.5cm and 1.9cm
 ]
-  % Cumulative chain along the bottom
+  % Cumulative chain along the bottom row.
   \node[cond]                  (c1) {C1\\\scriptsize Source text};
   \node[cond, right=of c1]     (c2) {C2\\\scriptsize Raw AST};
   \node[cond, right=of c2]     (c3) {C3\\\scriptsize Typed AST};
   \node[central, right=of c3]  (c4) {\textbf{C4}\\\scriptsize Contract-aug.\ IR};
 
-  % Parity branch above (kept clear of c3 so the dashed line to c4 does not
-  % pass over the typed-AST box).
-  \node[central, above=2.2cm of c1, xshift=1.6cm] (c1p)
+  % C1+ placed directly above C4 so the parity comparison is a clean
+  % vertical line and the explanatory label sits in the open area beside it.
+  \node[central, above=2.6cm of c4] (c1p)
        {\textbf{C1+}\\\scriptsize Annotated text};
 
-  % Cumulative-chain arrows (yshift pushes labels clear of node borders).
-  \draw[arr] (c1) -- (c2) node[midway, below=2pt, ann] {+ AST};
-  \draw[arr] (c2) -- (c3) node[midway, below=2pt, ann] {+ types};
-  \draw[arr] (c3) -- (c4) node[midway, below=2pt, ann] {+ contracts};
+  % Cumulative-chain arrows. Labels go above the arrows in the row gap so
+  % they cannot collide with the box borders even for the longer "+ contracts".
+  \draw[arr] (c1) -- (c2) node[midway, above=2pt, ann] {+ AST};
+  \draw[arr] (c2) -- (c3) node[midway, above=2pt, ann] {+ types};
+  \draw[arr] (c3) -- (c4) node[midway, above=2pt, ann] {+ contracts};
 
-  % Parity-branch arrow
-  \draw[arr] (c1) -- (c1p) node[midway, above left, ann]
+  % Parity-branch arrow: long diagonal from C1 (lower-left) to C1+ (top-right),
+  % with the edge label sloped along the arrow in clear space.
+  \draw[arr] (c1) -- (c1p) node[pos=0.55, above, sloped, ann]
        {+ types, + contracts (textual)};
 
-  % Central comparison: C4 vs C1+ (information held constant; format differs).
-  % The dashed line stays, but the explanatory label moves into clear space
-  % above the cumulative chain to avoid overlapping C1+ and the boxes below.
+  % Central comparison: vertical dashed line between C1+ and C4. The
+  % explanatory label sits above C1+ in the open area at the top of the
+  % figure -- visually it associates with one of the two compared boxes,
+  % keeps the figure within the page width, and stays clear of every other
+  % element.
   \draw[parity] (c1p) -- (c4);
   \node[ann, font=\footnotesize\itshape,
-        above=0.45cm of c4, xshift=-1.3cm]
+        above=4pt of c1p, align=center]
        (cmpnote)
        {C4 vs C1+: same information, format differs\\(central comparison)};
 \end{tikzpicture}
