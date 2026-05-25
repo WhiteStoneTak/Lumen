@@ -32,12 +32,26 @@
 \usepackage[capitalize, noabbrev]{cleveref}
 \usepackage[font=small, labelfont=bf, labelsep=period, skip=4pt]{caption}
 \usepackage{titlesec}
+\usepackage{tocloft}
+% Compress vertical spacing between TOC entries so the entire contents
+% (body + Appendices A--E) fits cleanly on a single page rather than
+% spilling 4-5 lines onto an otherwise empty second page.
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
 \titleformat*{\section}{\large\bfseries}
 \titleformat*{\subsection}{\normalsize\bfseries}
 \titleformat*{\subsubsection}{\normalsize\bfseries\itshape}
 \titlespacing*{\section}{0pt}{12pt plus 2pt minus 2pt}{4pt}
 \titlespacing*{\subsection}{0pt}{8pt plus 1pt minus 1pt}{2pt}
 \titlespacing*{\subsubsection}{0pt}{6pt plus 1pt minus 1pt}{2pt}
+
+% Page break discipline: avoid single-line widows at the top of a page
+% and single-line orphans at the bottom -- standard for finished
+% conference-paper PDFs.
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
 
 \graphicspath{{figures/}}
 
@@ -1182,10 +1196,15 @@ stronger contrary evidence than the present data provide.
 % =============================================================
 % Appendices
 % =============================================================
+\clearpage
 \appendix
-\makeatletter
-\renewcommand\@seccntformat[1]{Appendix~\csname the#1\endcsname\quad}
-\makeatother
+
+% Single "Appendices" divider so the reader sees a clean transition
+% from the main paper to the supplementary material. Sections under
+% \appendix are auto-numbered A, B, C, ... in the standard style;
+% no per-heading "Appendix" prefix is needed.
+\section*{Appendices}
+\addcontentsline{toc}{section}{Appendices}
 
 \input{appendices/appendix_a_funcids}
 \input{appendices/appendix_b_provenance}
