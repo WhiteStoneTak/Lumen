@@ -1139,9 +1139,12 @@ results support.
   operations; results may not generalize uniformly to arithmetic,
   parsing, or string-heavy domains.
 \item \textbf{Author-reviewed contracts.} Single-evaluator
-  residual variance enters the rubric inputs, held constant
-  between C1+ and C4 by construction (the same reviewed
-  contracts are used in both).
+  residual variance enters the rubric inputs. For H1 (C4 vs
+  C1+) the same reviewed contracts are present in both
+  conditions, so reviewer-side variance cancels in the paired
+  comparison; for H3 (C1+ vs C1) the contracts are present on
+  C1+ only, and any systematic reviewer bias does not cancel
+  across the pair.
 \item \textbf{Two providers, two generations.} The
   frontier-LLM landscape is not fully covered.
 \item \textbf{Non-recursive single-function scope.} A
