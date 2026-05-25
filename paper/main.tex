@@ -116,8 +116,8 @@ not reach Holm-corrected significance under the pre-registered 9-test family
 (corrected $p = 0.205$). Exploratory analyses surface a directional pattern:
 H3 (in-text information enrichment helps) inverts on all four model-runs
 spanning two LLM generations. Post-hoc inspection reveals that the integer
-T2 composite score (range $0$--$3$) saturates at $2$ — its ceiling of $3$ is
-never attained — compressing the effective Wilcoxon $n$ from 30 to 13--14
+T2 composite score (range $0$--$3$) saturates at $2$ --- its ceiling of $3$ is
+never attained --- compressing the effective Wilcoxon $n$ from 30 to 13--14
 and constituting the structural source of confirmatory underpowering. We discuss implications for both the empirical claim and the
 methodology, and propose rubric refinement and T1/T3 collection as the next
 steps.
@@ -588,8 +588,8 @@ provenance is recorded in Appendix~\ref{app:E}.
 \label{sec:3.6}
 The T2 composite score is the integer sum of three binary
 sub-scores: location (0/1), diagnosis (0/1), and fix (0/1). Per-model
-support is therefore $\{0,1,2,3\}$; the per-function 2-model-averaged
-support is $\{0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0\}$.
+support is therefore $\{0,1,2,3\}$; the per-(function, condition)
+2-model-averaged support is $\{0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0\}$.
 
 We surface the empirical distribution here---before results---because
 it constrains what the analysis can detect. The confirmatory run
@@ -961,17 +961,18 @@ successor & E3 & C4 vs C3 & $-0.333$ & $-$ \\
 \end{tabular}
 \end{table}
 
-% TODO: F3 score-distribution histograms — per-model raw composite
-% (showing 3 absent) and per-function 2-model averaged composite (showing
-% 2.5 and 3.0 absent). Visual support for §3.6.
+% F3 score-distribution histograms --- per-model raw composite
+% (showing 3 absent) and per-(function, condition) 2-model averaged
+% composite (showing 2.5 and 3.0 absent). Visual support for §3.6.
 % Source data: results/runs/full_t2_confirmatory_v2/scores/*.json.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.85\textwidth]{F3.pdf}
 \caption{Score distribution histograms. Left: per-model raw composite
 $\{0,1,2,3\}$ (composite $3$ absent in 300/300 records). Right:
-per-function 2-model averaged composite $\{0, 0.5, \dots, 3.0\}$ (supports
-$2.5$ and $3.0$ both absent in 30/30 functions). Visual support for
+per-(function, condition) 2-model-averaged composite
+$\{0, 0.5, \dots, 3.0\}$ over all $30 \times 5 = 150$ cells (supports
+$2.5$ and $3.0$ both absent across all 150 cells). Visual support for
 \S\ref{sec:3.6}.}
 \label{fig:f3}
 \end{figure}
