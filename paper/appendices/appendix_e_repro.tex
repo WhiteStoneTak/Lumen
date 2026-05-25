@@ -42,6 +42,24 @@ Raw response archives
     Successor    : results/runs/t2_frontier_successor_replication/responses/
     (Score JSONs alongside, under .../scores/.)
 
+Pre-confirmatory dataset-sufficiency audit (referenced by §3.1, §5.5)
+    Path        : results/analysis/t2_dataset_sufficiency_audit_2026-04-02.json
+    Schema      : t2-dataset-sufficiency-audit-v1
+    Audit date  : 2026-04-02 (three weeks before full_t2_confirmatory_v2
+                  collection on 2026-04-27)
+    Key finding : dataset_sufficiency_finding records
+                  "minimum_line_reached": true,
+                  "sufficiency_proven": false, and
+                  "evidence_for_30_vs_50":
+                    "No in-repo pilot power analysis artifact or
+                     effect-size sanity-check artifact determining
+                     30 vs 50 sufficiency was found."
+    Decision    : branch_decision records that confirmatory execution
+                  proceeded at the constitutional minimum line of
+                  n = 30 (wave2 pool exhausted), with rubric-induced
+                  effective-n compression identified post hoc from
+                  confirmatory data (§3.7, §5.3).
+
 Bootstrap CI scratch-script provenance (confirmatory effect sizes)
     Script        : scratch/bootstrap_ci_confirmatory.py
     Results JSON  : scratch/bootstrap_ci_results.json
