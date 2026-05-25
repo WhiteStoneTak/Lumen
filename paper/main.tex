@@ -53,6 +53,17 @@
 \clubpenalty=10000
 \displaywidowpenalty=10000
 
+% Loosen the float-placement parameters so figures and tables can sit
+% closer to where they are referenced instead of being deferred to the
+% next page (or to a float-only page). Defaults are conservative.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.7}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+
 \graphicspath{{figures/}}
 
 % Build-level shim (skeleton-compile task): render missing figure files as
