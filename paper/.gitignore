@@ -14,4 +14,6 @@
 *.vrb
 *.dvi
 *.ps
-main.pdf
+# main.pdf is intentionally tracked so the compiled preprint travels with the
+# source. Re-add to ignore only if a venue submission system requires a clean
+# source-only tree.
