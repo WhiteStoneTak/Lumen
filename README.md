@@ -8,7 +8,7 @@ confound of differing information content across conditions.
 
 **Paper (extended preprint):** [`paper/main.pdf`](paper/main.pdf) —
 *Information-Parity Testing for Code Representation Effects on Frontier
-LLMs: Methodology and Diagnostic Findings from a Bug-Detection Pilot*
+LLMs: Methodology and Diagnostic Findings from a Bug-Detection Study*
 (Takumi Shiraishi, May 2026).
 
 ## Status
@@ -111,7 +111,7 @@ Until an arXiv identifier is assigned, please cite as:
 ```
 Shiraishi, T. (2026). Information-Parity Testing for Code Representation
 Effects on Frontier LLMs: Methodology and Diagnostic Findings from a
-Bug-Detection Pilot. Extended preprint.
+Bug-Detection Study. Extended preprint.
 https://github.com/WhiteStoneTak/Lumen
 ```
 
