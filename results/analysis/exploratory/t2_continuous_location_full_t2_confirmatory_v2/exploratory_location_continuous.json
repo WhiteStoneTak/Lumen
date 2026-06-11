@@ -1,0 +1,6926 @@
+{
+  "lumen_schema": "t2-continuous-location-v1-reanalysis",
+  "exploratory": true,
+  "source_run": "full_t2_confirmatory_v2",
+  "note": "EXPLORATORY re-scoring of frozen T2 responses with a continuous location metric. Does not modify the frozen composite or the confirmatory analysis. Not for confirmatory inference.",
+  "n_records": 300,
+  "tie_comparison": {
+    "continuous_location": {
+      "n": 300,
+      "distinct_values": 37,
+      "tied_pair_fraction": 0.1422
+    },
+    "binary_location_frozen": {
+      "n": 300,
+      "distinct_values": 1,
+      "tied_pair_fraction": 1.0
+    }
+  },
+  "records": [
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29,
+        32
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29,
+        31
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 0.058824,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        2,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        36
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 0.058824,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        2,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        36
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "antidiagonals",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29,
+        32
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        4,
+        5,
+        6,
+        13,
+        16,
+        17
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        17
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        4,
+        5,
+        6,
+        13,
+        16,
+        17
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        9,
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "batch_list",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        38
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        37,
+        38,
+        39
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        38
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 0.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        7
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        31,
+        37,
+        38,
+        39
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        31,
+        38
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 0.066667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        24,
+        25,
+        27,
+        28,
+        30,
+        31,
+        36,
+        37,
+        38,
+        39,
+        41,
+        42,
+        43,
+        45
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "camel_to_snake",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
+      "location_continuous": 0.166667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        7,
+        36,
+        37,
+        38,
+        39
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        31,
+        35,
+        37,
+        38,
+        39,
+        40,
+        42
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        37,
+        38,
+        39,
+        40,
+        42
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        31,
+        35,
+        37,
+        38,
+        39,
+        40,
+        42
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        37,
+        38,
+        39,
+        40,
+        42
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.076923,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        20,
+        29,
+        30,
+        31,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.166667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35,
+        37,
+        38,
+        39,
+        40,
+        42
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.052632,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        4,
+        5,
+        23,
+        24,
+        25,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        42
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.052632,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        4,
+        5,
+        23,
+        24,
+        25,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "chunk_on_change",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        37,
+        38,
+        39,
+        40,
+        42
+      ],
+      "truth_span": [
+        40,
+        40
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        8,
+        10,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.75,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        10,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.3,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        10,
+        14,
+        17,
+        18,
+        20,
+        21
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        21
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.363636,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        8,
+        10,
+        14,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        21
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        10,
+        17,
+        18,
+        19,
+        21
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        21
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.363636,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        8,
+        10,
+        14,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "count_true_segments",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        21
+      ],
+      "truth_span": [
+        15,
+        20
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        11,
+        25,
+        26
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        19,
+        20,
+        22,
+        23,
+        25,
+        26,
+        28
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        23,
+        25,
+        26
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "dense_rank",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        23,
+        25,
+        26
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.230769,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        2,
+        5,
+        6,
+        9,
+        13,
+        24,
+        26,
+        29,
+        33,
+        34,
+        35,
+        36
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.75,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        34,
+        35,
+        36
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        32,
+        33,
+        36
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.071429,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        22,
+        23,
+        24,
+        26,
+        27,
+        29,
+        30,
+        32,
+        33,
+        36,
+        38
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.076923,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        23,
+        24,
+        26,
+        27,
+        29,
+        30,
+        32,
+        33,
+        36,
+        38
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "equal_width_buckets",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29,
+        33
+      ],
+      "truth_span": [
+        33,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.4,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30,
+        31,
+        32,
+        36
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.6,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29,
+        30,
+        31,
+        32,
+        36
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.4,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30,
+        31,
+        32,
+        36
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.6,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29,
+        30,
+        31,
+        32,
+        36
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.1875,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.6,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29,
+        30,
+        31,
+        32,
+        36
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.1875,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.6,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29,
+        30,
+        31,
+        32,
+        36
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.1875,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "find_balanced_spans",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
+      "location_continuous": 0.6,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29,
+        30,
+        31,
+        32,
+        36
+      ],
+      "truth_span": [
+        29,
+        31
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        9,
+        15,
+        17,
+        19,
+        20
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17,
+        18,
+        19
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        17,
+        18,
+        19
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "first_index_of_max",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17,
+        18,
+        19
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 0.1,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        5,
+        6,
+        13,
+        14,
+        18,
+        33,
+        36,
+        37,
+        38
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        37
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        37
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 0.166667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        5,
+        13,
+        14,
+        37,
+        38
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 0.166667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        5,
+        13,
+        14,
+        37,
+        38
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 0.125,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        5,
+        6,
+        7,
+        13,
+        14,
+        37,
+        38
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        37
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 0.125,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        5,
+        6,
+        7,
+        13,
+        14,
+        37,
+        38
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "frequency_table",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        13,
+        36,
+        37
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33
+      ],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        34
+      ],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 0.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 0.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        34
+      ],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        34
+      ],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 0.05,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        2,
+        18,
+        19,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38
+      ],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        34
+      ],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 0.05,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        2,
+        18,
+        19,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38
+      ],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_and_aggregate",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        34
+      ],
+      "truth_span": [
+        33,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        19,
+        21,
+        22,
+        23,
+        24,
+        26
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        22,
+        23,
+        24
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        2,
+        8,
+        24
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        2,
+        8,
+        24
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "group_by_key",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24
+      ],
+      "truth_span": [
+        24,
+        24
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        36,
+        46
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.125,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        36,
+        37,
+        39,
+        46,
+        47,
+        48,
+        49
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        36,
+        46
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.1,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35,
+        36,
+        37,
+        39,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.033333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        5,
+        6,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        27,
+        28,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        51
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        36,
+        37,
+        39,
+        46,
+        47,
+        48,
+        49
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.033333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        5,
+        6,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        27,
+        28,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        51
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.083333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        11,
+        35,
+        36,
+        37,
+        39,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.034483,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        5,
+        6,
+        20,
+        21,
+        23,
+        24,
+        25,
+        27,
+        28,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        51
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "longest_plateau",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        36,
+        37,
+        39,
+        46,
+        47,
+        48,
+        49
+      ],
+      "truth_span": [
+        46,
+        46
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        38
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        38,
+        39,
+        40,
+        41
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.166667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        19,
+        25,
+        26,
+        38,
+        41,
+        43
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        38,
+        39,
+        40,
+        41
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        38
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        38
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.029412,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        12,
+        13,
+        14,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        28,
+        29,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        40,
+        41,
+        43
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        38,
+        39,
+        40,
+        41
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        38
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "max_subarray_bounds",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        38,
+        39,
+        40,
+        41
+      ],
+      "truth_span": [
+        38,
+        38
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30,
+        31,
+        32
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_intervals",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        20,
+        21,
+        25,
+        26,
+        27
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        15,
+        22,
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        20,
+        21,
+        25,
+        26,
+        27
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 0.166667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        15,
+        20,
+        21,
+        25,
+        26,
+        27
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        20,
+        21,
+        25,
+        26,
+        27
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "merge_sorted",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        25
+      ],
+      "truth_span": [
+        25,
+        25
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30,
+        31
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30,
+        31
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30,
+        31,
+        32,
+        33
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30,
+        31
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "peak_valley_indices",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        30
+      ],
+      "truth_span": [
+        30,
+        30
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        17,
+        18
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        17,
+        18
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 0.125,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        9,
+        16,
+        17,
+        18
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        9,
+        16,
+        17,
+        18
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        15,
+        17,
+        18,
+        19
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "remove_adjacent_dups",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        9,
+        16,
+        17,
+        18
+      ],
+      "truth_span": [
+        17,
+        17
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        23
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        17,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        23
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.142857,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        17,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        19,
+        23
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        23
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        19,
+        23
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        23
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        19,
+        23
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rle_encode",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        23
+      ],
+      "truth_span": [
+        23,
+        23
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        2,
+        6,
+        14,
+        18,
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        2,
+        6,
+        14,
+        18,
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        2,
+        6,
+        14,
+        18,
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "rotate_list",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        2,
+        6,
+        14,
+        18,
+        19
+      ],
+      "truth_span": [
+        19,
+        19
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        22
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 0.111111,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        22
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        22
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        14,
+        22
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        22
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        14,
+        22
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        22
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        22
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "segments_above_threshold",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        22
+      ],
+      "truth_span": [
+        22,
+        22
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        5,
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        15,
+        16,
+        17
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sliding_window_max",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16
+      ],
+      "truth_span": [
+        16,
+        16
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.571429,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        24,
+        25,
+        26,
+        27,
+        29,
+        31
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.666667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24,
+        25,
+        26,
+        27,
+        29,
+        31
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.666667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24,
+        25,
+        26,
+        27,
+        29,
+        31
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.666667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24,
+        25,
+        26,
+        27,
+        29,
+        31
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.285714,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.666667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24,
+        25,
+        26,
+        27,
+        29,
+        31
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        2,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.666667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24,
+        25,
+        26,
+        27,
+        29,
+        31
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.571429,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        4,
+        24,
+        25,
+        26,
+        27,
+        29,
+        31
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "sorted_list_intersection",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
+      "location_continuous": 0.666667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        24,
+        25,
+        26,
+        27,
+        29,
+        31
+      ],
+      "truth_span": [
+        24,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.1,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        24,
+        28,
+        33,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.090909,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        34,
+        35,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43,
+        44,
+        45
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35,
+        37,
+        38,
+        39,
+        40
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.090909,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        34,
+        35,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43,
+        44,
+        45
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.041667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        19,
+        20,
+        22,
+        23,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43,
+        44,
+        45,
+        47
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.111111,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43,
+        44,
+        45
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.04,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        18,
+        19,
+        20,
+        22,
+        23,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43,
+        44,
+        45,
+        47
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.1,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        35,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43,
+        44,
+        45
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.041667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        19,
+        20,
+        22,
+        23,
+        24,
+        25,
+        26,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43,
+        44,
+        45,
+        47
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "spiral_order",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
+      "location_continuous": 0.1,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        31,
+        35,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43,
+        44,
+        45
+      ],
+      "truth_span": [
+        37,
+        37
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        10,
+        14,
+        16,
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        10,
+        14,
+        16,
+        17,
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        10,
+        14,
+        16,
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        16,
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        10,
+        14,
+        16,
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "stable_partition",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        35
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        27
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        27,
+        28,
+        29
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        27
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        27,
+        28,
+        29
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        27
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        19,
+        27
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        27
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        27
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 0.076923,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        2,
+        18,
+        22,
+        23,
+        24,
+        25,
+        27,
+        28,
+        29,
+        31,
+        32,
+        34
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "strided_windows",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        27
+      ],
+      "truth_span": [
+        27,
+        27
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.166667,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        38,
+        43,
+        48,
+        52,
+        56
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.090909,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        38,
+        43,
+        48,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        38,
+        43,
+        48,
+        51,
+        53,
+        55,
+        56
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        51,
+        53
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        50,
+        52,
+        53
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.333333,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        50,
+        52,
+        53
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.125,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        32,
+        37,
+        42,
+        47,
+        50,
+        52,
+        53,
+        58
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.25,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        50,
+        51,
+        52,
+        53
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.2,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        20,
+        21,
+        50,
+        52,
+        53
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "tokenize_arithmetic",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        38,
+        43,
+        48,
+        50,
+        51,
+        53,
+        54,
+        55,
+        56
+      ],
+      "truth_span": [
+        52,
+        52
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.090909,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        7,
+        20,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        41,
+        43
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.111111,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        40,
+        41
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        33,
+        34,
+        36,
+        38,
+        39,
+        41
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        32,
+        33,
+        34,
+        36,
+        38,
+        39,
+        41
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        4,
+        14,
+        26,
+        27,
+        28,
+        30,
+        32,
+        33,
+        34,
+        36,
+        37,
+        38,
+        39,
+        41,
+        43
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.125,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        41
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        4,
+        5,
+        14,
+        26,
+        27,
+        28,
+        30,
+        32,
+        33,
+        34,
+        36,
+        37,
+        38,
+        39,
+        41,
+        43
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.125,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        41
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.5,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        4,
+        5,
+        14,
+        26,
+        27,
+        28,
+        30,
+        32,
+        33,
+        34,
+        36,
+        37,
+        38,
+        39,
+        41,
+        43
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "top_k_by",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
+      "location_continuous": 0.111111,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        40,
+        41
+      ],
+      "truth_span": [
+        35,
+        35
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.363636,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17,
+        26,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.4,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.307692,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        17,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.4,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.571429,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        26,
+        30,
+        31,
+        32,
+        33,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.4,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.571429,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        26,
+        30,
+        31,
+        32,
+        33,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.444444,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        26,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.4,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "two_sum_sorted_pairs",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
+      "location_continuous": 0.4,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        35,
+        37
+      ],
+      "truth_span": [
+        30,
+        33
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C1_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C1",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C1_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C1plus_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C1+",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C1plus_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C2_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C2",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C2_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C3_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 0.0625,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        1,
+        2,
+        18,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C3",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C3_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "claude-opus-4-6",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C4_claude-opus-4-6.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    },
+    {
+      "lumen_schema": "t2-continuous-location-v1",
+      "exploratory": true,
+      "func_id": "welford_running_stats",
+      "task": "T2",
+      "condition": "C4",
+      "model_id": "gpt-5.4",
+      "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C4_gpt-5.4.json",
+      "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
+      "location_continuous": 1.0,
+      "location_binary_frozen": 0,
+      "predicted_lines": [
+        29
+      ],
+      "truth_span": [
+        29,
+        29
+      ]
+    }
+  ]
+}
