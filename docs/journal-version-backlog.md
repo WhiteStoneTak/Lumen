@@ -66,7 +66,11 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
   flesh out Appendix D from placeholder into a real section.
 - **Dependencies / notes:** Tied to Appendix D and to §3.3's operational
   framing; results may inform whether §3.3 needs to be qualified further.
-- **status:** OPEN
+- **status:** DONE (R4-1 + R4-2 / WOV-243, WOV-244). Round-trip run on all 30
+  functions: content recovery is high (contracts + shared-identifier links
+  100%, node kinds 99.8%, types 96.4%, edges 98.7%), byte-exact AST identity
+  0/30. Appendix D fleshed out; §3.2 residual-asymmetry paragraph re-qualified
+  with the measured numbers. Artifacts: results/analysis/exploratory/roundtrip/.
 
 ### L3-02 — Bootstrap CI computed outside the frozen analysis script
 
@@ -307,7 +311,10 @@ journal-version scope contains; no priority or schedule is assigned.
   Appendix D's placeholder content with the real experiment and results.
 - **Cross-reference:** L3-01; possibly W-05 (round-trip may be promoted
   to protocol-level status in Constitution v0.3).
-- **status:** OPEN
+- **status:** DONE (R4-1 + R4-2 / WOV-243, WOV-244). Pipeline + metrics in
+  src/experiment/roundtrip.py (spec docs/roundtrip-comparison-spec.md); all-30
+  run + Appendix D written. Constitution v0.3 (R3) adopted round-trip as a
+  reported diagnostic, threshold deferred (decision area 2).
 
 ### W-04 — Rubric refinement (location sub-score ceiling)
 

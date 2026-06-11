@@ -1,10 +1,78 @@
 % Appendix D — Information-parity round-trip validation
-% Placeholder per outline v2.1 §3.2 and Appendix list.
+% R4-2 (WOV-244). Replaces the placeholder with measured recovery rates.
 
 \section{Information-parity round-trip validation}
 \label{app:D}
 
-This appendix will report the C4 $\rightarrow$ C1+ $\rightarrow$ C4$'$
-round-trip validation experiment in the journal version. Within the
-workshop scope, see \S\ref{sec:3.2} for the operational definition of
-information parity used by this paper.
+\subsection*{Method}
+
+To quantify how much of the Core IR (C4) survives the projection to the
+information-parity condition (C1+), we run a round trip
+$\text{C4} \rightarrow \text{C1+} \rightarrow \text{C4}'$ on all 30 retained
+confirmatory functions and compare C4 against the re-derived C4$'$. C1+ is
+produced by the same projection used in the experiment
+(\texttt{src/pipeline/ir\_to\_annotated\_text.py}). C4$'$ is re-derived from the
+C1+ \emph{text only}: the AST by re-parsing the C1+ source, the contract
+clauses by parsing the structured docstring block (a docstring$\rightarrow$contract
+parser written for this purpose, since the production lowering reads the
+authoritative reviewed contract rather than the projected text), and the types
+from the C1+ annotations. Comparison normalization is specified in
+\texttt{docs/roundtrip-comparison-spec.md}; the implementation is
+\texttt{src/experiment/roundtrip.py} and the per-function and aggregate outputs
+are under \texttt{results/analysis/exploratory/roundtrip/}. This is an
+exploratory measurement, not a confirmatory test.
+
+\subsection*{Results}
+
+Table~\ref{tab:roundtrip} reports per-metric recovery over the 30 functions.
+
+\begin{table}[h]
+\centering
+\small
+\caption{C4$\rightarrow$C1+$\rightarrow$C4$'$ recovery over the 30 retained
+confirmatory functions (\emph{Exploratory analysis}). Retention is the fraction
+of the C4 quantity recovered in C4$'$; see
+\texttt{docs/roundtrip-comparison-spec.md} for the normalization of each metric.}
+\label{tab:roundtrip}
+\begin{tabular}{lrrr}
+\toprule
+Metric & Mean & Min & Max \\
+\midrule
+Node-kind retention            & $0.998$ & $0.962$ & $1.000$ \\
+Type-annotation retention      & $0.964$ & $0.600$ & $1.000$ \\
+Parent--child (edge) retention & $0.987$ & $0.885$ & $1.000$ \\
+Cross-reference retention      & $1.000$ & $1.000$ & $1.000$ \\
+Contract preconditions         & $1.000$ & $1.000$ & $1.000$ \\
+Contract postconditions        & $1.000$ & $1.000$ & $1.000$ \\
+Contract invariants            & $1.000$ & $1.000$ & $1.000$ \\
+\midrule
+Canonical-hash agreement       & \multicolumn{3}{l}{$0/30$ functions (exact AST match)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The propositional content the experiment relies on is recovered essentially in
+full: all three contract-clause families and the cross-reference structure among
+clauses are recovered at $100\%$, node kinds at $99.8\%$, type annotations at
+$96.4\%$, and parent--child structure at $98.7\%$. What is \emph{not} recovered
+is byte-exact AST identity: $0/30$ functions round-trip to an identical AST,
+because C1+ introduces a structured docstring node and does not preserve the
+IR's syntactic child-ordering or node-level metadata.
+
+\subsection*{Interpretation}
+
+These rates bear on the information-parity claim but do not settle the study's
+question, and must not be read in a confirmatory tone. High recovery means C1+
+is a high-fidelity, information-preserving projection of C4 rather than a lossy
+summary: the contract content and cross-references that the reasoning task
+depends on survive the projection intact. \emph{If} C4 is nonetheless found to
+outperform C1+ in a future adequately-powered comparison, this high recovery
+\emph{strengthens}---but does not establish---the reading that representational
+structure itself, not differing information content, drives the effect; the
+residual non-recovered structure (byte-exact AST identity, $3.6\%$ of type
+annotations, $1.3\%$ of edges) remains a candidate confound. Conversely, were
+recovery low on the content metrics, the parity claim would be weakened and the
+C4-vs-C1+ contrast would be partly confounded by information loss; that is not
+what we observe here for the content metrics, but the never-exact AST identity
+is stated plainly as the boundary of the parity claim. No causal or confirmatory
+conclusion is drawn from this exploratory measurement.

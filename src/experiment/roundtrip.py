@@ -134,6 +134,24 @@ def _func_def(ast_dict: dict) -> dict | None:
     return None
 
 
+def _annotation_base(ann: Any) -> str | None:
+    """Base type name from an annotation node: Name.id, Subscript value base,
+    or Attribute attr. (e.g. ``list[int]`` -> ``list``, ``t.List`` -> ``List``).
+    Mirrors _base_type's "strip generics/prefix" normalization on the AST side."""
+    if not isinstance(ann, dict):
+        return None
+    kind = ann.get("_type")
+    if kind == "Name":
+        return ann.get("id")
+    if kind == "Subscript":
+        return _annotation_base(ann.get("value"))
+    if kind == "Attribute":
+        return ann.get("attr")
+    if kind == "Constant" and ann.get("value") is None:
+        return "None"
+    return None
+
+
 def _recovered_type_info(ast_dict: dict) -> dict[str, Any]:
     """Recover param->annotation and return annotation from a C1+ AST."""
     fd = _func_def(ast_dict)
@@ -142,12 +160,10 @@ def _recovered_type_info(ast_dict: dict) -> dict[str, Any]:
     args = fd.get("args", {}).get("args", [])
     params: dict[str, str] = {}
     for a in args:
-        ann = a.get("annotation")
-        if isinstance(ann, dict) and ann.get("_type") == "Name":
-            params[a["arg"]] = ann.get("id", "")
-    ret = fd.get("returns")
-    ret_type = ret.get("id") if isinstance(ret, dict) and ret.get("_type") == "Name" else None
-    return {"params": params, "return_type": ret_type}
+        base = _annotation_base(a.get("annotation"))
+        if base is not None:
+            params[a["arg"]] = base
+    return {"params": params, "return_type": _annotation_base(fd.get("returns"))}
 
 
 def _base_type(mypy_type: str) -> str:
@@ -199,8 +215,9 @@ def _multiset_retention(ref: list, rec: list) -> float:
 # ---------------------------------------------------------------------------
 
 def _ast_hash(ast_dict: dict) -> str:
+    # default=repr keeps the hash total over non-JSON literals (e.g. Ellipsis).
     return hashlib.sha256(
-        json.dumps(ast_dict, sort_keys=True, ensure_ascii=False).encode("utf-8")
+        json.dumps(ast_dict, sort_keys=True, ensure_ascii=False, default=repr).encode("utf-8")
     ).hexdigest()
 
 

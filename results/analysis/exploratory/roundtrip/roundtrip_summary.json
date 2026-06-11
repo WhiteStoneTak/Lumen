@@ -1,0 +1,83 @@
+{
+  "lumen_schema": "roundtrip-summary-v1",
+  "exploratory": true,
+  "n_functions": 30,
+  "func_ids": [
+    "antidiagonals",
+    "batch_list",
+    "camel_to_snake",
+    "chunk_on_change",
+    "count_true_segments",
+    "dense_rank",
+    "equal_width_buckets",
+    "find_balanced_spans",
+    "first_index_of_max",
+    "frequency_table",
+    "group_and_aggregate",
+    "group_by_key",
+    "longest_plateau",
+    "max_subarray_bounds",
+    "merge_intervals",
+    "merge_sorted",
+    "peak_valley_indices",
+    "remove_adjacent_dups",
+    "rle_encode",
+    "rotate_list",
+    "segments_above_threshold",
+    "sliding_window_max",
+    "sorted_list_intersection",
+    "spiral_order",
+    "stable_partition",
+    "strided_windows",
+    "tokenize_arithmetic",
+    "top_k_by",
+    "two_sum_sorted_pairs",
+    "welford_running_stats"
+  ],
+  "aggregate": {
+    "node_kind_retention": {
+      "n": 30,
+      "mean": 0.9984,
+      "min": 0.962,
+      "max": 1.0
+    },
+    "type_annotation_retention": {
+      "n": 30,
+      "mean": 0.9644,
+      "min": 0.6,
+      "max": 1.0
+    },
+    "parent_child_retention": {
+      "n": 30,
+      "mean": 0.9865,
+      "min": 0.8846,
+      "max": 1.0
+    },
+    "cross_reference_retention": {
+      "n": 30,
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "contract_preconditions": {
+      "n": 30,
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "contract_postconditions": {
+      "n": 30,
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "contract_invariants": {
+      "n": 30,
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    }
+  },
+  "canonical_hash_agreement_count": 0,
+  "note": "EXPLORATORY C4->C1+->C4' recovery over the 30 retained confirmatory functions. High content retention with hash_agreement=false is the expected lossy-but-information-preserving C1+ signature (paper \u00a73.3)."
+}

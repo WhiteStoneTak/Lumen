@@ -1,0 +1,16 @@
+{
+  "lumen_schema": "roundtrip-recovery-v1",
+  "func_id": "rotate_list",
+  "metrics": {
+    "node_kind_retention": 1.0,
+    "type_annotation_retention": 1.0,
+    "contract_clause_retention": {
+      "preconditions": 1.0,
+      "postconditions": 1.0,
+      "invariants": 1.0
+    },
+    "parent_child_retention": 0.969697,
+    "cross_reference_retention": 1.0,
+    "canonical_hash_agreement": false
+  }
+}
