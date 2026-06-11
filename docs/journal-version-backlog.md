@@ -236,7 +236,12 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
 - **Why deferred from the preprint:** Pure re-organisation; optional.
 - **Journal-version work:** Move the naming-artifact paragraph from §3.1
   to §3.8.
-- **status:** OPEN
+- **status:** DONE (R0-3 / WOV-233). Moved the "One naming artifact
+  warrants explicit note" paragraph from the end of §3.0 (Study phases)
+  to §3.7 (Pre-registration), adjacent to the git-provenance discussion.
+  The "the confirmatory run is not a pilot" disclosure survives verbatim.
+  Section numbers cited above (§3.1/§3.8) reflect an earlier draft; the
+  current numbering is §3.0 → §3.7. Committed in this change.
 
 ---
 
