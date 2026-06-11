@@ -91,7 +91,8 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
 - **Dependencies / notes:** Touches the frozen-script regime — any change
   has Constitution-level implications and should be coordinated with the
   v0.3 update (see §3 below).
-- **status:** OPEN
+- **status:** DONE (R2-1 / WOV-240) — resolved jointly with W-02; see that
+  entry and `docs/protocol-amendment-R2-1-bootstrap-ci.md`.
 
 ### CC-01 — Two of three task families are uncollected
 
@@ -286,7 +287,12 @@ journal-version scope contains; no priority or schedule is assigned.
   `analyze_confirmatory.py`, or independently cross-check the sibling
   script's CI methodology.
 - **Cross-reference:** L3-02; coordinate with W-05 (Constitution v0.3).
-- **status:** OPEN
+- **status:** DONE (R2-1 / WOV-240). Path A taken: the percentile-bootstrap CI
+  is back-ported into `analyze_confirmatory.py` behind `--with-ci` (default
+  output unchanged); the scratch script is force-committed for provenance. H1/T2
+  CI [+0.077, +0.917] reproduced exactly. H2/H3 differ via the R0-1 score-loader
+  issue (documented). See `docs/protocol-amendment-R2-1-bootstrap-ci.md`. To be
+  ratified in Constitution v0.3 (W-05 / R3).
 
 ### W-03 — C4 → C1+ → C4′ round-trip validation experiment
 

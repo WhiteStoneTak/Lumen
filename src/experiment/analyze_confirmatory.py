@@ -8,6 +8,20 @@ Do not add post-hoc analyses here; use analyze_exploratory.py instead.
 Any amendment to this file after the freeze date requires a dated note
 at the top of the file explaining what was added and why.
 
+AMENDMENT 2026-06-11 (R2-1 / WOV-240, backlog W-02):
+  Back-ported the percentile bootstrap CI for the rank-biserial effect size
+  from the previously-uncommitted sibling script
+  scratch/bootstrap_ci_confirmatory.py into this file, behind the OFF-by-default
+  --with-ci flag. The pre-registered hypothesis-testing decisions (Wilcoxon W,
+  raw p, Holm-Bonferroni) and the DEFAULT output are byte-for-byte unchanged;
+  --with-ci only adds two reported quantities (ci_low, ci_high) using a fresh
+  np.random.default_rng(20260427), 10,000 resamples, percentile method — the
+  exact recipe that produced the paper's CIs. Constitution §17.4 mandates both
+  the CIs and the frozen-script regime, so this removes an undeclared deviation.
+  Ratification: docs/protocol-amendment-R2-1-bootstrap-ci.md; to be folded into
+  Constitution v0.3 (R3). Reproduces the paper H1/T2 CI [+0.077, +0.917] exactly
+  when scoped to the 30 confirmatory func_ids.
+
 Statistical plan (constitution §5, protocol §9):
   Confirmatory family: 9 tests = {H1, H2, H3} × {T1, T2, T3}
 
@@ -199,6 +213,48 @@ def _rank_biserial(diffs: list[float]) -> float:
     return (t_plus - t_minus) / total if total > 0 else 0.0
 
 
+# Bootstrap-CI parameters (AMENDMENT 2026-06-11, R2-1). These exactly match the
+# sibling scratch/bootstrap_ci_confirmatory.py that produced the paper's CIs.
+BOOTSTRAP_SEED = 20260427
+BOOTSTRAP_RESAMPLES = 10000
+BOOTSTRAP_CI_LEVEL = 0.95
+
+
+def _bootstrap_ci_rank_biserial(
+    diffs: list[float],
+    n_resamples: int = BOOTSTRAP_RESAMPLES,
+    seed: int = BOOTSTRAP_SEED,
+    ci_level: float = BOOTSTRAP_CI_LEVEL,
+) -> tuple[float, float]:
+    """Percentile bootstrap CI for the rank-biserial effect size.
+
+    AMENDMENT 2026-06-11 (R2-1 / W-02). Faithful back-port of the kernel in
+    scratch/bootstrap_ci_confirmatory.py: resample the full paired-difference
+    vector (zeros included) with replacement n_resamples times, recompute
+    r_rb on each resample (zeros are dropped inside _rank_biserial), and take
+    the percentile interval. A FRESH np.random.default_rng(seed) is created per
+    call, so the interval is independent of call order — matching the sibling
+    script, which reseeds for every hypothesis. Returns (nan, nan) when fewer
+    than two non-zero differences are present.
+    """
+    nonzero_count = sum(1 for d in diffs if d != 0.0)
+    if nonzero_count < 2:
+        return (float("nan"), float("nan"))
+
+    import numpy as np  # noqa: PLC0415
+
+    rng = np.random.default_rng(seed)
+    n = len(diffs)
+    arr = np.asarray(diffs, dtype=float)
+    samples = np.empty(n_resamples, dtype=float)
+    for i in range(n_resamples):
+        idx = rng.integers(0, n, size=n)
+        samples[i] = _rank_biserial(arr[idx].tolist())
+    lo_q = (1.0 - ci_level) / 2.0
+    hi_q = 1.0 - lo_q
+    return (float(np.quantile(samples, lo_q)), float(np.quantile(samples, hi_q)))
+
+
 def _wilcoxon_signed_rank(diffs: list[float]) -> tuple[float, float]:
     """One-sided Wilcoxon signed-rank test: H_a: median(diffs) > 0.
 
@@ -261,12 +317,15 @@ class TestResult:
     r_rb: float
     rejected: bool = False  # filled in after Holm-Bonferroni
     diffs: list[float] = field(default_factory=list)
+    ci_low: float = float("nan")   # filled in only when with_ci=True (R2-1)
+    ci_high: float = float("nan")
 
 
 def run_confirmatory_analyses(
     results_dir: str | None = None,
     func_ids: list[str] | None = None,
     models: tuple[str, ...] = FROZEN_MODELS,
+    with_ci: bool = False,
 ) -> dict[str, Any]:
     """Load scored results and run all 9 confirmatory tests.
 
@@ -333,6 +392,10 @@ def run_confirmatory_analyses(
 
             stat, pval = _wilcoxon_signed_rank(diffs)
             r_rb = _rank_biserial(diffs)
+            if with_ci:
+                ci_low, ci_high = _bootstrap_ci_rank_biserial(diffs)
+            else:
+                ci_low, ci_high = float("nan"), float("nan")
 
             raw_results.append(
                 TestResult(
@@ -346,6 +409,8 @@ def run_confirmatory_analyses(
                     p_value=pval,
                     r_rb=r_rb,
                     diffs=diffs,
+                    ci_low=ci_low,
+                    ci_high=ci_high,
                 )
             )
 
@@ -363,14 +428,14 @@ def run_confirmatory_analyses(
             return "nan"
         return round(x, 6)
 
-    tests_out = [
-        {
+    def _test_dict(r: TestResult) -> dict[str, Any]:
+        d = {
             "hypothesis": r.hypothesis,
             "task": r.task,
             "condition_A": r.condition_a,
             "condition_B": r.condition_b,
             "description": next(
-                d for (h, ca, cb, d) in HYPOTHESES if h == r.hypothesis
+                desc for (h, ca, cb, desc) in HYPOTHESES if h == r.hypothesis
             ),
             "n_functions": r.n_functions,
             "n_complete_pairs": r.n_complete_pairs,
@@ -388,8 +453,24 @@ def run_confirmatory_analyses(
                 )
             ),
         }
-        for r in raw_results
-    ]
+        # CI keys are added ONLY with --with-ci so the default output and CSV
+        # remain byte-for-byte identical to the frozen artifact (R2-1).
+        if with_ci:
+            d["rank_biserial_ci_low"] = _fmt(r.ci_low)
+            d["rank_biserial_ci_high"] = _fmt(r.ci_high)
+        return d
+
+    tests_out = [_test_dict(r) for r in raw_results]
+
+    extra: dict[str, Any] = {}
+    if with_ci:
+        extra["bootstrap_ci"] = {
+            "method": "percentile",
+            "seed": BOOTSTRAP_SEED,
+            "resamples": BOOTSTRAP_RESAMPLES,
+            "ci_level": BOOTSTRAP_CI_LEVEL,
+            "amendment": "R2-1 / WOV-240 (2026-06-11)",
+        }
 
     return {
         "lumen_schema": "confirmatory-analysis-v1",
@@ -405,6 +486,7 @@ def run_confirmatory_analyses(
         "primary_endpoint": "H1 on T2 (constitution §14)",
         "data_completeness": completeness,
         "tests": tests_out,
+        **extra,
     }
 
 
@@ -426,6 +508,7 @@ def _print_summary_table(output: dict[str, Any]) -> None:
         f"{'r_rb':>8} {'Reject?':>8}"
     )
     print("-" * 78)
+    has_ci = "bootstrap_ci" in output
     for t in output["tests"]:
         hyp_task = f"{t['hypothesis']}/{t['task']}"
         stat = t["wilcoxon_statistic"]
@@ -436,10 +519,17 @@ def _print_summary_table(output: dict[str, Any]) -> None:
         stat_str = f"{stat:.2f}" if isinstance(stat, float) else str(stat)
         pval_str = f"{pval:.4f}" if isinstance(pval, float) else str(pval)
         r_str = f"{r_rb:.3f}" if isinstance(r_rb, float) else str(r_rb)
-        print(
+        line = (
             f"{hyp_task:<10} {n:>8} {stat_str:>10} {pval_str:>12} "
             f"{r_str:>8} {rejected:>8}"
         )
+        if has_ci:
+            lo = t.get("rank_biserial_ci_low")
+            hi = t.get("rank_biserial_ci_high")
+            lo_s = f"{lo:+.3f}" if isinstance(lo, float) else str(lo)
+            hi_s = f"{hi:+.3f}" if isinstance(hi, float) else str(hi)
+            line += f"   [{lo_s}, {hi_s}]"
+        print(line)
     print("=" * 78)
 
     # Primary endpoint callout
@@ -504,11 +594,19 @@ def main(argv: list[str] | None = None) -> int:
         dest="output_csv",
         help="Write CSV output to this path (default: results/analysis/confirmatory_results_{date}.csv).",
     )
+    parser.add_argument(
+        "--with-ci",
+        action="store_true",
+        dest="with_ci",
+        help="Also report 95%% percentile bootstrap CIs on r_rb (R2-1; "
+             "seed 20260427, 10000 resamples). Default off keeps output unchanged.",
+    )
     args = parser.parse_args(argv)
 
     output = run_confirmatory_analyses(
         results_dir=args.results_dir,
         func_ids=args.func_ids,
+        with_ci=args.with_ci,
     )
 
     _print_summary_table(output)

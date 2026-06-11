@@ -81,11 +81,13 @@ Lumen/
   tests/                         unit tests
 ```
 
-`scratch/` and `results/runs/` are local-only by design (see `.gitignore`).
-The bootstrap CI sibling script referenced from §3.6 of the paper currently
-lives in `scratch/` and is therefore not in the repo; back-porting it into
-the frozen analysis script is tracked as item W-02 in the journal-version
-backlog.
+`results/runs/` is local-only by design (see `.gitignore`). The bootstrap CI
+that produces the paper's confidence intervals has been **back-ported into the
+frozen analysis script** (`src/experiment/analyze_confirmatory.py --with-ci`;
+seed 20260427, 10,000 resamples, percentile) under amendment R2-1, so no
+analysis quantity depends on uncommitted files. The original sibling script is
+preserved for provenance at `scratch/bootstrap_ci_confirmatory.py`. See
+`docs/protocol-amendment-R2-1-bootstrap-ci.md`.
 
 ## Reproducibility
 
