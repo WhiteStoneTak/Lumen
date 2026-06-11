@@ -895,6 +895,26 @@ to parse failure, and the row drops to $n = 26$; H3 compares
 C1+ to C1, and C1 always parses, so only C1+ failures reduce
 the pair count and the row stands at $n = 28$.
 
+\paragraph{Parse-failure baseline and worst-case sensitivity.}
+The confirmatory pair (\texttt{gpt-5.4}, \texttt{claude-opus-4-6})
+had \emph{zero} parse failures across all $300$ T2 items
+($0/300$); the $12$ failures are exclusive to the successor model
+\texttt{gpt-5.5} ($12/120$ of its items, $0$ for
+\texttt{claude-opus-4-7}), and entirely in non-C1 conditions
+(C1+ $2$, C2 $4$, C3 $3$, C4 $3$). Because the exclusion is
+missing-not-at-random---failure correlates with the representation
+condition---we ran a worst-case sensitivity analysis imputing every
+parse-failed item at the lowest score ($0$) rather than excluding
+it. Under worst-case imputation the H3 inversion is unchanged in
+direction for all four runs and, for the affected
+\texttt{gpt-5.5} row, \emph{strengthens} from $r_{\text{rb}} =
+-0.500$ to $-0.762$ (imputing the two C1+ failures at $0$ further
+depresses C1+ relative to C1); the \texttt{claude-opus-4-7} row is
+unaffected (no C1+ failures). The directional finding therefore does
+not depend on the exclusion rule. Per-cell counts and the full
+exclude-versus-impute table are reported as exploratory analysis in
+\texttt{results/analysis/exploratory/r2\_2\_parse\_failure\_sensitivity/}.
+
 Taken together, the data exploratorily suggest a pattern about
 in-text annotation. On top of plain Python source, in-text type
 and contract annotations do not aid---and may impede---frontier
@@ -915,7 +935,10 @@ Figure~\ref{fig:f1}.
 (\emph{Exploratory analysis}). All four directions are negative.
 The \texttt{claude-opus-4-7} row has a collapsed CI at $[-1.000, -1.000]$
 reflecting 0 positive vs 8 negative diffs in 30 pairs (22 ties); this is a
-CI artifact at small effective $n$, not a strong negative claim.}
+CI artifact at small effective $n$, not a strong negative claim.
+Parse-failure baseline: the confirmatory pair had $0/300$ failures; the
+\texttt{gpt-5.5} successor row reflects $12/120$ non-C1 failures, and the
+direction survives worst-case ($0$-imputation) sensitivity (\S\ref{sec:4.4}).}
 \label{tab:h3-t2-permodel}
 \begin{tabular}{llcrrl}
 \toprule

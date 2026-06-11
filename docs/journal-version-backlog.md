@@ -205,7 +205,13 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
 - **Journal-version work:** Add the confirmatory-pair parse-failure rate
   to the relevant Table caption, and add a sensitivity analysis that
   imputes parse-failed items at worst case (score 0).
-- **status:** OPEN
+- **status:** DONE (R2-2 / WOV-241). Confirmatory pair = 0/300 parse
+  failures (baseline); successor gpt-5.5 = 12/120, non-C1 only (C1+ 2, C2 4,
+  C3 3, C4 3). Worst-case 0-imputation: H3 inversion survives all four runs;
+  gpt-5.5 strengthens −0.500 → −0.762, opus-4-7 unchanged (−1.000). Paper §4.4
+  paragraph + Table 6 caption updated; exploratory analysis at
+  results/analysis/exploratory/r2_2_parse_failure_sensitivity/. Script:
+  scripts/r2_2_parse_failure_sensitivity.py.
 
 ### L6-04 — §4.1 "non-rejection is informative" wording check
 
