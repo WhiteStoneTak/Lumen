@@ -222,7 +222,25 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
 - **Why deferred from the preprint:** Minor follow-up; not blocking.
 - **Journal-version work:** When §4.1 is next revisited, check that the
   relevant sentence is consistent with the new framing.
-- **status:** OPEN
+- **status:** DONE (R0-4 / WOV-234) — verified, no change needed.
+  Sentence-level classification of §4.1's H1-non-rejection prose:
+  - Para 2 "fail to reject … no rejection on T2 … Informative Negative
+    Outcomes path … materials released": factual/neutral — states the
+    decision and the pre-registered classification, no effect claim.
+  - Para 3 S1 "non-rejection is informative rather than empty":
+    reading (i) — cashed out below as a power/measurement story, not as
+    evidence the effect is real.
+  - Para 3 S2 (r_rb = +0.581 in pre-registered direction, bootstrap CI
+    excludes zero, raw p = 0.023 "would reject in isolation"): descriptive
+    statistics, explicitly counterfactual ("in isolation"); the nearest
+    approach to reading (ii) but does not assert C4 outperforms C1+.
+  - Para 3 S3 ("the correction absorbs the moderate effect" at effective
+    n = 14) and S4 (rubric ceiling → §3.6, §5.3): reading (i) —
+    attributes the non-rejection to multiplicity + power + measurement
+    artifact, i.e. absence of evidence ≠ evidence of absence.
+  No sentence makes an affirmative reading-(ii) claim; S2's directional
+  facts are subordinated by S3/S4. Wording is consistent with the
+  Informative-Negative-Outcomes framing. No paper edit made.
 
 ### CC-02 — Naming-artifact disclosure better placed in §3.8
 
