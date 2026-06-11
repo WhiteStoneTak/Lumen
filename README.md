@@ -105,10 +105,11 @@ paper and in Appendix E.
 
 ## Design constitution
 
-The design constitution (`docs/design-constitution.pdf`, v0.2.2) is the
+The design constitution (`docs/design-constitution.pdf`, **v0.3**) is the
 single source of truth for the experimental design, success criteria, and
-frozen-script regime. The v0.3 update is planned per §13 Phase 3 of the
-constitution and is tracked as item W-05 in the journal-version backlog.
+frozen-script regime. v0.3 (the "Version 0.3 Changelog" section) absorbs the
+R1 measurement-design and R2 analysis-integrity outcomes and is the gate from
+which the R5 T1/T3 confirmatory pre-registrations derive.
 
 ## Citation
 

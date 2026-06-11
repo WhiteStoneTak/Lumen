@@ -325,4 +325,12 @@ journal-version scope contains; no priority or schedule is assigned.
   protocol-level status, and recording any changes implied by W-02 / W-03.
   Scope of v0.3 is itself to be defined.
 - **Cross-reference:** W-02, W-03.
-- **status:** OPEN
+- **status:** DONE (R3-1 / WOV-242). `docs/design-constitution.tex` bumped to
+  v0.3 with a "Version 0.3 Changelog" section enumerating all five decision
+  areas: (1) success criteria / T1+T3 primary endpoints on the R1 continuous
+  scorers, frozen T2 composite retained, continuous T2 location = secondary;
+  (2) round-trip = reported diagnostic, threshold deferred; (3) R2-1 CI
+  amendment ratified + mandatory amendment procedure; (4) temperature-constraint
+  sampling codified (fixed within model, per-cell parse rates disclosed);
+  (5) pre-collection power analysis now required (closes OQ4). States T1/T3
+  pre-registrations derive from v0.3. PDF rebuilt; README updated.

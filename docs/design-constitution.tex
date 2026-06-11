@@ -22,7 +22,7 @@
   \large A Foundational Charter for Semantic Infrastructure Research
 }
 \author{Lumen Project}
-\date{Version 0.2.2 \quad---\quad \today}
+\date{Version 0.3 \quad---\quad \today}
 
 \begin{document}
 
@@ -30,8 +30,8 @@
 
 \begin{center}
   \begin{tabular}{@{}ll@{}}
-    \textbf{Version:} & v0.2.2 \\
-    \textbf{Status:}  & Foundational Working Draft (Protocol-Hardened, Review-Revised) \\
+    \textbf{Version:} & v0.3 \\
+    \textbf{Status:}  & Foundational Working Draft (Post-Diagnostic Revision; gate for R5 pre-registrations) \\
     \textbf{Language:} & English \\
   \end{tabular}
 \end{center}
@@ -56,6 +56,94 @@ record of what has been decided, what remains open, and what principles
 govern future decisions.  It is intended to be a living document,
 revised as experiments yield evidence and as understanding deepens.
 \end{abstract}
+
+\section*{Version 0.3 Changelog (Post-Diagnostic Revision)}
+\addcontentsline{toc}{section}{Version 0.3 Changelog}
+
+Version 0.3 absorbs the outcomes of the R1 measurement-design pass and the
+R2 analysis-integrity pass (Linear milestones R0--R2) so that all
+forthcoming confirmatory pre-registrations (R5: T1 and T3) derive from a
+single, evidence-updated source of truth. \textbf{Pre-registrations for the
+T1 and T3 confirmatory studies derive from this version (v0.3) of the
+Constitution and the scorers ratified herein.} Each of the five v0.3
+decision areas is recorded below, including those resolved as ``no change''.
+
+\begin{enumerate}
+  \item \textbf{Success criteria and primary endpoints.}
+    \emph{Decision.} The pre-registered T2 composite (0--3) is retained
+    \emph{unaltered} as the frozen record of the bug-detection study; the
+    diagnosed ceiling/tie collapse (paper \S5.3) is treated as a measurement
+    limitation of that run, not a reason to mutate it. For \emph{future}
+    task families: the T1 primary endpoint is the continuous checklist
+    fraction (\texttt{score\_t1\_checklist}, fraction of ground-truth
+    properties correctly stated, $\in[0,1]$); the T3 primary endpoint is the
+    continuous test-pass fraction (\texttt{score\_t3}, passed/total, $\in[0,1]$,
+    executed in a sandboxed subprocess with timeout). The central comparison
+    remains C4 vs C1+ (H1). For any future T2 re-run, the continuous
+    location metric (\texttt{score\_t2\_continuous}) is designated a
+    \emph{secondary} endpoint reported alongside---not replacing---the frozen
+    composite, until a re-registered T2 study adopts it as co-primary.
+    \emph{Rationale.} The R1 scorers are continuous-by-construction and were
+    shown (R1-1, R1-3, R1-4, R1-5) to avoid the $\le 3$-level saturation that
+    collapsed the T2 effective $n$; adopting them as the T1/T3 primaries
+    prevents a recurrence while leaving the frozen T2 record intact.
+
+  \item \textbf{Round-trip validation (C4$\to$C1+$\to$C4$'$).}
+    \emph{Decision.} Round-trip recovery (R4) is adopted as a
+    \emph{reported diagnostic}, not yet a hard protocol gate: the
+    information-parity (C1+) claim must be accompanied by published recovery
+    rates, but no minimum-recovery threshold is made a pass/fail criterion in
+    v0.3. A threshold may be promoted to a requirement in a later version once
+    a recovery-rate distribution across the dataset is in hand (R4-2).
+    \emph{Rationale.} Setting a numeric threshold before observing the
+    recovery distribution would be arbitrary; transparency (reporting the
+    rates) is required now, calibration of a gate is deferred.
+
+  \item \textbf{Frozen-script regime and amendment procedure.}
+    \emph{Decision.} The R2-1 bootstrap-CI back-port
+    (\texttt{analyze\_confirmatory.py --with-ci}; seed 20260427, 10{,}000
+    resamples, percentile) is \textbf{ratified} as a conforming amendment.
+    Going forward, any change to a frozen analysis script, scorer, or dataset
+    after its freeze date \emph{must} (a) carry a dated in-file amendment note,
+    (b) be accompanied by a standalone amendment document under \texttt{docs/},
+    and (c) leave default (un-flagged) output byte-identical unless the
+    amendment is explicitly a re-freeze. This codifies the procedure whose
+    absence produced the \S17.4 gap (an analysis quantity computed by an
+    uncommitted sibling script).
+    \emph{Rationale.} A written, mandatory amendment procedure makes
+    \S17.4-class deviations impossible to introduce silently.
+
+  \item \textbf{Sampling regime under temperature constraints.}
+    \emph{Decision.} Models that reject \texttt{temperature=0} are a
+    designed-for case, not an ad-hoc exception. The protocol fixes the
+    deterministic setting (\texttt{temperature=0}) as the default; when a model
+    refuses it, the pre-registration must (a) record the minimum permitted
+    temperature actually used, (b) hold it fixed across \emph{all} conditions
+    for that model so the deterministic/stochastic asymmetry never correlates
+    with the representation condition, and (c) report parse-failure rates per
+    condition$\times$model (R2-2) so any temperature$\times$representation
+    confound is visible. Confirmatory comparisons remain \emph{within} a model.
+    \emph{Rationale.} The gpt-5.5/opus-4.7 successor run exposed this gap;
+    holding temperature fixed within a model and disclosing per-cell parse
+    failures keeps the asymmetry from contaminating the C4-vs-C1+ contrast.
+
+  \item \textbf{Dataset sufficiency / pre-collection power analysis.}
+    \emph{Decision.} A pre-collection power analysis is now \textbf{required}
+    before any R5 confirmatory collection: state the assumed effect size, the
+    target power, and the resulting minimum $n$ (functions), and justify the
+    chosen dataset size against it. This closes OQ4 (the Open Questions
+    section) and the Phase-2 gap disclosed in paper \S3.0.
+    \emph{Rationale.} The original study set $n=30$ without a power
+    calculation; the T2 tie-induced effective-$n$ collapse showed the cost of
+    not budgeting power in advance.
+\end{enumerate}
+
+\noindent\emph{Consistency.} These decisions are consistent with the
+Experimental Protocol Addendum section and with the committed R1/R2
+artifacts (the \texttt{score\_t1},
+\texttt{score\_t2\_continuous}, \texttt{score\_t3} modules and the
+\texttt{analyze\_confirmatory.py --with-ci} amendment). Where this changelog
+and older body text differ, the changelog governs for v0.3.
 
 \tableofcontents
 \newpage
