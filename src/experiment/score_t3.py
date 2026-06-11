@@ -19,8 +19,10 @@ import io
 import json
 import os
 import re
+import subprocess
 import sys
 import tempfile
+import textwrap
 import unittest
 from pathlib import Path
 from typing import Any
@@ -44,6 +46,14 @@ FR_MISSING_TARGET_FUNCTION = "missing_target_function"
 FR_MODULE_LOAD_FAILURE = "module_load_failure"
 FR_TEST_EXECUTION_FAILURE = "test_execution_failure"
 FR_ZERO_TOTAL_TESTS = "zero_total_tests"
+FR_EXECUTION_TIMEOUT = "execution_timeout"
+
+# Wall-clock timeout (seconds) for the sandboxed subprocess test run. A single
+# T3 suite is ~8-13 fast unit tests; 10 s is generous for honest code and short
+# enough to fence a non-terminating model output. Sentinel returned by the
+# sandbox runner on expiry.
+T3_SANDBOX_TIMEOUT_S = 10.0
+_TIMEOUT_SENTINEL = "TIMEOUT:"
 
 
 # ---------------------------------------------------------------------------
@@ -231,12 +241,117 @@ def run_t3_tests(
 
 
 # ---------------------------------------------------------------------------
+# Sandboxed runner (subprocess + wall-clock timeout)
+# ---------------------------------------------------------------------------
+
+# Driver executed in a child process. It mirrors the in-process injection in
+# run_t3_tests (set the candidate function on the test module + patch TestCase
+# method globals) and prints a single JSON line with the pass/total counts.
+_T3_DRIVER = textwrap.dedent(
+    '''
+    import importlib.util, json, os, sys, unittest
+
+    cand_path, func_id, test_path = sys.argv[1], sys.argv[2], sys.argv[3]
+    uid = os.urandom(4).hex()
+
+    def _load(name, path):
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+
+    try:
+        cand_mod = _load(f"_t3_cand_{func_id}_{uid}", cand_path)
+        candidate_fn = getattr(cand_mod, func_id, None)
+        if candidate_fn is None:
+            print(json.dumps({"error": f"function {func_id!r} not found"}))
+            sys.exit(0)
+        test_mod = _load(f"_t3_suite_{func_id}_{uid}", test_path)
+        setattr(test_mod, func_id, candidate_fn)
+        for attr in dir(test_mod):
+            obj = getattr(test_mod, attr)
+            if isinstance(obj, type) and issubclass(obj, unittest.TestCase):
+                for mname in obj.__dict__:
+                    m = getattr(obj, mname, None)
+                    if callable(m) and hasattr(m, "__func__"):
+                        if func_id in m.__func__.__globals__:
+                            m.__func__.__globals__[func_id] = candidate_fn
+        suite = unittest.TestLoader().loadTestsFromModule(test_mod)
+        import io as _io
+        result = unittest.TextTestRunner(verbosity=0, stream=_io.StringIO()).run(suite)
+        total = result.testsRun
+        passed = total - len(result.failures) - len(result.errors)
+        print(json.dumps({"passed": passed, "total": total}))
+    except Exception as exc:  # noqa: BLE001
+        print(json.dumps({"error": f"{type(exc).__name__}: {exc}"}))
+    '''
+)
+
+
+def run_t3_tests_sandboxed(
+    code_text: str,
+    func_id: str,
+    test_suite_path: Path,
+    timeout_s: float = T3_SANDBOX_TIMEOUT_S,
+) -> tuple[int, int, str]:
+    """Run the T3 suite against candidate code in a child process with a timeout.
+
+    Same return contract as :func:`run_t3_tests`: ``(passed, total, error)``.
+    On timeout the child is killed and ``error`` is ``"TIMEOUT: ..."`` so the
+    caller can flag a non-terminating candidate distinctly from other failures.
+    """
+    cand_path: str | None = None
+    driver_path: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".py", delete=False, encoding="utf-8"
+        ) as f:
+            f.write(code_text)
+            cand_path = f.name
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".py", delete=False, encoding="utf-8"
+        ) as f:
+            f.write(_T3_DRIVER)
+            driver_path = f.name
+
+        try:
+            proc = subprocess.run(
+                [sys.executable, driver_path, cand_path, func_id, str(test_suite_path)],
+                capture_output=True,
+                text=True,
+                timeout=timeout_s,
+            )
+        except subprocess.TimeoutExpired:
+            return 0, 0, f"{_TIMEOUT_SENTINEL} candidate exceeded {timeout_s}s wall clock"
+
+        out = (proc.stdout or "").strip().splitlines()
+        if not out:
+            return 0, 0, f"no driver output (stderr: {(proc.stderr or '').strip()[:200]})"
+        try:
+            payload = json.loads(out[-1])
+        except json.JSONDecodeError:
+            return 0, 0, f"unparseable driver output: {out[-1][:200]}"
+        if "error" in payload:
+            return 0, 0, payload["error"]
+        return int(payload["passed"]), int(payload["total"]), ""
+    finally:
+        for p in (cand_path, driver_path):
+            if p and os.path.exists(p):
+                try:
+                    os.unlink(p)
+                except OSError:
+                    pass
+
+
+# ---------------------------------------------------------------------------
 # Main entrypoint
 # ---------------------------------------------------------------------------
 
 def score_t3(
     scorer_input_payload: dict[str, Any],
     response_text: str,
+    *,
+    runner: Any = run_t3_tests,
 ) -> dict[str, Any]:
     """Score a T3 model response and return a validated scorer-result-v1 dict.
 
@@ -322,10 +437,11 @@ def score_t3(
             evidence={"candidate_length": len(candidate_code)},
         )
 
-    # Run tests
-    passed, total, harness_error = run_t3_tests(candidate_code, func_id, test_suite_path)
+    # Run tests (default in-process; sandboxed runner used via score_t3_sandboxed)
+    passed, total, harness_error = runner(candidate_code, func_id, test_suite_path)
 
     if harness_error:
+        is_timeout = harness_error.startswith(_TIMEOUT_SENTINEL)
         return build_scorer_result(
             func_id=func_id,
             task="T3",
@@ -335,7 +451,10 @@ def score_t3(
             ground_truth_ref=ground_truth_ref,
             score=0.0,
             status="execution_failure",
-            failure_reason=FailureReason(code=FR_MODULE_LOAD_FAILURE, message=harness_error),
+            failure_reason=FailureReason(
+                code=FR_EXECUTION_TIMEOUT if is_timeout else FR_MODULE_LOAD_FAILURE,
+                message=harness_error,
+            ),
             evidence={"candidate_length": len(candidate_code)},
         )
 
@@ -371,3 +490,22 @@ def score_t3(
         status="ok",
         evidence={"passed": passed, "total": total},
     )
+
+
+def score_t3_sandboxed(
+    scorer_input_payload: dict[str, Any],
+    response_text: str,
+    *,
+    timeout_s: float = T3_SANDBOX_TIMEOUT_S,
+) -> dict[str, Any]:
+    """``score_t3`` with test execution fenced in a child process + timeout.
+
+    This is the runner mandated for real T3 collection (R5): a non-terminating
+    or runaway model candidate cannot hang the harness; it is recorded as an
+    ``execution_failure`` with ``failure_reason.code = execution_timeout``.
+    """
+
+    def _runner(code_text: str, func_id: str, test_suite_path: Path) -> tuple[int, int, str]:
+        return run_t3_tests_sandboxed(code_text, func_id, test_suite_path, timeout_s)
+
+    return score_t3(scorer_input_payload, response_text, runner=_runner)
