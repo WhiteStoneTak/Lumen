@@ -1,0 +1,77 @@
+{
+  "lumen_schema": "r1-rubric-pilot-v1",
+  "pilot": true,
+  "segregation_note": "Held-out pilot. Functions clamp/count_vowels/is_sorted are NOT in the 30 retained confirmatory functions. NOT to be pooled with confirmatory data (Constitution / paper \u00a73.0). No new model calls; reuses existing pilot/preflight responses.",
+  "run_id": "pilot_r1_rubric_validation_20260611",
+  "anchors": [
+    "clamp",
+    "count_vowels",
+    "is_sorted"
+  ],
+  "n_cells": 105,
+  "summaries": {
+    "T1_checklist": {
+      "scorer": "T1_checklist",
+      "n": 35,
+      "n_scored": 35,
+      "distinct_values": 9,
+      "min": 0.4444444444444444,
+      "max": 1.0,
+      "all_zero": false,
+      "saturated_single_value": false,
+      "tied_pair_fraction": 0.1882,
+      "status_counts": {
+        "ok": 35
+      },
+      "distinct_value_sample": [
+        0.4444,
+        0.5556,
+        0.5714,
+        0.7143,
+        0.7778,
+        0.8571,
+        0.875,
+        0.8889,
+        1.0
+      ]
+    },
+    "T2_location_continuous": {
+      "scorer": "T2_location_continuous",
+      "n": 35,
+      "n_scored": 35,
+      "distinct_values": 5,
+      "min": 0.111111,
+      "max": 1.0,
+      "all_zero": false,
+      "saturated_single_value": false,
+      "tied_pair_fraction": 0.279,
+      "status_counts": {
+        "ok": 35
+      },
+      "distinct_value_sample": [
+        0.1111,
+        0.1429,
+        0.2,
+        0.5,
+        1.0
+      ]
+    },
+    "T3_testpass_sandboxed": {
+      "scorer": "T3_testpass_sandboxed",
+      "n": 35,
+      "n_scored": 35,
+      "distinct_values": 1,
+      "min": 1.0,
+      "max": 1.0,
+      "all_zero": false,
+      "saturated_single_value": true,
+      "tied_pair_fraction": 1.0,
+      "status_counts": {
+        "ok": 35
+      },
+      "distinct_value_sample": [
+        1.0
+      ]
+    }
+  }
+}
