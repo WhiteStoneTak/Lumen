@@ -13,6 +13,10 @@ LLMs: Methodology and Diagnostic Findings from a Bug-Detection Study*
 
 ## Status
 
+The frozen extended preprint is tagged [`preprint-v1`](https://github.com/WhiteStoneTak/Lumen/releases/tag/preprint-v1)
+(commit `aafb84c`, `paper/main.pdf`). Journal-version edits continue on `main`;
+`preprint-v1` is the immutable reference for what the preprint claimed.
+
 Extended preprint. The Tier 1 and Tier 2 findings from the critical-review
 round were addressed in the Phase 2 response (commits in the
 `6008a92..974dc9a` series). Tier 3 findings and broader follow-on items
