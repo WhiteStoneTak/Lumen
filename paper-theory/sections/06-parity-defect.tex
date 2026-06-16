@@ -6,20 +6,223 @@
 \gonogo{Optimal transport + information geometry (T1-5 $\to$ T2-5) is
 provisional. If it yields only a restatement of the information-theoretic
 content and buys no new proposition, this section is demoted to a remark and
-the decision is recorded in WOV-271 (T2-5).}
+the decision is recorded in WOV-271 (T2-5). T1-5 supplies the foundations and
+\emph{defines} the parity-defect metric precisely enough to be computed in
+principle against the R4 artifacts; T2-5 must show the metric does work the
+mutual-information gap of \cref{sec:parity} cannot.}
 
-% STUB (T1-5, T2-5). Quantifies the residual asymmetry disclosed by G3.
-% Area role (charter §2): quantitative parity defect --- Wasserstein
-% \Wass{1} between induced predictive distributions \preddist{\ladder{4}}
-% and \preddist{\ladderplus}; Fisher sensitivity \Fisher; tied to R4 data.
-%
-% Plan:
-%   - T1-5: OT + information-geometry foundations.
-%   - T2-5: the parity defect \paritydefect computed as
-%     \Wass{1}(\preddist{\ladder{4}}, \preddist{\ladderplus}) and a Fisher
-%     sensitivity term, evaluated against the R4 round-trip recovery data
-%     (empirical paper Appendix D): contracts 100%, AST node kinds 99.8%,
-%     types 96.4%, parent-child 98.7%, byte-exact AST 0/30.
+% This file holds the T1-5 (WOV-266) FOUNDATIONS only: Wasserstein distance +
+% Kantorovich-Rubinstein duality; statistical manifolds, the Fisher metric,
+% KL as a local divergence; the DEFINITION of the quantitative parity defect
+% (W1 between induced predictive distributions + a local Fisher sensitivity);
+% and a recipe for computing it in principle against the R4 round-trip data.
+% The metric is USED (and earns or loses its place) in T2-5.
 
-\noindent\emph{[Stub. OT/info-geometry foundations in T1-5; the parity-defect
-metric in T2-5, computed against the R4 round-trip data (charter §5).]}
+\cref{sec:parity} treats parity as a binary equality of mutual informations,
+and guardrail~G3 flags that real controls meet it only ``operationally, not
+absolutely.'' This section turns ``how far from parity'' into a number. The
+mutual-information gap $\MI{Y}{X}-\MI{Y}{\rep(X)}$ already measures lost
+\emph{information}; what it does not measure is the residual asymmetry between
+two representations that carry the \emph{same} information about $Y$ yet drive
+a bounded predictor to slightly different predictive distributions --- exactly
+the $\sigalg{\ladder{4}}\ne\sigalg{\ladderplus}$ gap of
+\cref{prop:abs-strict}. We build the optimal-transport and
+information-geometry tools that quantify that residual, define the parity
+defect $\paritydefect$, and specify how it is computed against the R4
+round-trip artifacts. We follow \citet{villani2009} and \citet{peyrecuturi2019}
+for optimal transport and \citet{amarinagaoka2000} for information geometry.
+
+\subsection{Wasserstein distance and Kantorovich--Rubinstein duality}
+\label{subsec:wasserstein}
+
+\begin{definition}[Wasserstein distance]
+\label{def:wasserstein}
+Let $(\Aspace,d)$ be a Polish metric space and $\mu,\nu$ probability measures
+on it with finite first moment. The \emph{$1$-Wasserstein distance} is
+\[
+  \Wass{1}(\mu,\nu)
+  \;\defeq\;
+  \inf_{\gamma\in\Pi(\mu,\nu)}\;
+  \int_{\Aspace\times\Aspace} d(a,a')\,\mathrm{d}\gamma(a,a'),
+\]
+the infimum over couplings $\gamma$ with marginals $\mu$ and $\nu$. It is the
+minimal average cost of transporting $\mu$ onto $\nu$.
+\end{definition}
+
+\begin{proposition}[Kantorovich--Rubinstein duality]
+\label{prop:kr-duality}
+With $\mu,\nu$ as above,
+\begin{equation}
+  \label{eq:kr}
+  \Wass{1}(\mu,\nu)
+  \;=\;
+  \sup_{\,\|g\|_{\mathrm{Lip}}\le 1}\;
+  \Big(\,\Expect_{\mu}[g] - \Expect_{\nu}[g]\,\Big),
+\end{equation}
+the supremum over $1$-Lipschitz test functions $g:\Aspace\to\mathbb{R}$.
+\end{proposition}
+
+\begin{proof}
+This is the dual form of the Kantorovich problem for the cost $d$; see
+\citet[Thm.~5.10 and Particular Case~5.16]{villani2009}.
+\end{proof}
+
+The duality \eqref{eq:kr} is what makes the defect \emph{estimable}: it
+rewrites a transport cost over couplings as an expectation gap over Lipschitz
+witnesses, which can be evaluated from samples of the two predictive
+distributions without solving the primal coupling problem.
+
+\subsection{Statistical manifolds and the Fisher metric}
+\label{subsec:fisher}
+
+Where the Wasserstein distance measures the global cost of moving one
+predictive distribution to another, the Fisher metric measures the
+\emph{local} sensitivity of a predictor to small representation
+perturbations, which is the regime relevant when $\ladderplus$ and
+$\ladder{4}$ are close.
+
+\begin{definition}[Statistical manifold, Fisher metric]
+\label{def:fisher}
+A parametric family $\{p_\theta:\theta\in\Theta\}$ of densities, smooth in
+$\theta$ over an open $\Theta\subseteq\mathbb{R}^k$, is a \emph{statistical
+manifold}. Its \emph{Fisher information metric} at $\theta$ is the
+$k\times k$ matrix
+\[
+  \Fisher(\theta)_{ij}
+  \;\defeq\;
+  \Expect_{p_\theta}\!\Big[
+    \partial_{\theta_i}\log p_\theta \;
+    \partial_{\theta_j}\log p_\theta
+  \Big],
+\]
+the covariance of the score. It is the unique (up to scale) Riemannian metric
+invariant under sufficient statistics \citep[Ch.~2--3]{amarinagaoka2000}.
+\end{definition}
+
+\begin{proposition}[KL is the Fisher metric to second order]
+\label{prop:kl-fisher}
+For $\theta'=\theta+\mathrm{d}\theta$,
+\[
+  \KL{p_\theta}{p_{\theta'}}
+  \;=\;
+  \tfrac12\,\mathrm{d}\theta^\top \Fisher(\theta)\,\mathrm{d}\theta
+  \;+\; o(\|\mathrm{d}\theta\|^2).
+\]
+\end{proposition}
+
+\begin{proof}
+Taylor-expand $\theta'\mapsto\KL{p_\theta}{p_{\theta'}}$ at $\theta'=\theta$:
+the value and gradient vanish, and the Hessian is $\Fisher(\theta)$
+\citep[Ch.~3]{amarinagaoka2000}.
+\end{proof}
+
+\cref{prop:kl-fisher} ties this section back to \cref{sec:parity}: the KL
+divergence that defines mutual information (\cref{def:mi}) is, locally, the
+Fisher quadratic form. So a Fisher-sensitivity term and a relative-entropy
+term are the same object at two scales --- which is why the defect below pairs
+a global Wasserstein term with a local Fisher term rather than choosing
+between them.
+
+\subsection{The quantitative parity defect}
+\label{subsec:defect-def}
+
+Let $\preddist{c}$ denote the \emph{induced predictive distribution} under
+condition $c$: the law on the action space $\Aspace$ of the bounded
+predictor's output $\kernel{K}(\rep_c(X),\cdot)$ when $X\sim\Prob_X$, for
+$c\in\{\ladder{4},\ladderplus\}$. Under \emph{exact} parity these two laws
+coincide for the Bayes predictor; for a bounded predictor they may differ even
+when $\MI{Y}{\ladder{4}(X)}=\MI{Y}{\ladderplus(X)}$.
+
+\begin{definition}[Quantitative parity defect]
+\label{def:parity-defect}
+Fix a bounded predictor $\kernel{K}$ and a perturbation scale. The
+\emph{parity defect} between $\ladder{4}$ and $\ladderplus$ is
+\begin{equation}
+  \label{eq:parity-defect}
+  \paritydefect
+  \;\defeq\;
+  \underbrace{\Wass{1}\!\big(\preddist{\ladder{4}},\,\preddist{\ladderplus}\big)}_{\text{global: predictive-law transport}}
+  \;+\;
+  \lambda\,
+  \underbrace{\sqrt{\,\overline{v}^\top \Fisher\, \overline{v}\,}}_{\text{local: Fisher sensitivity}},
+\end{equation}
+where $\overline{v}$ is the mean representation perturbation induced by the
+round trip $\roundtrip{\ladder{4}}{\ladderplus}$ (\cref{def:cat-parity}),
+$\Fisher$ is the Fisher metric of the predictor's output family at the
+operating point, and $\lambda\ge0$ trades off the two scales. Exact parity is
+$\paritydefect=0$; $\paritydefect>0$ certifies operational-but-not-absolute
+parity and bounds, via \cref{prop:kr-duality}, the largest difference in
+expected Lipschitz functionals of the two predictive distributions.
+\end{definition}
+
+The two terms are complementary by \cref{prop:kl-fisher}: the Wasserstein term
+captures the part of the asymmetry that survives at the global scale of the
+output distribution, and the Fisher term captures the local sensitivity of the
+predictor to the residual structural perturbation that the round trip fails to
+undo. \cref{eq:parity-defect} is a definition, not yet a theorem; T2-5 must
+show $\paritydefect$ either bounds a risk gap or constrains the predictive
+asymmetry in a way the mutual-information gap of \cref{sec:parity} does not
+(\cref{subsec:defect-gonogo}).
+
+\subsection{Computing the defect against the R4 round-trip data}
+\label{subsec:defect-r4}
+
+The R4 round-trip recovery experiment (empirical paper Appendix~D) re-parses
+$\ladderplus$ back to a Contract IR $\ladder{4}'$ and reports how much of
+$\ladder{4}$'s structure is recovered: contracts $100\%$, AST node kinds
+$99.8\%$, types $96.4\%$, parent--child edges $98.7\%$, byte-exact AST
+$0/30$. This profile is, in the categorical reading of
+\cref{subsec:retraction-parity}, the empirical signature of the idempotent
+$e\circ p$: near-identity on semantic structure, far from identity on surface
+bytes. The defect \eqref{eq:parity-defect} is computed against it as follows.
+
+\begin{enumerate}
+  \item \textbf{Perturbation $\overline{v}$ (Fisher term).} Each
+    non-recovered structural element of the round trip is a coordinate of the
+    representation perturbation; the recovery rates above estimate the
+    per-coordinate failure probabilities, and $\overline{v}$ is their
+    aggregate over the $30$ functions. Byte-level coordinates (recovery $0/30$)
+    dominate $\overline{v}$ in magnitude but are predictively inert, which is
+    why the Fisher term --- weighting perturbations by their effect on the
+    \emph{output} family --- and not the raw byte distance is the right local
+    measure.
+  \item \textbf{Predictive laws (Wasserstein term).} Sample the bounded
+    predictor on the C4 inputs and on their re-parsed $\ladder{4}'$
+    counterparts to obtain empirical $\preddist{\ladder{4}}$ and
+    $\preddist{\ladderplus}$, then estimate
+    $\Wass{1}(\preddist{\ladder{4}},\preddist{\ladderplus})$ either by the
+    primal optimal-transport solver of \citet[§2--3]{peyrecuturi2019} or by
+    maximizing the Kantorovich--Rubinstein dual \eqref{eq:kr} over a Lipschitz
+    witness class.
+  \item \textbf{Trade-off $\lambda$.} Fixed by matching the two terms' units on
+    a held-out calibration slice; the procedure is specified with the T2-5
+    computation, not chosen post hoc.
+\end{enumerate}
+
+\begin{remark}[Status of the computation, G3/G6]
+\label{rem:defect-status}
+The recipe is ``computable in principle'': it specifies estimable quantities
+and named estimators, but it is \emph{not} executed in this paper, and no
+numerical value of $\paritydefect$ is claimed. The R4 rates are used as the
+inputs the metric \emph{would} consume, illustrating that the defect is
+grounded in measured artifacts rather than postulated. Any statement that the
+computed defect is small (and hence that the empirical control was close to
+exact parity) is, until T2-5 runs it, a conjecture and is labeled as such
+(guardrail~G6).
+\end{remark}
+
+\subsection{Go/no-go criterion handed to T2-5}
+\label{subsec:defect-gonogo}
+
+\begin{quote}
+\textbf{Criterion (depth of OT/info-geometry).} Section~\ref{sec:parity-defect}
+survives as a section iff T2-5 establishes that $\paritydefect$
+\eqref{eq:parity-defect} (i) upper-bounds the bounded predictor's risk gap
+between $\ladder{4}$ and $\ladderplus$, or (ii) provides a strictly finer
+ordering of representations than the mutual-information gap of
+\cref{sec:parity} (two reps with equal information gap but different defect,
+witnessed against the R4 profile). If T2-5 produces only a reformulation of
+the information gap, the section is demoted to a remark recording that the
+parity defect coincides with the information gap in this setting, and the
+decision is logged in WOV-271.
+\end{quote}
