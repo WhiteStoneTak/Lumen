@@ -220,7 +220,7 @@ $3$ ($0/300$ records; \S\ref{sec:3.6}); the effective Wilcoxon
 $n$ collapses to $13$--$14$ on the central confirmatory cells.
 For this journal version the nine-cell family is completed (R5): H1
 (C4 over its information-parity control) is a \emph{clean null} on T1
-($r = +0.05$, raw $p = 0.43$, no rubric ceiling) and ceiling-censored on
+($r = +0.10$, raw $p = 0.36$, no rubric ceiling) and ceiling-censored on
 T3 ($r = +0.43$, effective $n \approx 5$; $93.7\%$ of scores at $1.0$),
 so \textbf{no cell is rejected on any task}
 (\S\ref{sec:4.2b}--\S\ref{sec:4.2c}). The cleanest unconfounded datum, the
@@ -772,13 +772,13 @@ T3 scores at $1.0$; see \S\ref{sec:4.2c}).}
 \toprule
 Hyp & Task & $n$ & $W$ & raw $p$ & Holm $p$ ($m=9$) & $r_{\text{rb}}$ & 95\% CI & Status \\
 \midrule
-H1 & T1 & 30  & $71.5$ & $0.428$ & $1.000$ & $+0.051$  & $[-0.520, +0.614]$   & tested \\
+H1 & T1 & 30  & $84.0$ & $0.361$ & $1.000$ & $+0.098$  & $[-0.440, +0.655]$   & tested \\
 H1 & T2 & 30  & $83.0$ & $0.023$ & $0.205$ & $+0.581$  & $[+0.077, +0.917]$   & tested \\
 H1 & T3 & 26  & $15.0$ & $0.219$ & $1.000$ & $+0.429$  & $[-1.000, +1.000]$   & tested (ceiling) \\
-H2 & T1 & 30  & $76.0$ & $0.181$ & $1.000$ & $+0.267$  & $[-0.359, +0.758]$   & tested \\
+H2 & T1 & 30  & $80.5$ & $0.259$ & $1.000$ & $+0.184$  & $[-0.429, +0.684]$   & tested \\
 H2 & T2 & 30  & $63.0$ & $0.233$ & $1.000$ & $+0.200$  & $[-0.333, +0.700]$   & tested \\
 H2 & T3 & 26  & $0.0$  & $1.000$ & $1.000$ & $-1.000$  & $[-1.000, +0.000]$   & tested (ceiling) \\
-H3 & T1 & 30  & $82.0$ & $0.233$ & $1.000$ & $+0.206$  & $[-0.352, +0.727]$   & tested \\
+H3 & T1 & 30  & $92.0$ & $0.388$ & $1.000$ & $+0.076$  & $[-0.453, +0.595]$   & tested \\
 H3 & T2 & 30  & $24.0$ & $0.969$ & $1.000$ & $-0.473$  & $[-0.885, +0.077]$   & tested \\
 H3 & T3 & 26  & $1.0$  & $0.938$ & $1.000$ & $-0.800$  & $[-1.000, +1.000]$   & tested (ceiling) \\
 \bottomrule
@@ -789,40 +789,32 @@ H3 & T3 & 26  & $1.0$  & $0.938$ & $1.000$ & $-0.800$  & $[-1.000, +1.000]$   & 
 \label{sec:4.2b}
 The T1 family was collected after the preprint under pre-registration
 \texttt{t1-v1} (R5-2), using the frozen deterministic checklist scorer
-(R1-3) over 30 confirmatory functions and the frozen model pair. The
+(R1-3) over all 30 confirmatory functions and the frozen model pair
+(complete: $300/300$ cells, both models in every condition). The
 central test \textbf{H1/T1 (C4 vs C1\textsuperscript{+})} yields
-$r_{\text{rb}} = +0.051$ (raw one-sided $p = 0.428$; 95\% bootstrap CI
-$[-0.520, +0.614]$), an effect indistinguishable from zero with a CI that
+$r_{\text{rb}} = +0.098$ (raw one-sided $p = 0.361$; 95\% bootstrap CI
+$[-0.440, +0.655]$), an effect indistinguishable from zero with a CI that
 spans the origin. The secondary T1 cells point weakly in the
-pre-registered direction---H2/T1 (C4 vs C1) $r_{\text{rb}} = +0.267$ (raw
-$p = 0.181$) and H3/T1 (C1\textsuperscript{+} vs C1) $r_{\text{rb}} =
-+0.206$ (raw $p = 0.233$)---but neither approaches significance, and all
+pre-registered direction---H2/T1 (C4 vs C1) $r_{\text{rb}} = +0.184$ (raw
+$p = 0.259$) and H3/T1 (C1\textsuperscript{+} vs C1) $r_{\text{rb}} =
++0.076$ (raw $p = 0.388$)---but neither approaches significance, and all
 three correct to Holm $p = 1.000$ in the nine-test family. \textbf{On the
 understanding task the structure-at-constant-information advantage is
 absent}: C4 does not outperform its information-parity textual control.
-The realised score distribution is graded (273 scored cells, 9 distinct
-values, mean $0.898$, $57.5\%$ at the $1.0$ ceiling)---right-skewed but
+The realised score distribution is graded (300 scored cells, 9 distinct
+values, mean $0.900$, $58.7\%$ at the $1.0$ ceiling)---right-skewed but
 free of the three-level collapse that compressed T2.
 
 \textbf{Data-collection note (pre-registered missing-data handling).}
-27 of the 300 planned T1 calls failed, all on \texttt{claude-opus-4-6},
-because the Anthropic API credit balance was exhausted mid-collection;
-\texttt{gpt-5.4} had zero failures. The failures are spread across
-conditions (C1 5, C1\textsuperscript{+} 5, C2 5, C3 6, C4 6), so the gap
-is approximately balanced across the C4/C1\textsuperscript{+} contrast.
-Per \texttt{t1-v1} \S5.1 the per-function mean is taken over whichever
-models returned an \texttt{ok} score, so all 30 functions retain a
-complete C4/C1\textsuperscript{+} pair (single-model where one model is
-missing). The pre-registered sensitivity (\texttt{t1-v1} \S5.2) bounds
-this: H1/T1 under \emph{complete-case} pairs (both models \texttt{ok},
-$n = 24$) gives $r_{\text{rb}} = +0.067$ (raw $p = 0.413$), and under
-\emph{worst-case imputation} gives $r_{\text{rb}} = -0.433$ (raw
-$p = 0.956$). No arm reaches significance and the point estimate stays at
-or below a negligible positive value; the conclusion (no detectable
-C4-over-C1\textsuperscript{+} advantage on T1) is stable, though the
-27-cell gap is a real limitation and completing it (post credit top-up;
-the run is resumable) would tighten the estimate. Per-cell status counts
-and all sensitivity arms are archived at
+On the first collection pass, 27 of the 300 T1 calls failed, all on
+\texttt{claude-opus-4-6}, because the Anthropic API credit balance was
+exhausted mid-run (\texttt{gpt-5.4}: zero failures). The run is resumable;
+after a credit top-up it was resumed and all 27 cells were recovered, so
+the \emph{final} T1 dataset is complete ($300/300$, zero failures) and no
+missing-data imputation is required---the pre-registered complete-case and
+worst-case arms (\texttt{t1-v1} \S5.2) coincide ($n = 30$, $r_{\text{rb}} =
++0.098$). We record the transient gap for provenance; it does not affect
+the reported result. Per-cell status counts are archived at
 \path{results/analysis/exploratory/full_t1_confirmatory_v1/sensitivity.json}.
 
 \subsection{Confirmatory: H1 on T3 (code transformation), and a realised ceiling}
@@ -866,7 +858,7 @@ positive direction. Artifacts:
 
 \textbf{Reading across the completed family.} The central Lumen test, H1
 (C4 over its information-parity control), is \emph{not} supported on any
-task: it is a clean null on T1 ($r_{\text{rb}} = +0.05$), a moderate but
+task: it is a clean null on T1 ($r_{\text{rb}} = +0.10$), a moderate but
 multiplicity-absorbed positive on T2 ($r_{\text{rb}} = +0.58$), and
 ceiling-censored on T3 ($r_{\text{rb}} = +0.43$, effective $n \approx 5$).
 Two of the three tasks are measurement-limited (T2 by a low-end rubric
@@ -1285,9 +1277,10 @@ results support.
   measurement-limited: T2 by a low-end rubric ceiling and T3 by a
   high-end solve-rate ceiling (93.7\% of T3 scores at $1.0$, effective
   $n \approx 5$). The one ceiling-free task, T1, returns a clean null
-  for H1. The T1 collection also carries a 27/300-cell gap
-  (\texttt{claude-opus-4-6}; Anthropic credit exhaustion) handled by the
-  pre-registered missing-data rule.
+  for H1. The T1 collection hit a transient 27/300-cell gap
+  (\texttt{claude-opus-4-6}; Anthropic credit exhaustion mid-run) that was
+  recovered on resume after a credit top-up; the final T1 dataset is
+  complete ($300/300$).
 \item \textbf{Dataset domain skew.} Approximately two-thirds
   ($20$ of $30$) of the retained functions are list and array
   operations; results may not generalize uniformly to arithmetic,

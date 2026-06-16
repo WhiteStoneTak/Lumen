@@ -28,16 +28,16 @@ under `docs/preregistrations/t3-v1.md` (R5-4, `full_t3_confirmatory_v1`).
 
 The confirmatory result is **non-rejection on all nine cells** (Holm
 m = 9). The central H1 test (C4 > C1+) is not rejected on any task: T1
-r = +0.05, raw p = 0.43 (a clean null, no rubric ceiling); T2 r = +0.58,
+r = +0.10, raw p = 0.36 (a clean null, no rubric ceiling); T2 r = +0.58,
 raw p = 0.023 (absorbed by the correction); T3 r = +0.43 but
 ceiling-censored (93.7% of T3 scores at 1.0, effective n ≈ 5). The cleanest
 unconfounded datum, T1, shows no structure advantage at constant
 information. See §4 of the paper and `docs/next-phase-design.md` §4 for the
 decision-gate evaluation. None of it should be read as a positive finding.
 
-Two T1 cells caveat: 27/300 T1 calls failed when the Anthropic credit
-balance was exhausted mid-run (claude-opus-4-6 only); handled per the
-pre-registered missing-data rule and bounded by sensitivity analysis.
+T1 collection note: an initial pass lost 27/300 cells to Anthropic credit
+exhaustion mid-run (claude-opus-4-6 only); the run was resumed after a
+top-up and all 27 recovered, so the final T1 dataset is complete (300/300).
 
 Current empirical scope is non-recursive, single-function Python.
 

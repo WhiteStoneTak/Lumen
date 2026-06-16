@@ -262,7 +262,8 @@ generalization question now has its first real answer, and it is **negative
 for the central bet**:
 
 - **T1 (understanding):** H1 (C4 > C1+) is a **clean null** —
-  $r_{\text{rb}} = +0.051$, raw $p = 0.428$, CI $[-0.520, +0.614]$. The
+  $r_{\text{rb}} = +0.098$, raw $p = 0.361$, CI $[-0.440, +0.655]$ (complete
+  data, 300/300 cells). The
   graded checklist scorer did **not** ceiling out (9 distinct values,
   mean 0.90), so this is a genuine no-effect, not a measurement artifact.
 - **T3 (transformation):** H1 is **ceiling-censored** — $r_{\text{rb}} =

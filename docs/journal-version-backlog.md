@@ -118,16 +118,17 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
 - **Dependencies / notes:** This is the largest item in the backlog by far.
   Any sequencing of journal-version work should account for it first.
 - **status:** DONE (R5 / WOV-245..248). All nine confirmatory cells collected
-  and analyzed. T1 (R5-1/R5-2): H1/T1 r_rb = +0.051, raw p = 0.428 (clean null,
-  no ceiling). T3 (R5-3/R5-4): H1/T3 r_rb = +0.429, raw p = 0.219 but
+  and analyzed. T1 (R5-1/R5-2): H1/T1 r_rb = +0.098, raw p = 0.361 (clean null,
+  no ceiling; complete data 300/300). T3 (R5-3/R5-4): H1/T3 r_rb = +0.429, raw p = 0.219 but
   ceiling-censored (93.7% of T3 scores at 1.0, effective n ≈ 5; n = 26 funcs,
   4 pre-declared structural exclusions). No cell Holm-rejected (m = 9). The
   C1+ information-parity control is now instantiated on all three tasks; the
   central H1 (C4 > C1+) is unsupported throughout — clean null on T1, censored
   on T3, multiplicity-absorbed on T2. Decision-gate evaluated in
   docs/next-phase-design.md §4 (matched row: "C4 weak on T1/T3"; P1 gate not
-  opened). Limitation: 27/300 T1 cells missing (Anthropic credit exhaustion,
-  claude-opus-4-6), pre-registered missing-data handling + sensitivity applied.
+  opened). Note: an initial T1 pass lost 27/300 cells to Anthropic credit
+  exhaustion (claude-opus-4-6); recovered on resume after top-up — final T1
+  dataset complete (300/300, 0 failures).
   Artifacts: results/analysis/confirmatory/full_t{1,3}_confirmatory_v1/.
 
 ---

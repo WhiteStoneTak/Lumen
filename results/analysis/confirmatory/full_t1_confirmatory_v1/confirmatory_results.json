@@ -1,7 +1,7 @@
 {
   "lumen_schema": "confirmatory-analysis-v1",
   "analysis_freeze_date": "2026-04-02",
-  "run_timestamp": "2026-06-16T08:14:31.219105+00:00",
+  "run_timestamp": "2026-06-16T13:53:19.114608+00:00",
   "frozen_models": [
     "gpt-5.4",
     "claude-opus-4-6"
@@ -15,8 +15,8 @@
   "primary_endpoint": "H1 on T2 (constitution \u00a714)",
   "data_completeness": {
     "total_functions": 30,
-    "score_records_loaded": 573,
-    "score_records_for_frozen_models": 573,
+    "score_records_loaded": 600,
+    "score_records_for_frozen_models": 600,
     "T1/C1": "30/30",
     "T1/C1+": "30/30",
     "T1/C2": "0/30",
@@ -42,13 +42,13 @@
       "description": "Structure at constant information: C4 > C1+",
       "n_functions": 30,
       "n_complete_pairs": 30,
-      "wilcoxon_statistic": 71.5,
-      "p_value_one_sided": 0.427905,
-      "rank_biserial_r": 0.051471,
+      "wilcoxon_statistic": 84.0,
+      "p_value_one_sided": 0.360757,
+      "rank_biserial_r": 0.098039,
       "holm_bonferroni_rejected": false,
       "interpretation": "Fail to reject H\u2080 at \u03b1=0.05 (Holm\u2013Bonferroni corrected)",
-      "rank_biserial_ci_low": -0.520482,
-      "rank_biserial_ci_high": 0.614379
+      "rank_biserial_ci_low": -0.452713,
+      "rank_biserial_ci_high": 0.647059
     },
     {
       "hypothesis": "H1",
@@ -90,13 +90,13 @@
       "description": "Total enrichment: C4 > C1",
       "n_functions": 30,
       "n_complete_pairs": 30,
-      "wilcoxon_statistic": 76.0,
-      "p_value_one_sided": 0.181211,
-      "rank_biserial_r": 0.266667,
+      "wilcoxon_statistic": 80.5,
+      "p_value_one_sided": 0.258532,
+      "rank_biserial_r": 0.183824,
       "holm_bonferroni_rejected": false,
       "interpretation": "Fail to reject H\u2080 at \u03b1=0.05 (Holm\u2013Bonferroni corrected)",
-      "rank_biserial_ci_low": -0.359007,
-      "rank_biserial_ci_high": 0.757576
+      "rank_biserial_ci_low": -0.428571,
+      "rank_biserial_ci_high": 0.684211
     },
     {
       "hypothesis": "H2",
@@ -138,13 +138,13 @@
       "description": "Information enrichment in text: C1+ > C1",
       "n_functions": 30,
       "n_complete_pairs": 30,
-      "wilcoxon_statistic": 82.0,
-      "p_value_one_sided": 0.233473,
-      "rank_biserial_r": 0.205882,
+      "wilcoxon_statistic": 92.0,
+      "p_value_one_sided": 0.388015,
+      "rank_biserial_r": 0.076023,
       "holm_bonferroni_rejected": false,
       "interpretation": "Fail to reject H\u2080 at \u03b1=0.05 (Holm\u2013Bonferroni corrected)",
-      "rank_biserial_ci_low": -0.352381,
-      "rank_biserial_ci_high": 0.727289
+      "rank_biserial_ci_low": -0.452679,
+      "rank_biserial_ci_high": 0.594783
     },
     {
       "hypothesis": "H3",
