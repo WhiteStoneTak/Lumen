@@ -1,24 +1,246 @@
-% Section 2 — Preliminaries (charter §4.2; issue T1-1)
+% Section 2 — Preliminaries (charter §4.2; issue T1-1, WOV-262)
 \section{Preliminaries: a measure-theoretic setup}
 \label{sec:prelim}
 
-% STUB (T1-1). Measure-theoretic setup: input space, representations as
-% measurable maps, predictors as Markov kernels, loss, risk, Bayes risk.
-% Area role (charter §2): rigorous setup so that later DPI / sufficiency
-% arguments are exact rather than heuristic.
-%
-% To be defined here (using notation.tex symbols):
-%   - input space \Xspace with \Bor{\Xspace}; target \Yspace; codomain \Zspace.
-%   - a representation as a measurable map \rep : \Xspace \to \Zspace.
-%   - a predictor as a Markov kernel \kernel{K} : \Zspace \times \Bor{\Yspace}
-%     \to [0,1].
-%   - loss \loss, risk \risk, Bayes risk \bayesrisk.
+% Area role (charter §2): rigorous setup so that the later DPI / sufficiency
+% arguments (T2-2) are exact rather than heuristic. Everything downstream --
+% information parity (§4), the bounded-learner gap (§5), the parity defect
+% (§6) -- is phrased against the objects fixed here. Symbols live in
+% notation.tex; this section only instantiates them.
 
-\noindent\emph{[Stub. Fills in T1-1.]}
+This section fixes the measure-theoretic objects the rest of the paper
+quantifies over: the data-generating measure, a \emph{representation} as a
+measurable map, a \emph{predictor} as a Markov kernel, and the loss/risk
+functionals. The aim is modest but load-bearing: once representations and
+predictors are measurable objects on a common probability space, the
+data-processing and sufficiency arguments of \cref{sec:parity} become exact
+statements about conditional expectations rather than informal claims about
+``information.'' We work throughout on standard Borel spaces, which is what
+licences the disintegration machinery in \cref{subsec:disint}; the assumption
+is harmless for our objects (finite token alphabets, countable program
+syntax, and their Polish completions). We follow the standard treatments of
+\citet{folland1999real}, \citet{kallenberg2002foundations}, and
+\citet{cinlar2011probability}.
 
-% Skeleton theorem slot (keeps amsthm wiring exercised; replace in T1-1):
-\begin{definition}[Representation, predictor, risk]
-\label{def:setup}
-\emph{[Placeholder. Formal definitions of $\rep$, $\kernel{K}$, and
-$\risk$ land in T1-1.]}
+\subsection{The data-generating measure}
+\label{subsec:dgm}
+
+Fix a probability space $(\Omega, \mathcal{F}, \Prob)$ on which all random
+elements are defined. The \emph{input space} $\Xspace$ (a program, or a
+prompt-rendered code artifact) and the \emph{target space} $\Yspace$ (the
+quantity to be predicted: a label, a program property, a continuation) are
+each equipped with a $\sigma$-algebra; we take both to be standard Borel
+spaces and write $\Bor{\Xspace}$ and $\Bor{\Yspace}$ for their Borel
+$\sigma$-algebras.
+
+\begin{assumption}[Standard Borel data model]
+\label{ass:sbs}
+$\Xspace$ and $\Yspace$ are standard Borel spaces. The data are a random
+element $(X, Y) : \Omega \to \Xspace \times \Yspace$, measurable for
+$\Bor{\Xspace} \otimes \Bor{\Yspace}$, with joint law
+$\jlaw \defeq \law{(X,Y)} = \pushf{(X,Y)}{\Prob}$ on the product space. We
+write $\Prob_X = \pushf{X}{\Prob}$ for the input marginal.
+\end{assumption}
+
+Standardness (every uncountable such space being Borel-isomorphic to
+$[0,1]$; \citealp[Thm.~A1.2]{kallenberg2002foundations}) is used only to
+guarantee that the conditional laws of \cref{subsec:disint} exist as genuine
+Markov kernels. No assumption is placed on $\jlaw$ beyond measurability: in
+particular the empirical regime of \texttt{preprint-v1} corresponds to a
+fixed but unknown $\jlaw$, and the theory makes no claim about its form.
+
+\subsection{Representations as measurable maps}
+\label{subsec:rep}
+
+A representation is the formatting/encoding stage that turns the raw input
+into the object a predictor actually consumes (the C-ladder rungs C2--C4 and
+the parity control C1$^{+}$ of \texttt{preprint-v1} are concrete instances;
+their categorical relationships are deferred to \cref{sec:catrep}).
+
+\begin{definition}[Representation]
+\label{def:rep}
+A \emph{representation} is a measurable map $\rep : (\Xspace, \Bor{\Xspace})
+\to (\Zspace_{\rep}, \Bor{\Zspace_{\rep}})$ into a standard Borel
+\emph{codomain} $\Zspace_{\rep}$. Its \emph{induced sub-$\sigma$-algebra} is
+\[
+  \repsig \defeq \rep^{-1}\!\big(\Bor{\Zspace_{\rep}}\big)
+            \;\subseteq\; \Bor{\Xspace},
+\]
+and its \emph{law} is the pushforward $\pushf{\rep}{\Prob_X}$ on
+$\Zspace_{\rep}$. The identity map $\mathrm{id}:\Xspace\to\Xspace$ is the
+maximal (lossless) representation, with $\sigalg{\mathrm{id}} = \Bor{\Xspace}$.
 \end{definition}
+
+Two facts about \cref{def:rep} are used repeatedly. First, $\repsig$ records
+exactly the information $\rep$ retains: a further map $g$ factors through
+$\rep$ (i.e.\ $g = h \circ \rep$ for some measurable $h$) iff $g$ is
+$\repsig$-measurable (the Doob--Dynkin lemma;
+\citealp[Lem.~1.13]{kallenberg2002foundations}). Second, refinement of
+representations is exactly inclusion of induced $\sigma$-algebras: if $\rep'$
+factors through $\rep$ then $\sigalg{\rep'} \subseteq \repsig$. This ordering
+is the backbone of the data-processing inequality in \cref{sec:parity}: a
+representation can only \emph{coarsen} $\Bor{\Xspace}$, never enrich it.
+
+\begin{remark}[Lossless vs.\ lossy]
+\label{rem:lossy}
+A representation is \emph{lossless for $Y$} when $\repsig$ retains all of
+$X$'s predictive content for $Y$ -- formally, when $\rep(X)$ is a sufficient
+statistic for $Y$ (\cref{sec:parity}, made precise in T2-1). Otherwise it is
+\emph{lossy}, and the rate--distortion corollary of \cref{sec:parity} bounds
+the resulting risk inflation. We do not yet need the definition of
+sufficiency; we only need that $\repsig$ is the object it will be stated
+against.
+\end{remark}
+
+\subsection{Predictors as Markov kernels}
+\label{subsec:pred}
+
+A frozen LLM is not a deterministic function of its input: at fixed weights
+it induces, through decoding, a conditional distribution over outputs. The
+right abstraction is therefore a Markov kernel, not a measurable map.
+
+\begin{definition}[Markov kernel]
+\label{def:kernel}
+A \emph{Markov kernel} from $(\Zspace,\Bor{\Zspace})$ to
+$(\Aspace,\Bor{\Aspace})$ is a map $\kernel{K} : \Zspace \times \Bor{\Aspace}
+\to [0,1]$ such that (i) $z \mapsto \kernel{K}(z, B)$ is
+$\Bor{\Zspace}$-measurable for each fixed $B \in \Bor{\Aspace}$, and (ii)
+$B \mapsto \kernel{K}(z, B)$ is a probability measure on $\Bor{\Aspace}$ for
+each fixed $z \in \Zspace$.
+\end{definition}
+
+\begin{definition}[Predictor; frozen LLM]
+\label{def:predictor}
+A \emph{predictor on the representation $\rep$} is a Markov kernel
+$\kernel{K} : \Zspace_{\rep} \times \Bor{\Aspace} \to [0,1]$ from the
+representation codomain to an \emph{action space} $\Aspace$ (the prediction
+space; $\Aspace = \Yspace$ in the simplest case). A \emph{frozen} LLM is such
+a kernel held fixed: the formatting choice is absorbed into $\rep$, and
+$\kernel{K}$ is the fixed map weights-plus-decoder induces from formatted
+input to output distribution.
+\end{definition}
+
+A predictor on $\rep$ acts on the raw input by pre-composition with the
+representation, yielding a kernel from $\Xspace$ to $\Aspace$:
+\[
+  (\kcomp{\kernel{K}}{\rep})(x, B) \;\defeq\; \kernel{K}\!\big(\rep(x), B\big),
+  \qquad x \in \Xspace,\; B \in \Bor{\Aspace}.
+\]
+Because $\rep$ is measurable and $\kernel{K}$ is a kernel,
+$\kcomp{\kernel{K}}{\rep}$ is again a Markov kernel
+(\citealp[Ch.~2]{cinlar2011probability}); crucially it is measurable with
+respect to $\repsig$, so a predictor built on $\rep$ can never depend on input
+information that $\rep$ discards. This is the measure-theoretic content of
+``the predictor only sees the representation,'' and it is what the
+data-processing inequality will exploit.
+
+\subsection{Loss, risk, and Bayes risk}
+\label{subsec:risk}
+
+\begin{definition}[Loss and risk]
+\label{def:risk}
+A \emph{loss} is a measurable map $\loss : \Yspace \times \Aspace \to
+[0,\infty]$. The \emph{risk} of a predictor $\kernel{K}$ on representation
+$\rep$ is the expected loss under the data law and the predictor's own
+randomness,
+\[
+  \risk(\kernel{K}; \rep)
+  \;\defeq\;
+  \Expect_{(X,Y)\sim\jlaw}\;
+  \int_{\Aspace} \loss\big(Y, a\big)\,
+       \kernel{K}\!\big(\rep(X), \mathrm{d}a\big),
+\]
+the inner integral being a Lebesgue integral against the probability measure
+$\kernel{K}(\rep(X),\cdot)$.
+\end{definition}
+
+\begin{definition}[Bayes risk relative to a representation]
+\label{def:bayesrisk}
+The \emph{Bayes risk achievable from $\rep$} is the infimum of the risk over
+all predictors that act through $\rep$,
+\[
+  \bayesrisk(\rep)
+  \;\defeq\;
+  \inf_{\kernel{K}}\, \risk(\kernel{K}; \rep),
+\]
+the infimum ranging over all Markov kernels
+$\kernel{K} : \Zspace_{\rep} \times \Bor{\Aspace} \to [0,1]$. Equivalently
+(\cref{subsec:disint}) it is the risk of the best $\repsig$-measurable
+decision rule. The unconstrained Bayes risk is $\bayesrisk(\mathrm{id})$.
+\end{definition}
+
+Two remarks fix the reading of \cref{def:bayesrisk}. (a)~$\bayesrisk(\rep)$ is
+the \emph{information limit} of representation $\rep$: the best any predictor
+could do given only what $\rep$ retains, with capacity set aside. The whole
+negative half of the paper's thesis is the statement that, under parity,
+$\bayesrisk(\rep)$ does not move with $\rep$ (\cref{sec:parity}); the whole
+positive half is that real, capacity-bounded predictors do not attain
+$\bayesrisk(\rep)$, and that this gap -- not the information limit -- is where
+format can act (\cref{sec:bounded}). (b)~Because pre-composition with $\rep$
+only shrinks the available $\sigma$-algebra ($\repsig \subseteq
+\Bor{\Xspace}$), the map $\rep \mapsto \bayesrisk(\rep)$ is monotone under
+refinement: a coarser representation has weakly larger Bayes risk. Parity is
+precisely the boundary case where the inequality is tight.
+
+\subsection{Disintegration and the conditional-expectation machinery}
+\label{subsec:disint}
+
+The arguments of \cref{sec:parity} reduce to three classical facts. We state
+them in the form used downstream; proofs are standard
+(\citealp[Ch.~3,~6]{folland1999real}; \citealp[Ch.~5--6]{kallenberg2002foundations}).
+
+\begin{proposition}[Radon--Nikodym]
+\label{prop:rn}
+Let $\nu$ be a $\sigma$-finite measure and $\mu \ll \nu$ a measure absolutely
+continuous with respect to it on a common measurable space. Then there is a
+$\nu$-a.e.\ unique nonnegative measurable density $\rnd{\mu}{\nu}$ with
+$\mu(A) = \int_A \rnd{\mu}{\nu}\,\mathrm{d}\nu$ for all measurable $A$.
+\end{proposition}
+
+Radon--Nikodym is what gives conditional expectation its closed form.
+For an integrable random variable $W$ and a sub-$\sigma$-algebra
+$\mathcal{G} \subseteq \mathcal{F}$, the conditional expectation
+$\condexp{W}{\mathcal{G}}$ is the $\Prob$-a.s.\ unique
+$\mathcal{G}$-measurable variable satisfying $\Expect[\,\condexp{W}{\mathcal{G}}
+\,\mathbf{1}_G\,] = \Expect[W\,\mathbf{1}_G]$ for all $G \in \mathcal{G}$;
+existence is \cref{prop:rn} applied to $A \mapsto \Expect[W\,\mathbf{1}_A]$ on
+$\mathcal{G}$. The single property we use is the \emph{tower rule}: for nested
+$\sigma$-algebras $\mathcal{G}_1 \subseteq \mathcal{G}_2$,
+\begin{equation}
+  \label{eq:tower}
+  \condexp{\condexp{W}{\mathcal{G}_2}}{\mathcal{G}_1}
+  = \condexp{W}{\mathcal{G}_1}.
+\end{equation}
+Applied to $\mathcal{G}_1 = \repsig \subseteq \mathcal{G}_2 = \Bor{\Xspace}$,
+\cref{eq:tower} is the data-processing inequality in embryo: coarsening to
+$\repsig$ is a conditional-expectation projection, and projections cannot
+increase the information available to a convex risk. \cref{sec:parity} turns
+this into the irrelevance theorem.
+
+\begin{proposition}[Disintegration / regular conditional probability]
+\label{prop:disint}
+Under \cref{ass:sbs}, for the sub-$\sigma$-algebra $\repsig$ there exists a
+Markov kernel $\post{\rep} : \Zspace_{\rep} \times \Bor{\Yspace} \to [0,1]$,
+the \emph{regular conditional law of $Y$ given $\rep(X)$}, such that
+\[
+  \post{\rep}\!\big(\rep(X), B\big)
+  = \Prob\big(Y \in B \given \repsig\big)
+  \qquad \Prob\text{-a.s., for every } B \in \Bor{\Yspace}.
+\]
+It is $\pushf{\rep}{\Prob_X}$-a.s.\ unique. The kernel $\post{\rep}$ is the
+\emph{Bayes-optimal predictor} on $\rep$: for any loss $\loss$ admitting a
+measurable Bayes act, plugging $\post{\rep}$ into \cref{def:risk} attains
+$\bayesrisk(\rep)$ of \cref{def:bayesrisk}.
+\end{proposition}
+
+Existence in \cref{prop:disint} is exactly where standardness of $\Yspace$ is
+spent (\citealp[Thm.~6.3]{kallenberg2002foundations};
+\citealp[Ch.~IV]{cinlar2011probability}); on a non-standard target the
+conditional law need not regularize into a kernel. \cref{prop:disint} closes
+the loop opened in \cref{subsec:pred}: the abstract ``best predictor on
+$\rep$'' of \cref{def:bayesrisk} is a concrete Markov kernel, the posterior
+$\post{\rep}$, and comparing $\post{\rep}$ across representations under parity
+is precisely the calculation \cref{sec:parity} carries out. Everything later
+in the paper is an estimate of how far a frozen LLM's kernel $\kernel{K}$
+sits from $\post{\rep}$, and of how that distance moves -- or, under parity,
+fails to move -- with $\rep$.
