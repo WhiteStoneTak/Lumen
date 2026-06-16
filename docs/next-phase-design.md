@@ -255,8 +255,43 @@ not a raw-p or directional-only signal.
 | C1+ stably ≥ C4 across tasks | Re-weight toward information design / annotated source over Core IR |
 | C1+ ≥ C4 across all primary tasks | Formally re-evaluate the canonical-core-over-surface-text bet |
 
-Current standing: **C4 promising, not established → start from the Semantic
-Coding Layer, not a language.**
+### R5 evaluation (2026-06-16, WOV-246 / WOV-248)
+
+R5 collected and analyzed T1 and T3 under `t1-v1` / `t3-v1`. The
+generalization question now has its first real answer, and it is **negative
+for the central bet**:
+
+- **T1 (understanding):** H1 (C4 > C1+) is a **clean null** —
+  $r_{\text{rb}} = +0.051$, raw $p = 0.428$, CI $[-0.520, +0.614]$. The
+  graded checklist scorer did **not** ceiling out (9 distinct values,
+  mean 0.90), so this is a genuine no-effect, not a measurement artifact.
+- **T3 (transformation):** H1 is **ceiling-censored** — $r_{\text{rb}} =
+  +0.429$ but raw $p = 0.219$ on effective $n \approx 5$, because 93.7% of
+  T3 scores are exactly 1.0 (both frozen models solve nearly everything).
+  Untestable, exactly as pre-declared (`t3-v1` §3.3).
+- **T2 (bug detection):** unchanged — moderate $r_{\text{rb}} = +0.58$ but
+  **not** multiplicity-surviving.
+
+Under the table's strict "strong = multiple-comparison-surviving"
+definition, **C4 is strong on no task**, and the cleanest unconfounded
+datum (T1, no ceiling) shows **no structure advantage at constant
+information**. The matching row is **"C4 weak on T1 / T3 → Revisit the
+LLM-facing projection design, not the language."** The "C4 > C1+ also holds
+on T1 and T3" promotion row is **not** triggered.
+
+**P1 gate (WOV-251/252):** the gate required "a measured signal that the
+structured representation (C4) helps beyond the T2 ceiling artifact." R5
+did **not** produce that signal (T1 null; T3 ceiling). **R5 does not open
+the P1 implementation gate.** P1 implementation remains gated; the only
+unblocked move is design/projection rework, consistent with the matched
+row.
+
+Current standing (updated): **C4 not established and, on the one
+ceiling-free task (T1), shows no advantage over annotated text. Do not
+promote the Semantic Coding Layer to the primary bet; revisit the
+LLM-facing projection before any C4-as-canonical commitment. T3 needs a
+harder dataset (or partial-credit transforms) before it can test anything;
+T2 needs the rubric refinement (W-04).**
 
 ---
 

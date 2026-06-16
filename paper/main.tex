@@ -218,6 +218,14 @@ model-runs---opposite the pre-registered prediction
 (\S\ref{sec:4.4}). No T2 record attains the composite ceiling of
 $3$ ($0/300$ records; \S\ref{sec:3.6}); the effective Wilcoxon
 $n$ collapses to $13$--$14$ on the central confirmatory cells.
+For this journal version the nine-cell family is completed (R5): H1
+(C4 over its information-parity control) is a \emph{clean null} on T1
+($r = +0.05$, raw $p = 0.43$, no rubric ceiling) and ceiling-censored on
+T3 ($r = +0.43$, effective $n \approx 5$; $93.7\%$ of scores at $1.0$),
+so \textbf{no cell is rejected on any task}
+(\S\ref{sec:4.2b}--\S\ref{sec:4.2c}). The cleanest unconfounded datum, the
+T1 null, is evidence \emph{against} a structure-at-constant-information
+advantage for program understanding.
 
 \paragraph{Document scope.} This paper is the extended
 preprint/journal-version draft, anticipated as an arXiv release
@@ -511,9 +519,10 @@ summarize a function's behavior in natural language from its
 representation; T3 asks the model to produce a modified version
 of a function satisfying a contract-described change. Both are
 constitutional task families; the 90-day study collected only
-T2, so T1 and T3 are uncollected, and the six corresponding
-cells of the confirmatory family are insufficient-data
-placeholders (\S\ref{sec:3.5}, \S\ref{sec:4.2}).
+T2. T1 and T3 were collected afterward for this journal version
+under separate pre-registrations (R5; \texttt{t1-v1},
+\texttt{t3-v1}), completing the nine-cell family
+(\S\ref{sec:4.2b}, \S\ref{sec:4.2c}).
 
 T2 was pre-registered as the primary endpoint (Constitution \S17.4)
 for objectivity: its 0--3 composite score---the sum of location,
@@ -578,11 +587,11 @@ and every earlier rank clear their thresholds. We also report a
 95\% percentile bootstrap CI on $r_{\text{rb}}$ from
 $10{,}000$ seeded resamples.
 
-We honor $m = 9$ as pre-registered. Six of the nine cells are
-insufficient-data placeholders because T1 and T3 were not collected
-(\S\ref{sec:3.3}); in reporting we distinguish the three
-collected-and-tested cells from the six scope-limited-uncollected
-cells, but we do not retroactively reduce $m$ to 3. Post-hoc
+We honor $m = 9$ as pre-registered. In the preprint, six of the nine
+cells were insufficient-data placeholders; for this journal version T1
+and T3 were collected (R5, \S\ref{sec:4.2b}--\S\ref{sec:4.2c}) and all
+nine cells are now tested, with $m = 9$ retained throughout. We did not
+at any stage retroactively reduce $m$ to 3. Post-hoc
 $m$-reduction would forfeit the value of pre-registration: the cost
 is reduced corrected power, the benefit is that the result speaks
 under the rules committed to before data were seen. Effective sample
@@ -736,13 +745,15 @@ $p = 0.233$). The third, H3/T2, yields $r_{\text{rb}} = -0.473$
 pre-registered direction. None of the three reaches Holm-corrected
 significance. The H3/T2 upper bound ($+0.077$) only just crosses zero.
 
-The T1 family was collected post-preprint under pre-registration
-\texttt{t1-v1} (R5-2) and is now reported in \S\ref{sec:4.2b}; all three
-T1 cells are tested and none rejected. The three remaining cells are T3
-hypotheses, to be collected under \texttt{t3-v1} (R5-4); until then they
-contribute Holm $p = 1.000$ by convention. We do not retroactively reduce
-$m$. The distinction between collected-and-tested and uncollected cells is
-a reporting matter (\S\ref{sec:3.5}), not a multiplicity adjustment.
+The family is now complete. The T1 family was collected under
+pre-registration \texttt{t1-v1} (R5-2, \S\ref{sec:4.2b}) and the T3 family
+under \texttt{t3-v1} (R5-4, \S\ref{sec:4.2c}); all nine cells are tested.
+\textbf{No cell is rejected at the Holm-corrected level}: the smallest raw
+$p$ in the family is H1/T2's $0.023$, which already fails the $m=9$ Holm
+threshold ($0.05/9 = 0.0056$), so every cell corrects to Holm
+$p \in \{0.205, 1.000\}$. The pre-registered Informative-Negative-Outcomes
+classification (Constitution \S9) therefore stands across all three tasks,
+not T2 alone.
 
 The H3/T2 directional inversion is the strongest exploratory signal
 in the dataset; its per-model decomposition is taken up in
@@ -751,10 +762,11 @@ in the dataset; its per-model decomposition is taken up in
 \begin{table}[h]
 \centering
 \footnotesize
-\caption{Confirmatory 9-test family: six tested cells (T2; T1 added in R5-2,
-pre-registration \texttt{t1-v1}) and three uncollected T3 cells (\emph{Confirmatory
-analysis}). $m=9$ honored as pre-registered; uncollected cells contribute Holm
-$p = 1.000$ by convention. No cell is rejected at the Holm-corrected level.}
+\caption{Confirmatory 9-test family, now complete: all nine cells tested
+(T2; T1 via R5-2/\texttt{t1-v1}; T3 via R5-4/\texttt{t3-v1}) (\emph{Confirmatory
+analysis}). $m=9$ Holm correction as pre-registered. \textbf{No cell is rejected
+at the Holm-corrected level.} The three T3 cells are ceiling-censored (93.7\% of
+T3 scores at $1.0$; see \S\ref{sec:4.2c}).}
 \label{tab:confirmatory-family}
 \begin{tabular}{llcrrrrlr}
 \toprule
@@ -762,13 +774,13 @@ Hyp & Task & $n$ & $W$ & raw $p$ & Holm $p$ ($m=9$) & $r_{\text{rb}}$ & 95\% CI 
 \midrule
 H1 & T1 & 30  & $71.5$ & $0.428$ & $1.000$ & $+0.051$  & $[-0.520, +0.614]$   & tested \\
 H1 & T2 & 30  & $83.0$ & $0.023$ & $0.205$ & $+0.581$  & $[+0.077, +0.917]$   & tested \\
-H1 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H1 & T3 & 26  & $15.0$ & $0.219$ & $1.000$ & $+0.429$  & $[-1.000, +1.000]$   & tested (ceiling) \\
 H2 & T1 & 30  & $76.0$ & $0.181$ & $1.000$ & $+0.267$  & $[-0.359, +0.758]$   & tested \\
 H2 & T2 & 30  & $63.0$ & $0.233$ & $1.000$ & $+0.200$  & $[-0.333, +0.700]$   & tested \\
-H2 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H2 & T3 & 26  & $0.0$  & $1.000$ & $1.000$ & $-1.000$  & $[-1.000, +0.000]$   & tested (ceiling) \\
 H3 & T1 & 30  & $82.0$ & $0.233$ & $1.000$ & $+0.206$  & $[-0.352, +0.727]$   & tested \\
 H3 & T2 & 30  & $24.0$ & $0.969$ & $1.000$ & $-0.473$  & $[-0.885, +0.077]$   & tested \\
-H3 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H3 & T3 & 26  & $1.0$  & $0.938$ & $1.000$ & $-0.800$  & $[-1.000, +1.000]$   & tested (ceiling) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -812,6 +824,56 @@ C4-over-C1\textsuperscript{+} advantage on T1) is stable, though the
 the run is resumable) would tighten the estimate. Per-cell status counts
 and all sensitivity arms are archived at
 \path{results/analysis/exploratory/full_t1_confirmatory_v1/sensitivity.json}.
+
+\subsection{Confirmatory: H1 on T3 (code transformation), and a realised ceiling}
+\label{sec:4.2c}
+The T3 family was collected under pre-registration \texttt{t3-v1} (R5-4),
+using the frozen test-pass-fraction scorer executed in a sandboxed
+subprocess with a 10\,s wall-clock timeout (R1-4). Of the 30 confirmatory
+functions, 26 carry a frozen post-transform suite; the other four
+(\texttt{peak\_valley\_indices}, \texttt{segments\_above\_threshold},
+\texttt{stable\_partition}, \texttt{group\_by\_key}) have no T3 ground
+truth and were pre-declared as structural exclusions before any T3 call.
+
+\textbf{H1/T3 (C4 vs C1\textsuperscript{+})} yields $r_{\text{rb}} =
++0.429$ in the pre-registered direction but with raw $p = 0.219$ and a 95\%
+CI of $[-1.000, +1.000]$---uninformative. The reason is the
+\emph{realised ceiling} pre-registered as the primary T3 threat
+(\texttt{t3-v1} \S3.3): $93.7\%$ of T3 scores are exactly $1.0$ (mean
+$0.961$, 7 distinct values over 255 scored cells). Both frozen models solve
+almost every transformation in almost every representation, so the paired
+C4$-$C1\textsuperscript{+} differences are overwhelmingly ties: only $\sim
+5$ of the 26 functions have a non-zero difference (effective Wilcoxon $n
+\approx 5$). The test cannot reject, not because the effect is bounded away
+from the pre-registered direction, but because the top-of-scale saturation
+destroys resolution---the mirror image of the T2 ceiling (paper
+\S\ref{sec:3.6}), and exactly the failure mode anticipated at
+pre-registration. The secondary cells inherit the same collapse: H2/T3
+$r_{\text{rb}} = -1.000$ (effective $n = 1$) and H3/T3 $r_{\text{rb}} =
+-0.800$ (effective $n = 3$) are computed on a handful of non-tied pairs and
+carry no interpretive weight. All three correct to Holm $p = 1.000$.
+
+\textbf{Failure handling and sensitivity (\texttt{t3-v1} \S5).} Only 5 of
+260 cells were parse/execution failures (\texttt{claude-opus-4-6}: C1 1,
+C2 1, C4 2; \texttt{gpt-5.4}: C3 1)---no MNAR concentration. The frozen
+\texttt{analyze\_confirmatory.py} treats non-\texttt{ok} cells as missing
+(per-function mean over present models), so the pre-registered
+``retain-as-0.0'' rule is realised as the worst-case arm; with 5/260 cells
+affected this is immaterial. Worst-case imputation gives H1/T3
+$r_{\text{rb}} = +0.286$ (raw $p = 0.289$), preserving the (non-significant)
+positive direction. Artifacts:
+\path{results/analysis/exploratory/full_t3_confirmatory_v1/sensitivity.json}.
+
+\textbf{Reading across the completed family.} The central Lumen test, H1
+(C4 over its information-parity control), is \emph{not} supported on any
+task: it is a clean null on T1 ($r_{\text{rb}} = +0.05$), a moderate but
+multiplicity-absorbed positive on T2 ($r_{\text{rb}} = +0.58$), and
+ceiling-censored on T3 ($r_{\text{rb}} = +0.43$, effective $n \approx 5$).
+Two of the three tasks are measurement-limited (T2 by a low-end rubric
+ceiling, T3 by a high-end solve-rate ceiling), so the completed family
+constrains the structure-at-constant-information claim less than its nine
+cells suggest; the cleanest single datum is the T1 null. This is taken up
+in the decision-gate evaluation (\texttt{docs/next-phase-design.md} \S4).
 
 \subsection{Exploratory: H1 per-model direction concordance}
 \label{sec:4.3}
@@ -1192,11 +1254,13 @@ The point estimate is consistent with the bet's direction; the
 statistical confirmation it would require has not been delivered.
 The empirical motivation for the bet is intact at the level of
 point estimates and weakened at the level of statistical
-confirmation. The project continues at the architectural level
-pending T1 and T3 collection, rubric refinement
-(\S\ref{sec:5.3}), and a properly powered confirmatory re-test
-(\S\ref{sec:6.2}). Neither overclaim nor write-off is warranted;
-both would misrepresent the data.
+confirmation. T1 and T3 have since been collected (R5,
+\S\ref{sec:4.2b}--\S\ref{sec:4.2c}) and did \emph{not} supply the
+missing confirmation: H1 is a clean null on T1 and ceiling-censored on
+T3. The project continues at the architectural level pending rubric
+refinement (\S\ref{sec:5.3}) and a properly powered, ceiling-free
+confirmatory re-test (\S\ref{sec:6.2}). Neither overclaim nor write-off
+is warranted; both would misrepresent the data.
 
 \subsection{Threats to validity (consolidated)}
 \label{sec:5.5}
@@ -1215,10 +1279,15 @@ results support.
   Appendix~\ref{app:E}), and the rubric-induced compression of
   effective $n$ was therefore identified post hoc rather than
   pre-confirmatory.
-\item \textbf{Family completeness.} T1 and T3 were uncollected
-  within the 90-day scope; six of the nine confirmatory family
-  cells are scope-limited (\S\ref{sec:4.2}), and the results do
-  not generalize to other task families.
+\item \textbf{Family completeness and measurement limits.} The
+  nine-cell family is now complete (T1/T3 added in R5,
+  \S\ref{sec:4.2b}--\S\ref{sec:4.2c}), but two of the three tasks are
+  measurement-limited: T2 by a low-end rubric ceiling and T3 by a
+  high-end solve-rate ceiling (93.7\% of T3 scores at $1.0$, effective
+  $n \approx 5$). The one ceiling-free task, T1, returns a clean null
+  for H1. The T1 collection also carries a 27/300-cell gap
+  (\texttt{claude-opus-4-6}; Anthropic credit exhaustion) handled by the
+  pre-registered missing-data rule.
 \item \textbf{Dataset domain skew.} Approximately two-thirds
   ($20$ of $30$) of the retained functions are list and array
   operations; results may not generalize uniformly to arithmetic,

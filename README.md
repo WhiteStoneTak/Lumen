@@ -21,18 +21,23 @@ Extended preprint. The Tier 1 and Tier 2 findings from the critical-review
 round were addressed in the Phase 2 response (commits in the
 `6008a92..974dc9a` series). Tier 3 findings and broader follow-on items
 are tracked in [`docs/journal-version-backlog.md`](docs/journal-version-backlog.md)
-for the journal version. The T2 task family was collected first
-(`full_t2_confirmatory_v2`); the T1 family has since been collected under
-pre-registration `docs/preregistrations/t1-v1.md` (R5-2,
-`full_t1_confirmatory_v1`), leaving the three T3 cells as the last
-placeholders pending R5-4.
+for the journal version. The full nine-cell confirmatory family is now
+collected: T2 first (`full_t2_confirmatory_v2`), then T1 under
+`docs/preregistrations/t1-v1.md` (R5-2, `full_t1_confirmatory_v1`) and T3
+under `docs/preregistrations/t3-v1.md` (R5-4, `full_t3_confirmatory_v1`).
 
-The confirmatory result is non-rejection on every collected cell: the
-central H1 test (C4 > C1+) is not rejected on T1 (r = +0.05, raw p = 0.43
-— essentially null), on T2 (r = +0.58, raw p = 0.023, absorbed by the
-9-test Holm correction), or under the per-task secondary cells. See §4 of
-the paper for interpretation under the pre-registered plan. None of it
-should be read as a positive finding.
+The confirmatory result is **non-rejection on all nine cells** (Holm
+m = 9). The central H1 test (C4 > C1+) is not rejected on any task: T1
+r = +0.05, raw p = 0.43 (a clean null, no rubric ceiling); T2 r = +0.58,
+raw p = 0.023 (absorbed by the correction); T3 r = +0.43 but
+ceiling-censored (93.7% of T3 scores at 1.0, effective n ≈ 5). The cleanest
+unconfounded datum, T1, shows no structure advantage at constant
+information. See §4 of the paper and `docs/next-phase-design.md` §4 for the
+decision-gate evaluation. None of it should be read as a positive finding.
+
+Two T1 cells caveat: 27/300 T1 calls failed when the Anthropic credit
+balance was exhausted mid-run (claude-opus-4-6 only); handled per the
+pre-registered missing-data rule and bounded by sensitivity analysis.
 
 Current empirical scope is non-recursive, single-function Python.
 

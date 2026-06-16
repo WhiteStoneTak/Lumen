@@ -117,10 +117,18 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
   cross-referenced when scheduling.
 - **Dependencies / notes:** This is the largest item in the backlog by far.
   Any sequencing of journal-version work should account for it first.
-- **status:** IN PROGRESS (R5). T1 pre-registered + collected + analyzed
-  (R5-1/R5-2 / WOV-245, WOV-246): H1/T1 r_rb = +0.051, raw p = 0.428 (null);
-  no T1 cell Holm-rejected. Six of nine cells now collected (T2 + T1); the
-  three T3 cells follow under R5-4. Will close to DONE at R5-4.
+- **status:** DONE (R5 / WOV-245..248). All nine confirmatory cells collected
+  and analyzed. T1 (R5-1/R5-2): H1/T1 r_rb = +0.051, raw p = 0.428 (clean null,
+  no ceiling). T3 (R5-3/R5-4): H1/T3 r_rb = +0.429, raw p = 0.219 but
+  ceiling-censored (93.7% of T3 scores at 1.0, effective n ≈ 5; n = 26 funcs,
+  4 pre-declared structural exclusions). No cell Holm-rejected (m = 9). The
+  C1+ information-parity control is now instantiated on all three tasks; the
+  central H1 (C4 > C1+) is unsupported throughout — clean null on T1, censored
+  on T3, multiplicity-absorbed on T2. Decision-gate evaluated in
+  docs/next-phase-design.md §4 (matched row: "C4 weak on T1/T3"; P1 gate not
+  opened). Limitation: 27/300 T1 cells missing (Anthropic credit exhaustion,
+  claude-opus-4-6), pre-registered missing-data handling + sensitivity applied.
+  Artifacts: results/analysis/confirmatory/full_t{1,3}_confirmatory_v1/.
 
 ---
 
@@ -291,9 +299,10 @@ journal-version scope contains; no priority or schedule is assigned.
   confirmatory pre-registration before collection. This is a large item;
   no plan is set in this backlog.
 - **Cross-reference:** CC-01.
-- **status:** IN PROGRESS (R5). T1 done (R5-1/R5-2): prereg
-  `docs/preregistrations/t1-v1.md`, analysis
-  `results/analysis/confirmatory/full_t1_confirmatory_v1/`. T3 follows (R5-4).
+- **status:** DONE (R5 / WOV-245..248). Both families pre-registered
+  (`docs/preregistrations/t1-v1.md`, `t3-v1.md`), collected, and analyzed
+  (`results/analysis/confirmatory/full_t{1,3}_confirmatory_v1/`). Nine-cell
+  family complete; no Holm rejection. See CC-01 for the result summary.
 
 ### W-02 — Back-port bootstrap CI into the frozen analysis script
 
