@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "antidiagonals",
+  "source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "antidiagonals.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named matrix, a list of equal-length rows.",
+      "required": true
+    },
+    {
+      "property_id": "antidiagonals.P02",
+      "category": "outputs",
+      "statement": "Returns a list of antidiagonals, each itself a list of elements.",
+      "required": true
+    },
+    {
+      "property_id": "antidiagonals.P03",
+      "category": "behavior",
+      "statement": "Antidiagonals run from top-right toward bottom-left.",
+      "required": true
+    },
+    {
+      "property_id": "antidiagonals.P04",
+      "category": "behavior",
+      "statement": "The first antidiagonal contains matrix[0][0].",
+      "required": true
+    },
+    {
+      "property_id": "antidiagonals.P05",
+      "category": "behavior",
+      "statement": "Within each antidiagonal, elements are ordered by increasing row index.",
+      "required": true
+    },
+    {
+      "property_id": "antidiagonals.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when the matrix is empty.",
+      "required": true
+    },
+    {
+      "property_id": "antidiagonals.P07",
+      "category": "behavior",
+      "statement": "There are rows + cols - 1 antidiagonals in total.",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "group_and_aggregate",
+  "source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "group_and_aggregate.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named pairs, a list of (key, value) tuples.",
+      "required": true
+    },
+    {
+      "property_id": "group_and_aggregate.P02",
+      "category": "outputs",
+      "statement": "Returns a dict mapping each key to a stats dict.",
+      "required": true
+    },
+    {
+      "property_id": "group_and_aggregate.P03",
+      "category": "behavior",
+      "statement": "For each key it computes count, sum, min, and max of its values.",
+      "required": true
+    },
+    {
+      "property_id": "group_and_aggregate.P04",
+      "category": "behavior",
+      "statement": "Keys appear in insertion order of first appearance.",
+      "required": true
+    },
+    {
+      "property_id": "group_and_aggregate.P05",
+      "category": "edge_case",
+      "statement": "Returns an empty dict for empty input.",
+      "required": true
+    },
+    {
+      "property_id": "group_and_aggregate.P06",
+      "category": "behavior",
+      "statement": "Repeated keys accumulate into the same group rather than overwriting.",
+      "required": true
+    },
+    {
+      "property_id": "group_and_aggregate.P07",
+      "category": "outputs",
+      "statement": "count is an int while sum, min, and max reflect the numeric values.",
+      "required": false
+    }
+  ]
+}

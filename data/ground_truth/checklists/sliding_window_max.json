@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "sliding_window_max",
+  "source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "sliding_window_max.P01",
+      "category": "inputs",
+      "statement": "Accepts two parameters: nums (a list) and k (the window size, an int).",
+      "required": true
+    },
+    {
+      "property_id": "sliding_window_max.P02",
+      "category": "outputs",
+      "statement": "Returns a list containing the maximum of each window.",
+      "required": true
+    },
+    {
+      "property_id": "sliding_window_max.P03",
+      "category": "behavior",
+      "statement": "Each window covers k consecutive elements and slides one position at a time.",
+      "required": true
+    },
+    {
+      "property_id": "sliding_window_max.P04",
+      "category": "behavior",
+      "statement": "The output length is len(nums) - k + 1 for valid k.",
+      "required": true
+    },
+    {
+      "property_id": "sliding_window_max.P05",
+      "category": "edge_case",
+      "statement": "Returns an empty list when nums is empty.",
+      "required": true
+    },
+    {
+      "property_id": "sliding_window_max.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when k is less than 1.",
+      "required": true
+    },
+    {
+      "property_id": "sliding_window_max.P07",
+      "category": "edge_case",
+      "statement": "Returns an empty list when k is greater than len(nums).",
+      "required": true
+    }
+  ]
+}

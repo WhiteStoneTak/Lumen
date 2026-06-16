@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "rotate_list",
+  "source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "rotate_list.P01",
+      "category": "inputs",
+      "statement": "Accepts two parameters: items (a list) and k (an int shift amount).",
+      "required": true
+    },
+    {
+      "property_id": "rotate_list.P02",
+      "category": "outputs",
+      "statement": "Returns a new list rotated left by k positions.",
+      "required": true
+    },
+    {
+      "property_id": "rotate_list.P03",
+      "category": "behavior",
+      "statement": "The element at index k becomes the new first element.",
+      "required": true
+    },
+    {
+      "property_id": "rotate_list.P04",
+      "category": "behavior",
+      "statement": "k is taken modulo len(items), so any integer is valid.",
+      "required": true
+    },
+    {
+      "property_id": "rotate_list.P05",
+      "category": "edge_case",
+      "statement": "Returns an empty list when items is empty.",
+      "required": true
+    },
+    {
+      "property_id": "rotate_list.P06",
+      "category": "edge_case",
+      "statement": "Returns a copy unchanged when k modulo the length is 0.",
+      "required": true
+    },
+    {
+      "property_id": "rotate_list.P07",
+      "category": "behavior",
+      "statement": "Rotation is to the left, equivalent to items[k:] concatenated with items[:k].",
+      "required": false
+    }
+  ]
+}

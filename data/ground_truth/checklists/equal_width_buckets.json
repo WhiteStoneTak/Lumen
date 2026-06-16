@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "equal_width_buckets",
+  "source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "equal_width_buckets.P01",
+      "category": "inputs",
+      "statement": "Accepts values (a non-empty list of floats) and n_buckets (an int >= 1).",
+      "required": true
+    },
+    {
+      "property_id": "equal_width_buckets.P02",
+      "category": "outputs",
+      "statement": "Returns a list of 0-indexed bucket indices, one per value.",
+      "required": true
+    },
+    {
+      "property_id": "equal_width_buckets.P03",
+      "category": "behavior",
+      "statement": "Buckets have equal width computed from the min and max of values.",
+      "required": true
+    },
+    {
+      "property_id": "equal_width_buckets.P04",
+      "category": "behavior",
+      "statement": "A value equal to max_val always goes in the last bucket.",
+      "required": true
+    },
+    {
+      "property_id": "equal_width_buckets.P05",
+      "category": "behavior",
+      "statement": "The output order matches the input order of values.",
+      "required": true
+    },
+    {
+      "property_id": "equal_width_buckets.P06",
+      "category": "edge_case",
+      "statement": "When all values are equal, every value goes in bucket 0.",
+      "required": true
+    },
+    {
+      "property_id": "equal_width_buckets.P07",
+      "category": "behavior",
+      "statement": "The last bucket is inclusive on both ends.",
+      "required": false
+    }
+  ]
+}

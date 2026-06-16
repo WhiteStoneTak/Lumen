@@ -1,0 +1,56 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "rle_encode",
+  "source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "rle_encode.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named items, a list.",
+      "required": true
+    },
+    {
+      "property_id": "rle_encode.P02",
+      "category": "outputs",
+      "statement": "Returns a list of (value, count) pairs (tuples).",
+      "required": true
+    },
+    {
+      "property_id": "rle_encode.P03",
+      "category": "behavior",
+      "statement": "Consecutive equal values are collapsed into one (value, count) tuple.",
+      "required": true
+    },
+    {
+      "property_id": "rle_encode.P04",
+      "category": "behavior",
+      "statement": "Non-consecutive duplicate values produce separate tuples.",
+      "required": true
+    },
+    {
+      "property_id": "rle_encode.P05",
+      "category": "behavior",
+      "statement": "The order of first appearance of each run is preserved.",
+      "required": true
+    },
+    {
+      "property_id": "rle_encode.P06",
+      "category": "behavior",
+      "statement": "The count records how many times the value repeats consecutively.",
+      "required": true
+    },
+    {
+      "property_id": "rle_encode.P07",
+      "category": "edge_case",
+      "statement": "Returns an empty list for empty input.",
+      "required": true
+    },
+    {
+      "property_id": "rle_encode.P08",
+      "category": "edge_case",
+      "statement": "A single element yields one tuple with count equal to 1.",
+      "required": false
+    }
+  ]
+}

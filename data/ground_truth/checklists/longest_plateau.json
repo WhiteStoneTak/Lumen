@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "longest_plateau",
+  "source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "longest_plateau.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named nums, a list of comparable elements.",
+      "required": true
+    },
+    {
+      "property_id": "longest_plateau.P02",
+      "category": "outputs",
+      "statement": "Returns a tuple (start, end, value) describing the longest run of equal elements.",
+      "required": true
+    },
+    {
+      "property_id": "longest_plateau.P03",
+      "category": "behavior",
+      "statement": "start and end are inclusive 0-based indices of the run.",
+      "required": true
+    },
+    {
+      "property_id": "longest_plateau.P04",
+      "category": "behavior",
+      "statement": "A plateau is a run of consecutive equal elements.",
+      "required": true
+    },
+    {
+      "property_id": "longest_plateau.P05",
+      "category": "behavior",
+      "statement": "On ties for longest, returns the run that starts earliest.",
+      "required": true
+    },
+    {
+      "property_id": "longest_plateau.P06",
+      "category": "edge_case",
+      "statement": "Returns (-1, -1, None) when nums is empty.",
+      "required": true
+    },
+    {
+      "property_id": "longest_plateau.P07",
+      "category": "edge_case",
+      "statement": "A single-element list yields (0, 0, value) for that element.",
+      "required": false
+    }
+  ]
+}

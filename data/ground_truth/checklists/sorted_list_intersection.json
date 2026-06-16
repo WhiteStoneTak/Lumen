@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "sorted_list_intersection",
+  "source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "sorted_list_intersection.P01",
+      "category": "inputs",
+      "statement": "Accepts two parameters a and b, both sorted lists of integers.",
+      "required": true
+    },
+    {
+      "property_id": "sorted_list_intersection.P02",
+      "category": "outputs",
+      "statement": "Returns a sorted list, the multiset intersection of a and b.",
+      "required": true
+    },
+    {
+      "property_id": "sorted_list_intersection.P03",
+      "category": "behavior",
+      "statement": "Each value appears min(count_in_a, count_in_b) times.",
+      "required": true
+    },
+    {
+      "property_id": "sorted_list_intersection.P04",
+      "category": "behavior",
+      "statement": "Uses a two-pointer walk advancing through both sorted lists.",
+      "required": true
+    },
+    {
+      "property_id": "sorted_list_intersection.P05",
+      "category": "edge_case",
+      "statement": "Returns an empty list when there are no common values.",
+      "required": true
+    },
+    {
+      "property_id": "sorted_list_intersection.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when either input is empty.",
+      "required": true
+    },
+    {
+      "property_id": "sorted_list_intersection.P07",
+      "category": "behavior",
+      "statement": "Duplicate counts are preserved up to the smaller multiplicity.",
+      "required": false
+    }
+  ]
+}

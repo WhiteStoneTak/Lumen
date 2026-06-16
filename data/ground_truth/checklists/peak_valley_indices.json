@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "peak_valley_indices",
+  "source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "peak_valley_indices.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named nums, a list of numbers.",
+      "required": true
+    },
+    {
+      "property_id": "peak_valley_indices.P02",
+      "category": "outputs",
+      "statement": "Returns a list of (label, index) tuples labeled peak or valley.",
+      "required": true
+    },
+    {
+      "property_id": "peak_valley_indices.P03",
+      "category": "behavior",
+      "statement": "A strict local peak is greater than both neighbors.",
+      "required": true
+    },
+    {
+      "property_id": "peak_valley_indices.P04",
+      "category": "behavior",
+      "statement": "A strict local valley is less than both neighbors.",
+      "required": true
+    },
+    {
+      "property_id": "peak_valley_indices.P05",
+      "category": "behavior",
+      "statement": "Boundary elements at index 0 and the last index are never peaks or valleys.",
+      "required": true
+    },
+    {
+      "property_id": "peak_valley_indices.P06",
+      "category": "behavior",
+      "statement": "Results are returned in ascending index order.",
+      "required": true
+    },
+    {
+      "property_id": "peak_valley_indices.P07",
+      "category": "edge_case",
+      "statement": "Plateaus are excluded; a list shorter than 3 elements yields an empty list.",
+      "required": true
+    }
+  ]
+}

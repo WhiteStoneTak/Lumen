@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "merge_sorted",
+  "source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "merge_sorted.P01",
+      "category": "inputs",
+      "statement": "Accepts two parameters a and b, both lists sorted in ascending order.",
+      "required": true
+    },
+    {
+      "property_id": "merge_sorted.P02",
+      "category": "outputs",
+      "statement": "Returns one list containing all elements from both inputs.",
+      "required": true
+    },
+    {
+      "property_id": "merge_sorted.P03",
+      "category": "behavior",
+      "statement": "The returned list is sorted in ascending order.",
+      "required": true
+    },
+    {
+      "property_id": "merge_sorted.P04",
+      "category": "behavior",
+      "statement": "Duplicate values across a and b are all preserved.",
+      "required": true
+    },
+    {
+      "property_id": "merge_sorted.P05",
+      "category": "behavior",
+      "statement": "Uses a two-pointer merge advancing through a and b.",
+      "required": true
+    },
+    {
+      "property_id": "merge_sorted.P06",
+      "category": "edge_case",
+      "statement": "When one input is empty the other list's elements are returned in order.",
+      "required": true
+    },
+    {
+      "property_id": "merge_sorted.P07",
+      "category": "behavior",
+      "statement": "Equal elements keep a's value before b's because the comparison uses a[i] <= b[j].",
+      "required": false
+    }
+  ]
+}

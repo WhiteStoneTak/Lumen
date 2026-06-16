@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "dense_rank",
+  "source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "dense_rank.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named values, a list of numbers.",
+      "required": true
+    },
+    {
+      "property_id": "dense_rank.P02",
+      "category": "outputs",
+      "statement": "Returns a list of integer ranks in the same order as the input.",
+      "required": true
+    },
+    {
+      "property_id": "dense_rank.P03",
+      "category": "behavior",
+      "statement": "Ranks are 1-based (dense ranking).",
+      "required": true
+    },
+    {
+      "property_id": "dense_rank.P04",
+      "category": "behavior",
+      "statement": "Tied values receive the same rank.",
+      "required": true
+    },
+    {
+      "property_id": "dense_rank.P05",
+      "category": "behavior",
+      "statement": "The next distinct value increases the rank by 1, not by the count of ties.",
+      "required": true
+    },
+    {
+      "property_id": "dense_rank.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when values is empty.",
+      "required": true
+    },
+    {
+      "property_id": "dense_rank.P07",
+      "category": "behavior",
+      "statement": "Ranks correspond to the ascending order of distinct values.",
+      "required": false
+    }
+  ]
+}

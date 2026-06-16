@@ -1,0 +1,56 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "remove_adjacent_dups",
+  "source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "remove_adjacent_dups.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named items, annotated as a list.",
+      "required": true
+    },
+    {
+      "property_id": "remove_adjacent_dups.P02",
+      "category": "outputs",
+      "statement": "Returns a new list; the original input is left unchanged rather than mutated in place.",
+      "required": true
+    },
+    {
+      "property_id": "remove_adjacent_dups.P03",
+      "category": "behavior",
+      "statement": "Consecutive (adjacent) equal values are collapsed into a single occurrence.",
+      "required": true
+    },
+    {
+      "property_id": "remove_adjacent_dups.P04",
+      "category": "behavior",
+      "statement": "Non-adjacent duplicate values are preserved; only adjacent repeats are removed.",
+      "required": true
+    },
+    {
+      "property_id": "remove_adjacent_dups.P05",
+      "category": "behavior",
+      "statement": "The relative order of the retained elements is maintained.",
+      "required": true
+    },
+    {
+      "property_id": "remove_adjacent_dups.P06",
+      "category": "edge_case",
+      "statement": "An empty input list returns an empty list.",
+      "required": true
+    },
+    {
+      "property_id": "remove_adjacent_dups.P07",
+      "category": "edge_case",
+      "statement": "A single-element list is returned unchanged with its one element.",
+      "required": true
+    },
+    {
+      "property_id": "remove_adjacent_dups.P08",
+      "category": "behavior",
+      "statement": "Comparison uses equality, so the first element of each adjacent run is the one kept.",
+      "required": false
+    }
+  ]
+}

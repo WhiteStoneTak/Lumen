@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "strided_windows",
+  "source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "strided_windows.P01",
+      "category": "inputs",
+      "statement": "Accepts items, size, stride, and a boolean include_partial flag.",
+      "required": true
+    },
+    {
+      "property_id": "strided_windows.P02",
+      "category": "outputs",
+      "statement": "Returns a list of windows, each a list of items.",
+      "required": true
+    },
+    {
+      "property_id": "strided_windows.P03",
+      "category": "behavior",
+      "statement": "Windows start at indices 0, stride, 2*stride, and so on.",
+      "required": true
+    },
+    {
+      "property_id": "strided_windows.P04",
+      "category": "behavior",
+      "statement": "Each full window has size elements.",
+      "required": true
+    },
+    {
+      "property_id": "strided_windows.P05",
+      "category": "behavior",
+      "statement": "When include_partial is True, a shorter trailing window may be included.",
+      "required": true
+    },
+    {
+      "property_id": "strided_windows.P06",
+      "category": "behavior",
+      "statement": "When include_partial is False, only full-sized windows are returned.",
+      "required": true
+    },
+    {
+      "property_id": "strided_windows.P07",
+      "category": "edge_case",
+      "statement": "include_partial defaults to False.",
+      "required": false
+    }
+  ]
+}

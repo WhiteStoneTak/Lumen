@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "top_k_by",
+  "source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "top_k_by.P01",
+      "category": "inputs",
+      "statement": "Accepts items, k, a primary key callable, and an optional tiebreak_key callable.",
+      "required": true
+    },
+    {
+      "property_id": "top_k_by.P02",
+      "category": "outputs",
+      "statement": "Returns a list of at most k items ordered best to worst.",
+      "required": true
+    },
+    {
+      "property_id": "top_k_by.P03",
+      "category": "behavior",
+      "statement": "Items are sorted by key descending (higher key ranks higher).",
+      "required": true
+    },
+    {
+      "property_id": "top_k_by.P04",
+      "category": "behavior",
+      "statement": "When primary keys tie and tiebreak_key is given, it sorts ascending by that secondary key.",
+      "required": true
+    },
+    {
+      "property_id": "top_k_by.P05",
+      "category": "behavior",
+      "statement": "Ties are broken stably, preserving original order when keys are equal.",
+      "required": true
+    },
+    {
+      "property_id": "top_k_by.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when k is less than or equal to 0.",
+      "required": true
+    },
+    {
+      "property_id": "top_k_by.P07",
+      "category": "edge_case",
+      "statement": "Returns fewer than k items when len(items) is smaller than k.",
+      "required": true
+    }
+  ]
+}

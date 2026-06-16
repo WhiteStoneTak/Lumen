@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "first_index_of_max",
+  "source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "first_index_of_max.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named nums, a list.",
+      "required": true
+    },
+    {
+      "property_id": "first_index_of_max.P02",
+      "category": "outputs",
+      "statement": "Returns an int, the index of the maximum value.",
+      "required": true
+    },
+    {
+      "property_id": "first_index_of_max.P03",
+      "category": "behavior",
+      "statement": "Returns the lowest index when the maximum value occurs multiple times.",
+      "required": true
+    },
+    {
+      "property_id": "first_index_of_max.P04",
+      "category": "behavior",
+      "statement": "Scans left to right and only updates on a strictly greater value.",
+      "required": true
+    },
+    {
+      "property_id": "first_index_of_max.P05",
+      "category": "edge_case",
+      "statement": "Raises ValueError when nums is empty.",
+      "required": true
+    },
+    {
+      "property_id": "first_index_of_max.P06",
+      "category": "edge_case",
+      "statement": "Returns 0 when all elements are equal.",
+      "required": true
+    },
+    {
+      "property_id": "first_index_of_max.P07",
+      "category": "behavior",
+      "statement": "The index is 0-based.",
+      "required": false
+    }
+  ]
+}

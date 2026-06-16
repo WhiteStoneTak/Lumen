@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "welford_running_stats",
+  "source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "welford_running_stats.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named values, a list of floats.",
+      "required": true
+    },
+    {
+      "property_id": "welford_running_stats.P02",
+      "category": "outputs",
+      "statement": "Returns a list of (count, mean, variance) tuples, one per input value.",
+      "required": true
+    },
+    {
+      "property_id": "welford_running_stats.P03",
+      "category": "behavior",
+      "statement": "Uses Welford's online algorithm to update statistics incrementally.",
+      "required": true
+    },
+    {
+      "property_id": "welford_running_stats.P04",
+      "category": "behavior",
+      "statement": "variance is the population variance, divided by count rather than count minus 1.",
+      "required": true
+    },
+    {
+      "property_id": "welford_running_stats.P05",
+      "category": "behavior",
+      "statement": "count is 1-indexed and increases by one at each step.",
+      "required": true
+    },
+    {
+      "property_id": "welford_running_stats.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when values is empty.",
+      "required": true
+    },
+    {
+      "property_id": "welford_running_stats.P07",
+      "category": "edge_case",
+      "statement": "variance at count 1 is 0.0.",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "spiral_order",
+  "source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "spiral_order.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named matrix, a list of equal-length rows.",
+      "required": true
+    },
+    {
+      "property_id": "spiral_order.P02",
+      "category": "outputs",
+      "statement": "Returns a flat list of elements in clockwise spiral order.",
+      "required": true
+    },
+    {
+      "property_id": "spiral_order.P03",
+      "category": "behavior",
+      "statement": "Traversal goes right, then down, then left, then up, repeating inward.",
+      "required": true
+    },
+    {
+      "property_id": "spiral_order.P04",
+      "category": "behavior",
+      "statement": "Traversal starts at the top-left element.",
+      "required": true
+    },
+    {
+      "property_id": "spiral_order.P05",
+      "category": "edge_case",
+      "statement": "Returns an empty list when the matrix is empty.",
+      "required": true
+    },
+    {
+      "property_id": "spiral_order.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when the matrix has zero columns.",
+      "required": true
+    },
+    {
+      "property_id": "spiral_order.P07",
+      "category": "behavior",
+      "statement": "Each element of the matrix appears exactly once in the output.",
+      "required": false
+    }
+  ]
+}

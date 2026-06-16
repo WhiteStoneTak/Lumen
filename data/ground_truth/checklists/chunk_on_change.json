@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "chunk_on_change",
+  "source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "chunk_on_change.P01",
+      "category": "inputs",
+      "statement": "Accepts items and an optional key callable.",
+      "required": true
+    },
+    {
+      "property_id": "chunk_on_change.P02",
+      "category": "outputs",
+      "statement": "Returns a list of non-empty sublists (chunks).",
+      "required": true
+    },
+    {
+      "property_id": "chunk_on_change.P03",
+      "category": "behavior",
+      "statement": "A new chunk starts each time the key value changes between consecutive items.",
+      "required": true
+    },
+    {
+      "property_id": "chunk_on_change.P04",
+      "category": "behavior",
+      "statement": "Consecutive items with the same key are grouped into one chunk.",
+      "required": true
+    },
+    {
+      "property_id": "chunk_on_change.P05",
+      "category": "behavior",
+      "statement": "When key is None, the item itself is used as the key.",
+      "required": true
+    },
+    {
+      "property_id": "chunk_on_change.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when items is empty.",
+      "required": true
+    },
+    {
+      "property_id": "chunk_on_change.P07",
+      "category": "behavior",
+      "statement": "Each input item appears in exactly one chunk, preserving order.",
+      "required": false
+    }
+  ]
+}

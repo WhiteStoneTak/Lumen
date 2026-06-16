@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "max_subarray_bounds",
+  "source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "max_subarray_bounds.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named nums, a list of integers.",
+      "required": true
+    },
+    {
+      "property_id": "max_subarray_bounds.P02",
+      "category": "outputs",
+      "statement": "Returns a tuple (start, end, total) of the maximum-sum contiguous subarray.",
+      "required": true
+    },
+    {
+      "property_id": "max_subarray_bounds.P03",
+      "category": "behavior",
+      "statement": "Both start and end indices are inclusive and 0-based.",
+      "required": true
+    },
+    {
+      "property_id": "max_subarray_bounds.P04",
+      "category": "behavior",
+      "statement": "Uses a modified Kadane's algorithm over the array.",
+      "required": true
+    },
+    {
+      "property_id": "max_subarray_bounds.P05",
+      "category": "behavior",
+      "statement": "On ties for maximum sum, returns the subarray that starts earliest.",
+      "required": true
+    },
+    {
+      "property_id": "max_subarray_bounds.P06",
+      "category": "edge_case",
+      "statement": "Returns (0, 0, 0) when nums is empty.",
+      "required": true
+    },
+    {
+      "property_id": "max_subarray_bounds.P07",
+      "category": "edge_case",
+      "statement": "When all values are negative, returns the single largest element.",
+      "required": true
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "count_true_segments",
+  "source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "count_true_segments.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named flags, a list of booleans.",
+      "required": true
+    },
+    {
+      "property_id": "count_true_segments.P02",
+      "category": "outputs",
+      "statement": "Returns an int, the number of contiguous True segments.",
+      "required": true
+    },
+    {
+      "property_id": "count_true_segments.P03",
+      "category": "behavior",
+      "statement": "A segment is a maximal consecutive run of True values.",
+      "required": true
+    },
+    {
+      "property_id": "count_true_segments.P04",
+      "category": "behavior",
+      "statement": "Each maximal run of True increments the count once.",
+      "required": true
+    },
+    {
+      "property_id": "count_true_segments.P05",
+      "category": "edge_case",
+      "statement": "Returns 0 for an empty list.",
+      "required": true
+    },
+    {
+      "property_id": "count_true_segments.P06",
+      "category": "edge_case",
+      "statement": "Returns 0 when every flag is False.",
+      "required": true
+    },
+    {
+      "property_id": "count_true_segments.P07",
+      "category": "behavior",
+      "statement": "A False value ends the current segment so later True values start a new one.",
+      "required": false
+    }
+  ]
+}

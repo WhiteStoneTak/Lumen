@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "segments_above_threshold",
+  "source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "segments_above_threshold.P01",
+      "category": "inputs",
+      "statement": "Accepts nums (a list of floats) and threshold (a float lower bound).",
+      "required": true
+    },
+    {
+      "property_id": "segments_above_threshold.P02",
+      "category": "outputs",
+      "statement": "Returns a list of sublists, each a contiguous segment above threshold.",
+      "required": true
+    },
+    {
+      "property_id": "segments_above_threshold.P03",
+      "category": "behavior",
+      "statement": "Each segment is a maximal run of values strictly greater than threshold.",
+      "required": true
+    },
+    {
+      "property_id": "segments_above_threshold.P04",
+      "category": "behavior",
+      "statement": "Values less than or equal to threshold break a segment.",
+      "required": true
+    },
+    {
+      "property_id": "segments_above_threshold.P05",
+      "category": "behavior",
+      "statement": "The order of segments follows their order in nums.",
+      "required": true
+    },
+    {
+      "property_id": "segments_above_threshold.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when no element exceeds threshold.",
+      "required": true
+    },
+    {
+      "property_id": "segments_above_threshold.P07",
+      "category": "behavior",
+      "statement": "The comparison is strict, so a value equal to threshold is excluded.",
+      "required": false
+    }
+  ]
+}

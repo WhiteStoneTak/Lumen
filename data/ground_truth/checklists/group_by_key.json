@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "group_by_key",
+  "source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "group_by_key.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named pairs, a list of (key, value) tuples.",
+      "required": true
+    },
+    {
+      "property_id": "group_by_key.P02",
+      "category": "outputs",
+      "statement": "Returns a dict mapping each key to a list of its values.",
+      "required": true
+    },
+    {
+      "property_id": "group_by_key.P03",
+      "category": "behavior",
+      "statement": "Values within each key group preserve their original relative order.",
+      "required": true
+    },
+    {
+      "property_id": "group_by_key.P04",
+      "category": "behavior",
+      "statement": "Keys maintain insertion order of first appearance.",
+      "required": true
+    },
+    {
+      "property_id": "group_by_key.P05",
+      "category": "behavior",
+      "statement": "Repeated keys append to the same list rather than overwriting.",
+      "required": true
+    },
+    {
+      "property_id": "group_by_key.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty dict for empty input.",
+      "required": true
+    },
+    {
+      "property_id": "group_by_key.P07",
+      "category": "edge_case",
+      "statement": "A single pair yields one key mapping to a one-element list.",
+      "required": false
+    }
+  ]
+}

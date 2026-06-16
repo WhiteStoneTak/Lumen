@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "frequency_table",
+  "source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "frequency_table.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named values, a list of hashable items.",
+      "required": true
+    },
+    {
+      "property_id": "frequency_table.P02",
+      "category": "outputs",
+      "statement": "Returns a list of (value, count, cumulative_fraction) tuples.",
+      "required": true
+    },
+    {
+      "property_id": "frequency_table.P03",
+      "category": "behavior",
+      "statement": "The result is sorted by value ascending.",
+      "required": true
+    },
+    {
+      "property_id": "frequency_table.P04",
+      "category": "behavior",
+      "statement": "count is the number of occurrences of each value.",
+      "required": true
+    },
+    {
+      "property_id": "frequency_table.P05",
+      "category": "behavior",
+      "statement": "cumulative_fraction is the running sum of counts divided by the total length.",
+      "required": true
+    },
+    {
+      "property_id": "frequency_table.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list for empty input.",
+      "required": true
+    },
+    {
+      "property_id": "frequency_table.P07",
+      "category": "outputs",
+      "statement": "The final cumulative_fraction equals 1.0.",
+      "required": false
+    }
+  ]
+}

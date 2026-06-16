@@ -162,8 +162,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/remove_adjacent_dups.json"
         },
         "T2": {
           "available": true,
@@ -179,7 +179,7 @@
         "ast_source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
         "typed_ast_source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
         "ir_source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1",
-        "t1_source_hash": null
+        "t1_source_hash": "00d367ddb6afd85f84c3ff1832833d7eebcc37e1c40cf117521deec75dfd84d1"
       }
     },
     {
@@ -207,8 +207,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/batch_list.json"
         },
         "T2": {
           "available": true,
@@ -224,7 +224,7 @@
         "ast_source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
         "typed_ast_source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
         "ir_source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
-        "t1_source_hash": null
+        "t1_source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add"
       }
     },
     {
@@ -252,8 +252,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/sliding_window_max.json"
         },
         "T2": {
           "available": true,
@@ -269,7 +269,7 @@
         "ast_source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
         "typed_ast_source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
         "ir_source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848",
-        "t1_source_hash": null
+        "t1_source_hash": "0b78a2e6a45535b27d6e2f06bf2c7a88e36d42db55870bebe1cc039db878b848"
       }
     },
     {
@@ -297,8 +297,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/rle_encode.json"
         },
         "T2": {
           "available": true,
@@ -314,7 +314,7 @@
         "ast_source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
         "typed_ast_source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
         "ir_source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf",
-        "t1_source_hash": null
+        "t1_source_hash": "82c6ae65c213c6d2249e842733126acd9291e375ca6c3b8359606bf83e73b4bf"
       }
     },
     {
@@ -342,8 +342,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/count_true_segments.json"
         },
         "T2": {
           "available": true,
@@ -359,7 +359,7 @@
         "ast_source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
         "typed_ast_source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
         "ir_source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334",
-        "t1_source_hash": null
+        "t1_source_hash": "b3c38191b53986adb0b2f532e3db3fdda674cc4c3900c309eec09b86a18fc334"
       }
     },
     {
@@ -387,8 +387,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/merge_sorted.json"
         },
         "T2": {
           "available": true,
@@ -404,7 +404,7 @@
         "ast_source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
         "typed_ast_source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
         "ir_source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e",
-        "t1_source_hash": null
+        "t1_source_hash": "a155730f4506fc4f0b46810fefc467c78227e2733328e4559195d42629eb381e"
       }
     },
     {
@@ -432,8 +432,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/first_index_of_max.json"
         },
         "T2": {
           "available": true,
@@ -449,7 +449,7 @@
         "ast_source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
         "typed_ast_source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
         "ir_source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880",
-        "t1_source_hash": null
+        "t1_source_hash": "e4c22148f745b4a8b374028fe6555925bdfce06bb0883e8cc4ea3916a92cc880"
       }
     },
     {
@@ -477,8 +477,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/rotate_list.json"
         },
         "T2": {
           "available": true,
@@ -494,7 +494,7 @@
         "ast_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
         "typed_ast_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
         "ir_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160",
-        "t1_source_hash": null
+        "t1_source_hash": "a4eff1b2e2871db6d950dab43d5728b3817576f7c0d3e73a1aa778538283c160"
       }
     },
     {
@@ -523,8 +523,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/max_subarray_bounds.json"
         },
         "T2": {
           "available": true,
@@ -541,7 +541,7 @@
         "ast_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
         "typed_ast_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
         "ir_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2",
-        "t1_source_hash": null
+        "t1_source_hash": "d4f81fe9310c06df07e9e77fa19dd8c2a95569b0a1a69fff3134ef2fa07718f2"
       }
     },
     {
@@ -570,8 +570,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/longest_plateau.json"
         },
         "T2": {
           "available": true,
@@ -588,7 +588,7 @@
         "ast_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
         "typed_ast_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
         "ir_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a",
-        "t1_source_hash": null
+        "t1_source_hash": "6d77450c820dfb5a3ab719b71de062a2c360c0c895d7f0c4c0cbec590d72c07a"
       }
     },
     {
@@ -617,8 +617,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/group_and_aggregate.json"
         },
         "T2": {
           "available": true,
@@ -635,7 +635,7 @@
         "ast_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
         "typed_ast_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
         "ir_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1",
-        "t1_source_hash": null
+        "t1_source_hash": "9cd02e6c2a8cd0193cc71057e1d016862fc3a0235eddb159358dede0de038be1"
       }
     },
     {
@@ -664,8 +664,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/two_sum_sorted_pairs.json"
         },
         "T2": {
           "available": true,
@@ -682,7 +682,7 @@
         "ast_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
         "typed_ast_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
         "ir_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
-        "t1_source_hash": null
+        "t1_source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b"
       }
     },
     {
@@ -711,8 +711,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/top_k_by.json"
         },
         "T2": {
           "available": true,
@@ -729,7 +729,7 @@
         "ast_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
         "typed_ast_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
         "ir_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789",
-        "t1_source_hash": null
+        "t1_source_hash": "44a99d6b80feb14c7ae38bd140927b816768c2eca3df48bd331451f127841789"
       }
     },
     {
@@ -758,8 +758,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/tokenize_arithmetic.json"
         },
         "T2": {
           "available": true,
@@ -776,7 +776,7 @@
         "ast_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
         "typed_ast_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
         "ir_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
-        "t1_source_hash": null
+        "t1_source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9"
       }
     },
     {
@@ -805,8 +805,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/spiral_order.json"
         },
         "T2": {
           "available": true,
@@ -823,7 +823,7 @@
         "ast_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
         "typed_ast_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
         "ir_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a",
-        "t1_source_hash": null
+        "t1_source_hash": "da21d8233c06e3cb3ddf9b1c2c9fae26fa2dd02243d54b7ebc6aac5e056bcd2a"
       }
     },
     {
@@ -852,8 +852,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/welford_running_stats.json"
         },
         "T2": {
           "available": true,
@@ -870,7 +870,7 @@
         "ast_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
         "typed_ast_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
         "ir_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac",
-        "t1_source_hash": null
+        "t1_source_hash": "d09a06ee9a6e023bcb0e12b2e93366d6fa4f7d6b817efcc52edc8faf34f140ac"
       }
     },
     {
@@ -899,8 +899,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/merge_intervals.json"
         },
         "T2": {
           "available": true,
@@ -917,7 +917,7 @@
         "ast_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
         "typed_ast_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
         "ir_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
-        "t1_source_hash": null
+        "t1_source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca"
       }
     },
     {
@@ -946,8 +946,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/equal_width_buckets.json"
         },
         "T2": {
           "available": true,
@@ -964,7 +964,7 @@
         "ast_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
         "typed_ast_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
         "ir_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711",
-        "t1_source_hash": null
+        "t1_source_hash": "df99b0be46423c78c38f4a6e6b91c84a2be10eb0f8017f50da57447335ece711"
       }
     },
     {
@@ -993,8 +993,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/dense_rank.json"
         },
         "T2": {
           "available": true,
@@ -1011,7 +1011,7 @@
         "ast_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
         "typed_ast_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
         "ir_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6",
-        "t1_source_hash": null
+        "t1_source_hash": "a83234b8344b9bc560fc982a37e51d19e65dea011dfa2f7a084afb93bc5cc6b6"
       }
     },
     {
@@ -1040,8 +1040,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/chunk_on_change.json"
         },
         "T2": {
           "available": true,
@@ -1058,7 +1058,7 @@
         "ast_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
         "typed_ast_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
         "ir_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd",
-        "t1_source_hash": null
+        "t1_source_hash": "e191ac413779c4baffaf537eea1f991e097998f412bca08df5e4801b2eec80dd"
       }
     },
     {
@@ -1087,8 +1087,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/antidiagonals.json"
         },
         "T2": {
           "available": true,
@@ -1105,7 +1105,7 @@
         "ast_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
         "typed_ast_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
         "ir_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476",
-        "t1_source_hash": null
+        "t1_source_hash": "09e78a5e8581b88879430a3323ace3fdf8ad7991590729e1d3ab7ba97d75b476"
       }
     },
     {
@@ -1134,8 +1134,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/camel_to_snake.json"
         },
         "T2": {
           "available": true,
@@ -1152,7 +1152,7 @@
         "ast_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
         "typed_ast_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
         "ir_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
-        "t1_source_hash": null
+        "t1_source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc"
       }
     },
     {
@@ -1181,8 +1181,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/find_balanced_spans.json"
         },
         "T2": {
           "available": true,
@@ -1199,7 +1199,7 @@
         "ast_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
         "typed_ast_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
         "ir_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
-        "t1_source_hash": null
+        "t1_source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424"
       }
     },
     {
@@ -1228,8 +1228,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/frequency_table.json"
         },
         "T2": {
           "available": true,
@@ -1246,7 +1246,7 @@
         "ast_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
         "typed_ast_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
         "ir_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e",
-        "t1_source_hash": null
+        "t1_source_hash": "e3e243728d34b11b156527ef42cc36e34123ecf83ceede196b26e2a84f7f813e"
       }
     },
     {
@@ -1275,8 +1275,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/sorted_list_intersection.json"
         },
         "T2": {
           "available": true,
@@ -1293,7 +1293,7 @@
         "ast_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
         "typed_ast_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
         "ir_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df",
-        "t1_source_hash": null
+        "t1_source_hash": "75aca9ba19b7fb029588d69693b0c91a3bc1d986eb6ff85ff68ec8485fac70df"
       }
     },
     {
@@ -1322,8 +1322,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/strided_windows.json"
         },
         "T2": {
           "available": true,
@@ -1340,7 +1340,7 @@
         "ast_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
         "typed_ast_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
         "ir_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4",
-        "t1_source_hash": null
+        "t1_source_hash": "87c84ca1b91bfdd6c116288db14f0944fac4c40bd419618e0481be5baef27ad4"
       }
     },
     {
@@ -1369,8 +1369,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/peak_valley_indices.json"
         },
         "T2": {
           "available": true,
@@ -1388,7 +1388,7 @@
         "ast_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
         "typed_ast_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
         "ir_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab",
-        "t1_source_hash": null
+        "t1_source_hash": "2ff1d03ba693d62e7c3b5d902af6f7b0cebc776c715d359b9f67ed712e80b5ab"
       }
     },
     {
@@ -1417,8 +1417,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/segments_above_threshold.json"
         },
         "T2": {
           "available": true,
@@ -1436,7 +1436,7 @@
         "ast_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
         "typed_ast_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
         "ir_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff",
-        "t1_source_hash": null
+        "t1_source_hash": "eb4462d07c5b637681f920d09fbc44530de0ffd8e5a337fb2beed41ddb7a68ff"
       }
     },
     {
@@ -1465,8 +1465,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/stable_partition.json"
         },
         "T2": {
           "available": true,
@@ -1484,7 +1484,7 @@
         "ast_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
         "typed_ast_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
         "ir_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
-        "t1_source_hash": null
+        "t1_source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c"
       }
     },
     {
@@ -1513,8 +1513,8 @@
       },
       "tasks": {
         "T1": {
-          "available": false,
-          "ground_truth_ref": null
+          "available": true,
+          "ground_truth_ref": "data/ground_truth/checklists/group_by_key.json"
         },
         "T2": {
           "available": true,
@@ -1532,7 +1532,7 @@
         "ast_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
         "typed_ast_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
         "ir_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5",
-        "t1_source_hash": null
+        "t1_source_hash": "bf2fd8741b4723222965096fa1f13b49cfb53607a2ac0fdaa848644d4790fcd5"
       }
     }
   ]

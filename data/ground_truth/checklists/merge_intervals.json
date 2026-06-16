@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "merge_intervals",
+  "source_hash": "1d467ad63770aa23c78e1cffb95daca483c38b2980f25a63c384ff68b9bdb4ca",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "merge_intervals.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named intervals, a list of [start, end] pairs.",
+      "required": true
+    },
+    {
+      "property_id": "merge_intervals.P02",
+      "category": "outputs",
+      "statement": "Returns a list of merged, non-overlapping [start, end] intervals.",
+      "required": true
+    },
+    {
+      "property_id": "merge_intervals.P03",
+      "category": "behavior",
+      "statement": "Overlapping intervals are merged into one spanning interval.",
+      "required": true
+    },
+    {
+      "property_id": "merge_intervals.P04",
+      "category": "behavior",
+      "statement": "The result is sorted by start.",
+      "required": true
+    },
+    {
+      "property_id": "merge_intervals.P05",
+      "category": "behavior",
+      "statement": "Adjacent touching intervals are also merged.",
+      "required": true
+    },
+    {
+      "property_id": "merge_intervals.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when intervals is empty.",
+      "required": true
+    },
+    {
+      "property_id": "merge_intervals.P07",
+      "category": "behavior",
+      "statement": "Intervals are first sorted by start before merging.",
+      "required": false
+    }
+  ]
+}

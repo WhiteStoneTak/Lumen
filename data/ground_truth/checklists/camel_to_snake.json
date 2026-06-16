@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "camel_to_snake",
+  "source_hash": "5a7ae018f07fd815dc5bd5cb9d4f29335c73c45df7185746c190bae0183871fc",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "camel_to_snake.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named name, a camelCase or PascalCase string.",
+      "required": true
+    },
+    {
+      "property_id": "camel_to_snake.P02",
+      "category": "outputs",
+      "statement": "Returns the snake_case version of the identifier.",
+      "required": true
+    },
+    {
+      "property_id": "camel_to_snake.P03",
+      "category": "behavior",
+      "statement": "An underscore is inserted before an uppercase letter that follows a lowercase letter or digit.",
+      "required": true
+    },
+    {
+      "property_id": "camel_to_snake.P04",
+      "category": "behavior",
+      "statement": "All characters are converted to lowercase.",
+      "required": true
+    },
+    {
+      "property_id": "camel_to_snake.P05",
+      "category": "behavior",
+      "statement": "Abbreviations like XMLParser become xml_parser.",
+      "required": true
+    },
+    {
+      "property_id": "camel_to_snake.P06",
+      "category": "behavior",
+      "statement": "No leading or trailing underscores are added.",
+      "required": true
+    },
+    {
+      "property_id": "camel_to_snake.P07",
+      "category": "edge_case",
+      "statement": "An empty string is returned unchanged.",
+      "required": true
+    }
+  ]
+}

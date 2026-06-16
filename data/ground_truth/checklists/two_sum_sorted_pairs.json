@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "two_sum_sorted_pairs",
+  "source_hash": "fa48a99eb4a65728a85101378d4b150ee9af763ec2c21a260ec8397599715d4b",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "two_sum_sorted_pairs.P01",
+      "category": "inputs",
+      "statement": "Accepts two parameters: nums (a sorted list of integers) and target (an int).",
+      "required": true
+    },
+    {
+      "property_id": "two_sum_sorted_pairs.P02",
+      "category": "outputs",
+      "statement": "Returns a list of (a, b) tuples where a + b equals target.",
+      "required": true
+    },
+    {
+      "property_id": "two_sum_sorted_pairs.P03",
+      "category": "behavior",
+      "statement": "Uses a two-pointer approach from both ends of the sorted list.",
+      "required": true
+    },
+    {
+      "property_id": "two_sum_sorted_pairs.P04",
+      "category": "behavior",
+      "statement": "Each returned pair satisfies a <= b.",
+      "required": true
+    },
+    {
+      "property_id": "two_sum_sorted_pairs.P05",
+      "category": "behavior",
+      "statement": "Duplicate value pairs are returned only once (unique pairs).",
+      "required": true
+    },
+    {
+      "property_id": "two_sum_sorted_pairs.P06",
+      "category": "behavior",
+      "statement": "Pairs are ordered by ascending first element.",
+      "required": true
+    },
+    {
+      "property_id": "two_sum_sorted_pairs.P07",
+      "category": "edge_case",
+      "statement": "Returns an empty list when no pair sums to target.",
+      "required": true
+    }
+  ]
+}

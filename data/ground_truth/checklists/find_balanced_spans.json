@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "find_balanced_spans",
+  "source_hash": "38bfa35a26ad86f73bd382210d3e1ec2b502b1800c6ab9d5f60698f1a426f424",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "find_balanced_spans.P01",
+      "category": "inputs",
+      "statement": "Accepts a string s and the open_char and close_char bracket characters.",
+      "required": true
+    },
+    {
+      "property_id": "find_balanced_spans.P02",
+      "category": "outputs",
+      "statement": "Returns a list of (start, end) index tuples.",
+      "required": true
+    },
+    {
+      "property_id": "find_balanced_spans.P03",
+      "category": "behavior",
+      "statement": "Each span covers an outermost balanced pair from open_char to its matching close_char.",
+      "required": true
+    },
+    {
+      "property_id": "find_balanced_spans.P04",
+      "category": "behavior",
+      "statement": "Nested brackets are not reported separately, only the outermost span.",
+      "required": true
+    },
+    {
+      "property_id": "find_balanced_spans.P05",
+      "category": "behavior",
+      "statement": "Unmatched brackets are ignored.",
+      "required": true
+    },
+    {
+      "property_id": "find_balanced_spans.P06",
+      "category": "behavior",
+      "statement": "Spans are returned in order of appearance.",
+      "required": true
+    },
+    {
+      "property_id": "find_balanced_spans.P07",
+      "category": "edge_case",
+      "statement": "Returns an empty list when there are no balanced pairs.",
+      "required": true
+    }
+  ]
+}

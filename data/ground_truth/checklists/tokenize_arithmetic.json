@@ -1,0 +1,56 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "tokenize_arithmetic",
+  "source_hash": "c803e764732312d67bd441d194a4e75d32f9bf8a5ad8bba8ecde3307798346b9",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "tokenize_arithmetic.P01",
+      "category": "inputs",
+      "statement": "Accepts a single parameter named expr, a string arithmetic expression.",
+      "required": true
+    },
+    {
+      "property_id": "tokenize_arithmetic.P02",
+      "category": "outputs",
+      "statement": "Returns a list of (type, value) tuples in left-to-right order.",
+      "required": true
+    },
+    {
+      "property_id": "tokenize_arithmetic.P03",
+      "category": "behavior",
+      "statement": "Recognizes NUM tokens for integer or decimal numbers.",
+      "required": true
+    },
+    {
+      "property_id": "tokenize_arithmetic.P04",
+      "category": "behavior",
+      "statement": "Recognizes OP tokens for the operators plus, minus, star, and slash.",
+      "required": true
+    },
+    {
+      "property_id": "tokenize_arithmetic.P05",
+      "category": "behavior",
+      "statement": "Recognizes LPAREN and RPAREN tokens for parentheses.",
+      "required": true
+    },
+    {
+      "property_id": "tokenize_arithmetic.P06",
+      "category": "behavior",
+      "statement": "Whitespace between tokens is ignored.",
+      "required": true
+    },
+    {
+      "property_id": "tokenize_arithmetic.P07",
+      "category": "edge_case",
+      "statement": "A leading minus is treated as an OP, not part of a negative number.",
+      "required": true
+    },
+    {
+      "property_id": "tokenize_arithmetic.P08",
+      "category": "behavior",
+      "statement": "Multi-digit and decimal numbers are kept together as one NUM token.",
+      "required": false
+    }
+  ]
+}

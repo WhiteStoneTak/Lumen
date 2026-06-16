@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "stable_partition",
+  "source_hash": "d9ca169525c3f53dc1b2f3a4b4dc2292fe5ff721c595a7f45da9c5f134fbd02c",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "stable_partition.P01",
+      "category": "inputs",
+      "statement": "Accepts items and a predicate callable returning a bool.",
+      "required": true
+    },
+    {
+      "property_id": "stable_partition.P02",
+      "category": "outputs",
+      "statement": "Returns a tuple (true_group, false_group) of two lists.",
+      "required": true
+    },
+    {
+      "property_id": "stable_partition.P03",
+      "category": "behavior",
+      "statement": "Items for which predicate returns True go in the first group.",
+      "required": true
+    },
+    {
+      "property_id": "stable_partition.P04",
+      "category": "behavior",
+      "statement": "The remaining items go in the false_group.",
+      "required": true
+    },
+    {
+      "property_id": "stable_partition.P05",
+      "category": "behavior",
+      "statement": "Relative order within each group is preserved (stable).",
+      "required": true
+    },
+    {
+      "property_id": "stable_partition.P06",
+      "category": "edge_case",
+      "statement": "Returns two empty lists when items is empty.",
+      "required": true
+    },
+    {
+      "property_id": "stable_partition.P07",
+      "category": "behavior",
+      "statement": "Every input item appears in exactly one of the two groups.",
+      "required": false
+    }
+  ]
+}

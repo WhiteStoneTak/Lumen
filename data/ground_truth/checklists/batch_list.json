@@ -1,0 +1,50 @@
+{
+  "lumen_schema": "t1-checklist-v1",
+  "func_id": "batch_list",
+  "source_hash": "aa6a6c5929e442dcad6b528b6e50460c35628e6f025589362243ed8cf90c3add",
+  "authored_for": "R5-1 confirmatory T1 (WOV-245)",
+  "properties": [
+    {
+      "property_id": "batch_list.P01",
+      "category": "inputs",
+      "statement": "Accepts two parameters: items (a list) and batch_size (an int).",
+      "required": true
+    },
+    {
+      "property_id": "batch_list.P02",
+      "category": "outputs",
+      "statement": "Returns a list of lists, each inner list being one consecutive batch.",
+      "required": true
+    },
+    {
+      "property_id": "batch_list.P03",
+      "category": "behavior",
+      "statement": "Each batch contains at most batch_size elements taken in order.",
+      "required": true
+    },
+    {
+      "property_id": "batch_list.P04",
+      "category": "behavior",
+      "statement": "The final batch may be smaller when len(items) is not divisible by batch_size.",
+      "required": true
+    },
+    {
+      "property_id": "batch_list.P05",
+      "category": "behavior",
+      "statement": "Batches are non-overlapping and cover the items left to right.",
+      "required": true
+    },
+    {
+      "property_id": "batch_list.P06",
+      "category": "edge_case",
+      "statement": "Returns an empty list when items is empty.",
+      "required": true
+    },
+    {
+      "property_id": "batch_list.P07",
+      "category": "edge_case",
+      "statement": "Returns an empty list when batch_size is less than 1.",
+      "required": true
+    }
+  ]
+}
