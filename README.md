@@ -21,14 +21,18 @@ Extended preprint. The Tier 1 and Tier 2 findings from the critical-review
 round were addressed in the Phase 2 response (commits in the
 `6008a92..974dc9a` series). Tier 3 findings and broader follow-on items
 are tracked in [`docs/journal-version-backlog.md`](docs/journal-version-backlog.md)
-for the journal version. The current authoritative confirmatory attempt is
-`full_t2_confirmatory_v2`; only the T2 task family has been collected so
-far (six of nine confirmatory cells are uncollected placeholders, as
-disclosed in the paper).
+for the journal version. The T2 task family was collected first
+(`full_t2_confirmatory_v2`); the T1 family has since been collected under
+pre-registration `docs/preregistrations/t1-v1.md` (R5-2,
+`full_t1_confirmatory_v1`), leaving the three T3 cells as the last
+placeholders pending R5-4.
 
-The confirmatory result on T2 is non-rejection; see §4 of the paper for
-how this is interpreted under the pre-registered analysis plan. It should
-not be read as a positive finding.
+The confirmatory result is non-rejection on every collected cell: the
+central H1 test (C4 > C1+) is not rejected on T1 (r = +0.05, raw p = 0.43
+— essentially null), on T2 (r = +0.58, raw p = 0.023, absorbed by the
+9-test Holm correction), or under the per-task secondary cells. See §4 of
+the paper for interpretation under the pre-registered plan. None of it
+should be read as a positive finding.
 
 Current empirical scope is non-recursive, single-function Python.
 

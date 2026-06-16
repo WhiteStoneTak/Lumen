@@ -736,13 +736,13 @@ $p = 0.233$). The third, H3/T2, yields $r_{\text{rb}} = -0.473$
 pre-registered direction. None of the three reaches Holm-corrected
 significance. The H3/T2 upper bound ($+0.077$) only just crosses zero.
 
-The remaining six cells of the family are T1 and T3 hypotheses;
-T1 and T3 were uncollected within the 90-day scope
-(\S\ref{sec:3.3}) and contribute Holm $p = 1.000$ by convention.
-We do not retroactively reduce $m$. The distinction between
-collected-and-tested and scope-limited-uncollected cells is a
-reporting matter (\S\ref{sec:3.5}), not a multiplicity adjustment,
-and the six uncollected cells remain in the family.
+The T1 family was collected post-preprint under pre-registration
+\texttt{t1-v1} (R5-2) and is now reported in \S\ref{sec:4.2b}; all three
+T1 cells are tested and none rejected. The three remaining cells are T3
+hypotheses, to be collected under \texttt{t3-v1} (R5-4); until then they
+contribute Holm $p = 1.000$ by convention. We do not retroactively reduce
+$m$. The distinction between collected-and-tested and uncollected cells is
+a reporting matter (\S\ref{sec:3.5}), not a multiplicity adjustment.
 
 The H3/T2 directional inversion is the strongest exploratory signal
 in the dataset; its per-model decomposition is taken up in
@@ -751,26 +751,67 @@ in the dataset; its per-model decomposition is taken up in
 \begin{table}[h]
 \centering
 \footnotesize
-\caption{Confirmatory 9-test family: three tested T2 cells and six
-uncollected T1/T3 cells (\emph{Confirmatory analysis}). $m=9$ honored as
-pre-registered; uncollected cells contribute Holm $p = 1.000$ by convention.}
+\caption{Confirmatory 9-test family: six tested cells (T2; T1 added in R5-2,
+pre-registration \texttt{t1-v1}) and three uncollected T3 cells (\emph{Confirmatory
+analysis}). $m=9$ honored as pre-registered; uncollected cells contribute Holm
+$p = 1.000$ by convention. No cell is rejected at the Holm-corrected level.}
 \label{tab:confirmatory-family}
 \begin{tabular}{llcrrrrlr}
 \toprule
 Hyp & Task & $n$ & $W$ & raw $p$ & Holm $p$ ($m=9$) & $r_{\text{rb}}$ & 95\% CI & Status \\
 \midrule
-H1 & T1 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H1 & T1 & 30  & $71.5$ & $0.428$ & $1.000$ & $+0.051$  & $[-0.520, +0.614]$   & tested \\
 H1 & T2 & 30  & $83.0$ & $0.023$ & $0.205$ & $+0.581$  & $[+0.077, +0.917]$   & tested \\
 H1 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
-H2 & T1 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H2 & T1 & 30  & $76.0$ & $0.181$ & $1.000$ & $+0.267$  & $[-0.359, +0.758]$   & tested \\
 H2 & T2 & 30  & $63.0$ & $0.233$ & $1.000$ & $+0.200$  & $[-0.333, +0.700]$   & tested \\
 H2 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
-H3 & T1 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
+H3 & T1 & 30  & $82.0$ & $0.233$ & $1.000$ & $+0.206$  & $[-0.352, +0.727]$   & tested \\
 H3 & T2 & 30  & $24.0$ & $0.969$ & $1.000$ & $-0.473$  & $[-0.885, +0.077]$   & tested \\
 H3 & T3 & --- & --- & ---     & $1.000$ & ---       & ---                  & uncollected \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Confirmatory: H1 on T1 (program understanding)}
+\label{sec:4.2b}
+The T1 family was collected after the preprint under pre-registration
+\texttt{t1-v1} (R5-2), using the frozen deterministic checklist scorer
+(R1-3) over 30 confirmatory functions and the frozen model pair. The
+central test \textbf{H1/T1 (C4 vs C1\textsuperscript{+})} yields
+$r_{\text{rb}} = +0.051$ (raw one-sided $p = 0.428$; 95\% bootstrap CI
+$[-0.520, +0.614]$), an effect indistinguishable from zero with a CI that
+spans the origin. The secondary T1 cells point weakly in the
+pre-registered direction---H2/T1 (C4 vs C1) $r_{\text{rb}} = +0.267$ (raw
+$p = 0.181$) and H3/T1 (C1\textsuperscript{+} vs C1) $r_{\text{rb}} =
++0.206$ (raw $p = 0.233$)---but neither approaches significance, and all
+three correct to Holm $p = 1.000$ in the nine-test family. \textbf{On the
+understanding task the structure-at-constant-information advantage is
+absent}: C4 does not outperform its information-parity textual control.
+The realised score distribution is graded (273 scored cells, 9 distinct
+values, mean $0.898$, $57.5\%$ at the $1.0$ ceiling)---right-skewed but
+free of the three-level collapse that compressed T2.
+
+\textbf{Data-collection note (pre-registered missing-data handling).}
+27 of the 300 planned T1 calls failed, all on \texttt{claude-opus-4-6},
+because the Anthropic API credit balance was exhausted mid-collection;
+\texttt{gpt-5.4} had zero failures. The failures are spread across
+conditions (C1 5, C1\textsuperscript{+} 5, C2 5, C3 6, C4 6), so the gap
+is approximately balanced across the C4/C1\textsuperscript{+} contrast.
+Per \texttt{t1-v1} \S5.1 the per-function mean is taken over whichever
+models returned an \texttt{ok} score, so all 30 functions retain a
+complete C4/C1\textsuperscript{+} pair (single-model where one model is
+missing). The pre-registered sensitivity (\texttt{t1-v1} \S5.2) bounds
+this: H1/T1 under \emph{complete-case} pairs (both models \texttt{ok},
+$n = 24$) gives $r_{\text{rb}} = +0.067$ (raw $p = 0.413$), and under
+\emph{worst-case imputation} gives $r_{\text{rb}} = -0.433$ (raw
+$p = 0.956$). No arm reaches significance and the point estimate stays at
+or below a negligible positive value; the conclusion (no detectable
+C4-over-C1\textsuperscript{+} advantage on T1) is stable, though the
+27-cell gap is a real limitation and completing it (post credit top-up;
+the run is resumable) would tighten the estimate. Per-cell status counts
+and all sensitivity arms are archived at
+\path{results/analysis/exploratory/full_t1_confirmatory_v1/sensitivity.json}.
 
 \subsection{Exploratory: H1 per-model direction concordance}
 \label{sec:4.3}

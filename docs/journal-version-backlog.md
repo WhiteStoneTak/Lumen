@@ -117,7 +117,10 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
   cross-referenced when scheduling.
 - **Dependencies / notes:** This is the largest item in the backlog by far.
   Any sequencing of journal-version work should account for it first.
-- **status:** OPEN
+- **status:** IN PROGRESS (R5). T1 pre-registered + collected + analyzed
+  (R5-1/R5-2 / WOV-245, WOV-246): H1/T1 r_rb = +0.051, raw p = 0.428 (null);
+  no T1 cell Holm-rejected. Six of nine cells now collected (T2 + T1); the
+  three T3 cells follow under R5-4. Will close to DONE at R5-4.
 
 ---
 
@@ -288,7 +291,9 @@ journal-version scope contains; no priority or schedule is assigned.
   confirmatory pre-registration before collection. This is a large item;
   no plan is set in this backlog.
 - **Cross-reference:** CC-01.
-- **status:** OPEN
+- **status:** IN PROGRESS (R5). T1 done (R5-1/R5-2): prereg
+  `docs/preregistrations/t1-v1.md`, analysis
+  `results/analysis/confirmatory/full_t1_confirmatory_v1/`. T3 follows (R5-4).
 
 ### W-02 — Back-port bootstrap CI into the frozen analysis script
 

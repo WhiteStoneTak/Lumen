@@ -1,0 +1,36 @@
+
+==============================================================================
+LUMEN CONFIRMATORY ANALYSIS — PRE-REGISTERED RESULTS
+Freeze date: 2026-04-02
+Run timestamp: 2026-06-16T08:14:31.219105+00:00
+Frozen models: gpt-5.4, claude-opus-4-6
+N tests: 9  |  α: 0.05  |  Correction: Holm-Bonferroni
+==============================================================================
+Test        N pairs     W stat  p (1-sided)     r_rb  Reject?
+------------------------------------------------------------------------------
+H1/T1            30      71.50       0.4279    0.051       no   [-0.520, +0.614]
+H1/T2            30      83.00       0.0228    0.581       no   [+0.077, +0.923]
+H1/T3             0        nan          nan    0.000       no   [nan, nan]
+H2/T1            30      76.00       0.1812    0.267       no   [-0.359, +0.758]
+H2/T2            30      63.00       0.2334    0.200       no   [-0.375, +0.714]
+H2/T3             0        nan          nan    0.000       no   [nan, nan]
+H3/T1            30      82.00       0.2335    0.206       no   [-0.352, +0.727]
+H3/T2            30      24.00       0.9688   -0.473       no   [-0.886, +0.077]
+H3/T3             0        nan          nan    0.000       no   [nan, nan]
+==============================================================================
+
+Primary endpoint (H1/T2: C4 > C1+): H₀ NOT REJECTED
+
+JSON output: results/analysis/confirmatory/full_t1_confirmatory_v1/confirmatory_results.json
+CSV output:  results/analysis/confirmatory/full_t1_confirmatory_v1/confirmatory_results.csv
+
+WARNING: Incomplete data for 9 condition/task cells. Re-run after full data collection for valid confirmatory results.
+  T1/C2: 0/30
+  T1/C3: 0/30
+  T2/C2: 0/30
+  T2/C3: 0/30
+  T3/C1: 0/30
+  T3/C1+: 0/30
+  T3/C2: 0/30
+  T3/C3: 0/30
+  T3/C4: 0/30
