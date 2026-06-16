@@ -2,32 +2,248 @@
 \section{The bounded-learner gap}
 \label{sec:bounded}
 
-% STUB (T1-3, T2-4). The positive half of the thesis (charter §1).
 % Area role (charter §2): where format can help once information is held
 % constant; an UPPER BOUND on achievable representation advantage via
 % capacity/sample complexity; the regime that activates it.
 %
-% Plan:
-%   - T1-3: statistical learning theory foundations (hypothesis class
-%     \hypclass, capacity \capac{\hypclass}, Rademacher \Rad{\hypclass},
-%     empirical risk \emprisk).
-%   - T2-4: the bounded-learner advantage upper bound: the representation
-%     advantage \advantage is controlled by a capacity/complexity term, not
-%     by information content. This bounds effect SIZE and is the antidote to
-%     "a math-dressed null" (guardrail G2).
+% This file holds:
+%   - T1-3 (WOV-264): statistical-learning-theory foundations (PAC / agnostic
+%     setup, VC dimension, Rademacher complexity, uniform-convergence bounds),
+%     how a representation induces a hypothesis class H∘φ and changes its
+%     complexity at fixed information, a sample-complexity SEPARATION between
+%     information-equivalent representations, and identification of the single
+%     quantity that upper-bounds the achievable advantage.
+%   - T2-4: the advantage upper bound itself (placeholder retained below).
 %
-% The positive content is delivered as falsifiable predictions in §8, never
-% as established findings (guardrail G2).
+% The positive content is delivered as falsifiable predictions in §8, never as
+% established findings (guardrail G2).
 
-\noindent\emph{[Stub. Learning-theory foundations in T1-3; advantage upper
-bound in T2-4.]}
+\Cref{sec:parity} closes the information channel: under parity the Bayes risk
+does not move with the representation (\cref{thm:irrelevance}, proved in T2-2).
+If a representation effect exists at all, it must therefore live in the gap
+between the Bayes-optimal predictor and a real, \emph{bounded} one --- finite
+capacity, finite sample, bounded compute. This section builds the
+learning-theoretic tools that measure that gap and identifies the single
+quantity that will upper-bound the achievable advantage in T2-4. The framing
+is deliberately one-directional: the theory bounds how large a parity-preserving
+representation effect \emph{can} be, and names the regime in which to look for
+it; it does not assert that any such effect exists (guardrail~G2). We follow
+\citet{shalevshwartz2014} and \citet{mohri2018} for the learning theory,
+\citet{vapnik1998} for the VC framework, and \citet{bartlettmendelson2002} for
+the Rademacher bounds.
+
+\subsection{The agnostic learning setup}
+\label{subsec:pac}
+
+Fix the data law $\jlaw$ of \cref{ass:sbs} and a representation $\rep$. A
+learner sees $\nsample$ i.i.d.\ draws $S = \{(X_i,Y_i)\}_{i=1}^{\nsample}$
+from $\jlaw$ and selects a predictor from a \emph{hypothesis class} of
+$\rep$-measurable rules. Because a predictor on $\rep$ acts only through
+$\rep(X)$ (\cref{subsec:pred}), it is natural to fix a base class
+$\hypclass$ of maps $\Zspace_{\rep}\to\Aspace$ and let the representation
+induce the working class by precomposition.
+
+\begin{definition}[Induced hypothesis class]
+\label{def:induced-class}
+For a base class $\hypclass \subseteq \Aspace^{\Zspace_{\rep}}$ and a
+representation $\rep$, the \emph{induced class} is
+\[
+  \hypclass \circ \rep \;\defeq\;
+  \{\, h \circ \rep : h \in \hypclass \,\} \subseteq \Aspace^{\Xspace}.
+\]
+Its members are the $\repsig$-measurable rules the learner can express.
+\end{definition}
+
+\begin{definition}[Risk, empirical risk, excess risk]
+\label{def:emp-risk}
+With the loss $\loss$ of \cref{def:risk}, a hypothesis
+$f = h\circ\rep$ has risk $\risk(f) = \Expect_{\jlaw}[\loss(Y,f(X))]$ and
+empirical risk
+$\emprisk(f) = \tfrac1{\nsample}\sum_{i=1}^{\nsample}\loss(Y_i,f(X_i))$. The
+empirical risk minimizer (ERM) is
+$\widehat{f}_{\rep} \in \arg\min_{f\in\hypclass\circ\rep}\emprisk(f)$. Its
+\emph{excess risk} decomposes as
+\begin{equation}
+  \label{eq:excess}
+  \risk(\widehat{f}_{\rep}) - \bayesrisk(\mathrm{id})
+  \;=\;
+  \underbrace{\Big(\inf_{f\in\hypclass\circ\rep}\risk(f) - \bayesrisk(\rep)\Big)}_{\text{approximation, w.r.t. }\rep}
+  + \underbrace{\Big(\bayesrisk(\rep)-\bayesrisk(\mathrm{id})\Big)}_{\text{information gap (\cref{sec:parity})}}
+  + \underbrace{\Big(\risk(\widehat{f}_{\rep}) - \inf_{f\in\hypclass\circ\rep}\risk(f)\Big)}_{\text{estimation}}.
+\end{equation}
+\end{definition}
+
+The middle term in \eqref{eq:excess} is exactly the information channel of
+\cref{sec:parity}: under parity it is zero and identical across $\rep,\rep'$
+(\cref{thm:irrelevance}). The representation can therefore act on a bounded
+learner only through the \emph{approximation} and \emph{estimation} terms ---
+how well the base class composed with $\rep$ can approximate the optimum, and
+how fast the ERM converges to the best in class. Both are controlled by the
+\emph{capacity} of $\hypclass\circ\rep$, the object of the next two
+subsections.
+
+\subsection{Capacity: VC dimension and Rademacher complexity}
+\label{subsec:capacity}
+
+\begin{definition}[VC dimension]
+\label{def:vc}
+For a class $\mathcal{G}$ of $\{0,1\}$-valued functions on a domain
+$\mathcal{D}$, a set $\{z_1,\dots,z_k\}\subseteq\mathcal{D}$ is
+\emph{shattered} if $\mathcal{G}$ realizes all $2^k$ labelings of it. The
+\emph{VC dimension} $\mathrm{VC}(\mathcal{G})$ is the size of the largest
+shattered set (possibly $\infty$).
+\end{definition}
+
+\begin{definition}[Empirical Rademacher complexity]
+\label{def:rademacher}
+For a real-valued class $\mathcal{G}$ and a sample
+$z_{1:\nsample}$, the \emph{empirical Rademacher complexity} is
+\[
+  \Rad{\mathcal{G}}
+  \;\defeq\;
+  \Expect_{\sigma}\Big[\;
+    \sup_{g\in\mathcal{G}}\;
+    \tfrac1{\nsample}\textstyle\sum_{i=1}^{\nsample}\sigma_i\,g(z_i)
+  \;\Big],
+\]
+where $\sigma_1,\dots,\sigma_{\nsample}$ are i.i.d.\ Rademacher signs
+($\Prob(\sigma_i=\pm1)=\tfrac12$). It measures how well $\mathcal{G}$
+correlates with random noise --- its effective richness on the sample.
+\end{definition}
+
+We write $\capac{\mathcal{G}}$ for whichever capacity term is in force (the VC
+dimension or the Rademacher complexity); the bounds below are stated for
+$\Rad{\cdot}$, the sharper of the two, with the VC route available through the
+standard $\Rad{\mathcal{G}} = O(\sqrt{\mathrm{VC}(\mathcal{G})/\nsample})$
+chaining bound \citep[Ch.~6]{shalevshwartz2014}.
+
+\subsection{Uniform convergence and the generalization bound}
+\label{subsec:uniform}
+
+\begin{theorem}[Rademacher uniform-convergence bound]
+\label{thm:uniform}
+Let $\loss$ take values in $[0,1]$ and let $\mathcal{F}=\hypclass\circ\rep$.
+With probability at least $1-\delta$ over $S\sim\jlaw^{\otimes\nsample}$, every
+$f\in\mathcal{F}$ satisfies
+\begin{equation}
+  \label{eq:uniform}
+  \risk(f) \;\le\; \emprisk(f)
+  \;+\; 2\,\Rad{\loss\circ\mathcal{F}}
+  \;+\; \sqrt{\tfrac{\log(1/\delta)}{2\nsample}},
+\end{equation}
+where $\loss\circ\mathcal{F}$ is the induced loss class. Consequently the ERM
+$\widehat{f}_{\rep}$ has estimation error
+$\risk(\widehat{f}_{\rep}) - \inf_{f\in\mathcal{F}}\risk(f)
+   \le 4\,\Rad{\loss\circ\mathcal{F}} + O(\sqrt{\log(1/\delta)/\nsample})$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+The two-sided uniform deviation $\sup_{f}|\risk(f)-\emprisk(f)|$ is bounded in
+expectation by $2\,\Rad{\loss\circ\mathcal{F}}$ via symmetrization, and
+concentrates around its mean by McDiarmid's inequality (the bounded-difference
+constant is $1/\nsample$ since $\loss\in[0,1]$); the estimation-error
+statement follows by applying \eqref{eq:uniform} to $\widehat{f}_{\rep}$ and to
+the in-class optimum and adding. Full details:
+\citet[Thm.~26.5]{shalevshwartz2014}, \citet[Ch.~3]{mohri2018}.
+\end{proof}
+
+\eqref{eq:uniform} is the formal statement that, at fixed sample size, a
+\emph{lower-capacity} induced class generalizes from data with a smaller gap.
+This is the lever a representation has on a bounded learner, and it is
+entirely a statement about $\Rad{\loss\circ(\hypclass\circ\rep)}$ --- not about
+information content.
+
+\subsection{Representations change capacity at fixed information}
+\label{subsec:rep-capacity}
+
+The crux of the positive half of the thesis is that the two channels ---
+information (\cref{sec:parity}) and capacity (this section) --- are
+\emph{independent}. A representation can leave the information term
+\eqref{eq:dpi-rep} untouched while moving the capacity term \eqref{eq:uniform}.
+
+\begin{proposition}[Capacity is not an information invariant]
+\label{prop:capacity-separation}
+There exist a base class $\hypclass$ and two representations $\rep,\rep'$ in
+information parity for $Y$ (\cref{def:parity}, so $\bayesrisk(\rep) =
+\bayesrisk(\rep')$) with
+\[
+  \Rad{\loss\circ(\hypclass\circ\rep)}
+  \;\ne\;
+  \Rad{\loss\circ(\hypclass\circ\rep')}.
+\]
+\end{proposition}
+
+\begin{proof}
+Take $Y=\mathrm{sign}\langle w^\star, \psi(X)\rangle$ for a fixed feature map
+$\psi$ and weight $w^\star$, so that the linear-in-$\psi$ class is Bayes for
+$Y$. Let $\rep=\psi$ (features in which the target is linearly separable) and
+let $\rep'=\Pi(\psi)$ for an information-preserving but nonlinear
+re-coordinatization $\Pi$ (a bijection on the range of $\psi$, so
+$\sigalg{\rep'}=\sigalg{\rep}$ and a fortiori $\rep\parityeq\rep'$). With
+$\hypclass$ the class of linear separators, $\hypclass\circ\rep$ contains the
+Bayes rule with bounded-norm weights, whereas $\hypclass\circ\rep'$ must
+realize the same decision boundary as a curved set in the new coordinates,
+inflating the weight norm and hence the Rademacher complexity of the induced
+loss class \citep[Thm.~26.12]{shalevshwartz2014}. The information content is
+identical by construction; the capacity required to express the optimum is
+not.
+\end{proof}
+
+\cref{prop:capacity-separation} is the formal locus of ``format can help'':
+two representations that are interchangeable for an infinite-capacity
+predictor can present very different learning problems to a bounded one. It is
+also the formal boundary of guardrail~G2 --- the proposition asserts only that
+the capacity terms \emph{can} differ, the direction and magnitude of any
+real-LLM effect being an empirical question routed to the predictions of
+\cref{sec:predictions}.
+
+\subsection{The advantage-bounding quantity}
+\label{subsec:advantage-quantity}
+
+Combining \eqref{eq:excess} under parity (information gap $=0$) with
+\eqref{eq:uniform} isolates the quantity that controls everything.
+
+\begin{definition}[Representation advantage]
+\label{def:advantage}
+For two parity representations $\rep\parityeq\rep'$ and a fixed bounded learner
+(base class $\hypclass$, sample size $\nsample$), the \emph{representation
+advantage} is the achieved excess-risk difference
+\[
+  \advantage(\rep,\rep')
+  \;\defeq\;
+  \big[\risk(\widehat{f}_{\rep'}) - \bayesrisk(\mathrm{id})\big]
+  - \big[\risk(\widehat{f}_{\rep}) - \bayesrisk(\mathrm{id})\big].
+\]
+\end{definition}
+
+Under parity the information-gap term in \eqref{eq:excess} cancels between the
+two representations, so $\advantage(\rep,\rep')$ is built entirely from the
+approximation and estimation terms, and \cref{thm:uniform} bounds the
+estimation part by the induced-class Rademacher complexity. This identifies
+the single quantity that will upper-bound the achievable advantage in T2-4:
+\begin{equation}
+  \label{eq:advantage-quantity}
+  \boxed{\;\;
+  \text{the induced-class capacity gap}\quad
+  \Rad{\loss\circ(\hypclass\circ\rep)}
+  \;\;\text{vs.}\;\;
+  \Rad{\loss\circ(\hypclass\circ\rep')}
+  \;\;}
+\end{equation}
+together with the (representation-dependent) approximation error. T2-4 turns
+this into a one-sided bound $\advantage(\rep,\rep') \le \Phi(\capac{\cdot},
+\nsample)$ controlled by capacity and sample size and \emph{not} by
+information content --- the formal statement that any parity-preserving effect
+is a bounded-computation phenomenon of bounded size (charter §1).
 
 \begin{proposition}[Bounded-regime advantage is capacity-controlled --- placeholder]
 \label{prop:advantage}
 \emph{[Placeholder for T2-4.]} The achievable representation advantage
-$\advantage$ at finite capacity satisfies an upper bound in terms of
-$\capac{\hypclass}$ and the sample size $\nsample$.
-\idealization{Holds in the bounded regime (finite capacity / finite sample
-/ bounded compute); it does not assert any effect exists, only bounds its
-maximum magnitude.}
+$\advantage(\rep,\rep')$ at finite capacity satisfies an upper bound in terms
+of $\capac{\hypclass}$ (via the induced-class complexities
+\eqref{eq:advantage-quantity}) and the sample size $\nsample$.
+\idealization{Holds in the bounded regime (finite capacity / finite sample /
+bounded compute); it does not assert any effect exists, only bounds its
+maximum magnitude. The bound is stated under parity, so the information channel
+of \cref{sec:parity} contributes nothing to it.}
 \end{proposition}
