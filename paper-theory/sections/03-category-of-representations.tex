@@ -7,16 +7,201 @@
 parity-as-retraction framing produces only a restatement of the
 information-theoretic content of \cref{sec:parity} and buys no new
 proposition, this section is demoted to a remark and the decision is
-recorded in WOV-269 (T2-3).}
+recorded in WOV-269 (T2-3). T1-4 supplies the foundations and fixes the
+framing precisely enough that T2-3 can make that call; the explicit
+criterion is stated in \cref{subsec:cat-gonogo}.}
 
-% STUB (T1-4, T2-3). The C-ladder as morphisms; information parity as a
-% retraction; the round-trip defect \roundtrip{\ladder{4}}{\ladderplus}.
-% Area role (charter §2): why C1+ is the correct control (parity = retraction).
+% This file holds the T1-4 (WOV-265) FOUNDATIONS only: categories, functors,
+% natural transformations, sections/retractions/adjunctions; the category of
+% representations with the C-ladder transforms as morphisms; parity cast as a
+% retraction and the round-trip defect as failure of a retraction; and an
+% explicit go/no-go criterion handed to T2-3.
 %
 % Authoritative C-ladder (charter §5; design-constitution.tex §14.1):
-%   C2 = Raw AST, C3 = Typed AST, C4 = Contract IR,
-%   C1+ = annotated source projected from C4.
+%   C1  = plain source, C2 = Raw AST, C3 = Typed AST, C4 = Contract IR,
+%   C1+ = annotated source PROJECTED FROM C4 (the information-parity control).
 % Use these definitions, NOT the README's simplified table.
 
-\noindent\emph{[Stub. Fills in T1-4 (foundations) and T2-3 (the
-retraction proposition, if it earns its place).]}
+This section asks whether the categorical language buys anything the
+measure-theoretic and information-theoretic machinery does not already supply.
+Its honest purpose (guardrail~G4) is to make the question \emph{decidable}: we
+build just enough category theory to state precisely what ``$\ladderplus$ is
+the correct control'' and ``the round-trip $\roundtrip{\ladder{4}}{\ladderplus}$
+measures a defect'' would mean as categorical statements, and we fix a
+go/no-go criterion (\cref{subsec:cat-gonogo}) that T2-3 must meet for the
+section to survive. We follow \citet{maclane1998}, \citet{riehl2016}, and
+\citet{awodey2010}.
+
+\subsection{Categories, functors, natural transformations}
+\label{subsec:cat-basics}
+
+\begin{definition}[Category]
+\label{def:category}
+A \emph{category} $\mathcal{C}$ consists of objects, a set
+$\mathcal{C}(A,B)$ of morphisms for each ordered pair, an associative
+composition $\circ$, and an identity $\mathrm{id}_A$ at each object acting as
+a unit for composition.
+\end{definition}
+
+\begin{definition}[Functor, natural transformation]
+\label{def:functor}
+A \emph{functor} $F:\mathcal{C}\to\mathcal{D}$ sends objects to objects and
+morphisms to morphisms, preserving identities and composition. For functors
+$F,G:\mathcal{C}\to\mathcal{D}$, a \emph{natural transformation}
+$\eta:F\Rightarrow G$ is a family of morphisms
+$\eta_A:F(A)\to G(A)$ such that
+$G(f)\circ\eta_A=\eta_B\circ F(f)$ for every $f:A\to B$ (the naturality
+square commutes).
+\end{definition}
+
+These are the bookkeeping objects; the load-bearing notion for parity is the
+next one.
+
+\subsection{Sections, retractions, adjunctions}
+\label{subsec:retraction}
+
+\begin{definition}[Section, retraction, retract]
+\label{def:retract}
+Let $e:B\to A$ and $p:A\to B$ be morphisms with
+\begin{equation}
+  \label{eq:retract}
+  p\circ e \;=\; \mathrm{id}_B.
+\end{equation}
+Then $e$ is a \emph{section} (it has a left inverse), $p$ is a
+\emph{retraction} (it has a right inverse), and $B$ is a \emph{retract} of
+$A$, written $B \retract A$. The composite $e\circ p:A\to A$ is then
+idempotent ($(e\circ p)\circ(e\circ p)=e\circ p$); it is the identity on $A$
+iff $e,p$ are mutually inverse isomorphisms.
+\end{definition}
+
+The asymmetry in \cref{def:retract} is exactly the asymmetry between the two
+grades of parity in \cref{sec:parity}. A retract is ``$B$ sits inside $A$ and
+can be recovered from it'' --- one composite is the identity ($p\circ
+e=\mathrm{id}_B$) while the other ($e\circ p$) need not be. An isomorphism
+collapses both. We will read \emph{operational} parity (\cref{def:parity}) as
+a retraction and \emph{absolute} parity as an isomorphism, so that
+\cref{prop:abs-strict} --- absolute is strictly stronger --- becomes the
+categorical truism that an isomorphism is a retraction but not conversely.
+
+\begin{definition}[Adjunction]
+\label{def:adjunction}
+Functors $L:\mathcal{C}\to\mathcal{D}$ and $R:\mathcal{D}\to\mathcal{C}$ form
+an \emph{adjunction} $L\dashv R$ if there is a natural bijection
+$\mathcal{D}(L A, D)\cong\mathcal{C}(A, R D)$. We record adjunctions only
+because the projection/re-parse pair below is a candidate adjoint pair; whether
+that structure earns its keep is part of the go/no-go.
+\end{definition}
+
+\subsection{The category $\catRep$ of representations}
+\label{subsec:catrep}
+
+\begin{definition}[$\catRep$]
+\label{def:catrep}
+Let $\catRep$ have as objects the representations of \cref{def:rep} (each a
+measurable map $\rep:\Xspace\to\Zspace_{\rep}$, identified with its induced
+sub-$\sigma$-algebra $\repsig$ up to $\Prob$-null sets), and as morphisms
+$\rep\to\rep'$ the measurable \emph{transforms} $t$ with
+$\rep' = t\circ\rep$ almost surely --- i.e.\ the ways to compute $\rep'$ from
+$\rep$ without consulting the raw input. Composition and identities are
+inherited from measurable maps.
+\end{definition}
+
+A morphism $\rep\to\rep'$ exists precisely when $\rep'$ is a measurable
+function of $\rep$, i.e.\ when $\sigalg{\rep'}\subseteq\repsig$ (Doob--Dynkin,
+\cref{subsec:rep}). So $\catRep$ is a refinement order made into a category:
+arrows point from finer to coarser representations, and the existence of an
+arrow is the ``can be computed downstream'' relation that the
+data-processing inequality (\cref{cor:dpi-rep}) is monotone along.
+
+The C-ladder of \texttt{preprint-v1} (Constitution §14.1) populates $\catRep$
+with concrete objects and morphisms:
+\[
+  \ladder{1}\ \text{(plain source)},\quad
+  \ladder{2}\ \text{(Raw AST)},\quad
+  \ladder{3}\ \text{(Typed AST)},\quad
+  \ladder{4}\ \text{(Contract IR)},\quad
+  \ladderplus\ \text{(annotated source, projected from }\ladder{4}\text{)},
+\]
+with the ladder transforms (parse, type, lift-to-contract, project,
+re-parse) as morphisms. The control $\ladderplus$ is, by construction, the
+\emph{projection of $\ladder{4}$ back to source form}: this is the morphism
+the next subsection names.
+
+\subsection{Parity as a retraction; the round-trip defect}
+\label{subsec:retraction-parity}
+
+The control was designed so that $\ladderplus$ carries the same predictive
+content as $\ladder{4}$ while being rendered in surface (source) form. Two
+ladder morphisms formalize the construction:
+\[
+  p:\ladder{4}\longrightarrow\ladderplus
+  \quad(\text{project the Contract IR to annotated source}),
+  \qquad
+  e:\ladderplus\longrightarrow\ladder{4}'
+  \quad(\text{re-parse the annotated source to IR}).
+\]
+
+\begin{definition}[Categorical parity and round-trip defect]
+\label{def:cat-parity}
+Say $\ladderplus$ is in \emph{categorical parity} with $\ladder{4}$ if it is a
+retract of $\ladder{4}$ witnessed by $(e,p)$: $p\circ e=\mathrm{id}_{\ladderplus}$
+(\cref{eq:retract}). The \emph{round-trip defect} is the failure of the other
+composite to be the identity,
+\[
+  \roundtrip{\ladder{4}}{\ladderplus}:\quad
+  e\circ p \;=\; \ladder{4}\xrightarrow{\,p\,}\ladderplus\xrightarrow{\,e\,}\ladder{4}',
+  \qquad
+  \text{defect} \;\defeq\; \big[\,e\circ p \ne \mathrm{id}_{\ladder{4}}\,\big].
+\]
+\end{definition}
+
+This reproduces, in categorical terms, the operational-vs-absolute split of
+\cref{sec:parity}. The retraction equation $p\circ e=\mathrm{id}_{\ladderplus}$
+says the annotated-source control loses nothing that the round trip through it
+can detect --- the formal content of ``$\ladderplus$ is the correct control.''
+The defect $e\circ p\ne\mathrm{id}_{\ladder{4}}$ says $\ladder{4}$ carries
+byte-level structure that the projection discards and the re-parse does not
+restore. The idempotent $e\circ p$ projects $\ladder{4}$ onto the part of its
+structure that survives the round trip; its image is the parity-relevant
+content and its ``kernel'' is the defect. The R4 round-trip data
+(\cref{sec:parity-defect}: byte-exact AST recovery $0/30$, but contracts
+$100\%$, node kinds $99.8\%$, types $96.4\%$) are exactly the empirical
+profile of this idempotent --- near-identity on semantic structure, far from
+identity on surface bytes.
+
+\begin{remark}[What is and is not claimed here]
+\label{rem:cat-claim}
+\cref{def:cat-parity} is a \emph{framing}, not yet a theorem. It commits to
+reading parity as a retraction and the defect as the non-identity composite,
+and it lines those up with \cref{def:parity} and the R4 data. Whether this
+buys a proposition beyond \cref{sec:parity} --- for instance, that the
+idempotent $e\circ p$ splits $\ladder{4}$ into a parity-relevant retract plus a
+predictively inert complement, giving a categorical decomposition the
+information-theoretic account does not already provide --- is precisely the
+question deferred to T2-3.
+\end{remark}
+
+\subsection{Go/no-go criterion handed to T2-3}
+\label{subsec:cat-gonogo}
+
+To keep the go/no-go decision honest rather than aesthetic (guardrail~G4), we
+fix the criterion now, before T2-3 attempts the proof.
+
+\begin{quote}
+\textbf{Criterion (depth of category theory).} Section~\ref{sec:category}
+survives as a section iff T2-3 proves a proposition that (i) is stated in the
+retraction language of \cref{def:cat-parity}, and (ii) is \emph{not} a
+notational re-encoding of \cref{thm:irrelevance} or
+\cref{prop:suff-iff-mi} --- i.e.\ it must either constrain the round-trip
+defect in a way \cref{sec:parity} does not, or supply the splitting of
+\cref{rem:cat-claim} as a usable decomposition feeding \cref{sec:parity-defect}.
+If T2-3 yields only a restatement, category theory is demoted: \cref{def:catrep}
+and \cref{def:cat-parity} collapse into a single remark inside
+\cref{sec:parity}, and this section is deleted. The decision and its
+justification are recorded in WOV-269.
+\end{quote}
+
+\noindent The foundations above are deliberately minimal --- just the
+retraction vocabulary and the one category $\catRep$ --- so that demotion, if
+it comes, costs one remark rather than a rewrite. This is the section's
+insurance against decorative math.
