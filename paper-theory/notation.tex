@@ -1,0 +1,61 @@
+% =============================================================
+% notation.tex — shared notation for the theory companion paper
+% =============================================================
+% Single source of truth for symbols across all sections. Every theorem,
+% lemma, and proof draws its notation from here so that the four
+% mathematical areas (measure-theoretic probability, information theory,
+% statistical learning theory, and the two go/no-go layers) stay
+% internally consistent. Edit here, not inline.
+%
+% Convention: areas are grouped and labelled. When a T1/T2 issue introduces
+% a new symbol it adds it to the relevant group below with a one-line
+% comment, rather than redefining \newcommand locally in a section.
+
+% ----- Measure-theoretic probability (§2, T1-1) -----
+\newcommand{\Xspace}{\mathcal{X}}            % input space (programs/representations source)
+\newcommand{\Yspace}{\mathcal{Y}}            % label/target space
+\newcommand{\Zspace}{\mathcal{Z}}            % representation codomain
+\newcommand{\Bor}[1]{\mathcal{B}(#1)}        % Borel sigma-algebra of #1
+\newcommand{\Prob}{\mathbb{P}}               % probability measure
+\newcommand{\Expect}{\mathbb{E}}             % expectation
+\newcommand{\given}{\,\vert\,}               % conditioning bar
+\newcommand{\kernel}[1]{\mathsf{#1}}         % Markov kernel (predictor), e.g. \kernel{K}
+\newcommand{\rep}{\phi}                      % representation map \phi : X -> Z
+\newcommand{\risk}{\mathcal{R}}              % risk functional
+\newcommand{\bayesrisk}{\risk^{\star}}       % Bayes risk
+\newcommand{\loss}{\ell}                     % loss function
+
+% ----- Information theory (§4, T1-2 / T2-1 / T2-2) -----
+\newcommand{\MI}[2]{I(#1 ; #2)}              % mutual information
+\newcommand{\Ent}[1]{H(#1)}                  % (differential) entropy
+\newcommand{\CondEnt}[2]{H(#1 \given #2)}    % conditional entropy
+\newcommand{\KL}[2]{D_{\mathrm{KL}}\!\left(#1 \,\Vert\, #2\right)} % KL divergence
+\newcommand{\markov}{\rightarrow}            % Markov-chain link, X \markov \rep(X) \markov Y
+\newcommand{\suff}{\;\succeq_{\mathrm{suff}}\;} % sufficiency preorder
+\newcommand{\ratedist}{R(D)}                 % rate-distortion function
+
+% ----- Statistical learning theory (§5, T1-3 / T2-4) -----
+\newcommand{\hypclass}{\mathcal{H}}          % hypothesis class
+\newcommand{\capac}[1]{\mathfrak{C}(#1)}     % capacity/complexity term (VC, Rademacher, ...)
+\newcommand{\Rad}[1]{\mathfrak{R}_n(#1)}     % empirical Rademacher complexity at sample n
+\newcommand{\emprisk}{\widehat{\risk}}       % empirical risk
+\newcommand{\nsample}{n}                     % sample size
+\newcommand{\advantage}{\Delta}              % representation advantage (bounded-regime gap)
+
+% ----- Category theory (§3, T1-4 / T2-3) — GO/NO-GO -----
+\newcommand{\catRep}{\mathbf{Rep}}           % category of representations
+\newcommand{\ladder}[1]{\mathrm{C}#1}        % C-ladder object, e.g. \ladder{4} = C4
+\newcommand{\ladderplus}{\mathrm{C1^{+}}}    % information-parity control C1+
+\newcommand{\mor}{\xrightarrow}              % morphism arrow with label: \mor{f}
+\newcommand{\retract}{\;\trianglelefteq\;}   % retraction relation (parity = retraction)
+\newcommand{\roundtrip}[2]{#1 \!\to\! #2 \!\to\! #1'} % round-trip defect C4 -> C1+ -> C4'
+
+% ----- Optimal transport + information geometry (§6, T1-5 / T2-5) — GO/NO-GO -----
+\newcommand{\Wass}[1]{W_{#1}}                % Wasserstein-#1 distance
+\newcommand{\preddist}[1]{\mu_{#1}}          % induced predictive distribution under condition #1
+\newcommand{\Fisher}{\mathcal{I}_{F}}        % Fisher information
+\newcommand{\paritydefect}{\delta_{\mathrm{par}}} % quantitative parity defect
+
+% ----- Cross-cutting -----
+\newcommand{\defeq}{\vcentcolon=}            % "defined as"
+\newcommand{\indep}{\perp\!\!\!\perp}        % statistical independence

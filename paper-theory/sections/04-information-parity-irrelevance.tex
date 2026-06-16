@@ -1,0 +1,32 @@
+% Section 4 — Information parity and the irrelevance theorem
+% (charter §4.4; issues T1-2, T2-1, T2-2)
+\section{Information parity and the irrelevance theorem}
+\label{sec:parity}
+
+% STUB (T1-2, T2-1, T2-2). The spine of the paper.
+% Area role (charter §2): parity = sufficiency / Markov-equivalence; the
+% irrelevance theorem via DPI; rate-distortion for lossy reps.
+%
+% Plan:
+%   - T2-1: formal definitions of structured representation and information
+%     parity (parity = \rep(X) \suff X w.r.t. Y, i.e. X \markov \rep(X) \markov Y
+%     with no loss of sufficiency).
+%   - T2-2: the at-optimum invariance theorem: under parity, \bayesrisk is
+%     invariant to \rep. DPI is the engine.
+%   - Corollary: rate-distortion bound \ratedist for lossy representations.
+
+\noindent\emph{[Stub. Definitions in T2-1; irrelevance theorem in T2-2;
+information-theoretic foundations in T1-2.]}
+
+\begin{theorem}[Irrelevance at optimum --- placeholder]
+\label{thm:irrelevance}
+\emph{[Placeholder for T2-2.]} Under information parity
+($X \markov \rep(X) \markov Y$ with $\rep(X) \suff X$), the Bayes risk is
+format-invariant: $\bayesrisk(\rep) = \bayesrisk(\mathrm{id})$.
+\idealization{This statement assumes Bayes-optimality (the
+infinite-capacity limit) and exact parity. A real frozen LLM satisfies
+neither; \cref{sec:parity-defect} quantifies the parity defect and
+\cref{sec:bounded} relaxes the capacity idealization. ``Parity is
+operational, not absolute'' (preprint §3.3) is carried in here as a formal
+caveat.}
+\end{theorem}

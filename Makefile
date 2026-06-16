@@ -34,7 +34,7 @@ T3_SCREEN_RUN_ID ?= t3_screen_wave1
         ingest-stage2 ingest-stage3 \
         summarize-candidates init-candidates \
         list-candidates validate-candidates \
-        test
+        test theory-paper theory-paper-clean
 
 # ---------------------------------------------------------------------------
 # Candidate tracker tooling
@@ -126,3 +126,31 @@ ingest-stage3:
 
 test:
 	python3 -m unittest discover -s tests -v
+
+# ---------------------------------------------------------------------------
+# Theory companion paper (paper-theory/, WOV-261 T0-2)
+#
+# Builds the theory-paper skeleton to PDF. Prefers tectonic (self-contained,
+# resolves natbib/bibtex automatically); falls back to a pdflatex+bibtex
+# cycle if tectonic is absent.
+# ---------------------------------------------------------------------------
+
+theory-paper:
+	@cd paper-theory && \
+	if command -v tectonic >/dev/null 2>&1; then \
+	  echo "Building with tectonic..." && tectonic main.tex; \
+	elif command -v pdflatex >/dev/null 2>&1; then \
+	  echo "tectonic not found; falling back to pdflatex+bibtex..." && \
+	  pdflatex -interaction=nonstopmode main.tex && \
+	  bibtex main || true && \
+	  pdflatex -interaction=nonstopmode main.tex && \
+	  pdflatex -interaction=nonstopmode main.tex; \
+	else \
+	  echo "No LaTeX engine found (need tectonic or pdflatex)." >&2; exit 1; \
+	fi && \
+	echo "Built paper-theory/main.pdf"
+
+theory-paper-clean:
+	@cd paper-theory && rm -f main.aux main.bbl main.blg main.log main.out \
+	  main.toc main.pdf sections/*.aux
+	@echo "Cleaned paper-theory build artifacts."

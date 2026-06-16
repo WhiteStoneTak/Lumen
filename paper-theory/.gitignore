@@ -1,0 +1,9 @@
+# LaTeX build artifacts — only source is tracked.
+main.aux
+main.bbl
+main.blg
+main.log
+main.out
+main.toc
+main.pdf
+sections/*.aux

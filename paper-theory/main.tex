@@ -1,0 +1,112 @@
+% =============================================================
+% Theory Companion Paper — LaTeX skeleton (T0-2, WOV-261)
+% =============================================================
+% Working title (charter §0):
+%   Structured Representation for Code LLMs: When Format Can and Cannot
+%   Help a Bounded Learner, and Why.
+%
+% This is a SECTION-STUB skeleton. Each section is a separate file under
+% sections/ carrying a 1-3 sentence stub plus a pointer to the charter
+% milestone that fills it. Full mathematics is deferred to T1/T2.
+%
+% Authority: subordinate to docs/design-constitution.tex and the frozen
+% preprint-v1. Governed by docs/theory-paper-charter.md. The honesty
+% guardrails (charter §3, G1-G6) are binding on every section.
+%
+% Build: see paper-theory/README.md or `make theory-paper`.
+% Primary tool: tectonic (self-contained, resolves natbib automatically).
+
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}        % \vcentcolon, \coloneqq helpers used in notation
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[round]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalize, noabbrev]{cleveref}
+
+% ----- Theorem environments (numbered within section) -----
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ----- Idealization-disclosure box (guardrail G3) -----
+% Every invocation of the irrelevance theorem must state which idealization
+% it relies on. This command standardizes that disclosure.
+\newcommand{\idealization}[1]{%
+  \par\vspace{2pt}\noindent\textit{Idealization disclosure (G3).} #1\par\vspace{2pt}}
+
+% ----- Go/no-go marker (charter §2 discipline) -----
+% Sections 3 and 6 are provisional: they survive only if they earn a
+% theorem. This banner keeps that status visible in the draft.
+\newcommand{\gonogo}[1]{%
+  \par\noindent\fbox{\parbox{0.97\linewidth}{\small\textbf{GO/NO-GO (charter §2).}
+  #1}}\par\vspace{4pt}}
+
+\input{notation}
+
+\title{Structured Representation for Code LLMs:\\
+       When Format Can and Cannot Help a Bounded Learner, and Why}
+
+\author{%
+  \textbf{\large Takumi Shiraishi} \\[2pt]
+  Independent Researcher \\[1pt]
+  \href{mailto:takumi@wovol.com}{\texttt{takumi@wovol.com}}
+}
+
+\date{Draft skeleton --- \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+% STUB (T4-1). Drafted last, after the theorems exist.
+% Backbone (charter §1): under information parity the data-processing
+% inequality forbids any representation from lowering the Bayes-optimal
+% predictor's risk; hence any genuine code-representation effect is a
+% bounded-computation phenomenon whose maximum magnitude is capacity-bounded;
+% the Lumen T1 clean null is the predicted information-limit outcome, and the
+% theory localizes where a bounded-regime effect should appear.
+\noindent\emph{[Abstract deferred to T4-1. See charter §1 for the
+load-bearing thesis this paper formalizes.]}
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+\input{sections/01-introduction}
+\input{sections/02-preliminaries}
+\input{sections/03-category-of-representations}
+\input{sections/04-information-parity-irrelevance}
+\input{sections/05-bounded-learner-gap}
+\input{sections/06-parity-defect}
+\input{sections/07-empirical-anchoring}
+\input{sections/08-predictions}
+\input{sections/09-related-work}
+\input{sections/10-limitations-honesty}
+\input{sections/11-conclusion}
+
+\appendix
+\input{sections/appendix-proofs}
+
+\bibliographystyle{plainnat}
+\bibliography{theory}
+
+\end{document}
