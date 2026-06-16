@@ -3,30 +3,316 @@
 \section{Information parity and the irrelevance theorem}
 \label{sec:parity}
 
-% STUB (T1-2, T2-1, T2-2). The spine of the paper.
 % Area role (charter §2): parity = sufficiency / Markov-equivalence; the
 % irrelevance theorem via DPI; rate-distortion for lossy reps.
 %
-% Plan:
-%   - T2-1: formal definitions of structured representation and information
-%     parity (parity = \rep(X) \suff X w.r.t. Y, i.e. X \markov \rep(X) \markov Y
-%     with no loss of sufficiency).
-%   - T2-2: the at-optimum invariance theorem: under parity, \bayesrisk is
-%     invariant to \rep. DPI is the engine.
-%   - Corollary: rate-distortion bound \ratedist for lossy representations.
+% This file holds:
+%   - T1-2 (WOV-263): information-theoretic foundations (entropy, divergence,
+%     mutual information), the data-processing inequality with proof,
+%     sufficiency + Fisher-Neyman factorization, rate-distortion for lossy
+%     reps, and the FORMAL DEFINITION of information parity with the
+%     operational-vs-absolute distinction (paper §3.3) made precise.
+%   - T2-1: polished definitions of structured representation / parity.
+%   - T2-2: the at-optimum irrelevance theorem (DPI => Bayes-risk invariance).
 
-\noindent\emph{[Stub. Definitions in T2-1; irrelevance theorem in T2-2;
-information-theoretic foundations in T1-2.]}
+This section supplies the information-theoretic engine of the paper. It builds
+the three quantities the spine needs (entropy, relative entropy, mutual
+information), proves the data-processing inequality in the exact form the
+irrelevance theorem consumes, identifies \emph{sufficiency} as the structural
+condition under which the inequality is tight, and then defines
+\emph{information parity} as that tightness condition. The negative half of
+the thesis (\cref{sec:intro}) is, at this level, a single sentence: parity
+makes the data-processing inequality an equality, so the information available
+to an optimal predictor does not move with the representation. Making that
+sentence a theorem about Bayes risk is deferred to T2-2; here we fix the
+objects it quantifies over. We follow the standard treatments of
+\citet{coverthomas2006} for the information quantities and rate--distortion,
+and \citet{lehmanncasella1998} for sufficiency and the factorization theorem;
+all objects are the measure-theoretic ones of \cref{sec:prelim}.
+
+\subsection{Entropy, relative entropy, mutual information}
+\label{subsec:infoquantities}
+
+Throughout, $X \markov \rep(X) \markov Y$ and related Markov statements are
+read against the joint law $\jlaw$ of \cref{ass:sbs}; all random elements live
+on the common space $(\Omega,\mathcal{F},\Prob)$. We state the discrete forms
+(finite token alphabets and countable program syntax are the operative case
+for \texttt{preprint-v1}); the definitions extend to the standard Borel
+setting of \cref{sec:prelim} by taking suprema over finite measurable
+partitions \citep[Ch.~8]{coverthomas2006}, and nothing downstream depends on
+the continuous refinement.
+
+\begin{definition}[Entropy and conditional entropy]
+\label{def:entropy}
+For a discrete random element $U$ with law $p_U$, the \emph{entropy} is
+$\Ent{U} \defeq -\sum_{u} p_U(u)\log p_U(u)$, and for a pair $(U,V)$ the
+\emph{conditional entropy} is
+$\CondEnt{U}{V} \defeq -\sum_{u,v} p_{UV}(u,v)\log p_{U \given V}(u\given v)$,
+with the convention $0\log 0 = 0$. Logarithms are natural; entropies are in
+nats.
+\end{definition}
+
+\begin{definition}[Relative entropy]
+\label{def:kl}
+For probability measures $\mu \ll \nu$ on a common space, the
+\emph{relative entropy} (Kullback--Leibler divergence) is
+$\KL{\mu}{\nu} \defeq \int \log\!\big(\rnd{\mu}{\nu}\big)\,\mathrm{d}\mu$,
+with $\KL{\mu}{\nu} = +\infty$ when $\mu \not\ll \nu$. Gibbs' inequality gives
+$\KL{\mu}{\nu} \ge 0$, with equality iff $\mu = \nu$.
+\end{definition}
+
+\begin{definition}[Mutual information]
+\label{def:mi}
+The \emph{mutual information} between $U$ and $V$ is the relative entropy
+between their joint law and the product of the marginals,
+\[
+  \MI{U}{V} \defeq \KL{\law{(U,V)}}{\,\law{U}\otimes\law{V}\,}
+            = \Ent{U} - \CondEnt{U}{V}
+            = \Ent{V} - \CondEnt{V}{U}.
+\]
+By \cref{def:kl}, $\MI{U}{V} \ge 0$, with equality iff $U \indep V$. The
+\emph{conditional mutual information} $\MI{U}{V \given W}$ is defined
+analogously from the conditional laws, and $\MI{U}{V\given W}=0$ iff
+$U \indep V \given W$.
+\end{definition}
+
+The one identity we use repeatedly is the \emph{chain rule}: for any $U,V,W$,
+\begin{equation}
+  \label{eq:chainrule}
+  \MI{U}{(V,W)} \;=\; \MI{U}{V} \;+\; \MI{U}{W \given V},
+\end{equation}
+which follows by writing each term via \cref{def:entropy} and cancelling
+\citep[Thm.~2.5.2]{coverthomas2006}.
+
+\subsection{The data-processing inequality}
+\label{subsec:dpi}
+
+The inequality is stated for a Markov chain and then specialized to a
+representation, which is the only instance the paper uses.
+
+\begin{lemma}[Data-processing inequality]
+\label{lem:dpi}
+If $U \markov V \markov W$ is a Markov chain (i.e.\ $U \indep W \given V$),
+then $\MI{U}{W} \le \MI{U}{V}$, with equality iff $U \markov W \markov V$ also
+holds (i.e.\ $V$ carries no information about $U$ beyond what $W$ already does).
+\end{lemma}
+
+\begin{proof}
+Expand $\MI{U}{(V,W)}$ by the chain rule \eqref{eq:chainrule} in the two
+orders:
+\[
+  \MI{U}{V} + \MI{U}{W \given V}
+  \;=\; \MI{U}{(V,W)} \;=\;
+  \MI{U}{W} + \MI{U}{V \given W}.
+\]
+The Markov hypothesis $U \indep W \given V$ is exactly $\MI{U}{W\given V}=0$
+(\cref{def:mi}), so $\MI{U}{V} = \MI{U}{W} + \MI{U}{V \given W}$. Since
+$\MI{U}{V\given W}\ge 0$, we obtain $\MI{U}{V} \ge \MI{U}{W}$. Equality holds
+iff $\MI{U}{V\given W}=0$, i.e.\ $U \indep V \given W$, which is the Markov
+chain $U \markov W \markov V$.
+\end{proof}
+
+\begin{corollary}[A representation cannot create predictive information]
+\label{cor:dpi-rep}
+For any representation $\rep$ of \cref{def:rep}, $\rep(X)$ is a measurable
+function of $X$, so $Y \markov X \markov \rep(X)$ is a Markov chain. Hence
+\begin{equation}
+  \label{eq:dpi-rep}
+  \MI{Y}{\rep(X)} \;\le\; \MI{Y}{X},
+\end{equation}
+with equality iff $Y \markov \rep(X) \markov X$, i.e.\ iff $\rep(X)$ retains
+all of $X$'s information about $Y$.
+\end{corollary}
+
+\begin{proof}
+$\rep(X)$ is $\sigalg{X}$-measurable, so it is conditionally independent of
+$Y$ given $X$: $Y \indep \rep(X) \given X$, which is the chain
+$Y \markov X \markov \rep(X)$. Apply \cref{lem:dpi} with
+$(U,V,W)=(Y,X,\rep(X))$.
+\end{proof}
+
+\cref{cor:dpi-rep} is the formal content of \cref{rem:lossy} and of the
+monotonicity noted after \cref{def:bayesrisk}: a representation can only
+coarsen the input $\sigma$-algebra, hence can only weakly decrease the
+information about $Y$. The equality case is the object the rest of the section
+names.
+
+\subsection{Sufficiency and the Fisher--Neyman factorization}
+\label{subsec:sufficiency}
+
+The equality case of \cref{cor:dpi-rep} is classical sufficiency, transported
+from parameter estimation to prediction by reading $Y$ in the role of the
+parameter.
+
+\begin{definition}[Sufficiency for $Y$]
+\label{def:sufficiency}
+A representation $\rep$ is \emph{sufficient for $Y$} if
+$Y \indep X \given \rep(X)$, equivalently if the Markov chain
+$Y \markov \rep(X) \markov X$ holds. We write $\rep \suff \mathrm{id}$ for
+``$\rep$ is sufficient'' and, more generally, $\rep \suff \rep'$ when
+$\sigalg{\rep'} \subseteq \sigalg{\rep}$ up to $\Prob$-null sets and $\rep$ is
+sufficient relative to $\rep'$.
+\end{definition}
+
+\begin{proposition}[Sufficiency $\Leftrightarrow$ information equality]
+\label{prop:suff-iff-mi}
+$\rep$ is sufficient for $Y$ if and only if $\MI{Y}{\rep(X)} = \MI{Y}{X}$.
+\end{proposition}
+
+\begin{proof}
+By \cref{cor:dpi-rep}, equality in \eqref{eq:dpi-rep} holds iff
+$Y \markov \rep(X) \markov X$, which is \cref{def:sufficiency}.
+\end{proof}
+
+\begin{proposition}[Fisher--Neyman factorization]
+\label{prop:fisher-neyman}
+Suppose the conditional law of $X$ given $Y=y$ has density $f_y$ with respect
+to a common $\sigma$-finite measure $\lambda$ on $\Xspace$. Then $\rep$ is
+sufficient for $Y$ if and only if there exist measurable
+$g_y : \Zspace_{\rep} \to [0,\infty)$ and $h : \Xspace \to [0,\infty)$ with
+\begin{equation}
+  \label{eq:fisher-neyman}
+  f_y(x) \;=\; g_y\!\big(\rep(x)\big)\, h(x)
+  \qquad \lambda\text{-a.e., for every } y.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+This is the factorization theorem \citep[Thm.~1.6.5]{lehmanncasella1998} with
+the parameter index identified with the target value $y$ and the statistic
+identified with the representation map $\rep$. The standard-Borel hypothesis
+of \cref{ass:sbs} supplies the regular conditional laws the theorem requires.
+\end{proof}
+
+\cref{prop:fisher-neyman} is the operational test: a representation is
+information-lossless for $Y$ exactly when the data likelihood depends on the
+input only through $\rep$. The dependence on $x$ that factors into $h(x)$ is
+the part a representation may freely discard --- it is the formal image of
+``format that carries no predictive content.''
+
+\subsection{Rate--distortion for lossy representations}
+\label{subsec:ratedist}
+
+When a representation is \emph{not} sufficient, \cref{cor:dpi-rep} is strict
+and some predictive information is lost. The rate--distortion function
+\citep[Ch.~10]{coverthomas2006} measures the minimal information a
+representation must retain to keep a fidelity constraint, and converts the
+information gap into a bound on achievable risk.
+
+\begin{definition}[Rate--distortion function]
+\label{def:ratedist}
+For a fidelity (distortion) measure $d : \Xspace\times\Zspace_{\rep} \to
+[0,\infty)$, the \emph{rate--distortion function} at level $D$ is
+\[
+  \ratedist \;\defeq\;
+  \inf_{\,\rep \,:\, \Expect[d(X,\rep(X))]\le D}\, \MI{X}{\rep(X)},
+\]
+the infimum over (possibly stochastic) representations meeting the
+distortion budget $D$.
+\end{definition}
+
+\begin{remark}[Lossy parity defect, previewed]
+\label{rem:lossy-defect}
+A representation that is sufficient for $Y$ sits at $D=0$ on the relevant
+$Y$-fidelity axis: it loses no predictive information and \eqref{eq:dpi-rep}
+is an equality. A lossy representation incurs a strictly positive
+information gap $\MI{Y}{X}-\MI{Y}{\rep(X)} > 0$, and the rate--distortion
+machinery bounds the resulting inflation of Bayes risk. The exact bound is the
+rate--distortion corollary of the irrelevance theorem (T2-2); its quantitative
+companion --- a Wasserstein/Fisher \emph{parity defect} computed against the
+R4 round-trip data --- is \cref{sec:parity-defect}. We record here only that
+the defect is governed by an information gap, so that ``how far from parity''
+is a measurable quantity rather than a metaphor.
+\end{remark}
+
+\subsection{Information parity: operational versus absolute}
+\label{subsec:parity-def}
+
+We can now define the central object. Two grades are distinguished, because
+the distinction is exactly guardrail~G3's ``parity is operational, not
+absolute'' (paper §3.3), and the paper uses the weaker grade deliberately.
+
+\begin{definition}[Information parity]
+\label{def:parity}
+Two representations $\rep, \rep'$ are in \emph{(operational) information
+parity for $Y$}, written $\rep \parityeq \rep'$, if both are sufficient for
+$Y$ in the sense of \cref{def:sufficiency}; equivalently, by
+\cref{prop:suff-iff-mi},
+\begin{equation}
+  \label{eq:parity}
+  \MI{Y}{\rep(X)} \;=\; \MI{Y}{\rep'(X)} \;=\; \MI{Y}{X}.
+\end{equation}
+They are in \emph{absolute parity} if moreover $\sigalg{\rep} = \sigalg{\rep'}$
+up to $\Prob$-null sets (their induced sub-$\sigma$-algebras agree, so each is
+a measurable function of the other almost surely).
+\end{definition}
+
+\begin{proposition}[Absolute parity is strictly stronger]
+\label{prop:abs-strict}
+Absolute parity implies operational parity. The converse fails: there exist
+$\rep \parityeq \rep'$ with $\sigalg{\rep} \ne \sigalg{\rep'}$.
+\end{proposition}
+
+\begin{proof}
+If $\sigalg{\rep}=\sigalg{\rep'}$ then each is a measurable function of the
+other, so $\MI{Y}{\rep(X)}=\MI{Y}{\rep'(X)}$ and both equal $\MI{Y}{X}$ when
+either is sufficient; this gives \eqref{eq:parity}. For the converse, let
+$\rep' = (\rep, N)$ adjoin a component $N \indep (X,Y)$ that is independent
+noise: $\rep'$ retains every predictive bit $\rep$ does, so
+$\MI{Y}{\rep'(X)}=\MI{Y}{\rep(X)}$ and $\rep\parityeq\rep'$, yet
+$\sigalg{\rep'} \supsetneq \sigalg{\rep}$. More to the point for the C-ladder:
+$\ladderplus$ and $\ladder{4}$ can carry the same information about $Y$ while
+generating different $\sigma$-algebras over byte-level inputs, which is
+precisely what the round-trip data witness.
+\end{proof}
+
+\begin{remark}[Which grade the paper uses, and why it matters]
+\label{rem:which-parity}
+The irrelevance theorem (T2-2) is stated against \emph{operational} parity
+(\cref{def:parity}): that is all the Bayes-risk argument needs, since
+\cref{prop:suff-iff-mi} ties operational parity to the equality case of the
+data-processing inequality, and Bayes risk depends on a representation only
+through the predictive information it retains (\cref{prop:disint}). Absolute
+parity is sufficient but unnecessarily strong, and --- by
+\cref{prop:abs-strict} --- it is the grade that \emph{fails} in practice: the
+control $\ladderplus$ and the structured representation $\ladder{4}$ are
+designed to be operationally parity (equal predictive content for $Y$) but are
+not byte-identical, and the R4 round-trip recovery (\cref{sec:parity-defect})
+quantifies the residual asymmetry $\sigalg{\ladder{4}} \ne
+\sigalg{\ladderplus}$. The slogan ``parity is operational, not absolute'' is
+therefore the formal statement that the central comparison rests on
+\eqref{eq:parity} and not on $\sigma$-algebra equality; the gap between the
+two grades is real, bounded, and quantified in \cref{sec:parity-defect}, never
+assumed away.
+\idealization{Operational parity \eqref{eq:parity} is an equality of mutual
+informations under the (unknown but fixed) data law $\jlaw$. It is an
+idealization in two senses made explicit downstream: (i) it presumes the two
+representations are \emph{exactly} sufficient, whereas a constructed control
+may be sufficient only up to a measured defect (\cref{sec:parity-defect}); and
+(ii) the risk consequence it feeds (T2-2) presumes Bayes-optimality, which a
+finite-capacity LLM does not attain (\cref{sec:bounded}).}
+\end{remark}
+
+\subsection{The irrelevance theorem (deferred to T2-2)}
+\label{subsec:irrelevance}
+
+With parity defined (\cref{def:parity}) and the data-processing inequality in
+hand (\cref{lem:dpi,cor:dpi-rep}), the at-optimum invariance theorem is the
+statement that \eqref{eq:parity} forces $\bayesrisk(\rep)=\bayesrisk(\rep')$.
+The proof (sufficiency $\Rightarrow$ equal posteriors $\Rightarrow$ equal
+Bayes risk, with a rate--distortion corollary for the lossy case of
+\cref{rem:lossy-defect}) is the content of T2-2; the statement is recorded
+here as a placeholder so that the foundations above have a visible target.
 
 \begin{theorem}[Irrelevance at optimum --- placeholder]
 \label{thm:irrelevance}
 \emph{[Placeholder for T2-2.]} Under information parity
-($X \markov \rep(X) \markov Y$ with $\rep(X) \suff X$), the Bayes risk is
-format-invariant: $\bayesrisk(\rep) = \bayesrisk(\mathrm{id})$.
+$\rep \parityeq \rep'$ (\cref{def:parity}), the Bayes risk is
+format-invariant: $\bayesrisk(\rep) = \bayesrisk(\rep') = \bayesrisk(\mathrm{id})$.
 \idealization{This statement assumes Bayes-optimality (the
-infinite-capacity limit) and exact parity. A real frozen LLM satisfies
-neither; \cref{sec:parity-defect} quantifies the parity defect and
+infinite-capacity limit) and exact operational parity. A real frozen LLM
+satisfies neither; \cref{sec:parity-defect} quantifies the parity defect and
 \cref{sec:bounded} relaxes the capacity idealization. ``Parity is
-operational, not absolute'' (preprint §3.3) is carried in here as a formal
-caveat.}
+operational, not absolute'' (preprint §3.3) is carried in here as the formal
+caveat of \cref{rem:which-parity}.}
 \end{theorem}
