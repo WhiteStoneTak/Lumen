@@ -34,7 +34,7 @@ T3_SCREEN_RUN_ID ?= t3_screen_wave1
         ingest-stage2 ingest-stage3 \
         summarize-candidates init-candidates \
         list-candidates validate-candidates \
-        test theory-paper theory-paper-clean
+        test theory-paper theory-paper-clean theory-paper-arxiv
 
 # ---------------------------------------------------------------------------
 # Candidate tracker tooling
@@ -154,3 +154,25 @@ theory-paper-clean:
 	@cd paper-theory && rm -f main.aux main.bbl main.blg main.log main.out \
 	  main.toc main.pdf sections/*.aux
 	@echo "Cleaned paper-theory build artifacts."
+
+# ---------------------------------------------------------------------------
+# Assembles a self-contained arXiv submission tarball (WOV-277, T4-4 step 3).
+# arXiv runs its own LaTeX but does NOT run bibtex, so the resolved main.bbl
+# must be shipped alongside the sources. tectonic --keep-intermediates emits
+# it. Output: paper-theory/dist/theory-arxiv.tar.gz containing exactly the
+# files arXiv needs (no .aux/.log/.pdf, no repo metadata).
+# ---------------------------------------------------------------------------
+
+theory-paper-arxiv:
+	@command -v tectonic >/dev/null 2>&1 || { echo "tectonic required for arXiv packaging." >&2; exit 1; }
+	@cd paper-theory && \
+	  echo "Building + emitting main.bbl..." && \
+	  tectonic --keep-intermediates main.tex >/dev/null && \
+	  test -f main.bbl || { echo "main.bbl was not produced." >&2; exit 1; }
+	@cd paper-theory && rm -rf dist && mkdir -p dist/theory-arxiv/sections && \
+	  cp main.tex notation.tex theory.bib main.bbl dist/theory-arxiv/ && \
+	  cp sections/*.tex dist/theory-arxiv/sections/ && \
+	  cp ARXIV.md dist/theory-arxiv/ && \
+	  ( cd dist && tar czf theory-arxiv.tar.gz theory-arxiv ) && \
+	  rm -rf dist/theory-arxiv
+	@echo "Wrote paper-theory/dist/theory-arxiv.tar.gz (self-contained arXiv source)."

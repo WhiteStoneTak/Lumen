@@ -121,11 +121,13 @@ data-processing inequality (\cref{cor:dpi-rep}) is monotone along.
 The C-ladder of \texttt{preprint-v1} (Constitution §14.1) populates $\catRep$
 with concrete objects and morphisms:
 \[
+  \begin{gathered}
   \ladder{1}\ \text{(plain source)},\quad
   \ladder{2}\ \text{(Raw AST)},\quad
-  \ladder{3}\ \text{(Typed AST)},\quad
+  \ladder{3}\ \text{(Typed AST)},\\[2pt]
   \ladder{4}\ \text{(Contract IR)},\quad
   \ladderplus\ \text{(annotated source, projected from }\ladder{4}\text{)},
+  \end{gathered}
 \]
 with the ladder transforms (parse, type, lift-to-contract, project,
 re-parse) as morphisms. The control $\ladderplus$ is, by construction, the
@@ -139,11 +141,12 @@ The control was designed so that $\ladderplus$ carries the same predictive
 content as $\ladder{4}$ while being rendered in surface (source) form. Two
 ladder morphisms formalize the construction:
 \[
-  p:\ladder{4}\longrightarrow\ladderplus
-  \quad(\text{project the Contract IR to annotated source}),
-  \qquad
-  e:\ladderplus\longrightarrow\ladder{4}'
-  \quad(\text{re-parse the annotated source to IR}).
+  \begin{aligned}
+  p&:\ladder{4}\longrightarrow\ladderplus
+  &&(\text{project the Contract IR to annotated source}),\\
+  e&:\ladderplus\longrightarrow\ladder{4}'
+  &&(\text{re-parse the annotated source to IR}).
+  \end{aligned}
 \]
 
 \begin{definition}[Categorical parity and round-trip defect]

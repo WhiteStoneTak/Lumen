@@ -4,8 +4,10 @@
 theorem / lemma / proposition (each assumption used, each step justified);
 verify all idealization disclosures are attached.*
 
-Steps 2 (notation / cross-reference / figure consistency) and 3 (arXiv
-packaging) of WOV-277 are **out of scope** and were not performed.
+This ledger records **step 1 only**. Steps 2 (notation / cross-reference /
+figure consistency) and 3 (arXiv packaging) were performed subsequently in the
+same issue; their outcome is recorded in [`ARXIV.md`](ARXIV.md) and the README
+status, not here.
 
 **Method.** Each formal result was re-derived from its stated hypotheses
 without trusting the surrounding prose: every invoked lemma was checked to be

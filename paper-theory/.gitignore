@@ -7,3 +7,6 @@ main.out
 main.toc
 main.pdf
 sections/*.aux
+
+# arXiv packaging output (make theory-paper-arxiv)
+dist/

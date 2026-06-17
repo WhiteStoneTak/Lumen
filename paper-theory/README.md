@@ -11,14 +11,18 @@ and Cannot Help a Bounded Learner, and Why.*
 
 ## Status
 
-`COMPLETE-DRAFT` (T4-3, WOV-276). The manuscript compiles end to end with all
+`ARXIV-READY` (T4-4, WOV-277). The manuscript compiles end to end with all
 theorem cross-references resolving. Every section is drafted: the abstract,
 §1 (introduction), the mathematical spine §2–§8, §9 (related work, T4-2),
 §10 (limitations and honesty — the integrity gate, T4-3), §11 (conclusion),
 and the appendix proofs. The internal red-team against overclaim (T4-3) has
-been run; its checklist and findings are recorded in §10. Remaining before
-release: T4-4 (independent proof-check, notation/cross-reference polish, and
-arXiv packaging).
+been run; its checklist and findings are recorded in §10. T4-4 is complete:
+the independent proof-check (60 formal environments + 5 predictions, ledger in
+[`PROOF-CHECK.md`](PROOF-CHECK.md)) found all results sound with four
+proof-hygiene fixes applied; the notation / cross-reference / table-consistency
+pass is done (all labels unique, all references resolve, no raw-symbol drift);
+and the arXiv submission metadata and packaging are fixed in
+[`ARXIV.md`](ARXIV.md) (primary `cs.LG`, cross-list `stat.ML` / `cs.SE`).
 
 ## Layout
 
@@ -68,3 +72,14 @@ cd paper-theory && pdflatex main && bibtex main && pdflatex main && pdflatex mai
 ```
 
 Output: `paper-theory/main.pdf`.
+
+## arXiv packaging
+
+```sh
+make theory-paper-arxiv   # from repo root
+```
+
+Builds the PDF, emits the resolved `main.bbl` (arXiv runs LaTeX but not
+bibtex), and assembles a self-contained source tarball at
+`paper-theory/dist/theory-arxiv.tar.gz`. Submission categories, license, and
+the empirical-anchor linkage are documented in [`ARXIV.md`](ARXIV.md).
