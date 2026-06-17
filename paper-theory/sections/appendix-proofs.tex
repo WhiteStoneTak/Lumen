@@ -2,18 +2,197 @@
 \section{Proofs}
 \label{app:proofs}
 
-% STUB (T4-4). Full proofs of all theorems, lemmas, and propositions, each
-% with its idealization disclosure attached (guardrail G3).
-%
-% As theorems land in T2, their proofs migrate here and the body keeps only
-% the statement. Each proof block ends with the \idealization{...} note that
-% matches its theorem.
+% Full proofs of the T2 theorems, each with its idealization disclosure
+% attached (guardrail G3). As theorems land in T2 their proofs migrate here and
+% the section body keeps only the statement.
 %
 % Index of obligations (update as theorems are proved):
-%   - \cref{thm:irrelevance} (irrelevance at optimum, T2-2)
-%   - \cref{prop:advantage} (bounded-regime advantage bound, T2-4)
-%   - parity-defect propositions (T2-5, if §6 passes go/no-go)
-%   - retraction proposition (T2-3, if §3 passes go/no-go)
+%   - \cref{thm:irrelevance} (irrelevance at optimum, T2-2)        -- PROVED (T2-2, WOV-268)
+%   - \cref{cor:ratedist-gap} (rate--distortion parity bound, T2-2) -- PROVED (T2-2, WOV-268)
+%   - \cref{prop:advantage} (bounded-regime advantage bound, T2-4) -- pending
+%   - parity-defect propositions (T2-5, if §6 passes go/no-go)     -- pending
+%   - retraction proposition (T2-3, if §3 passes go/no-go)         -- pending
 
-\noindent\emph{[Stub. Proofs migrate here in T4-4 as theorems are
-established.]}
+\subsection{The irrelevance theorem and its rate--distortion corollary}
+\label{app:irrelevance}
+
+The proof of \cref{thm:irrelevance} isolates two facts about Bayes risk that
+are used again in \cref{cor:ratedist-gap}: that it is a functional of the
+posterior kernel of \cref{prop:disint}, and that sufficiency collapses that
+kernel onto the full-information posterior. We state each as a lemma, then
+assemble the theorem and the corollary.
+
+Throughout, for a representation $\rep$ we write
+$q_{\rep} \defeq \post{\rep}(\rep(X),\cdot)$ for the regular conditional law of
+$Y$ given $\rep(X)$ (\cref{prop:disint}), a $\mathcal{P}(\Yspace)$-valued random
+element; $q_{\mathrm{id}} = \post{\mathrm{id}}(X,\cdot)$ is the full-information
+posterior. For a posterior $q\in\mathcal{P}(\Yspace)$ define the
+\emph{posterior Bayes loss}
+\begin{equation}
+  \label{eq:bayes-loss-functional}
+  G(q) \;\defeq\; \inf_{a\in\Aspace}\,\int_{\Yspace}\loss(y,a)\,q(\mathrm{d}y),
+\end{equation}
+the smallest expected loss achievable against the belief $q$.
+
+\begin{lemma}[Bayes risk is a concave functional of the posterior]
+\label{lem:bayes-functional}
+Let $\loss$ admit a measurable Bayes act. Then for every representation $\rep$,
+\begin{equation}
+  \label{eq:risk-as-posterior}
+  \bayesrisk(\rep) \;=\; \Expect\big[\,G(q_{\rep})\,\big].
+\end{equation}
+The map $G$ is concave on $\mathcal{P}(\Yspace)$, and consequently
+$\rep\mapsto\bayesrisk(\rep)$ is monotone under refinement: if
+$\sigalg{\rep'}\subseteq\sigalg{\rep}$ up to $\Prob$-null sets then
+$\bayesrisk(\rep)\le\bayesrisk(\rep')$.
+\end{lemma}
+
+\begin{proof}
+Let $\kernel{K}$ be any predictor on $\rep$ (\cref{def:predictor}). Since
+$\kernel{K}(\rep(X),\cdot)$ is $\sigalg{\rep}$-measurable, the tower rule
+\eqref{eq:tower} applied to $\mathcal{G}_1=\sigalg{\rep}\subseteq
+\mathcal{G}_2=\Bor{\Xspace}$ gives, for the risk of \cref{def:risk},
+\[
+  \risk(\kernel{K};\rep)
+  = \Expect\!\Big[\int_{\Aspace}\loss(Y,a)\,\kernel{K}(\rep(X),\mathrm{d}a)\Big]
+  = \Expect\!\Big[\int_{\Aspace}\!\Big(\!\int_{\Yspace}\!\loss(y,a)\,q_{\rep}(\mathrm{d}y)\Big)
+        \kernel{K}(\rep(X),\mathrm{d}a)\Big]
+  \;\ge\; \Expect\big[\,G(q_{\rep})\,\big],
+\]
+where the middle equality replaces $\Expect[\loss(Y,a)\mid\sigalg{\rep}]$ by the
+posterior integral (\cref{prop:disint}) and the inequality bounds the inner
+$a$-integral below by its infimum \eqref{eq:bayes-loss-functional}. Taking the
+infimum over $\kernel{K}$ gives $\bayesrisk(\rep)\ge\Expect[G(q_{\rep})]$. For
+the reverse inequality, let $z\mapsto a^{\star}(z)$ be a measurable Bayes act,
+$a^{\star}(z)\in\arg\min_{a}\int\loss(y,a)\,\post{\rep}(z,\mathrm{d}y)$ (its
+existence is the standing hypothesis, supplied by \cref{prop:disint}). The
+deterministic predictor $\kernel{K}^{\star}(z,\cdot)=\delta_{a^{\star}(z)}$
+attains $\risk(\kernel{K}^{\star};\rep)=\Expect[G(q_{\rep})]$, proving
+\eqref{eq:risk-as-posterior}.
+
+$G$ is an infimum of the affine maps $q\mapsto\int\loss(\cdot,a)\,\mathrm{d}q$,
+hence concave. For monotonicity, $\sigalg{\rep'}\subseteq\sigalg{\rep}$ makes
+$q_{\rep'}=\Expect[q_{\rep}\mid\sigalg{\rep'}]$ (the tower rule, applied to each
+$B\in\Bor{\Yspace}$), so by conditional Jensen for the concave $G$,
+$\Expect[G(q_{\rep})\mid\sigalg{\rep'}]\le G(q_{\rep'})$; taking expectations
+and using \eqref{eq:risk-as-posterior} twice gives
+$\bayesrisk(\rep)\le\bayesrisk(\rep')$.
+\end{proof}
+
+\begin{lemma}[Sufficiency collapses the posterior]
+\label{lem:suff-collapse}
+A representation $\rep$ is sufficient for $Y$ (\cref{def:sufficiency}) if and
+only if $q_{\rep}=q_{\mathrm{id}}$ $\Prob$-a.s., i.e.\
+$\post{\rep}(\rep(X),\cdot)=\post{\mathrm{id}}(X,\cdot)$ almost surely.
+\end{lemma}
+
+\begin{proof}
+Sufficiency is the conditional independence $Y\indep X\given\rep(X)$
+(\cref{def:sufficiency}), equivalently: for every $B\in\Bor{\Yspace}$ the
+full-information posterior $\Prob(Y\in B\given\Bor{\Xspace})$ is
+$\sigalg{\rep}$-measurable ($\Prob$-a.s.). Since
+$\sigalg{\rep}\subseteq\Bor{\Xspace}$, the tower rule \eqref{eq:tower} gives
+$\Prob(Y\in B\given\sigalg{\rep})=\Expect[\Prob(Y\in B\given\Bor{\Xspace})
+\given\sigalg{\rep}]$; when the inner variable is itself
+$\sigalg{\rep}$-measurable this conditional expectation returns it, so
+$\Prob(Y\in B\given\Bor{\Xspace})=\Prob(Y\in B\given\sigalg{\rep})$ a.s. As
+$\Yspace$ is standard Borel (\cref{ass:sbs}) the exceptional null set may be
+chosen uniformly over a countable generating field for $\Bor{\Yspace}$ and the
+identity extended to all $B$ by a monotone-class argument, yielding equality of
+the regular conditional laws $q_{\mathrm{id}}=q_{\rep}$ a.s.\
+\citep[Thm.~6.3]{kallenberg2002foundations}. Conversely, if
+$q_{\rep}=q_{\mathrm{id}}$ a.s.\ then $q_{\mathrm{id}}$ is
+$\sigalg{\rep}$-measurable, which is sufficiency.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:irrelevance}]
+By \cref{prop:suff-iff-mi}, the parity hypothesis $\rep\parityeq\rep'$
+(\cref{def:parity}, the equality \eqref{eq:parity}) is exactly that both $\rep$
+and $\rep'$ are sufficient for $Y$. By \cref{lem:suff-collapse} applied to each,
+\[
+  q_{\rep} \;=\; q_{\mathrm{id}} \;=\; q_{\rep'} \qquad \Prob\text{-a.s.}
+\]
+Apply the functional identity \eqref{eq:risk-as-posterior} of
+\cref{lem:bayes-functional} to $\rep$, to $\mathrm{id}$, and to $\rep'$: the
+three integrands $G(q_{\rep})$, $G(q_{\mathrm{id}})$, $G(q_{\rep'})$ coincide
+a.s., so their expectations agree, giving
+$\bayesrisk(\rep)=\bayesrisk(\mathrm{id})=\bayesrisk(\rep')$, which is
+\eqref{eq:irrelevance}.
+\idealization{The identity holds for the Bayes predictor $\post{\rep}$ of
+\cref{prop:disint} (idealization~(i), Bayes-optimality) and under exact equality
+\eqref{eq:parity} of mutual informations (idealization~(ii), exact parity); see
+\cref{rem:slogan}. \cref{sec:bounded} relaxes~(i) and \cref{sec:parity-defect}
+quantifies the failure of~(ii). No step uses absolute parity
+(\cref{def:parity}); $\sigalg{\rep}=\sigalg{\rep'}$ is never invoked, only the
+a.s.\ equality of posteriors that operational parity already supplies.}
+\end{proof}
+
+\begin{proof}[Proof of \cref{cor:ratedist-gap}]
+Monotonicity $\bayesrisk(\rep)\ge\bayesrisk(\mathrm{id})$ is the refinement
+inequality of \cref{lem:bayes-functional} with
+$\sigalg{\rep}\subseteq\Bor{\Xspace}=\sigalg{\mathrm{id}}$; and
+$\infogap{\rep}=0$ iff $\rep$ is sufficient by \cref{prop:suff-iff-mi}.
+
+\emph{(a) Logarithmic loss.} With $\Aspace=\mathcal{P}(\Yspace)$ and
+$\loss(y,q)=-\log q(y)$, for a fixed belief $p\in\mathcal{P}(\Yspace)$ the
+posterior Bayes loss \eqref{eq:bayes-loss-functional} is
+$G(p)=\inf_{q}\int(-\log q)\,\mathrm{d}p
+=\inf_{q}\big(\Ent{p}+\KL{p}{q}\big)=\Ent{p}$, the infimum attained at $q=p$ by
+Gibbs' inequality (\cref{def:kl}). Hence by \eqref{eq:risk-as-posterior}
+$\bayesrisk(\rep)=\Expect[\Ent{q_{\rep}}]=\CondEnt{Y}{\rep(X)}$ and likewise
+$\bayesrisk(\mathrm{id})=\CondEnt{Y}{X}$. Subtracting and using
+$\CondEnt{Y}{U}=\Ent{Y}-\MI{Y}{U}$ (\cref{def:mi}) for $U\in\{\rep(X),X\}$,
+\[
+  \bayesrisk(\rep)-\bayesrisk(\mathrm{id})
+  = \CondEnt{Y}{\rep(X)}-\CondEnt{Y}{X}
+  = \MI{Y}{X}-\MI{Y}{\rep(X)}
+  = \infogap{\rep},
+\]
+which is \eqref{eq:logloss-exact}.
+
+\emph{(b) Bounded loss.} Write $q_{\rep}=\Expect[q_{\mathrm{id}}\mid
+\sigalg{\rep}]$ (tower rule, as in \cref{lem:bayes-functional}). By
+\eqref{eq:risk-as-posterior},
+\[
+  \bayesrisk(\rep)-\bayesrisk(\mathrm{id})
+  = \Expect\big[G(q_{\rep})-G(q_{\mathrm{id}})\big]
+  \;\le\; \Expect\big[\,\big|G(q_{\rep})-G(q_{\mathrm{id}})\big|\,\big].
+\]
+For any $q,q'\in\mathcal{P}(\Yspace)$, let $a'$ be a Bayes act for $q'$; then
+$G(q)-G(q')\le\int\loss(\cdot,a')\,\mathrm{d}(q-q')\le\|\loss\|_\infty
+\,\|q-q'\|_{\mathrm{TV}}$, where $\|q-q'\|_{\mathrm{TV}}=\sup_{B}|q(B)-q'(B)|$,
+because $\loss(\cdot,a')\ge0$ has oscillation at most $\|\loss\|_\infty$; by
+symmetry $|G(q)-G(q')|\le\|\loss\|_\infty\|q-q'\|_{\mathrm{TV}}$. Therefore
+\[
+  \bayesrisk(\rep)-\bayesrisk(\mathrm{id})
+  \;\le\; \|\loss\|_\infty\,\Expect\big[\,\|q_{\rep}-q_{\mathrm{id}}\|_{\mathrm{TV}}\,\big].
+\]
+Pinsker's inequality
+$\|q_{\mathrm{id}}-q_{\rep}\|_{\mathrm{TV}}\le\sqrt{\tfrac12\KL{q_{\mathrm{id}}}{q_{\rep}}}$
+and Jensen's inequality for the concave square root give
+$\Expect[\|q_{\mathrm{id}}-q_{\rep}\|_{\mathrm{TV}}]\le
+\sqrt{\tfrac12\,\Expect[\KL{q_{\mathrm{id}}}{q_{\rep}}]}$. Finally, since
+$\rep(X)$ is a measurable function of $X$, the chain rule \eqref{eq:chainrule}
+gives $\MI{Y}{X}=\MI{Y}{\rep(X)}+\MI{Y}{X\given\rep(X)}$, whence
+\begin{align*}
+  \Expect\big[\KL{q_{\mathrm{id}}}{q_{\rep}}\big]
+  &= \Expect\big[\KL{\post{\mathrm{id}}(X,\cdot)}{\post{\rep}(\rep(X),\cdot)}\big]
+   = \MI{Y}{X\given\rep(X)} \\
+  &= \MI{Y}{X}-\MI{Y}{\rep(X)}
+   = \infogap{\rep},
+\end{align*}
+the second equality being the disintegrated form of conditional mutual
+information \citep[Thm.~2.5.2 and eq.~(2.61)]{coverthomas2006}. Combining the
+last three displays yields
+$\bayesrisk(\rep)-\bayesrisk(\mathrm{id})\le\|\loss\|_\infty\sqrt{\tfrac12\infogap{\rep}}$,
+which is \eqref{eq:ratedist-bound}; the lower bound $0$ is the monotonicity
+already shown.
+\idealization{Both bounds are statements about the \emph{Bayes} risk
+(idealization~(i) retained); they relax exact parity (idealization~(ii)) to the
+lossy case and make the failure quantitative through $\infogap{\rep}$. The
+conversion of $\infogap{\rep}$ into a \emph{bounded}-predictor risk gap is not
+established here; it is the go/no-go obligation of \cref{sec:parity-defect}
+(T2-5). Identity~(a) is exact but specific to the log loss; bound~(b) is general
+but, through Pinsker, loose by a square root --- neither is claimed to be the
+risk gap of a real frozen LLM.}
+\end{proof}

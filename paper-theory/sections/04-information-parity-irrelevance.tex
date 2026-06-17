@@ -455,26 +455,123 @@ The ledger's value is that it localizes \emph{where} each idealization is
 spent, so no single theorem carries more than it states.}
 \end{remark}
 
-\subsection{The irrelevance theorem (deferred to T2-2)}
+\subsection{The irrelevance theorem}
 \label{subsec:irrelevance}
 
 With parity defined (\cref{def:parity}) and the data-processing inequality in
-hand (\cref{lem:dpi,cor:dpi-rep}), the at-optimum invariance theorem is the
-statement that \eqref{eq:parity} forces $\bayesrisk(\rep)=\bayesrisk(\rep')$.
-The proof (sufficiency $\Rightarrow$ equal posteriors $\Rightarrow$ equal
-Bayes risk, with a rate--distortion corollary for the lossy case of
-\cref{rem:lossy-defect}) is the content of T2-2; the statement is recorded
-here as a placeholder so that the foundations above have a visible target.
+hand (\cref{lem:dpi,cor:dpi-rep}), the at-optimum invariance is now a theorem:
+operational parity \eqref{eq:parity} forces the Bayes risks to coincide. This
+is the load-bearing result of the paper --- the formal statement that makes the
+\texttt{preprint-v1} T1 null a \emph{prediction} (charter~G1) rather than a
+disappointment. The argument is the one previewed after \cref{def:bayesrisk}:
+sufficiency makes the regular conditional law of $Y$ given the representation
+agree with the law given the raw input (\cref{prop:disint}), and Bayes risk is
+a functional of that conditional law; equal posteriors therefore force equal
+Bayes risk. The proof is carried out in full in \cref{app:irrelevance}; we
+state the result and its rate--distortion corollary here, each with its
+idealization disclosure.
 
-\begin{theorem}[Irrelevance at optimum --- placeholder]
+\begin{theorem}[Irrelevance at optimum]
 \label{thm:irrelevance}
-\emph{[Placeholder for T2-2.]} Under information parity
-$\rep \parityeq \rep'$ (\cref{def:parity}), the Bayes risk is
-format-invariant: $\bayesrisk(\rep) = \bayesrisk(\rep') = \bayesrisk(\mathrm{id})$.
-\idealization{This statement assumes Bayes-optimality (the
-infinite-capacity limit) and exact operational parity. A real frozen LLM
-satisfies neither; \cref{sec:parity-defect} quantifies the parity defect and
-\cref{sec:bounded} relaxes the capacity idealization. ``Parity is
-operational, not absolute'' (preprint §3.3) is carried in here as the formal
-caveat of \cref{rem:which-parity}.}
+Let $\loss$ be a loss admitting a measurable Bayes act (so that
+\cref{prop:disint} applies), and let $\rep,\rep'$ be representations in
+operational information parity for $Y$, i.e.\ $\rep \parityeq \rep'$
+(\cref{def:parity}). Then the Bayes risk is format-invariant:
+\begin{equation}
+  \label{eq:irrelevance}
+  \bayesrisk(\rep) \;=\; \bayesrisk(\rep') \;=\; \bayesrisk(\mathrm{id}).
+\end{equation}
 \end{theorem}
+
+\begin{remark}[The precise slogan]
+\label{rem:slogan}
+\cref{thm:irrelevance} is the exact content of ``at constant information, the
+optimum cannot distinguish format.'' Each clause is now a named object:
+\emph{constant information} is the parity equality \eqref{eq:parity},
+$\MI{Y}{\rep(X)} = \MI{Y}{\rep'(X)} = \MI{Y}{X}$; \emph{the optimum} is the
+Bayes predictor $\post{\rep}$ of \cref{prop:disint}, the infinite-capacity
+posterior and not any realizable learner; \emph{cannot distinguish format} is
+\eqref{eq:irrelevance}, equality of the information-limit risks. The theorem is
+silent on which representation a \emph{bounded} predictor prefers: that is the
+whole subject of \cref{sec:bounded}, and this negative result is exactly what
+makes the positive question there well posed rather than confounded by an
+information difference.
+\idealization{\eqref{eq:irrelevance} holds at two idealizations, neither met by
+a frozen LLM. \emph{(i)~Bayes-optimality.} $\bayesrisk(\rep)$ is the
+infinite-capacity information limit (\cref{def:bayesrisk}), attained only by the
+posterior $\post{\rep}$; a finite-capacity predictor does not reach it, and the
+residual gap is precisely where format may act (\cref{sec:bounded}).
+\emph{(ii)~Exact parity.} \eqref{eq:parity} is an exact equality of mutual
+informations under the fixed but unknown data law $\jlaw$, whereas a constructed
+control attains it only up to a measured defect: $\ladderplus$ and $\ladder{4}$
+are designed for operational parity but are not byte-identical
+(\cref{prop:abs-strict}), and \cref{sec:parity-defect} quantifies the residual.
+By the ledger (\cref{tab:parity-ledger}) every downstream invocation of this
+theorem inherits these two idealizations and no others.}
+\end{remark}
+
+When a representation is \emph{not} sufficient, \eqref{eq:irrelevance} fails,
+but not arbitrarily: the inflation of Bayes risk is controlled by the
+information the representation loses. This is the rate--distortion reading
+promised in \cref{rem:lossy-defect}, and it is what turns ``how far from
+parity'' into a bound on ``how far from optimal.''
+
+\begin{corollary}[Rate--distortion bound on the parity defect]
+\label{cor:ratedist-gap}
+For a representation $\rep$ write its \emph{information gap} as
+\[
+  \infogap{\rep} \;\defeq\; \MI{Y}{X} - \MI{Y}{\rep(X)} \;\ge\; 0,
+\]
+which is $0$ iff $\rep$ is sufficient for $Y$ (\cref{prop:suff-iff-mi}). The
+Bayes risk inflates monotonically with the gap, $\bayesrisk(\rep) \ge
+\bayesrisk(\mathrm{id})$, and the inflation is bounded as follows.
+\begin{enumerate}
+  \item[(a)] \emph{(Logarithmic loss --- exact.)} For the log loss
+    $\loss(y,q) = -\log q(y)$ over predictive distributions
+    $q \in \Aspace = \mathcal{P}(\Yspace)$ on a discrete $\Yspace$, the Bayes
+    risk is conditional entropy and the inflation \emph{equals} the lost
+    information:
+    \begin{equation}
+      \label{eq:logloss-exact}
+      \bayesrisk(\rep) - \bayesrisk(\mathrm{id})
+      \;=\; \CondEnt{Y}{\rep(X)} - \CondEnt{Y}{X}
+      \;=\; \infogap{\rep}.
+    \end{equation}
+  \item[(b)] \emph{(Bounded loss --- general.)} For any loss with
+    $\|\loss\|_\infty \defeq \sup_{y,a}\loss(y,a) < \infty$,
+    \begin{equation}
+      \label{eq:ratedist-bound}
+      0 \;\le\; \bayesrisk(\rep) - \bayesrisk(\mathrm{id})
+        \;\le\; \|\loss\|_\infty\,\sqrt{\tfrac12\,\infogap{\rep}}.
+    \end{equation}
+\end{enumerate}
+In particular the inflation is continuous in the information gap and vanishes as
+$\infogap{\rep}\to 0$; parity is the boundary case $\infogap{\rep}=0$ at which
+both bounds collapse to the equality \eqref{eq:irrelevance}.
+\end{corollary}
+
+\begin{remark}[Reading the corollary, and its handoff to \cref{sec:parity-defect}]
+\label{rem:ratedist-reading}
+Identity \eqref{eq:logloss-exact} is the rate--distortion statement in its
+sharpest form: under the canonical proper loss the achievable Bayes risk is
+exactly the conditional entropy, so the distortion floor and the retained rate
+$\MI{Y}{\rep(X)}$ move together, and the parity boundary $D=0$ of
+\cref{rem:lossy-defect} is the sufficiency boundary $\infogap{\rep}=0$. Bound
+\eqref{eq:ratedist-bound} is the general guarantee --- a representation that
+loses little predictive information cannot inflate the optimal risk by much,
+whatever the bounded loss. Both are statements about the \emph{optimum}, and
+both reach equality at parity. The residual they cannot see is the one
+\cref{sec:parity-defect} measures: two representations with
+$\infogap{\rep}=\infogap{\rep'}=0$ --- exact information parity, zero inflation
+here --- may still drive a \emph{bounded} predictor to different predictive
+laws, and the parity defect $\paritydefect$ \eqref{eq:parity-defect} is exactly
+that bounded-regime residual, invisible at the optimum by
+\cref{thm:irrelevance}.
+\idealization{\cref{cor:ratedist-gap} relaxes idealization~(ii) of
+\cref{rem:slogan} --- it is the lossy, off-parity case --- but retains~(i): it
+bounds the inflation of the \emph{Bayes} risk, not of a bounded predictor's
+risk. The information gap $\infogap{\rep}$ is an exact quantity whose zero set
+is characterized by the factorization \cref{prop:fisher-neyman}; converting it
+into a \emph{bounded}-predictor risk gap is not done here and is the open
+obligation handed to \cref{sec:parity-defect} (T2-5) under its go/no-go.}
+\end{remark}
