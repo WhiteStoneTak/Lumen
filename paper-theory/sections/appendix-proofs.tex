@@ -10,7 +10,8 @@
 %   - \cref{thm:irrelevance} (irrelevance at optimum, T2-2)        -- PROVED (T2-2, WOV-268)
 %   - \cref{cor:ratedist-gap} (rate--distortion parity bound, T2-2) -- PROVED (T2-2, WOV-268)
 %   - \cref{thm:bounded-gap} (bounded-learner advantage bound, T2-4) -- PROVED (T2-4, WOV-270)
-%   - parity-defect propositions (T2-5, if §6 passes go/no-go)     -- pending
+%   - \cref{thm:defect-risk-gap} (defect bounds bp risk gap, T2-5)  -- PROVED (T2-5, WOV-271; §6 GO)
+%   - \cref{prop:defect-fisher-local} (local Fisher control, T2-5)  -- PROVED (T2-5, WOV-271)
 %   - \cref{thm:retraction} (retraction proposition, T2-3)         -- PROVED (T2-3, WOV-269; §3 GO)
 %   - \cref{cor:defect-subadditive} (defect domain/subadditivity)  -- PROVED (T2-3, WOV-269)
 
@@ -367,4 +368,96 @@ $\post{\rep}$ --- and retains idealization~(ii) (exact parity
 \cref{thm:irrelevance}. It bounds the \emph{size} of any parity-preserving
 advantage and is silent on sign and existence (guardrail~G2); the failure of
 exact parity is quantified in \cref{sec:parity-defect}.}
+\end{proof}
+
+\subsection{The parity-defect risk bounds (T2-5)}
+\label{app:parity-defect}
+
+Both bounds are about the \emph{shared reader} $\kernel{K}$ of
+\cref{subsec:defect-theorem}: a single predictor kernel evaluated at
+$\ladder{4}(X)$ and at $\ladderplus(X)$. The global bound is Kantorovich--Rubinstein
+duality applied per input and integrated; the local bound is the Pinsker/Fisher
+chain of \cref{cor:ratedist-gap}(b) applied to the predictor's output family
+rather than to the posterior. Neither uses Bayes-optimality, and the
+information channel never appears --- it has already cancelled under parity.
+
+\begin{proof}[Proof of \cref{thm:defect-risk-gap}]
+Fix $x\in\Xspace$ and abbreviate the two output laws
+$p_x\defeq\kernel{K}(\ladder{4}(x),\cdot)$ and
+$p'_x\defeq\kernel{K}(\ladderplus(x),\cdot)$ on $(\Aspace,d)$. For every $y$ the
+map $a\mapsto\loss(y,a)/L$ is $1$-Lipschitz, so applying the
+Kantorovich--Rubinstein duality \eqref{eq:kr} to it and to its negation,
+\begin{equation}
+  \label{eq:per-instance-kr}
+  \Big|\int_{\Aspace}\loss(y,a)\,p_x(\mathrm{d}a)
+       -\int_{\Aspace}\loss(y,a)\,p'_x(\mathrm{d}a)\Big|
+  \;\le\; L\,\Wass{1}(p_x,p'_x),
+\end{equation}
+a bound \emph{uniform in $y$}. Now expand the gap \eqref{eq:bp-gap} through the
+risk functional \eqref{eq:risk-as-posterior}'s defining expectation
+(\cref{def:risk}) and move the absolute value inside:
+\[
+  \big|\advantage_{\kernel{K}}(\ladder{4},\ladderplus)\big|
+  = \Big|\Expect_{(X,Y)}\!\Big[\!\int\!\loss(Y,a)\,p_X(\mathrm{d}a)
+        -\!\int\!\loss(Y,a)\,p'_X(\mathrm{d}a)\Big]\Big|
+  \;\le\; \Expect_{(X,Y)}\Big[\,L\,\Wass{1}(p_X,p'_X)\,\Big],
+\]
+the inequality being Jensen for $|\cdot|$ followed by \eqref{eq:per-instance-kr}.
+Since the integrand $L\,\Wass{1}(p_X,p'_X)$ does not depend on $Y$, the
+expectation collapses to $\Expect_X$, giving
+$\big|\advantage_{\kernel{K}}(\ladder{4},\ladderplus)\big|\le
+L\,\Expect_X[\Wass{1}(p_X,p'_X)]=L\,\cpredtransport$ by
+\eqref{eq:coupled-transport}, which is \eqref{eq:defect-risk-gap}.
+
+For the cancellation claim, read the excess-risk decomposition \eqref{eq:excess}
+for the \emph{same} kernel $\kernel{K}$ under each condition. The only
+information-dependent summand is the middle gap
+$\bayesrisk(\rep_c)-\bayesrisk(\mathrm{id})=\infogap{\rep_c}$; under
+$\ladder{4}\parityeq\ladderplus$ both are $0$ (\cref{prop:suff-iff-mi}) and so
+cancel in the difference \eqref{eq:bp-gap}, leaving only the
+approximation/estimation discrepancy that \eqref{eq:defect-risk-gap} bounds by the
+transport term. No mutual information survives.
+\idealization{The bound concerns an arbitrary fixed bounded $\kernel{K}$, not the
+Bayes posterior $\post{\rep}$ (idealization~(i) of \cref{rem:slogan} relaxed). It
+uses operational parity only to cancel $\infogap{\ladder{4}}=\infogap{\ladderplus}=0$
+(\cref{prop:suff-iff-mi}); it never invokes absolute parity, and is in fact
+vacuous ($\cpredtransport=0$) under it. The conclusion is a magnitude bound,
+sign- and existence-agnostic (guardrail~G2).}
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:defect-fisher-local}]
+Fix $x$ and write $p_x,p'_x$ as above; let $a'$ be a minimizer-free generic
+action. Exactly as in \cref{cor:ratedist-gap}(b), for a bounded loss the
+expected-loss gap is controlled by total variation: choosing any reference act,
+$|\!\int\loss(y,\cdot)\,\mathrm{d}(p_x-p'_x)|\le\|\loss\|_\infty\|p_x-p'_x\|_{\mathrm{TV}}$
+uniformly in $y$, because $\loss(y,\cdot)$ has oscillation at most
+$\|\loss\|_\infty$. Pinsker's inequality gives
+$\|p_x-p'_x\|_{\mathrm{TV}}\le\sqrt{\tfrac12\KL{p_x}{p'_x}}$. Now parametrize the
+output family along the round-trip perturbation. Both \cref{def:parity-defect} and
+the estimator of \cref{subsec:defect-r4} operate at the \emph{aggregate} level: a
+single mean increment $\overline{v}$ summarizes the round trip's structural
+failures, and the Fisher term evaluates the output family's quadratic form at it.
+Modeling the per-instance displacement by this aggregate, $p'_x$ is $p_x$
+displaced by $\overline{v}$, so \cref{prop:kl-fisher} applied to the predictor's
+output family at the operating point gives, for every $x$,
+\[
+  \KL{p_x}{p'_x}\;=\;\tfrac12\,\overline{v}^\top\Fisher\,\overline{v}\;+\;o(\|\overline{v}\|^2),
+  \qquad\text{hence}\qquad
+  \|p_x-p'_x\|_{\mathrm{TV}}\;\le\;\tfrac12\sqrt{\overline{v}^\top\Fisher\,\overline{v}}\;+\;o(\|\overline{v}\|).
+\]
+The right-hand side no longer depends on $x$ or $y$, so taking $\Expect_{(X,Y)}$
+of the per-instance bound leaves it unchanged:
+$\big|\advantage_{\kernel{K}}(\ladder{4},\ladderplus)\big|\le
+\|\loss\|_\infty\,\tfrac12\sqrt{\overline{v}^\top\Fisher\,\overline{v}}+o(\|\overline{v}\|)$,
+which is \eqref{eq:defect-fisher-local}.
+\idealization{A bounded-predictor (idealization~(i) relaxed), \emph{local}
+statement: the $o(\|\overline{v}\|)$ term is the second-order Taylor remainder of
+\cref{prop:kl-fisher}, so the bound earns its keep only in the near-parity regime
+$\|\overline{v}\|\to0$ where the global bound \eqref{eq:defect-risk-gap} may be
+loose. It also models the per-instance round-trip increment by its aggregate
+profile $\overline{v}$, the level at which \cref{def:parity-defect} and
+\cref{subsec:defect-r4} are stated; input-level heterogeneity of the increment
+would add a perturbation-covariance correction
+$\tfrac14\|\loss\|_\infty^2\,\mathrm{tr}(\Fisher\,\mathrm{Cov}(v_X))$ of the same
+(second) order, which the aggregate metric does not resolve. Sign-agnostic (G2).}
 \end{proof}

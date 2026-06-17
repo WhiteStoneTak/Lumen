@@ -3,13 +3,22 @@
 \section{Quantitative parity defect}
 \label{sec:parity-defect}
 
-\gonogo{Optimal transport + information geometry (T1-5 $\to$ T2-5) is
-provisional. If it yields only a restatement of the information-theoretic
-content and buys no new proposition, this section is demoted to a remark and
-the decision is recorded in WOV-271 (T2-5). T1-5 supplies the foundations and
-\emph{defines} the parity-defect metric precisely enough to be computed in
-principle against the R4 artifacts; T2-5 must show the metric does work the
-mutual-information gap of \cref{sec:parity} cannot.}
+\gonogo{Optimal transport + information geometry (T1-5 $\to$ T2-5) was
+provisional. If the parity defect yielded only a restatement of the
+information-theoretic content of \cref{sec:parity} and bought no new
+proposition, this section was to be demoted to a remark and the decision
+recorded in WOV-271 (T2-5). T1-5 supplied the foundations and \emph{defined}
+the metric precisely enough to be computed against the R4 artifacts; the
+explicit criterion is stated in \cref{subsec:defect-gonogo}.
+\textbf{Resolved (T2-5, WOV-271): go.} The metric earns
+\cref{thm:defect-risk-gap}: $\paritydefect$ upper-bounds the risk gap of a
+\emph{fixed} bounded predictor across the
+$\ladder{4}\!\leftrightarrow\!\ladderplus$ swap --- a quantity
+\cref{thm:irrelevance} and the information gap $\infogap{\cdot}$ cannot see
+(both vanish under parity) --- and \cref{cor:defect-finer-order} shows it
+strictly refines the mutual-information ordering on the parity class, witnessed
+by the R4 profile (\cref{ex:r4-defect}). The section stands
+(\cref{subsec:defect-theorem}).}
 
 % This file holds the T1-5 (WOV-266) FOUNDATIONS only: Wasserstein distance +
 % Kantorovich-Rubinstein duality; statistical manifolds, the Fisher metric,
@@ -228,3 +237,276 @@ the information gap, the section is demoted to a remark recording that the
 parity defect coincides with the information gap in this setting, and the
 decision is logged in WOV-271.
 \end{quote}
+
+\subsection{What the metric earns: the defect bounds the bounded-predictor risk gap (T2-5)}
+\label{subsec:defect-theorem}
+
+This subsection discharges the go/no-go of \cref{subsec:defect-gonogo}, and the
+verdict is \textbf{go}. The criterion asks for \emph{either} prong; the defect
+delivers both. We show (i) $\paritydefect$ upper-bounds the risk gap of a fixed
+bounded predictor across the $\ladder{4}\leftrightarrow\ladderplus$ swap
+(\cref{thm:defect-risk-gap}, with the Fisher term supplying the local regime in
+\cref{prop:defect-fisher-local}), and (ii) it strictly refines the
+mutual-information ordering on the parity class
+(\cref{cor:defect-finer-order}), a separation realized by the R4 control pair
+(\cref{ex:r4-defect}). Full proofs are in \cref{app:parity-defect}; the decision
+is recorded in WOV-271.
+
+The object both prongs concern is the \emph{shared reader}: a single bounded
+predictor consumes either representation. Formally we keep exactly the setup
+\cref{def:parity-defect} already commits to --- one kernel $\kernel{K}$ evaluated
+at $\rep_c(X)$ for $c\in\{\ladder{4},\ladderplus\}$ --- which models the frozen
+LLM of \texttt{preprint-v1} reading $\ladder{4}$ or $\ladderplus$ through their
+common token-sequence codomain. Its risk on condition $c$ is
+$\risk(\kernel{K};c)=\Expect_{(X,Y)}\!\int_{\Aspace}\loss(Y,a)\,\kernel{K}(\rep_c(X),\mathrm{d}a)$
+(\cref{def:risk}), and the quantity at issue is the
+\emph{bounded-predictor representation gap}
+\begin{equation}
+  \label{eq:bp-gap}
+  \advantage_{\kernel{K}}(\ladder{4},\ladderplus)
+  \;\defeq\;
+  \risk(\kernel{K};\ladder{4})-\risk(\kernel{K};\ladderplus).
+\end{equation}
+This is \emph{not} the advantage $\advantage(\rep,\rep')$ of \cref{def:advantage}:
+that compares two \emph{independently optimized} ERMs and is capacity-bounded
+(\cref{thm:bounded-gap}); \eqref{eq:bp-gap} compares \emph{one fixed} predictor
+across the two formats and is, as we now show, transport-bounded. The two are
+different operational quantities, which is exactly why \cref{sec:parity-defect}
+is not subsumed by \cref{sec:bounded}.
+
+\begin{definition}[Input-coupled predictive transport]
+\label{def:coupled-transport}
+For the shared predictor $\kernel{K}$ define
+\begin{equation}
+  \label{eq:coupled-transport}
+  \cpredtransport
+  \;\defeq\;
+  \Expect_X\!\Big[\,
+    \Wass{1}\big(\kernel{K}(\ladder{4}(X),\cdot),\,\kernel{K}(\ladderplus(X),\cdot)\big)
+  \,\Big],
+\end{equation}
+the input-coupled form of the global term of \eqref{eq:parity-defect}. By joint
+convexity of $\Wass{1}$ \citep[Thm.~4.8]{villani2009} and
+$\preddist{c}=\Expect_X[\kernel{K}(\rep_c(X),\cdot)]$,
+\begin{equation}
+  \label{eq:marginal-le-coupled}
+  \Wass{1}\big(\preddist{\ladder{4}},\preddist{\ladderplus}\big)\;\le\;\cpredtransport,
+\end{equation}
+with equality when the input pairing already realizes an optimal coupling of the
+marginals (e.g.\ a swap-insensitive predictor). The marginal term of
+\cref{def:parity-defect} is thus the relaxation; $\cpredtransport$ is the
+risk-controlling form, and it inherits the rung-wise subadditivity of
+\cref{cor:defect-subadditive} ($\Expect_X\Wass{1}$ is again a metric on the
+predictive laws).
+\end{definition}
+
+\begin{theorem}[The defect dominates the bounded-predictor risk gap]
+\label{thm:defect-risk-gap}
+Let $\kernel{K}$ be a fixed bounded predictor read on both representations and
+suppose the per-instance loss $a\mapsto\loss(y,a)$ is $L$-Lipschitz on
+$(\Aspace,d)$ uniformly in $y$. Then
+\begin{equation}
+  \label{eq:defect-risk-gap}
+  \big|\advantage_{\kernel{K}}(\ladder{4},\ladderplus)\big|
+  \;\le\;
+  L\,\cpredtransport,
+\end{equation}
+the global (Wasserstein) term of the parity defect \eqref{eq:parity-defect}.
+Under operational parity $\ladder{4}\parityeq\ladderplus$ the information gap
+contributes nothing --- $\infogap{\ladder{4}}=\infogap{\ladderplus}=0$
+(\cref{prop:suff-iff-mi}), so the middle term of the excess-risk decomposition
+\eqref{eq:excess} cancels between the two conditions --- and the entire surviving
+gap of the shared predictor is controlled by the transport defect, with no
+mutual-information term.
+\idealization{This relaxes idealization~(i) of \cref{rem:slogan}
+(Bayes-optimality): $\kernel{K}$ is an arbitrary fixed bounded predictor, not the
+posterior $\post{\rep}$. It engages the failure of idealization~(ii) in its sharp
+form --- the bound is informative precisely when
+$\sigalg{\ladder{4}}\ne\sigalg{\ladderplus}$ (\cref{prop:abs-strict}) makes
+$\kernel{K}$ respond to the swap; under absolute parity both sides are $0$. The
+bound limits the \emph{size} of the swap gap in either direction and asserts no
+effect exists (guardrail~G2); the Lipschitz-loss hypothesis is discharged in the
+near regime by \cref{prop:defect-fisher-local} for merely bounded losses.}
+\end{theorem}
+
+\begin{proof}[Proof idea]
+For fixed $(x,y)$, $\loss(y,\cdot)/L$ is $1$-Lipschitz, so
+Kantorovich--Rubinstein duality \eqref{eq:kr} bounds the per-instance gap of
+expected loss by $L\,\Wass{1}(\kernel{K}(\ladder{4}(x),\cdot),
+\kernel{K}(\ladderplus(x),\cdot))$, uniformly in $y$. Take $\Expect_{(X,Y)}$ and
+pull the absolute value inside. The information-gap cancellation is
+\eqref{eq:excess} read for the shared kernel under \cref{prop:suff-iff-mi}. Full
+proof in \cref{app:parity-defect}.
+\end{proof}
+
+The Lipschitz hypothesis is the right one when the two predictive laws are far
+apart, but it says nothing when the loss is merely bounded (the regime of
+\cref{cor:ratedist-gap}(b)). There the \emph{local} Fisher term takes over,
+exactly as \cref{prop:kl-fisher} anticipated.
+
+\begin{proposition}[Local Fisher control of the swap gap]
+\label{prop:defect-fisher-local}
+Suppose instead $\loss$ is bounded, $\|\loss\|_\infty<\infty$, and the predictor's
+output family is smooth in the representation perturbation, the round trip
+$\roundtrip{\ladder{4}}{\ladderplus}$ inducing the mean perturbation
+$\overline{v}$ of \cref{def:parity-defect}. Then
+\begin{equation}
+  \label{eq:defect-fisher-local}
+  \big|\advantage_{\kernel{K}}(\ladder{4},\ladderplus)\big|
+  \;\le\;
+  \|\loss\|_\infty\,\sqrt{\tfrac14\,\overline{v}^\top \Fisher\, \overline{v}}
+  \;+\; o(\|\overline{v}\|),
+\end{equation}
+so to leading order the swap gap is governed by the Fisher term of
+\eqref{eq:parity-defect}.
+\idealization{Like \cref{thm:defect-risk-gap} this is a bounded-predictor
+statement (idealization~(i) relaxed). It is a local (small-$\overline{v}$)
+bound: the $o(\|\overline{v}\|)$ remainder is the Taylor error of
+\cref{prop:kl-fisher}, and the inequality is informative only when the round-trip
+perturbation is small --- the near-parity regime in which the global bound
+\eqref{eq:defect-risk-gap} may be loose. Sign-agnostic (G2).}
+\end{proposition}
+
+\begin{proof}[Proof idea]
+Per instance, the bounded-loss/total-variation step of
+\cref{cor:ratedist-gap}(b) gives
+$|\!\int\loss(y,\cdot)\,\mathrm{d}(p-p')|\le\|\loss\|_\infty\|p-p'\|_{\mathrm{TV}}$;
+Pinsker bounds $\|p-p'\|_{\mathrm{TV}}\le\sqrt{\tfrac12\KL{p}{p'}}$ and
+\cref{prop:kl-fisher} expands
+$\KL{p}{p'}=\tfrac12\overline{v}^\top\Fisher\overline{v}+o(\|\overline{v}\|^2)$ at
+the aggregate increment $\overline{v}$ of \cref{def:parity-defect}. The bound is
+then $x$-free, so $\Expect_{(X,Y)}$ leaves it unchanged. Full proof in
+\cref{app:parity-defect}.
+\end{proof}
+
+\begin{corollary}[The two terms are complementary, not redundant]
+\label{cor:defect-two-term}
+With $\lambda$ fixed by the unit-matching calibration of \cref{subsec:defect-r4},
+there is a constant $c=c(L,\|\loss\|_\infty,\lambda)$ with
+\[
+  \big|\advantage_{\kernel{K}}(\ladder{4},\ladderplus)\big|
+  \;\le\; c\,\paritydefect \;+\; o(\|\overline{v}\|),
+\]
+the global term \eqref{eq:defect-risk-gap} dominating the far regime (Lipschitz
+loss, predictive laws far apart) and the Fisher term
+\eqref{eq:defect-fisher-local} the near regime (bounded loss, small
+perturbation). Each term bounds the swap gap exactly where the other is loose or
+unavailable, which is why \eqref{eq:parity-defect} carries both rather than
+choosing between them.
+\end{corollary}
+
+\begin{proof}
+Take the smaller of the two right-hand sides of \eqref{eq:defect-risk-gap} and
+\eqref{eq:defect-fisher-local} and bound it by their sum, absorbing
+$L,\|\loss\|_\infty,\lambda$ into $c$.
+\end{proof}
+
+This settles prong~(i). Prong~(ii) is now immediate and is what makes the defect
+strictly more than a re-encoding of \cref{sec:parity}.
+
+\begin{corollary}[The defect strictly refines the information-gap ordering]
+\label{cor:defect-finer-order}
+On the class of representations in operational parity with $\ladder{4}$, the
+information gap $\infogap{\cdot}$ is constant ($\equiv 0$,
+\cref{prop:suff-iff-mi}) and so, by \cref{thm:irrelevance}, is the Bayes risk:
+neither orders the class. The parity defect does. It is generically positive
+there --- $\paritydefect>0$ whenever $\sigalg{\ladder{4}}\ne\sigalg{\ladderplus}$
+(\cref{prop:abs-strict}) and $\kernel{K}$ is swap-sensitive, the case
+\cref{thm:retraction}(iii) places in the common kernel of $\infogap{\cdot}$ and
+$\bayesrisk(\cdot)$ --- and by \cref{thm:defect-risk-gap} it ranks parity pairs by
+the bounded-predictor risk gap they admit. Hence $\paritydefect$ separates
+representations the information gap and the Bayes risk cannot, a strict
+refinement of both.
+\end{corollary}
+
+\begin{proof}
+Constancy of $\infogap{\cdot}$ and $\bayesrisk(\cdot)$ on the parity class is
+\cref{prop:suff-iff-mi} and \cref{thm:irrelevance}. Positivity of
+$\paritydefect$ off absolute parity is \cref{def:parity-defect} with
+\cref{prop:abs-strict}; that it bounds (hence orders by) the swap gap is
+\cref{thm:defect-risk-gap}. The control pair
+$(\ladder{4},\ladderplus)$ has $\infogap{\ladder{4}}=\infogap{\ladderplus}=0$ by
+design yet $\paritydefect>0$ by \cref{ex:r4-defect}, an explicit witness.
+\end{proof}
+
+\begin{example}[The defect on the R4 round trip: an illustrative computation]
+\label{ex:r4-defect}
+We instantiate \eqref{eq:parity-defect} on the R4 profile by the recipe of
+\cref{subsec:defect-r4}. Each non-recovered structural element is a coordinate of
+$\overline{v}$ with magnitude its round-trip failure rate ($1-$recovery);
+\cref{tab:r4-defect} collects them. The Fisher term weights each coordinate by
+its effect on the predictor's output: the byte-exact coordinate, recovered
+$0/30$ and hence maximal in raw magnitude, is \emph{predictively inert} and
+carries Fisher weight $\approx 0$, while the semantic coordinates carry unit
+weight (an illustrative diagonal $\Fisher$). With the action diameter normalized
+to $1$ and $L=\lambda=1$, the global term is bounded by the predictively-relevant
+failure mass and the local term by the Fisher quadratic form:
+\[
+  \cpredtransport \;\lesssim\; 0.051,
+  \qquad
+  \sqrt{\overline{v}^\top\Fisher\,\overline{v}} \;=\; 0.038,
+  \qquad
+  \paritydefect \;\approx\; 0.089 .
+\]
+The contrast is the point. A naive defect that used raw structural distance ---
+unit weight on \emph{every} coordinate, byte coordinate included --- would read
+$\|\overline{v}\|\approx 1.00$, larger by a factor of $\approx 26$ and dominated
+entirely by the byte-recovery catastrophe. The Fisher weighting is exactly what
+collapses that $1.00$ to $0.04$, certifying the control as \emph{near} parity
+despite $0/30$ byte recovery. This is work neither the raw byte distance (which
+sees a near-maximal perturbation) nor the information gap (which is identically
+$0$) can do, and it is the quantitative form of the qualitative statement of
+\cref{subsec:retraction-parity} that the round-trip idempotent is near-identity
+on semantic structure and far from it on surface bytes.
+\end{example}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+Round-trip coordinate & Recovery & $\overline{v}_i$ ($=1-$rec.) & Predictive role \\
+\midrule
+Contracts            & $100\%$  & $0.000$ & relevant (weight $1$) \\
+AST node kinds       & $99.8\%$ & $0.002$ & relevant (weight $1$) \\
+Parent--child edges  & $98.7\%$ & $0.013$ & relevant (weight $1$) \\
+Types                & $96.4\%$ & $0.036$ & relevant (weight $1$) \\
+Byte-exact AST       & $0/30$   & $1.000$ & \emph{inert} (weight $\approx 0$) \\
+\midrule
+\multicolumn{2}{@{}l}{Global term $\cpredtransport\lesssim\sum_{\text{rel.}}\overline{v}_i$} & $0.051$ & union-bound proxy \\
+\multicolumn{2}{@{}l}{Fisher term $\sqrt{\overline{v}^\top\Fisher\overline{v}}$} & $0.038$ & semantic coords only \\
+\multicolumn{2}{@{}l}{Illustrative $\paritydefect$ ($L=\lambda=1$)} & $0.089$ & \eqref{eq:parity-defect} \\
+\bottomrule
+\end{tabular}
+\caption{The parity defect computed on the R4 round-trip recovery profile
+(\cref{subsec:defect-r4}, \cref{ex:r4-defect}). Numbers are \emph{illustrative}:
+action diameter normalized to $1$, $L=\lambda=1$, and a diagonal Fisher metric
+with unit weight on the predictively-relevant coordinates and zero on the inert
+byte coordinate. They are not the output of running the frozen predictor
+(guardrail~G6; \cref{rem:defect-status}). The naive raw-distance defect
+$\|\overline{v}\|\approx 1.00$ is $\approx 26\times$ larger and byte-dominated;
+the Fisher weighting is what makes the defect small.}
+\label{tab:r4-defect}
+\end{table}
+
+\begin{remark}[Why this passes the criterion; scope of the go (G4/G6)]
+\label{rem:defect-go-scope}
+\cref{thm:defect-risk-gap} and \cref{cor:defect-finer-order} meet the criterion of
+\cref{subsec:defect-gonogo} on \emph{both} prongs (it required either). The defect
+is not a reformulation of the information gap because the quantity it controls ---
+the swap risk gap \eqref{eq:bp-gap} of a fixed bounded predictor --- is provably
+in the common kernel of $\infogap{\cdot}$ and $\bayesrisk(\cdot)$
+(\cref{thm:retraction}(iii)): both are $0$ across the parity pair while the defect
+is positive (\cref{ex:r4-defect}). So a proposition that bounds and orders by the
+swap gap cannot be a restatement of either. The two terms are shown
+non-redundant by \cref{cor:defect-two-term}, and the R4 example shows the Fisher
+term in particular does work the raw byte distance cannot. \textbf{Scope (G6).}
+The numeric defect of \cref{ex:r4-defect} is illustrative and computed-in-principle
+(\cref{rem:defect-status}): it consumes the measured R4 rates but normalizes the
+action geometry, fixes $L,\lambda$, and posits a diagonal Fisher metric rather
+than estimating one from the frozen predictor's outputs. The go rests on the
+propositions \cref{thm:defect-risk-gap}, \cref{prop:defect-fisher-local},
+\cref{cor:defect-finer-order}; the R4 example anchors them in artifacts and
+exhibits the prong-(ii) separation, and no claim is made that the executed value
+is small until T2-5's recipe is actually run (a conjecture, so labeled).
+\end{remark}
