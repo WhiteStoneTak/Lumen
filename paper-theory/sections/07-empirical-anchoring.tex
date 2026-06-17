@@ -2,19 +2,190 @@
 \section{Empirical anchoring}
 \label{sec:anchoring}
 
-% STUB (T3-1). Retrodict the Lumen T1 null and T3 ceiling through the theory;
-% state the limits of the mapping.
-%
-% Anchors (charter §5; frozen preprint-v1):
-%   - T1 clean null: H1/T1 r_rb = +0.10, raw p = 0.36, no rubric ceiling.
-%     This is the cleanest unconfounded datum and the PREDICTED
-%     information-limit outcome (guardrail G1) of \cref{thm:irrelevance}.
-%   - T3 ceiling: H1/T3 r_rb = +0.43, effective n ~ 5, 93.7% of scores at 1.0
-%     (measurement-limited, high-end saturation).
-%   - T2 moderate-but-multiplicity-absorbed positive (r_rb = +0.58).
-%
-% G1 discipline: the null is presented as a prediction, never explained away.
-% State explicitly what the theory does NOT establish about real LLMs.
+The preceding sections are self-contained mathematics: \cref{thm:irrelevance}
+closes the information channel at the optimum, \cref{thm:bounded-gap} bounds
+what remains for a bounded learner, and \cref{sec:parity-defect} measures the
+residual when parity is only operational. This section connects those results
+to the three frozen outcomes of \texttt{preprint-v1} --- the T1 clean null, the
+T3 ceiling, and the T2 moderate-but-absorbed positive --- by naming, for each,
+the theoretical regime it falls in. The exercise is strictly
+\emph{retrodiction}: every empirical number here is read off the frozen record,
+none is produced by the theory, and no new empirical claim is built (guardrail
+G2). The point is to show that the recorded outcomes are the ones the theory
+\emph{already permits}, and to be exact about where the mapping from an
+idealized learner to a single frozen LLM stops being a deduction and becomes an
+analogy.
 
-\noindent\emph{[Stub. Fills in T3-1. Retrodiction only; no new empirical
-claim is built here (guardrail G2).]}
+Three caveats bind the whole section and are stated once here rather than
+repeated. First, the frozen artifact is one fixed model queried under five
+representations, not an ERM ranging over a hypothesis class with a tunable
+sample size $\nsample$; the PAC/Rademacher objects of \cref{sec:bounded} are
+therefore read onto it by analogy, with the model's in-context behaviour
+standing in for $\widehat f_{\rep}$ and the task corpus for the draw $S$
+(disclosed again at each use). Second, the control is C1${}^{+}$ at
+\emph{operational} parity (\cref{def:parity}), not absolute parity, so every
+invocation of \cref{thm:irrelevance} below inherits idealization~(ii) of
+\cref{rem:slogan} and is corrected by the \cref{sec:parity-defect} defect.
+Third, none of what follows is a test: the theory is consistent with the record,
+which is necessary but not sufficient for the theory to be true.
+
+\subsection{The T1 null as the predicted information-limit outcome}
+\label{subsec:anchor-t1}
+
+The central H1 test on T1 --- the cleanest unconfounded cell, with no rubric
+ceiling --- recorded a rank-biserial effect $r_{\mathrm{rb}}=+0.10$ at raw
+$p=0.36$, a clean non-rejection of C4${}\le{}$C1${}^{+}$. Under the theory this
+is not a weak or disappointing positive; it is the \emph{predicted}
+outcome of the information-limit regime, and that prediction is exactly what
+guardrail~G1 forbids us to soften.
+
+The mechanism is \cref{thm:irrelevance}. C4 and C1${}^{+}$ are constructed for
+operational information parity, $\ladder{4}\parityeq\ladderplus$
+(\cref{tab:parity-ledger}), so their information gaps vanish,
+$\infogap{\ladder{4}}=\infogap{\ladderplus}=0$, and the at-optimum risks
+coincide: $\bayesrisk(\ladder{4})=\bayesrisk(\ladderplus)$. At the information
+limit there is simply no quantity for a format effect to be made of. What the
+empirical comparison then measures is the residual of
+\cref{thm:bounded-gap}: the advantage $\advantage(\ladderplus,\ladder{4})$ a
+\emph{bounded} predictor can extract once the information channel is closed,
+which the theorem caps at the capacity budget
+$\Phi(\ladderplus,\ladder{4};\nsample,\delta)$ --- a quantity built from the
+approximation gap and the induced-class Rademacher complexity, containing no
+mutual information. A near-zero observed effect is the statement that this
+budget was small (or unrealized) in T1's regime.
+
+\cref{prop:regime} says when that is expected. A near-zero advantage is the
+generic reading of its non-activation clause~(ii): absent a genuine capacity
+separation --- a positive approximation gap $\approxerr{\ladder{4}}<
+\approxerr{\ladderplus}$, or a finite-$\nsample$ estimation term comparable to
+it --- the permitted window is empty and the bound itself sits near zero. A
+frontier model on single-function, non-recursive Python is plausibly on the
+benign side of clause~(i)'s threshold (it generalizes from in-context structure
+rather than failing to), so the regime that \emph{could} have produced a large
+parity-preserving effect is the one the theory marks as requiring a separation
+T1 evidently did not supply. The null is thus doubly expected: forced toward
+zero at the optimum by \cref{thm:irrelevance}, and not pushed away from zero by
+the bounded term because T1 exhibits no capacity separation the theory can point
+to.
+
+\idealization{This subsection leans on both idealizations of
+\cref{rem:slogan}. (i)~The exact zero is the \emph{Bayes-optimal} risk equality;
+the frozen LLM is not the posterior $\post{\rep}$, so what is observed is the
+bounded residual of \cref{thm:bounded-gap}, and the claim is only that this
+residual is small, not that it is structurally zero. (ii)~Parity is operational,
+so $\infogap{\cdot}=0$ holds up to the \cref{sec:parity-defect} defect rather
+than exactly; the C1${}^{+}$/C4 byte asymmetry of \cref{prop:abs-strict} is the
+admitted slack. The mapping of $\widehat f_{\rep}$ onto a single model's
+in-context predictions is the analogy flagged in the preamble.}
+
+\subsection{The T3 ceiling as sub-frontier saturation}
+\label{subsec:anchor-t3}
+
+T3 records a larger point estimate, $r_{\mathrm{rb}}=+0.43$, but with
+$93.7\%$ of scores pinned at the maximum $1.0$ and an effective sample of
+$\nsample_{\mathrm{eff}}\approx 5$ after the ceiling censors the rest. It is
+tempting to read the larger $r$ as a latent structure effect that T1 lacked.
+The theory says the opposite, and assigns T3 to a \emph{different} regime than
+T1 --- this distinctness is the substantive content of the subsection.
+
+T1's null lives at the information limit (\cref{thm:irrelevance}): the channel
+is closed and the bounded residual is small. T3's ceiling lives instead at the
+\emph{floor of the risk}, where the bounded-learner gap is inactive for a reason
+unrelated to parity. When a task sits below the model's capacity frontier, the
+predictor realizes (near-)Bayes behaviour in \emph{every} representation:
+$\risk(\widehat f_{\rep})\to\bayesrisk(\mathrm{id})$ with
+$\approxerr{\rep}\to 0$ for each C-condition simultaneously. By
+\cref{cor:realizable-gap} the achievable advantage then collapses to the
+estimation term alone, and with the risk already at its floor there is no
+headroom in which any term --- capacity or otherwise --- can express itself: the
+saturation is the \emph{realizable, infinite-resource} corner of
+\cref{prop:regime}(iii), reached not by taking $\nsample\to\infty$ but by the
+task being easy enough that finite resources already suffice. The bounded gap is
+inactive because the frontier was never approached, which is a categorically
+different statement from T1's ``inactive because the information channel is
+closed.''
+
+On top of this theoretical saturation sits a measurement one, and the two must
+not be conflated. The $93.7\%$ ceiling censors the score distribution, so even
+if a sub-ceiling advantage existed it could not be resolved: with
+$\nsample_{\mathrm{eff}}\approx 5$ the $r_{\mathrm{rb}}=+0.43$ is an estimate
+over a handful of unsaturated items and carries almost no power. The honest
+reading is therefore that T3 is \emph{uninformative} about the bounded gap in
+both senses at once --- the theory expects no active gap (sub-frontier
+saturation) \emph{and} the instrument could not have measured one (ceiling
+censoring). The larger $r$ is consistent with the theory not because the theory
+predicts it but because the theory predicts the cell carries no identifying
+signal in either direction; reading the point estimate as evidence of a
+structure advantage would violate guardrail~G2.
+
+\idealization{The saturation argument uses \cref{cor:realizable-gap}, which
+\emph{relaxes} idealization~(i) (it is a bounded-learner statement, not a Bayes
+one) but assumes the base class renders $Y$ realizable in every coordinate ---
+the formal content of ``below the capacity frontier.'' For a frozen LLM this
+realizability is an empirical surmise about task difficulty, not a verified
+property; it is the conjectural step here (guardrail~G6), and the
+distinctness-from-T1 claim depends on it.}
+
+\subsection{The T2 positive as a permitted, unidentified bounded effect}
+\label{subsec:anchor-t2}
+
+For completeness the third cell: T2 recorded the largest clean effect,
+$r_{\mathrm{rb}}=+0.58$ at raw $p=0.023$, which did not survive the Holm
+correction over the nine-cell confirmatory family ($m=9$; non-rejection on all
+nine). The theory neither claims nor needs this as a positive. What it says is
+narrow and one-directional: an effect of this magnitude is \emph{permitted} ---
+it lies inside the capacity budget $\Phi$ of \cref{thm:bounded-gap} and the
+two-sided envelope $|\advantage|\le\Phi$ of \cref{cor:size-gap}, so its mere
+existence violates no bound --- and, were it real, it would sit in the
+activation window of \cref{prop:regime}(ii), the finite-sample
+capacity-separated regime the theory names as the only place a parity-preserving
+effect can live. That is the whole of the retrodiction: the sign is
+unconstrained by the theory (guardrail~G2), the size is bounded, and the
+statistical verdict on the frozen record is non-rejection. T2 is the cell most
+worth pointing a designed bounded-regime experiment at (\cref{sec:predictions}),
+precisely because it is the one the theory cannot resolve from the existing
+data.
+
+\subsection{Limits of the mapping}
+\label{subsec:anchor-limits}
+
+\begin{remark}[What this section does and does not establish]
+\label{rem:anchor-limits}
+The three cells map cleanly onto three named regimes --- T1 to the
+information-limit invariance of \cref{thm:irrelevance} (channel closed), T3 to
+sub-frontier saturation via \cref{cor:realizable-gap} and
+\cref{prop:regime}(iii) (no headroom, compounded by ceiling censoring), and T2
+to the permitted-but-unidentified activation window of \cref{prop:regime}(ii).
+The mapping's limits, stated plainly so \cref{sec:limitations} can collect them:
+\begin{enumerate}
+  \item[(L1)] \emph{Consistency is not confirmation.} Every claim above is of
+    the form ``the record is consistent with the theory.'' A null and a ceiling
+    are weak evidence; they fail to refute, which is not the same as
+    corroborating. The theory earns its keep through the \emph{predictions} of
+    \cref{sec:predictions}, not through this retrodiction.
+  \item[(L2)] \emph{The theory does not prove any effect is zero.}
+    \cref{thm:irrelevance} forces the \emph{Bayes-optimal} risks equal; it is
+    silent on a bounded learner, where \cref{thm:bounded-gap} permits a nonzero
+    advantage up to $\Phi$. ``No information-channel effect is expected'' is the
+    exact claim; ``the effect is zero'' is not, and conflating them would be the
+    central overclaim G1/G2 exist to prevent.
+  \item[(L3)] \emph{Idealizations are not met by a frozen LLM.} The model is
+    neither Bayes-optimal (idealization~(i)) nor at absolute parity
+    (idealization~(ii), corrected only up to the \cref{sec:parity-defect}
+    defect), and it is a single fixed predictor rather than an ERM over a class
+    with a sample-size knob, so $\nsample$, $\hypclass$, and $\widehat f_{\rep}$
+    enter by analogy. The retrodiction is robust to these only because it asserts
+    \emph{bounds and regimes}, never point values.
+  \item[(L4)] \emph{The T1/T3 distinction is partly conjectural.} That T3 sits
+    below the capacity frontier (hence realizable, hence saturated) is an
+    empirical surmise about task difficulty (guardrail~G6), not a theorem; if
+    T3 were in fact frontier-hard, its ceiling would be measurement saturation
+    without the sub-frontier reading, and only the censoring argument would
+    survive.
+\end{enumerate}
+In one line: the theory retrodicts \emph{which regime each cell occupies} and
+\emph{why no information-limit effect should appear}, and it declines ---
+deliberately --- to retrodict the existence, sign, or magnitude of any
+bounded-regime effect, leaving those to the falsifiable tests of
+\cref{sec:predictions}.
+\end{remark}
