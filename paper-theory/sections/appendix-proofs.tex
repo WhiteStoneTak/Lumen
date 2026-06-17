@@ -11,7 +11,8 @@
 %   - \cref{cor:ratedist-gap} (rate--distortion parity bound, T2-2) -- PROVED (T2-2, WOV-268)
 %   - \cref{prop:advantage} (bounded-regime advantage bound, T2-4) -- pending
 %   - parity-defect propositions (T2-5, if §6 passes go/no-go)     -- pending
-%   - retraction proposition (T2-3, if §3 passes go/no-go)         -- pending
+%   - \cref{thm:retraction} (retraction proposition, T2-3)         -- PROVED (T2-3, WOV-269; §3 GO)
+%   - \cref{cor:defect-subadditive} (defect domain/subadditivity)  -- PROVED (T2-3, WOV-269)
 
 \subsection{The irrelevance theorem and its rate--distortion corollary}
 \label{app:irrelevance}
@@ -195,4 +196,105 @@ established here; it is the go/no-go obligation of \cref{sec:parity-defect}
 (T2-5). Identity~(a) is exact but specific to the log loss; bound~(b) is general
 but, through Pinsker, loose by a square root --- neither is claimed to be the
 risk gap of a real frozen LLM.}
+\end{proof}
+
+\subsection{The retraction proposition (T2-3)}
+\label{app:retraction}
+
+The category-theoretic claims are short once the retraction equation is in
+hand; the only work is keeping the three parts honest about which hypothesis
+each uses. Parts (i)--(ii) of \cref{thm:retraction} use only the equation
+$p\circ e=\mathrm{id}_B$; part (iii) uses the operational-parity hypothesis of
+\cref{def:parity-rung} and the already-proved \cref{thm:irrelevance,prop:suff-iff-mi,prop:abs-strict}.
+
+\begin{proof}[Proof of \cref{thm:retraction}]
+\emph{(i) Idempotent splitting.} Using $p\circ e=\mathrm{id}_B$ once,
+\[
+  \phi\circ\phi
+  = (e\circ p)\circ(e\circ p)
+  = e\circ(p\circ e)\circ p
+  = e\circ\mathrm{id}_B\circ p
+  = e\circ p
+  = \phi,
+\]
+so $\phi$ is idempotent. An idempotent \emph{splits} through an object $I$ when
+there are morphisms $s:I\to A$, $r:A\to I$ with $r\circ s=\mathrm{id}_I$ and
+$s\circ r=\phi$; here $I=B$, $s=e$, $r=p$ satisfy $p\circ e=\mathrm{id}_B$ and
+$e\circ p=\phi$. Hence $\phi$ splits through $B$, and in any category a split
+idempotent identifies its splitting object with the image of the idempotent up
+to canonical isomorphism, so $B\cong\operatorname{im}\phi$: $B$ is the retract
+of $A$ that the round trip projects onto.
+
+\emph{(ii) Compositionality.} For the composite,
+\[
+  (p_2\circ p_1)\circ(e_1\circ e_2)
+  = p_2\circ(p_1\circ e_1)\circ e_2
+  = p_2\circ\mathrm{id}_B\circ e_2
+  = p_2\circ e_2
+  = \mathrm{id}_C,
+\]
+so $(p_2\circ p_1,\ e_1\circ e_2)$ satisfies the retraction equation, and its
+endpoints inherit operational parity by transitivity of \cref{def:parity}
+($A\parityeq B\parityeq C$); it is a parity rung. Its round trip is
+\[
+  \phi_{AC}
+  = (e_1\circ e_2)\circ(p_2\circ p_1)
+  = e_1\circ(e_2\circ p_2)\circ p_1
+  = e_1\circ\phi_{BC}\circ p_1 .
+\]
+For the equivalence: if $e_1\circ p_1=\mathrm{id}_A$ and
+$\phi_{BC}=e_2\circ p_2=\mathrm{id}_B$ then
+$\phi_{AC}=e_1\circ\mathrm{id}_B\circ p_1=e_1\circ p_1=\mathrm{id}_A$.
+Conversely, suppose $\phi_{AC}=\mathrm{id}_A$. Pre- and post-composing with the
+rung-1 maps and using $p_1\circ e_1=\mathrm{id}_B$ twice,
+\[
+  \phi_{BC}
+  = (p_1\circ e_1)\,\phi_{BC}\,(p_1\circ e_1)
+  = p_1\circ\big(e_1\circ\phi_{BC}\circ p_1\big)\circ e_1
+  = p_1\circ\phi_{AC}\circ e_1
+  = p_1\circ e_1
+  = \mathrm{id}_B,
+\]
+and then $\mathrm{id}_A=\phi_{AC}=e_1\circ\mathrm{id}_B\circ p_1=e_1\circ p_1$,
+so both rungs are absolute.
+
+\emph{(iii) Information-invisibility.} By \cref{def:parity-rung} the endpoints
+are in operational parity, $A\parityeq B$, which by \cref{prop:suff-iff-mi} is
+$\MI{Y}{A(X)}=\MI{Y}{X}=\MI{Y}{B(X)}$ and by \cref{thm:irrelevance} gives
+$\bayesrisk(A)=\bayesrisk(B)$. Both functionals depend on a representation only
+through the predictive information it retains for $Y$ --- the mutual information
+by definition, the Bayes risk through the posterior kernel of
+\cref{lem:bayes-functional} --- and that quantity is equal for $A$ and $B$. The
+defect, however, is the discrepancy of induced $\sigma$-algebras
+$\sigalg{A}\ne\sigalg{B}$ (\cref{prop:abs-strict}), realized by the control rung
+whose round trip fails byte-exact recovery (R4 data, $0/30$;
+\cref{subsec:retraction-parity}); this is exactly the case $\phi\ne\mathrm{id}_A$.
+A discrepancy of $\sigma$-algebras at equal retained information is not a
+function of that information, so neither \cref{prop:suff-iff-mi} nor
+\cref{thm:irrelevance} can register it, whereas $\phi$ does by construction. The
+defect lies in their common kernel.
+\idealization{Part (iii) inherits the two idealizations of \cref{rem:slogan}
+through its use of \cref{thm:irrelevance}: Bayes-optimality and exact
+operational parity. Parts (i)--(ii) are purely categorical and assume neither.
+The proposition asserts the defect is invisible to the \emph{at-optimum}
+functionals; it does not assert the defect is empirically zero --- that is the
+quantitative question handed to \cref{sec:parity-defect} (T2-5).}
+\end{proof}
+
+\begin{proof}[Proof of \cref{cor:defect-subadditive}]
+By \cref{thm:retraction}(i) the round trip $\phi$ acts as the identity on the
+retract $B\cong\operatorname{im}\phi$ and nontrivially only off it; the
+round-trip perturbation of \cref{def:cat-parity}, which
+\eqref{eq:parity-defect} aggregates as $\overline{v}$, is therefore supported on
+the complement of $\operatorname{im}\phi$ --- the structure $\phi$ fails to fix.
+This identifies the domain of the \cref{sec:parity-defect} metric with the
+categorical splitting. For subadditivity, \cref{thm:retraction}(ii) makes each
+partial composite $R_0\to R_i$ a parity rung, so each $R_i$ is a $Y$-faithful
+representation with a well-defined induced predictive law $\preddist{R_i}$
+(\cref{subsec:defect-def}); the $1$-Wasserstein distance is a metric
+(\cref{def:wasserstein}), so the triangle inequality applied along
+$\preddist{R_0},\dots,\preddist{R_m}$ gives
+$\Wass{1}(\preddist{R_0},\preddist{R_m})\le\sum_{i}\Wass{1}(\preddist{R_{i-1}},\preddist{R_i})$.
+The bound is the elementary triangle inequality; the categorical content is that
+(ii) supplies the intermediate laws that make the chain meaningful.
 \end{proof}

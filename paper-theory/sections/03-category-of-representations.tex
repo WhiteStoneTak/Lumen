@@ -3,13 +3,18 @@
 \section{The category of representations}
 \label{sec:category}
 
-\gonogo{Category theory (T1-4 $\to$ T2-3) is provisional. If the
-parity-as-retraction framing produces only a restatement of the
-information-theoretic content of \cref{sec:parity} and buys no new
-proposition, this section is demoted to a remark and the decision is
-recorded in WOV-269 (T2-3). T1-4 supplies the foundations and fixes the
-framing precisely enough that T2-3 can make that call; the explicit
-criterion is stated in \cref{subsec:cat-gonogo}.}
+\gonogo{Category theory (T1-4 $\to$ T2-3) was provisional. If the
+parity-as-retraction framing produced only a restatement of the
+information-theoretic content of \cref{sec:parity} and bought no new
+proposition, this section was to be demoted to a remark and the decision
+recorded in WOV-269 (T2-3). T1-4 supplied the foundations and fixed the
+framing precisely enough that T2-3 could make that call; the explicit
+criterion is stated in \cref{subsec:cat-gonogo}.
+\textbf{Resolved (T2-3, WOV-269): go.} The framing earns
+\cref{thm:retraction}: the round-trip defect is an idempotent that
+\cref{thm:irrelevance} and \cref{prop:suff-iff-mi} are constitutionally
+blind to, and whose splitting feeds \cref{sec:parity-defect}
+(\cref{subsec:cat-theorem}). The section stands.}
 
 % This file holds the T1-4 (WOV-265) FOUNDATIONS only: categories, functors,
 % natural transformations, sections/retractions/adjunctions; the category of
@@ -177,8 +182,8 @@ and it lines those up with \cref{def:parity} and the R4 data. Whether this
 buys a proposition beyond \cref{sec:parity} --- for instance, that the
 idempotent $e\circ p$ splits $\ladder{4}$ into a parity-relevant retract plus a
 predictively inert complement, giving a categorical decomposition the
-information-theoretic account does not already provide --- is precisely the
-question deferred to T2-3.
+information-theoretic account does not already provide --- is the question
+T2-3 settles affirmatively in \cref{subsec:cat-theorem} (\cref{thm:retraction}).
 \end{remark}
 
 \subsection{Go/no-go criterion handed to T2-3}
@@ -205,3 +210,99 @@ justification are recorded in WOV-269.
 retraction vocabulary and the one category $\catRep$ --- so that demotion, if
 it comes, costs one remark rather than a rewrite. This is the section's
 insurance against decorative math.
+
+\subsection{What the framing earns: the defect is a composable idempotent (T2-3)}
+\label{subsec:cat-theorem}
+
+This subsection discharges the go/no-go of \cref{subsec:cat-gonogo}, and the
+verdict is \textbf{go}. We isolate the one proposition the retraction language
+buys, show it is stated in the vocabulary of \cref{def:cat-parity}, and show it
+is not a re-encoding of \cref{thm:irrelevance} or \cref{prop:suff-iff-mi} --- on
+the contrary, the object it controls is provably invisible to both. The full
+proofs are in \cref{app:retraction}; the decision is recorded in WOV-269.
+
+\begin{definition}[Parity rung]
+\label{def:parity-rung}
+A \emph{parity rung} is a pair of $\catRep$-morphisms
+$(p:A\to B,\ e:B\to A)$ with $p\circ e=\mathrm{id}_B$ (\cref{eq:retract}), so
+that $B\retract A$ is witnessed by $(e,p)$, together with the standing
+hypothesis (\cref{tab:parity-ledger}) that the endpoints are in operational
+parity, $A\parityeq B$ --- a rung is the categorical encoding of
+\cref{def:parity}. Its \emph{round trip} is the endomorphism
+$\phi\defeq e\circ p:A\to A$; the rung is in \emph{absolute} parity when
+$\phi=\mathrm{id}_A$ and in \emph{strictly operational} parity when
+$\phi\ne\mathrm{id}_A$ (\cref{def:cat-parity}). The control pair
+$\big(p:\ladder{4}\to\ladderplus,\ e:\ladderplus\to\ladder{4}\big)$ --- the
+re-parse $e$ read as landing in the Contract-IR object $\ladder{4}$, its
+deviation from a two-sided inverse being exactly the round-trip defect of
+\cref{def:cat-parity} --- is the rung the paper instantiates.
+\end{definition}
+
+\begin{theorem}[Compositional retraction structure; information-invisibility of the defect]
+\label{thm:retraction}
+Let $(p,e)$ be a parity rung with round trip $\phi=e\circ p$.
+\begin{enumerate}
+  \item[(i)] \textup{(Idempotent splitting.)} $\phi$ is idempotent,
+    $\phi\circ\phi=\phi$, and splits through $B$: the pair $(e,p)$ exhibits $B$
+    as the retract onto which $\phi$ projects, so $B$ is, up to isomorphism, the
+    image of $\phi$ --- the parity-relevant part of $A$. This is the splitting
+    promised in \cref{rem:cat-claim}.
+  \item[(ii)] \textup{(Compositionality.)} If $(p_1:A\to B,\,e_1)$ and
+    $(p_2:B\to C,\,e_2)$ are parity rungs, then so is
+    $(p_2\circ p_1,\ e_1\circ e_2)$, with round trip
+    $\phi_{AC}=e_1\circ\phi_{BC}\circ p_1$ where $\phi_{BC}=e_2\circ p_2$.
+    Operational parity is therefore closed under composition along the ladder,
+    and $\phi_{AC}=\mathrm{id}_A$ iff both rungs are absolute
+    ($e_1\circ p_1=\mathrm{id}_A$ and $\phi_{BC}=\mathrm{id}_B$).
+  \item[(iii)] \textup{(Information-invisibility.)} Operational parity gives
+    $\MI{Y}{A}=\MI{Y}{B}$ (\cref{prop:suff-iff-mi}) and
+    $\bayesrisk(A)=\bayesrisk(B)$ (\cref{thm:irrelevance}); yet the defect may
+    be nontrivial, $\phi\ne\mathrm{id}_A$ (\cref{prop:abs-strict}). The
+    round-trip defect therefore lies in the common kernel of the two functionals
+    the go/no-go forbids re-encoding: neither the mutual information of
+    \cref{prop:suff-iff-mi} nor the Bayes risk of \cref{thm:irrelevance}
+    separates $A$ from $B$, while the idempotent $\phi$ does.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}[The defect domain, and subadditivity along the ladder]
+\label{cor:defect-subadditive}
+The round trip $\phi$ of \cref{thm:retraction} fixes the parity-relevant retract
+$B$ and moves only its complement; the perturbation $\overline{v}$ that the
+quantitative defect integrates (\cref{def:parity-defect},
+\eqref{eq:parity-defect}) is exactly that complement --- the structure of $A$
+that $\phi$ fails to fix. The categorical splitting thus names the object
+\cref{sec:parity-defect} metrizes. Moreover, along any composite of parity rungs
+$A=R_0\to\cdots\to R_m=B$ the predictive-law term is subadditive,
+\[
+  \Wass{1}\!\big(\preddist{R_0},\preddist{R_m}\big)
+  \;\le\;
+  \sum_{i=1}^{m}\Wass{1}\!\big(\preddist{R_{i-1}},\preddist{R_i}\big),
+\]
+each intermediate law $\preddist{R_i}$ being well defined precisely because
+\cref{thm:retraction}(ii) makes every partial composite a genuine parity rung.
+The triangle inequality is elementary; the categorical content is that
+compositionality \emph{licenses} the chaining, so the C-ladder's defect
+decomposes rung by rung rather than only in aggregate.
+\end{corollary}
+
+\begin{remark}[Why this passes the criterion; scope of the go (G4/G6)]
+\label{rem:cat-go-scope}
+\cref{thm:retraction} meets both prongs of \cref{subsec:cat-gonogo}. It is
+\emph{(i)} stated in the retraction language of \cref{def:cat-parity} --- the
+idempotent $\phi=e\circ p$ and its splitting --- and \emph{(ii)} not a
+notational re-encoding of \cref{thm:irrelevance} or \cref{prop:suff-iff-mi},
+because \cref{thm:retraction}(iii) proves the object it controls is in the
+\emph{kernel} of both: any statement those two results can make about $A$ and
+$B$ is identical, so a proposition that distinguishes them cannot be a
+restatement of either. It also discharges the alternative prong --- the
+splitting of \cref{rem:cat-claim} as a decomposition feeding
+\cref{sec:parity-defect} (\cref{cor:defect-subadditive}). What earns the section
+is thus \cref{thm:retraction}(i),(iii) with \cref{cor:defect-subadditive}. The
+compositionality of \cref{thm:retraction}(ii) is, for \texttt{preprint-v1}, a
+structural result about a single instantiated rung
+($\ladder{4}\rightleftarrows\ladderplus$); it becomes quantitatively
+load-bearing only once the control is refined into several parity-controlled
+rungs, and we mark its present use as the single-rung splitting it licenses, not
+as a multi-rung measurement (guardrail~G6).
+\end{remark}
