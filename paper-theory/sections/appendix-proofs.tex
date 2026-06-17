@@ -394,8 +394,9 @@ Kantorovich--Rubinstein duality \eqref{eq:kr} to it and to its negation,
   \;\le\; L\,\Wass{1}(p_x,p'_x),
 \end{equation}
 a bound \emph{uniform in $y$}. Now expand the gap \eqref{eq:bp-gap} through the
-risk functional \eqref{eq:risk-as-posterior}'s defining expectation
-(\cref{def:risk}) and move the absolute value inside:
+defining expectation of the risk functional (\cref{def:risk}; note this is the
+risk of the arbitrary fixed kernel $\kernel{K}$, not the Bayes risk, so no
+appeal to optimality is made) and move the absolute value inside:
 \[
   \big|\advantage_{\kernel{K}}(\ladder{4},\ladderplus)\big|
   = \Big|\Expect_{(X,Y)}\!\Big[\!\int\!\loss(Y,a)\,p_X(\mathrm{d}a)

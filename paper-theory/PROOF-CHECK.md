@@ -15,16 +15,18 @@ claims, and the hypothesis each result *needs* was compared against the one it
 were recomputed in Python. The manuscript was rebuilt with `tectonic`; all
 cross-references and citations resolve (no `undefined`/`??`).
 
-**Verdict.** All 60 formal environments + 5 predictions are sound as stated,
-with **one** genuine defect found and fixed (`prop:abs-strict`, see below) and
-a small number of cosmetic notes left for the Step-2 polish pass. The
-idealization-disclosure guardrail (G3) is satisfied.
+**Verdict.** All 60 formal environments + 5 predictions are sound as stated.
+**Four findings were applied as fixes** (§1): one genuine defect
+(`prop:abs-strict`) and three proof-hygiene corrections surfaced by the
+re-verification (a G3 disclosure gap in §3, a missing hypothesis in
+`cor:defect-two-term`, a mis-cited equation in the `thm:defect-risk-gap` proof).
+The idealization-disclosure guardrail (G3) is satisfied.
 
 ---
 
-## 1. Defect found and fixed
+## 1. Findings applied as fixes
 
-### `prop:abs-strict` (§4, "Absolute parity is strictly stronger") — converse witness
+### 1.1 `prop:abs-strict` (§4, "Absolute parity is strictly stronger") — converse witness *(genuine defect)*
 
 **Problem.** The converse direction constructed the witness as
 `rep' = (rep, N)` where `N ⊥ (X,Y)` is "independent noise." A representation is
@@ -51,6 +53,50 @@ witness, only on the truth of `prop:abs-strict`, which is unchanged.
 `thm:retraction`(iii), `cor:defect-finer-order`, `rem:which-parity`, and
 `tab:cladder` all cite the statement, not the construction.
 
+### 1.2 `thm:retraction` (§3) — missing G3 idealization disclosure
+
+**Problem.** Part (iii) invokes `thm:irrelevance` (for `R*(A)=R*(B)`) in the
+theorem statement, yet §3 carried *no* `\idealization{…}` at all — it relied
+solely on the disclosure in the appendix proof. Every other theorem that
+consumes the at-optimum result (`thm:bounded-gap` §5, `thm:defect-risk-gap` §6)
+carries the disclosure both at the statement and in the proof; §3 was the lone
+gap. Under Step 1's mandate to "verify all idealization disclosures are
+attached," the statement-site disclosure was missing.
+
+**Fix.** Added a concise `\idealization{…}` inside the `thm:retraction` block:
+parts (i)–(ii) are purely categorical (no idealization); part (iii) inherits
+Bayes-optimality and exact operational parity via `thm:irrelevance`, and claims
+only at-optimum invisibility, not empirical zero. Matches the §5/§6 pattern.
+G3 disclosure count is now **18** and every section that invokes the irrelevance
+theorem carries a co-located disclosure.
+
+### 1.3 `cor:defect-two-term` (§6) — unstated joint hypothesis
+
+**Problem.** The corollary "takes the smaller" of `eq:defect-risk-gap` (requires
+an `L`-Lipschitz loss) and `eq:defect-fisher-local` (requires a bounded loss),
+so it needs the loss to be *both*. The statement only hinted at this through
+`c=c(L,‖ℓ‖∞,λ)`; the hypothesis was not stated, so "both bounds apply" was
+asserted without its premise.
+
+**Fix.** Added the explicit hypothesis "the loss is both `L`-Lipschitz and
+bounded, so both bounds apply" to the corollary. (Result and constant unchanged;
+on a bounded action space Lipschitz already implies bounded, so this only makes
+the premise explicit.)
+
+### 1.4 `thm:defect-risk-gap` proof (appendix) — mis-cited equation
+
+**Problem.** The proof expanded the swap gap "through the risk functional
+`eq:risk-as-posterior`'s defining expectation." But `eq:risk-as-posterior` is
+the **Bayes**-risk identity `R*(rep)=E[G(q_rep)]` (the optimal posterior),
+whereas here `K` is an *arbitrary fixed* bounded predictor. The relevant object
+is `def:risk`. The mis-citation also quietly undercut the proof's own claim that
+no Bayes-optimality is used.
+
+**Fix.** Replaced the reference with `def:risk` and added a parenthetical that
+this is the risk of the arbitrary kernel `K`, not the Bayes risk, so no
+optimality is invoked. The computation itself was already correct and is
+unchanged.
+
 ---
 
 ## 2. Per-section verification ledger
@@ -71,7 +117,7 @@ Legend: ✓ = re-derived and sound; hypotheses listed are the ones actually used
 | `def:category … def:parity-rung` | ✓ | retraction eq. `p∘e=id_B` set up correctly |
 | `thm:retraction` (i) idempotent splitting | ✓ | `φ∘φ=e(p e)p=φ`; split idempotent ⟹ `B≅im φ` |
 | `thm:retraction` (ii) compositionality | ✓ | composite retraction + `φ_AC=e₁φ_BC p₁`; both-absolute equivalence checked both directions (morphism types verified A→B→C) |
-| `thm:retraction` (iii) info-invisibility | ✓ | uses `suff-iff-mi` + `irrelevance` + `abs-strict`; defect in common kernel argument sound |
+| `thm:retraction` (iii) info-invisibility | ✓ (G3 disclosure added, fix 1.2) | uses `suff-iff-mi` + `irrelevance` + `abs-strict`; defect in common kernel argument sound |
 | `cor:defect-subadditive` | ✓ | triangle inequality on `W₁`; (ii) supplies intermediate laws |
 
 ### §4 Information parity & irrelevance
@@ -106,7 +152,7 @@ Legend: ✓ = re-derived and sound; hypotheses listed are the ones actually used
 | `def:parity-defect`, `def:coupled-transport` | ✓ | `eq:marginal-le-coupled` is joint convexity of `W₁` (correct direction: marginal ≤ coupled) |
 | `thm:defect-risk-gap` | ✓ | proof in appendix; per-instance KR, `Y`-free integrand collapses to `E_X` |
 | `prop:defect-fisher-local` | ✓ | proof in appendix; Pinsker+Fisher, coefficient `½=√¼` confirmed |
-| `cor:defect-two-term`, `cor:defect-finer-order` | ✓ | min-of-two ≤ sum; refinement-over-info-gap argument sound |
+| `cor:defect-two-term`, `cor:defect-finer-order` | ✓ (joint hypothesis made explicit, fix 1.3) | min-of-two ≤ sum; refinement-over-info-gap argument sound |
 | `ex:r4-defect` + `tab:r4-defect` | ✓ | **all numbers recomputed**, see §4 below |
 
 ### §7 Empirical anchoring / §8 Predictions
@@ -127,7 +173,7 @@ The `pred:size` envelope `|Δ| ≤ min{Φ, c·δ_par}+o(‖v̄‖)` correctly co
 | `cor:ratedist-gap` | ✓ | (a) log loss `G(p)=H(p)`; (b) TV/Pinsker/Jensen with `E[KL(q_id‖q_rep)]=I(Y;X\|rep(X))=infogap` verified |
 | `thm:retraction`, `cor:defect-subadditive` | ✓ | categorical algebra re-derived (see §3 row) |
 | `thm:bounded-gap` | ✓ | floor (deterministic) + ceiling (`thm:uniform`) − subtraction; `R*(id)` cancels; no info term |
-| `thm:defect-risk-gap` | ✓ | KR per instance + Jensen; parity cancels middle gap |
+| `thm:defect-risk-gap` | ✓ (eq. citation corrected, fix 1.4) | KR per instance + Jensen; parity cancels middle gap |
 | `prop:defect-fisher-local` | ✓ | bounded-loss/TV + Pinsker + `prop:kl-fisher` at aggregate `v̄`; remainder is 2nd-order Taylor |
 
 ---
@@ -135,25 +181,24 @@ The `pred:size` envelope `|Δ| ≤ min{Φ, c·δ_par}+o(‖v̄‖)` correctly co
 ## 3. Idealization-disclosure audit (guardrail G3)
 
 G3 requires every invocation of `thm:irrelevance` to disclose the idealization
-it rests on via `\idealization{…}`. Disclosures present: §4 ×4
-(`rem:which-parity`, `rem:parity-ledger`, `rem:slogan`, `rem:ratedist-reading`),
-§5 ×1 (`thm:bounded-gap`), §6 ×2 (`thm:defect-risk-gap`,
-`prop:defect-fisher-local`), §7 ×2 (anchor-T1, anchor-T3), §8 ×1
-(`rem:pred-honesty`), §10 ×1, appendix ×6 (proofs of irrelevance, ratedist-gap,
-retraction, bounded-gap, defect-risk-gap, fisher-local). **Total 17.**
+it rests on via `\idealization{…}`. Disclosures present: §3 ×1
+(`thm:retraction`, **added by fix 1.2**), §4 ×4 (`rem:which-parity`,
+`rem:parity-ledger`, `rem:slogan`, `rem:ratedist-reading`), §5 ×1
+(`thm:bounded-gap`), §6 ×2 (`thm:defect-risk-gap`, `prop:defect-fisher-local`),
+§7 ×2 (anchor-T1, anchor-T3), §8 ×1 (`rem:pred-honesty`), §10 ×1, appendix ×6
+(proofs of irrelevance, ratedist-gap, retraction, bounded-gap, defect-risk-gap,
+fisher-local). **Total 18.**
 
-Every *theorem that consumes* the at-optimum result carries a disclosure,
-located either at an adjacent remark or — per the README's stated design
-("proofs migrate to the appendix, each with its idealization disclosure
-attached") — at its appendix proof. In particular `thm:retraction`(iii)'s use of
-irrelevance is disclosed on its appendix proof. **G3 satisfied.**
+After fix 1.2 every *section-body theorem* that consumes the at-optimum result
+carries a co-located disclosure (statement or adjacent remark) **and** its
+appendix proof carries one — consistent across §3/§4/§5/§6. **G3 satisfied.**
 
-Minor note (Step-2, non-blocking): the §3 body statements (`thm:retraction`(iii),
-`rem:cat-go-scope`) and `cor:defect-finer-order` invoke `thm:irrelevance` in
-their *statements* and rely on the disclosure carried by their proofs /
-already-disclosed inputs rather than a co-located one. This matches the paper's
-convention; flagged only so the Step-2 pass can decide whether a one-line
-pointer is wanted at the section-body sites.
+Remaining (deliberately not changed): `cor:defect-finer-order` (§6) invokes
+`thm:irrelevance` only to restate that the Bayes risk is constant on the parity
+class — it introduces no idealization beyond what its inputs
+(`thm:defect-risk-gap`, already disclosed) carry, so no separate disclosure is
+warranted. `rem:cat-go-scope` (§3) is a scope remark that now sits under the
+`thm:retraction` disclosure. Both are covered, not gaps.
 
 ---
 
