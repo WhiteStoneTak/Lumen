@@ -30,6 +30,7 @@
 \usepackage{mathtools}        % \vcentcolon, \coloneqq helpers used in notation
 \usepackage{bm}
 \usepackage{booktabs}
+\usepackage{array}            % ragged-right p-columns for the dense §10 ledger tables
 \usepackage{xcolor}
 \usepackage[round]{natbib}
 \usepackage[hidelinks]{hyperref}
@@ -54,6 +55,12 @@
 % G2/G6). Each prediction is stated with a sign/size claim and an explicit
 % falsifier in its body.
 \newtheorem{prediction}{Prediction}[section]
+% cleveref auto-derives the singular name but not the plural for this custom
+% environment; declare both so grouped/range references (e.g.
+% \Cref{pred:capacity,pred:difficulty,pred:compute}) render "Predictions 8.2--8.4"
+% rather than the literal "?? 8.2--8.4".
+\crefname{prediction}{Prediction}{Predictions}
+\Crefname{prediction}{Prediction}{Predictions}
 
 % ----- Idealization-disclosure box (guardrail G3) -----
 % Every invocation of the irrelevance theorem must state which idealization

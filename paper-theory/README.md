@@ -11,11 +11,14 @@ and Cannot Help a Bounded Learner, and Why.*
 
 ## Status
 
-`FULL-DRAFT` (T4-1, WOV-274). The manuscript compiles end to end with all
-theorem cross-references resolving. The abstract, §1 (introduction), the
-mathematical spine §2–§8, §11 (conclusion), and the appendix proofs are
-drafted. Still stubbed: §9 (related work, T4-2) and §10 (limitations and
-honesty, the integrity gate, T4-3).
+`COMPLETE-DRAFT` (T4-3, WOV-276). The manuscript compiles end to end with all
+theorem cross-references resolving. Every section is drafted: the abstract,
+§1 (introduction), the mathematical spine §2–§8, §9 (related work, T4-2),
+§10 (limitations and honesty — the integrity gate, T4-3), §11 (conclusion),
+and the appendix proofs. The internal red-team against overclaim (T4-3) has
+been run; its checklist and findings are recorded in §10. Remaining before
+release: T4-4 (independent proof-check, notation/cross-reference polish, and
+arXiv packaging).
 
 ## Layout
 
