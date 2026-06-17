@@ -85,15 +85,33 @@
 \maketitle
 
 \begin{abstract}
-% STUB (T4-1). Drafted last, after the theorems exist.
-% Backbone (charter §1): under information parity the data-processing
-% inequality forbids any representation from lowering the Bayes-optimal
-% predictor's risk; hence any genuine code-representation effect is a
-% bounded-computation phenomenon whose maximum magnitude is capacity-bounded;
-% the Lumen T1 clean null is the predicted information-limit outcome, and the
-% theory localizes where a bounded-regime effect should appear.
-\noindent\emph{[Abstract deferred to T4-1. See charter §1 for the
-load-bearing thesis this paper formalizes.]}
+% Drafted in T4-1 after the theorems exist; backbone is charter §1.
+Does the format in which code is presented to a language model change what the
+model can predict about it? We give a theoretical companion to the frozen
+empirical record of \texttt{preprint-v1}, whose central pre-registered cell
+returned a clean null. Making representations measurable maps and predictors
+Markov kernels on a shared standard Borel space, we prove a two-halved answer.
+\emph{Negatively}, under \emph{information parity} --- two representations
+retaining the same mutual information with the target --- the data-processing
+inequality closes at the Bayes optimum and the optimal risk is
+format-invariant, so the recorded null is the \emph{predicted} information-limit
+outcome rather than an anomaly; when parity fails, the inflation of Bayes risk
+is controlled by the information lost (exactly under log loss, within a
+square-root envelope otherwise). \emph{Positively} --- and never as a claim that
+any effect exists --- a finite-capacity learner does not attain the information
+limit, and the residual is exactly where format may act: at constant
+information the achievable representation advantage is capped by a capacity
+budget carrying no mutual-information term, two-sided in magnitude, and
+non-vacuous only in a named finite-resource, capacity-separated regime. Two
+go/no-go refinements show operational parity is a retraction whose round-trip
+defect is invisible to both the mutual information and the Bayes risk yet
+dominates the swap gap of any fixed bounded predictor. We map the three frozen
+Lumen outcomes to the regimes they occupy --- claiming consistency, not
+confirmation --- and convert the localization into five falsifiable predictions
+on the same apparatus, each with an explicit falsifier. The thesis: format
+cannot supply information that is not there, so any genuine
+code-representation effect on a bounded model is a capacity phenomenon of
+bounded size, appearing only near the model's frontier.
 \end{abstract}
 
 \tableofcontents

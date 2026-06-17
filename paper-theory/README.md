@@ -11,8 +11,11 @@ and Cannot Help a Bounded Learner, and Why.*
 
 ## Status
 
-`SECTION-STUB` skeleton (T0-2, WOV-261). Every section is a stub pointing to
-the charter milestone that fills it. No mathematics is drafted yet.
+`FULL-DRAFT` (T4-1, WOV-274). The manuscript compiles end to end with all
+theorem cross-references resolving. The abstract, §1 (introduction), the
+mathematical spine §2–§8, §11 (conclusion), and the appendix proofs are
+drafted. Still stubbed: §9 (related work, T4-2) and §10 (limitations and
+honesty, the integrity gate, T4-3).
 
 ## Layout
 

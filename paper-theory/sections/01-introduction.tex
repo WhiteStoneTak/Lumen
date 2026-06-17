@@ -2,25 +2,149 @@
 \section{Introduction}
 \label{sec:intro}
 
-% STUB. The format-vs-information question restated formally; the companion
-% relationship to preprint-v1; contributions.
-%
-% Load-bearing thesis to be unfolded here (charter §1, verbatim backbone):
-%   Under information parity, no representation can lower the Bayes-optimal
-%   predictor's risk (DPI + sufficiency); so any genuine code-representation
-%   effect on an LLM is a BOUNDED-COMPUTATION phenomenon whose maximum
-%   magnitude is controlled by a capacity/complexity term rather than by
-%   information content; the Lumen T1 clean null is the predicted
-%   information-limit outcome, and the theory localizes where a
-%   bounded-regime effect should appear.
-%
-% Two halves, both required (charter §1):
-%   - Negative half: at constant information the optimum is format-invariant;
-%     the T1 null (r = +0.10, raw p = 0.36, no ceiling) is PREDICTED, not an
-%     anomaly. (Guardrail G1.)
-%   - Positive half: effects live in the bounded regime; the theory bounds
-%     their size and NAMES the regime to test next, delivered as falsifiable
-%     predictions in §8 (T3-2), never as established findings. (Guardrail G2.)
+Does the \emph{format} in which a program is presented to a code language model
+change what the model can predict about it? The question is usually asked
+empirically --- pick a family of representations, hold the model fixed, and
+measure the score --- and the empirical companion to this paper,
+\texttt{preprint-v1}, asked it exactly that way on the Lumen apparatus: a frozen
+model queried under a ladder of code representations C2--C4 against an
+information-matched control C1${}^{+}$. Its central, pre-registered cell
+returned a clean null (a rank-biserial effect $r_{\mathrm{rb}}=+0.10$ at raw
+$p=0.36$, no rubric ceiling). This paper is the theoretical sibling of that
+record. It does not revise the preprint, re-run its scorers, or touch its frozen
+analysis; it asks \emph{why} the null is the outcome one should have expected,
+and --- the harder half --- where an effect, if one exists at all, is permitted
+to live.
 
-\noindent\emph{[Stub. Fills in T4-1. Companion to \texttt{preprint-v1};
-this is its theoretical sibling, not a revision of it.]}
+The answer we defend has two halves, and the paper is honest about which half
+each result belongs to. The first is negative and is a theorem. Once
+``representation'' and ``predictor'' are made into measurable objects on a common
+probability space (\cref{sec:prelim}), a representation is a measurable map that
+can only \emph{coarsen} the input $\sigma$-algebra, never enrich it. The
+data-processing inequality (\cref{lem:dpi}) then forbids any representation from
+creating predictive information about the target, and at the Bayes optimum this
+sharpens to an equality: under \emph{information parity} --- two representations
+retaining the same mutual information with $Y$ --- the Bayes-optimal risk is
+\emph{format-invariant} (\cref{thm:irrelevance}). At constant information the
+optimum cannot tell the formats apart. The Lumen T1 null is, on this reading,
+not a weak or disappointing positive but the \emph{predicted} outcome of the
+information-limit regime, and treating it as anything else is the overclaim our
+honesty guardrails exist to prevent.
+
+The second half is positive, and it is deliberately \emph{not} a claim that any
+effect exists. A frozen LLM is not the Bayes posterior; it is a
+finite-capacity predictor that does not attain the information limit, and the
+gap between what it achieves and that limit is precisely where format is free to
+act. We bound that gap. For bounded learners the achievable
+parity-preserving advantage is at most a capacity budget $\Phi$ built from an
+approximation (expressivity) gap and a Rademacher estimation term, and carrying
+\emph{no} mutual-information term whatsoever (\cref{thm:bounded-gap}); the bound
+is one-sided and sign-agnostic --- it says how large an effect \emph{can} be,
+never that one exists or which format wins (\cref{cor:size-gap}). Because the
+budget is non-empty only in a named finite-resource, capacity-separated window
+(\cref{prop:regime}), the theory does something a bare null cannot: it
+\emph{localizes} the regime in which a representation effect is permitted,
+forbids it everywhere else, and turns that localization into a list of
+falsifiable predictions on the same apparatus (\cref{sec:predictions}).
+
+\subsection{The format-versus-information question, stated formally}
+\label{subsec:intro-question}
+
+Informally the empirical question conflates two things that the theory must
+separate: whether a representation carries different \emph{information} about the
+target, and whether, at fixed information, a particular \emph{learner} extracts
+different value from it. The Lumen C1${}^{+}$ control exists precisely to fix the
+first so the second can be asked alone, and the formal apparatus of this paper
+exists to say what ``fix the first'' means exactly. We write $\rep:\Xspace\to
+\Zspace_{\rep}$ for a representation and ask of a pair $\rep,\rep'$:
+\begin{enumerate}
+  \item[(Q1)] \emph{Information.} Do $\rep$ and $\rep'$ retain the same
+    predictive content, $\MI{Y}{\rep(X)}=\MI{Y}{\rep'(X)}$? This is
+    \emph{information parity} (\cref{def:parity}); its categorical form is a
+    retraction (\cref{sec:category}) and its quantitative failure is a transport
+    defect (\cref{sec:parity-defect}).
+  \item[(Q2)] \emph{Value to a bounded learner.} Given parity, can a
+    finite-capacity predictor still do measurably better under one than the
+    other? This is the representation advantage $\advantage(\rep,\rep')$
+    (\cref{def:advantage}), and the bounded half of the paper is the statement
+    that whatever value exists here is capacity, not information
+    (\cref{sec:bounded}).
+\end{enumerate}
+Phrased this way the empirical null is the answer to a \emph{composite} of Q1 and
+Q2: the C4-vs-C1${}^{+}$ comparison was engineered so Q1 is answered ``same''
+(by construction), leaving the recorded effect to measure Q2 alone. The theorem
+of \cref{sec:parity} is that the Q1 channel is genuinely closed at the optimum;
+the bound of \cref{sec:bounded} is that the Q2 channel, while open, is narrow and
+capacity-controlled. The negative half disposes of the information explanation;
+the positive half says where to hunt for the capacity one.
+
+\subsection{Contributions}
+\label{subsec:intro-contributions}
+
+\begin{enumerate}
+  \item \textbf{A measure-theoretic frame in which the question is exact}
+    (\cref{sec:prelim}). Representations become measurable maps and predictors
+    become Markov kernels on a shared standard Borel space, so that ``the
+    predictor only sees the representation'' is the statement that its kernel is
+    $\repsig$-measurable, and the data-processing and sufficiency arguments
+    become exact statements about conditional expectations rather than heuristics
+    about ``information.''
+  \item \textbf{An irrelevance theorem and its rate--distortion corollary}
+    (\cref{sec:parity}). Under information parity the Bayes risk is
+    format-invariant (\cref{thm:irrelevance}); when parity fails, the inflation
+    of Bayes risk is controlled by the information lost --- exactly the lost bits
+    under log loss, and a $\sqrt{\cdot}$ envelope for any bounded loss
+    (\cref{cor:ratedist-gap}). This is the formal content of the negative half
+    and the disciplined statement of guardrail~G1.
+  \item \textbf{A bounded-learner advantage bound} (\cref{sec:bounded}). At
+    constant information the achievable advantage is capped by a capacity budget
+    $\Phi$ with no mutual-information term (\cref{thm:bounded-gap}), two-sided in
+    magnitude (\cref{cor:size-gap}), and non-vacuous only in a named
+    finite-resource window (\cref{prop:regime}). This is the positive half,
+    stated as a bound and never as an existence claim (guardrail~G2).
+  \item \textbf{Two go/no-go refinements that earned their place}
+    (\cref{sec:category}, \cref{sec:parity-defect}). A categorical reading shows
+    operational parity is a retraction whose round-trip defect is invisible to
+    both the mutual information and the Bayes risk yet real
+    (\cref{thm:retraction}); a transport/information-geometry reading metrizes
+    that defect and proves it dominates the swap gap of any fixed bounded
+    predictor (\cref{thm:defect-risk-gap}). Each survives only because it proves
+    something the core two sections cannot (charter §2).
+  \item \textbf{Retrodiction without overfitting, and falsifiable predictions}
+    (\cref{sec:anchoring}, \cref{sec:predictions}). We map each of the three
+    frozen Lumen cells to the regime it occupies --- T1 to the information limit,
+    T3 to sub-frontier saturation, T2 to a permitted-but-unidentified bounded
+    effect --- claiming only consistency, never confirmation; and we discharge
+    the standing charge that a math-dressed null is unfalsifiable by issuing five
+    sign-aware, falsifier-bearing predictions on the Lumen knobs
+    (\cref{tab:pred-summary}).
+\end{enumerate}
+
+\subsection{Relationship to the empirical preprint, and what this paper is not}
+\label{subsec:intro-companion}
+
+\texttt{preprint-v1} is the frozen empirical record; this is its theoretical
+companion, and the two are kept deliberately at arm's length. We import three
+numbers from the preprint and produce none: the T1 null
+($r_{\mathrm{rb}}=+0.10$, $p=0.36$), the T3 ceiling ($r_{\mathrm{rb}}=+0.43$ with
+$93.7\%$ of scores saturated, effective $\nsample\approx5$), and the
+Holm-absorbed T2 positive ($r_{\mathrm{rb}}=+0.58$, raw $p=0.023$, non-rejection
+over the nine-cell family). Every appearance of these in \cref{sec:anchoring} is
+read off the record; none is a new measurement. The theory's own contribution is
+the structure around them --- the theorems, and the predictions that put the
+theory at risk of being wrong.
+
+Three disclaimers bound the whole paper and are stated once. First, the
+irrelevance theorem holds at two \emph{idealizations} neither met by a frozen
+LLM --- Bayes-optimality and exact parity --- and every downstream invocation
+discloses which it relies on (guardrail~G3, the \texttt{\textbackslash
+idealization} boxes throughout). Second, the bounded-learner objects
+($\nsample$, $\hypclass$, the ERM $\widehat f_{\rep}$) are read onto a single
+fixed model by analogy, so the retrodiction asserts bounds and regimes, never
+point values. Third, the two go/no-go sections are provisional by charter and
+carry their decision in-source; they are kept only because each earned a theorem.
+What this paper is not is a claim that format does not matter, that any effect is
+zero, or that the preprint should have found a positive: it is the statement that
+\emph{no information-channel effect is expected}, that any real effect is a
+bounded-computation phenomenon of capped size, and that the theory names where to
+go looking.
