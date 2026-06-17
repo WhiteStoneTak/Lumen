@@ -259,11 +259,20 @@ $\rep \parityeq \rep'$ with $\sigalg{\rep} \ne \sigalg{\rep'}$.
 \begin{proof}
 If $\sigalg{\rep}=\sigalg{\rep'}$ then each is a measurable function of the
 other, so $\MI{Y}{\rep(X)}=\MI{Y}{\rep'(X)}$ and both equal $\MI{Y}{X}$ when
-either is sufficient; this gives \eqref{eq:parity}. For the converse, let
-$\rep' = (\rep, N)$ adjoin a component $N \indep (X,Y)$ that is independent
-noise: $\rep'$ retains every predictive bit $\rep$ does, so
-$\MI{Y}{\rep'(X)}=\MI{Y}{\rep(X)}$ and $\rep\parityeq\rep'$, yet
-$\sigalg{\rep'} \supsetneq \sigalg{\rep}$. More to the point for the C-ladder:
+either is sufficient; this gives \eqref{eq:parity}. For the converse, let $\rep$
+be sufficient for $Y$ and let $\rep' = (\rep, N)$ adjoin a further coordinate
+$N$ of the input that is \emph{not} $\repsig$-measurable (a predictively inert
+feature of $X$, e.g.\ a surface-byte coordinate). Then $\rep'$ is a measurable
+function of $X$ that refines $\rep$, so $\repsig \subseteq \sigalg{\rep'}
+\subseteq \Bor{\Xspace}$, and \cref{cor:dpi-rep} applied along this refinement
+gives $\MI{Y}{\rep(X)} \le \MI{Y}{\rep'(X)} \le \MI{Y}{X}$; sufficiency of $\rep$
+makes the two ends coincide, forcing $\MI{Y}{\rep'(X)}=\MI{Y}{\rep(X)}=\MI{Y}{X}$.
+Hence $\rep'$ is sufficient too and $\rep\parityeq\rep'$, yet $\sigalg{\rep'}
+\supsetneq \sigalg{\rep}$ because $N$ is not $\repsig$-measurable. (Adjoining
+noise \emph{independent} of $(X,Y)$ would not serve: a representation is a
+deterministic function of $X$ (\cref{def:rep}), and a function of $X$ that is
+independent of $X$ is a.s.\ constant, leaving $\sigalg{\rep'}=\sigalg{\rep}$.)
+More to the point for the C-ladder:
 $\ladderplus$ and $\ladder{4}$ can carry the same information about $Y$ while
 generating different $\sigma$-algebras over byte-level inputs, which is
 precisely what the round-trip data witness.
