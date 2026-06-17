@@ -12,7 +12,10 @@
 %     sufficiency + Fisher-Neyman factorization, rate-distortion for lossy
 %     reps, and the FORMAL DEFINITION of information parity with the
 %     operational-vs-absolute distinction (paper §3.3) made precise.
-%   - T2-1: polished definitions of structured representation / parity.
+%   - T2-1 (WOV-267): structured representation + decoding relation
+%     (subsec:structured), the C-ladder worked examples (tab:cladder), and the
+%     parity-hypothesis ledger naming which grade each later theorem assumes
+%     (tab:parity-ledger).
 %   - T2-2: the at-optimum irrelevance theorem (DPI => Bayes-risk invariance).
 
 This section supplies the information-theoretic engine of the paper. It builds
@@ -291,6 +294,165 @@ representations are \emph{exactly} sufficient, whereas a constructed control
 may be sufficient only up to a measured defect (\cref{sec:parity-defect}); and
 (ii) the risk consequence it feeds (T2-2) presumes Bayes-optimality, which a
 finite-capacity LLM does not attain (\cref{sec:bounded}).}
+\end{remark}
+
+\subsection{Structured representations and the C-ladder}
+\label{subsec:structured}
+
+\cref{def:parity} compares arbitrary measurable maps. The paper's actual
+objects are narrower: a code representation does not merely coarsen the input,
+it \emph{re-renders} it, adding derived structure (a parse tree, inferred
+types, extracted contracts) while remaining, by design, decodable back toward
+source form. That decodability is what makes $\ladderplus$ a usable control
+rather than an abstract coarsening, and it is the hinge on which operational
+and absolute parity (\cref{def:parity}) separate. We make the object precise
+here (T2-1), then instantiate it on the C-ladder, and close by naming, for
+each later theorem, the exact parity grade it assumes.
+
+\begin{definition}[Structured representation and its decoding relation]
+\label{def:structured-rep}
+A \emph{structured representation} is a representation $\rep$ (\cref{def:rep})
+equipped with a \emph{decoding relation}: a Markov kernel
+$\decode_{\rep} : \Zspace_{\rep}\times\Bor{\Xspace}\to[0,1]$ (\cref{def:kernel})
+that attempts to recover the input from its encoding. We write the pair as
+$\strrep$. Two faithfulness grades are distinguished.
+\begin{enumerate}
+  \item[(i)] $\strrep$ is \emph{exactly faithful} (input-lossless) if the
+    decoding recovers $X$ almost surely, i.e.\ $\decode_{\rep}(\rep(X),\cdot)$
+    is the point mass at $X$ ($\Prob$-a.s.); equivalently $\rep$ is injective
+    up to $\Prob_X$-null sets, so $\repsig = \Bor{\Xspace}$ and $\rep$ is
+    invertible on a set of full measure.
+  \item[(ii)] $\strrep$ is \emph{$Y$-faithful} (lossless for $Y$) if the
+    decoding recovers the predictive content of $X$ for $Y$: the posterior is
+    unchanged under encode--decode,
+    $\condexp{\mathbf{1}_{\{Y\in B\}}}{\rep(X)} =
+     \condexp{\mathbf{1}_{\{Y\in B\}}}{X}$ $\Prob$-a.s.\ for every
+    $B\in\Bor{\Yspace}$. By \cref{prop:disint} this is exactly sufficiency of
+    $\rep$ for $Y$ (\cref{def:sufficiency}), hence by \cref{prop:suff-iff-mi}
+    exactly $\MI{Y}{\rep(X)}=\MI{Y}{X}$.
+\end{enumerate}
+A structured representation is \emph{lossy} (for $Y$) when (ii) fails.
+\end{definition}
+
+The decoding relation is the measure-theoretic shadow of the re-parse/project
+morphisms of \cref{sec:category}: $\decode_{\rep}$ is the kernel form of the
+ladder morphism $p:\ladder{4}\to\ladderplus$ that \cref{def:cat-parity} reads
+as a retraction. Reading \cref{def:structured-rep} against
+\cref{def:retract,def:cat-parity} lines the two languages up exactly: exact
+faithfulness is the \emph{isomorphism} case ($\decode_{\rep}$ inverts $\rep$ on
+both sides), while $Y$-faithfulness is the weaker \emph{retraction} case
+($\decode_{\rep}$ recovers only the part of $X$ that the posterior depends on).
+This is the same operational-versus-absolute split, now carried by an explicit
+decoder rather than by a $\sigma$-algebra comparison.
+
+\begin{proposition}[Decoding faithfulness fixes the parity grade]
+\label{prop:decode-parity}
+Let $\strrep$ and $\langle\rep',\decode_{\rep'}\rangle$ be structured
+representations.
+\begin{enumerate}
+  \item[(a)] If both are $Y$-faithful, then $\rep\parityeq\rep'$
+    (operational parity, \cref{def:parity}).
+  \item[(b)] If both are exactly faithful, then $\sigalg{\rep}=\sigalg{\rep'}
+    =\Bor{\Xspace}$ up to $\Prob$-null sets, so $\rep,\rep'$ are in absolute
+    parity.
+  \item[(c)] The converse of (a) fails: there exist $Y$-faithful $\rep\parityeq
+    \rep'$ that are not exactly faithful, with $\sigalg{\rep}\ne\sigalg{\rep'}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a)~$Y$-faithfulness of each is, by \cref{def:structured-rep}(ii) and
+\cref{prop:suff-iff-mi}, the equality $\MI{Y}{\rep(X)}=\MI{Y}{X}$ and likewise
+for $\rep'$; this is \eqref{eq:parity}, i.e.\ $\rep\parityeq\rep'$. (b)~Exact
+faithfulness gives $\repsig=\Bor{\Xspace}=\sigalg{\rep'}$ up to null sets by
+\cref{def:structured-rep}(i), which is absolute parity (\cref{def:parity}).
+(c)~Take $\rep$ exactly faithful and $\rep'=\rep$ post-composed with the
+forgetful map that erases a predictively inert coordinate of $X$ (one
+$\indep Y$ given the rest); $\rep'$ is $Y$-faithful but not exactly faithful,
+and $\sigalg{\rep'}\subsetneq\sigalg{\rep}$. This is the structured-rep
+instance of \cref{prop:abs-strict}, and the $\ladderplus/\ladder{4}$ pair below
+is its concrete witness.
+\end{proof}
+
+\paragraph{Worked examples: the C-ladder.}
+The rungs of \texttt{preprint-v1} (Constitution §14.1) are structured
+representations in the sense of \cref{def:structured-rep}; each is a
+deterministic measurable function of the plain source, so by
+\cref{cor:dpi-rep} none can \emph{increase} $\MI{Y}{\cdot}$, and the only
+question is whether each is $Y$-faithful (lossless) or merely close to it.
+\cref{tab:cladder} records the encode/decode pair and both faithfulness grades.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Rung & Structure added & Decoding $\decode$ & Faithfulness \\
+\midrule
+$\ladder{1}$ (plain source) & --- (baseline)        & identity            & exact \\
+$\ladder{2}$ (Raw AST)      & parse tree            & unparse / print     & $Y$-faithful, not exact \\
+$\ladder{3}$ (Typed AST)    & inferred types        & type-erase $+$ unparse & $Y$-faithful, not exact \\
+$\ladder{4}$ (Contract IR)  & extracted contracts   & project to source   & $Y$-faithful, not exact \\
+$\ladderplus$ (control)     & annotations from $\ladder{4}$ & re-parse to IR & $Y$-faithful, not exact \\
+\bottomrule
+\end{tabular}
+\caption{The C-ladder as structured representations (\cref{def:structured-rep}).
+Each rung is a measurable function of $\ladder{1}$, so by \cref{cor:dpi-rep} it
+cannot create predictive information. Surface bytes (whitespace, comment
+layout) live in the part the decoders discard; the design intent is that this
+discarded part is predictively inert, i.e.\ each rung is $Y$-faithful. ``Not
+exact'' marks the rungs whose decoder does \emph{not} recover the input
+byte-for-byte, so they fail exact faithfulness and hence absolute parity.}
+\label{tab:cladder}
+\end{table}
+
+The control pair is the load-bearing row. $\ladderplus$ is the projection of
+$\ladder{4}$ to annotated source (\cref{subsec:catrep}); by construction it
+carries the same contracts, types, and node kinds as $\ladder{4}$, so the two
+are designed to be \emph{$Y$-faithful} and hence in operational parity
+$\ladderplus\parityeq\ladder{4}$ (\cref{prop:decode-parity}(a)). They are
+\emph{not} exactly faithful: the round trip
+$\roundtrip{\ladder{4}}{\ladderplus}$ recovers contracts at $100\%$, node kinds
+at $99.8\%$, and types at $96.4\%$, but byte-exact ASTs at $0/30$
+(R4 data, \cref{sec:parity-defect}). So $\sigalg{\ladder{4}}\ne
+\sigalg{\ladderplus}$, absolute parity fails, and the residual asymmetry is not
+assumed away but measured in \cref{sec:parity-defect}. This is precisely the
+configuration \cref{prop:decode-parity}(c) describes.
+
+\begin{remark}[Which parity grade each theorem assumes]
+\label{rem:parity-ledger}
+The point of separating the grades is that the paper's results do not all
+need the same one. \cref{tab:parity-ledger} is the ledger; it is binding, in
+the sense that no later theorem may silently upgrade its hypothesis from
+operational to absolute parity (that upgrade is exactly the move
+guardrail~G3 forbids).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Result & Parity hypothesis & Role of the hypothesis \\
+\midrule
+\cref{cor:dpi-rep} (DPI for reps)            & none           & holds for every representation \\
+\cref{thm:irrelevance} (T2-2, irrelevance)   & operational    & $\Rightarrow$ equal Bayes risk \\
+\S\ref{sec:bounded} bound (T2-4, \cref{def:advantage}) & operational & information held equal; gap is capacity \\
+\S\ref{sec:category} retraction (T2-3, \cref{def:cat-parity}) & operational $=$ retraction & absolute $=$ isomorphism \\
+\S\ref{sec:parity-defect} defect (T2-5, \cref{def:parity-defect}) & operational holds & quantifies failure of \emph{absolute} \\
+\bottomrule
+\end{tabular}
+\caption{Parity-hypothesis ledger. Every downstream result is stated against
+\emph{operational} parity (\cref{def:parity}, \eqref{eq:parity}); absolute
+parity is never assumed, only either characterized (\S\ref{sec:category}) or
+measured as a defect (\S\ref{sec:parity-defect}).}
+\label{tab:parity-ledger}
+\end{table}
+\idealization{Every row that assumes operational parity inherits the two
+idealizations of \cref{rem:which-parity}: exact sufficiency of the compared
+representations (relaxed to a measured defect in \cref{sec:parity-defect}) and,
+for \cref{thm:irrelevance}, Bayes-optimality (relaxed in \cref{sec:bounded}).
+The ledger's value is that it localizes \emph{where} each idealization is
+spent, so no single theorem carries more than it states.}
 \end{remark}
 
 \subsection{The irrelevance theorem (deferred to T2-2)}

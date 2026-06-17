@@ -55,7 +55,7 @@ fixed but unknown $\jlaw$, and the theory makes no claim about its form.
 A representation is the formatting/encoding stage that turns the raw input
 into the object a predictor actually consumes (the C-ladder rungs C2--C4 and
 the parity control C1$^{+}$ of \texttt{preprint-v1} are concrete instances;
-their categorical relationships are deferred to \cref{sec:catrep}).
+their categorical relationships are deferred to \cref{sec:category}).
 
 \begin{definition}[Representation]
 \label{def:rep}
@@ -85,7 +85,8 @@ representation can only \emph{coarsen} $\Bor{\Xspace}$, never enrich it.
 \label{rem:lossy}
 A representation is \emph{lossless for $Y$} when $\repsig$ retains all of
 $X$'s predictive content for $Y$ -- formally, when $\rep(X)$ is a sufficient
-statistic for $Y$ (\cref{sec:parity}, made precise in T2-1). Otherwise it is
+statistic for $Y$ (\cref{def:sufficiency}; the structured-representation form,
+with its decoding relation, is \cref{def:structured-rep}). Otherwise it is
 \emph{lossy}, and the rate--distortion corollary of \cref{sec:parity} bounds
 the resulting risk inflation. We do not yet need the definition of
 sufficiency; we only need that $\repsig$ is the object it will be stated
