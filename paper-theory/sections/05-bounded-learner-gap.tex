@@ -230,20 +230,200 @@ the single quantity that will upper-bound the achievable advantage in T2-4:
   \Rad{\loss\circ(\hypclass\circ\rep')}
   \;\;}
 \end{equation}
-together with the (representation-dependent) approximation error. T2-4 turns
-this into a one-sided bound $\advantage(\rep,\rep') \le \Phi(\capac{\cdot},
-\nsample)$ controlled by capacity and sample size and \emph{not} by
-information content --- the formal statement that any parity-preserving effect
-is a bounded-computation phenomenon of bounded size (charter §1).
+together with the (representation-dependent) approximation error. The result
+below turns this into a one-sided bound $\advantage(\rep,\rep') \le
+\Phi(\capac{\cdot},\nsample)$ controlled by capacity and sample size and
+\emph{not} by information content --- the formal statement that any
+parity-preserving effect is a bounded-computation phenomenon of bounded size
+(charter §1).
 
-\begin{proposition}[Bounded-regime advantage is capacity-controlled --- placeholder]
-\label{prop:advantage}
-\emph{[Placeholder for T2-4.]} The achievable representation advantage
-$\advantage(\rep,\rep')$ at finite capacity satisfies an upper bound in terms
-of $\capac{\hypclass}$ (via the induced-class complexities
-\eqref{eq:advantage-quantity}) and the sample size $\nsample$.
-\idealization{Holds in the bounded regime (finite capacity / finite sample /
-bounded compute); it does not assert any effect exists, only bounds its
-maximum magnitude. The bound is stated under parity, so the information channel
-of \cref{sec:parity} contributes nothing to it.}
+\subsection{The advantage upper bound}
+\label{subsec:advantage-bound}
+
+We collect the two channels into a single quantity. Write
+\begin{equation}
+  \label{eq:approxerr}
+  \approxerr{\rep} \;\defeq\; \inf_{f\in\hypclass\circ\rep}\risk(f)
+    \;-\; \bayesrisk(\mathrm{id}) \;\ge\; 0
+\end{equation}
+for the \emph{approximation error} of the induced class --- how far the best
+$\rep$-expressible rule in $\hypclass\circ\rep$ sits above the information-limit
+risk. Under parity $\bayesrisk(\rep)=\bayesrisk(\mathrm{id})$
+(\cref{thm:irrelevance}), so $\approxerr{\rep}$ is exactly the approximation
+term of \eqref{eq:excess}; and it is \emph{not} an information quantity --- both
+$\rep,\rep'$ are sufficient, yet a fixed base class $\hypclass$ may express the
+common Bayes rule far better in one coordinate system than in the other
+(\cref{prop:capacity-separation}). The two surviving channels of
+\eqref{eq:excess} --- approximation and estimation --- are now both capacity
+functionals, and the bound assembles them.
+
+\begin{theorem}[Bounded-learner advantage bound]
+\label{thm:bounded-gap}
+Let $\loss$ take values in $[0,1]$, fix a base class $\hypclass$ and a sample
+size $\nsample$, and let $\rep \parityeq \rep'$ be in operational information
+parity for $Y$ (\cref{def:parity}), with ERMs
+$\widehat f_{\rep},\widehat f_{\rep'}$ (\cref{def:emp-risk}). Then, with
+probability at least $1-\delta$ over $S\sim\jlaw^{\otimes\nsample}$,
+\begin{equation}
+  \label{eq:bounded-gap}
+  \boxed{\;\;
+  \advantage(\rep,\rep')
+  \;\le\;
+  \underbrace{\big[\approxerr{\rep'}-\approxerr{\rep}\big]}_{\text{approximation (expressivity) gap}}
+  \;+\;
+  \underbrace{4\,\Rad{\loss\circ(\hypclass\circ\rep')}}_{\text{estimation (capacity) term}}
+  \;+\;
+  c_\nsample(\delta)
+  \;\;}
+\end{equation}
+where $c_\nsample(\delta)=O\!\big(\sqrt{\log(1/\delta)/\nsample}\big)$ is the
+slack of \cref{thm:uniform}. The right-hand side --- call it
+$\Phi(\rep,\rep';\nsample,\delta)$ --- contains \emph{no} mutual-information
+term: the information gaps $\infogap{\rep}=\infogap{\rep'}=0$ vanish under parity
+and cancel, and every surviving quantity is a capacity functional of the induced
+classes $\hypclass\circ\rep,\hypclass\circ\rep'$. The achievable representation
+advantage at constant information is thus at most $\Phi$, the capacity budget of
+\eqref{eq:advantage-quantity}.
+\idealization{This is the deliberate relaxation of idealization~(i) of
+\cref{rem:slogan} (Bayes-optimality): the predictors are finite-sample ERMs over
+a fixed base class, not the Bayes posterior $\post{\rep}$, and $\Phi$ is exactly
+the room that relaxation opens. It \emph{retains} idealization~(ii) (exact
+operational parity \eqref{eq:parity}), invoked through \cref{thm:irrelevance} to
+set $\infogap{\rep}=\infogap{\rep'}=0$; the residual when parity holds only up to
+a measured defect is the subject of \cref{sec:parity-defect}. The bound is
+one-sided and sign-agnostic --- it limits how large a parity-preserving
+advantage \emph{can} be and asserts no effect exists (guardrail~G2).}
+\end{theorem}
+
+The proof (\cref{app:bounded-gap}) is a sandwich: a deterministic floor
+$\risk(\widehat f_{\rep})\ge\bayesrisk(\mathrm{id})+\approxerr{\rep}$ on the
+better representation (its ERM cannot beat its own in-class optimum), a
+high-probability ceiling on $\risk(\widehat f_{\rep'})$ from \cref{thm:uniform},
+and subtraction; the $\bayesrisk(\mathrm{id})$ terms cancel and the information
+channel never appears. Two specializations make the content concrete.
+
+\begin{corollary}[Well-specified case: advantage is pure capacity]
+\label{cor:realizable-gap}
+If the base class expresses the Bayes rule in both coordinate systems, i.e.\
+$\approxerr{\rep}=\approxerr{\rep'}=0$ (both $\rep,\rep'$ render $Y$ realizable
+by $\hypclass$), then with probability $\ge 1-\delta$
+\begin{equation}
+  \label{eq:realizable-gap}
+  \advantage(\rep,\rep')\;\le\;4\,\Rad{\loss\circ(\hypclass\circ\rep')}
+    \;+\;c_\nsample(\delta).
+\end{equation}
+The entire achievable advantage is then the estimation capacity of the induced
+class --- an explicit, interpretable expression with no approximation and no
+information content.
+\end{corollary}
+
+\begin{proof}
+Immediate from \eqref{eq:bounded-gap} with $\approxerr{\rep'}=\approxerr{\rep}=0$.
+\end{proof}
+
+\begin{corollary}[Two-sided size bound]
+\label{cor:size-gap}
+With probability at least $1-2\delta$ the \emph{magnitude} of the advantage in
+either direction obeys
+\begin{equation}
+  \label{eq:size-gap}
+  |\advantage(\rep,\rep')|
+  \;\le\;
+  \big|\approxerr{\rep'}-\approxerr{\rep}\big|
+  \;+\;
+  4\max\!\big\{\Rad{\loss\circ(\hypclass\circ\rep)},\,\Rad{\loss\circ(\hypclass\circ\rep')}\big\}
+  \;+\;
+  c_\nsample(\delta).
+\end{equation}
+This is the size bound consumed by \cref{sec:predictions}: the theory constrains
+how large a format effect can be, not which format wins.
+\end{corollary}
+
+\begin{proof}
+Apply \cref{thm:bounded-gap} to $(\rep,\rep')$ and to $(\rep',\rep)$ on their two
+$1-\delta$ events and union-bound. Since
+$\advantage(\rep',\rep)=-\advantage(\rep,\rep')$, the two conclusions give
+$\advantage(\rep,\rep')\le\Phi(\rep,\rep')$ and
+$-\advantage(\rep,\rep')\le\Phi(\rep',\rep)$, so
+$|\advantage(\rep,\rep')|\le\max\{\Phi(\rep,\rep'),\Phi(\rep',\rep)\}$, which is
+at most the right-hand side after bounding each term by its larger value.
+\end{proof}
+
+\subsection{The regime that activates the bound}
+\label{subsec:regime}
+
+The bound is one-directional by design, but it is informative only in a window,
+and that window is exactly the place the theory points the empirical work
+(\cref{sec:predictions}).
+
+\begin{proposition}[Non-vacuity regime and infinite-resource limit]
+\label{prop:regime}
+Suppose the induced loss classes obey the chaining bound
+$\Rad{\loss\circ(\hypclass\circ\rep)}\le c_0\sqrt{\capac{\hypclass}/\nsample}$
+for an absolute constant $c_0$ and a capacity index $\capac{\hypclass}$
+\citep[Ch.~6]{shalevshwartz2014} (pre-composition with a representation maps any
+$\rep$-shattered set to a $\hypclass$-shattered set of equal size, so
+$\mathrm{VC}(\hypclass\circ\rep)\le\mathrm{VC}(\hypclass)$ and the index may be
+taken as the base class's). Then:
+\begin{enumerate}
+  \item[(i)] \emph{(Vacuous floor.)} Because $\loss\in[0,1]$ makes
+    $\advantage(\rep,\rep')\le 1$ trivially, \eqref{eq:bounded-gap} adds nothing
+    until its estimation term clears that floor, i.e.\ until
+    $\nsample \gtrsim (4c_0)^2\,\capac{\hypclass}$ --- order $\capac{\hypclass}$
+    samples. Below it the learner does not generalize on $\rep'$ and the theory
+    predicts nothing either way.
+  \item[(ii)] \emph{(Activation regime.)} Above that threshold the bound reads
+    $\advantage(\rep,\rep')\le[\approxerr{\rep'}-\approxerr{\rep}]
+      +O(\sqrt{\capac{\hypclass}/\nsample})$, which stays bounded away from $0$
+    --- so the theory \emph{permits} an appreciable effect --- only under a
+    genuine capacity separation: a positive approximation gap
+    $\approxerr{\rep'}>\approxerr{\rep}$, or a finite-$\nsample$ estimation term
+    comparable to it. \cref{prop:capacity-separation} shows both can occur at
+    constant information; absent any separation
+    ($\approxerr{\rep}=\approxerr{\rep'}$ and equal induced complexities) the
+    permitted window is empty.
+  \item[(iii)] \emph{(Infinite-resource limit.)} If moreover the base class is
+    Bayes-consistent in both coordinates ($\approxerr{\rep}=\approxerr{\rep'}=0$,
+    or $\hypclass=\hypclass_\nsample$ grows so that
+    $\approxerr{\rep},\approxerr{\rep'}\to 0$ with
+    $\capac{\hypclass_\nsample}/\nsample\to 0$), then
+    $\advantage(\rep,\rep')\to 0$ as $\nsample\to\infty$. The bounded-learner gap
+    is a strictly finite-resource phenomenon: it vanishes in the
+    infinite-data / infinite-capacity limit, where \cref{thm:irrelevance}
+    resumes control.
+\end{enumerate}
 \end{proposition}
+
+\begin{proof}
+\emph{(i)} The estimation term satisfies
+$4\,\Rad{\loss\circ(\hypclass\circ\rep')}\le 4c_0\sqrt{\capac{\hypclass}/\nsample}$,
+which is below $1$ exactly when $\nsample>(4c_0)^2\capac{\hypclass}$.
+\emph{(ii)} Substituting the chaining bound into \eqref{eq:bounded-gap} gives the
+displayed inequality; its $\nsample$-independent part is the approximation gap
+$\approxerr{\rep'}-\approxerr{\rep}$ and its $\nsample$-dependent part is
+$O(\sqrt{\capac{\hypclass}/\nsample})\to 0$, so the bound is bounded away from
+$0$ iff one of those two summands is, which is the stated separation condition
+(possible at fixed information by \cref{prop:capacity-separation}).
+\emph{(iii)} With $\approxerr{\rep}=\approxerr{\rep'}=0$ (or both $\to 0$ and
+$\capac{\hypclass_\nsample}/\nsample\to 0$), \eqref{eq:bounded-gap} gives
+$\advantage(\rep,\rep')\le O(\sqrt{\capac{\hypclass}/\nsample})\to 0$, while the
+symmetric application of \cref{cor:size-gap} supplies the matching lower bound;
+hence $\advantage(\rep,\rep')\to 0$.
+\end{proof}
+
+\begin{remark}[What the bound does and does not say]
+\label{rem:bounded-reading}
+\cref{thm:bounded-gap} is the positive half of the thesis made precise (charter
+§1): once parity closes the information channel (\cref{thm:irrelevance}), any
+representation effect on a bounded learner is a \emph{bounded-computation}
+phenomenon whose maximum magnitude is the capacity budget $\Phi$ --- a
+sample-complexity quantity, never a mutual information --- and
+\cref{prop:regime} names the finite-sample, capacity-separated regime in which to
+look for one. This is the constructive payoff promised in \cref{sec:intro}, and
+it stays strictly inside guardrail~G2: the bound is agnostic about sign and about
+existence, so the direction and reality of any real-LLM effect remain the
+empirical questions routed to \cref{sec:predictions}. The single idealization
+still standing --- exact parity --- is discharged in \cref{sec:parity-defect},
+which measures what happens when two representations are only approximately
+information-equivalent.
+\end{remark}

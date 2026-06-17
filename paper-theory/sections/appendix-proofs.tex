@@ -9,7 +9,7 @@
 % Index of obligations (update as theorems are proved):
 %   - \cref{thm:irrelevance} (irrelevance at optimum, T2-2)        -- PROVED (T2-2, WOV-268)
 %   - \cref{cor:ratedist-gap} (rate--distortion parity bound, T2-2) -- PROVED (T2-2, WOV-268)
-%   - \cref{prop:advantage} (bounded-regime advantage bound, T2-4) -- pending
+%   - \cref{thm:bounded-gap} (bounded-learner advantage bound, T2-4) -- PROVED (T2-4, WOV-270)
 %   - parity-defect propositions (T2-5, if §6 passes go/no-go)     -- pending
 %   - \cref{thm:retraction} (retraction proposition, T2-3)         -- PROVED (T2-3, WOV-269; §3 GO)
 %   - \cref{cor:defect-subadditive} (defect domain/subadditivity)  -- PROVED (T2-3, WOV-269)
@@ -297,4 +297,74 @@ $\preddist{R_0},\dots,\preddist{R_m}$ gives
 $\Wass{1}(\preddist{R_0},\preddist{R_m})\le\sum_{i}\Wass{1}(\preddist{R_{i-1}},\preddist{R_i})$.
 The bound is the elementary triangle inequality; the categorical content is that
 (ii) supplies the intermediate laws that make the chain meaningful.
+\end{proof}
+
+\subsection{The bounded-learner advantage bound (T2-4)}
+\label{app:bounded-gap}
+
+The proof is a two-sided sandwich on the excess risk of the two representations,
+using only the section's uniform-convergence bound (\cref{thm:uniform}) and the
+irrelevance theorem (\cref{thm:irrelevance}). The single point of substance is
+that the information channel cancels exactly, so the surviving bound is a pure
+capacity quantity.
+
+\begin{proof}[Proof of \cref{thm:bounded-gap}]
+Parity $\rep\parityeq\rep'$ gives
+$\bayesrisk(\rep)=\bayesrisk(\rep')=\bayesrisk(\mathrm{id})$
+(\cref{thm:irrelevance}), so by \eqref{eq:approxerr} the in-class optima are
+\begin{equation}
+  \label{eq:inclass-optima}
+  \inf_{f\in\hypclass\circ\rep}\risk(f)=\bayesrisk(\mathrm{id})+\approxerr{\rep},
+  \qquad
+  \inf_{f\in\hypclass\circ\rep'}\risk(f)=\bayesrisk(\mathrm{id})+\approxerr{\rep'}.
+\end{equation}
+
+\emph{Floor (deterministic).} The ERM $\widehat f_{\rep}$ lies in
+$\hypclass\circ\rep$, so its risk is at least the class infimum; by
+\eqref{eq:inclass-optima},
+\begin{equation}
+  \label{eq:floor}
+  \risk(\widehat f_{\rep})\;\ge\;\inf_{f\in\hypclass\circ\rep}\risk(f)
+  \;=\;\bayesrisk(\mathrm{id})+\approxerr{\rep},
+\end{equation}
+with no appeal to the sample.
+
+\emph{Ceiling (high probability).} Apply \cref{thm:uniform} to
+$\mathcal F=\hypclass\circ\rep'$: on an event of probability at least $1-\delta$
+the ERM estimation error is at most
+$4\,\Rad{\loss\circ(\hypclass\circ\rep')}+c_\nsample(\delta)$ with
+$c_\nsample(\delta)=O(\sqrt{\log(1/\delta)/\nsample})$, so by
+\eqref{eq:inclass-optima},
+\begin{equation}
+  \label{eq:ceiling}
+  \risk(\widehat f_{\rep'})\;\le\;\inf_{f\in\hypclass\circ\rep'}\risk(f)
+   +4\,\Rad{\loss\circ(\hypclass\circ\rep')}+c_\nsample(\delta)
+  \;=\;\bayesrisk(\mathrm{id})+\approxerr{\rep'}
+   +4\,\Rad{\loss\circ(\hypclass\circ\rep')}+c_\nsample(\delta).
+\end{equation}
+
+\emph{Subtraction.} On that event, by \cref{def:advantage} and
+\eqref{eq:floor}--\eqref{eq:ceiling},
+\[
+  \advantage(\rep,\rep')
+  =\risk(\widehat f_{\rep'})-\risk(\widehat f_{\rep})
+  \;\le\;\big[\approxerr{\rep'}+4\,\Rad{\loss\circ(\hypclass\circ\rep')}
+       +c_\nsample(\delta)\big]-\approxerr{\rep},
+\]
+the two $\bayesrisk(\mathrm{id})$ terms cancelling. This is
+\eqref{eq:bounded-gap}.
+
+\emph{No information term.} In the excess-risk decomposition \eqref{eq:excess}
+the only information-dependent quantity is the middle gap
+$\bayesrisk(\cdot)-\bayesrisk(\mathrm{id})=\infogap{\cdot}$; under parity it is
+$0$ for each of $\rep,\rep'$ by \cref{thm:irrelevance}, so it never enters
+\eqref{eq:floor}--\eqref{eq:ceiling}, and every term of \eqref{eq:bounded-gap}
+is a capacity functional of an induced class, as claimed.
+\idealization{The bound relaxes idealization~(i) of \cref{rem:slogan}
+(Bayes-optimality) --- it concerns finite-sample ERMs, not the posterior
+$\post{\rep}$ --- and retains idealization~(ii) (exact parity
+\eqref{eq:parity}), used only to cancel $\infogap{\rep},\infogap{\rep'}$ via
+\cref{thm:irrelevance}. It bounds the \emph{size} of any parity-preserving
+advantage and is silent on sign and existence (guardrail~G2); the failure of
+exact parity is quantified in \cref{sec:parity-defect}.}
 \end{proof}
