@@ -2,17 +2,348 @@
 \section{Predictions and falsifiable tests}
 \label{sec:predictions}
 
-% STUB (T3-2). The paper's forward-looking contribution and the antidote to
-% "a math-dressed null" (charter §1 positive half; guardrail G2).
-%
-% Each prediction carries (charter §4.8):
-%   - a named bounded-regime experiment the theory implies,
-%   - a SIGN and SIZE prediction (size bounded by \cref{cor:size-gap}),
-%   - an explicit FALSIFIER.
-%
-% Hard rule (guardrail G2): these are falsifiable PREDICTIONS, never
-% established empirical findings. Anything beyond the proved theorems is
-% marked as conjecture (guardrail G6).
+% Fills in T3-2 (WOV-273). The paper's forward-looking contribution and the
+% antidote to "a math-dressed null" (charter §1 positive half; guardrail G2).
+% Each prediction carries (charter §4.8): a named bounded-regime experiment on
+% the Lumen apparatus, a SIGN and SIZE statement (size from \cref{cor:size-gap}
+% and \cref{thm:defect-risk-gap}), and an explicit FALSIFIER. Hard rule
+% (guardrail G2/G6): these are falsifiable PREDICTIONS/CONJECTURES, never
+% established empirical findings.
 
-\noindent\emph{[Stub. Fills in T3-2. Predictions derive from
-\cref{sec:bounded}; each is stated with sign, size bound, and falsifier.]}
+\Cref{sec:anchoring} retrodicted the three frozen cells; it deliberately
+declined to claim the existence, sign, or magnitude of any bounded-regime
+effect, leaving those to this section (\cref{rem:anchor-limits}). Here the
+theory pays rent. \Cref{thm:irrelevance} closes the information channel at the
+optimum, \cref{thm:bounded-gap} caps what a bounded learner can recover by the
+capacity budget $\Phi$, \cref{prop:regime} names the finite-resource,
+capacity-separated window in which that budget is non-empty, and
+\cref{thm:defect-risk-gap} bounds the residual swap gap by the measured parity
+defect. Read forward rather than backward, these results say \emph{where to
+look next}: they localize the regime in which a parity-preserving
+representation effect is permitted, forbid it everywhere else, and bound its
+size. This section turns that localization into a numbered list of falsifiable
+predictions, each tied to a knob of the Lumen apparatus, each with a sign/size
+statement and an explicit falsifier.
+
+\subsection{The logical form of a prediction from a sign-agnostic bound}
+\label{subsec:pred-form}
+
+A one-sided, sign-agnostic bound (\cref{thm:bounded-gap},
+$\advantage(\rep,\rep')\le\Phi$, with $\Phi$ a capacity functional carrying no
+mutual-information term) does not predict that any effect exists, nor which
+representation wins; guardrail~G2 forbids manufacturing either. It is therefore
+worth stating precisely what \emph{is} falsifiable, so the predictions below are
+not mistaken for disguised existence claims.
+
+Two kinds of content survive the sign-agnosticism, and every prediction in
+\cref{subsec:the-predictions} is one or the other:
+
+\begin{enumerate}
+  \item[(F1)] \emph{Necessary-condition (prohibition) predictions.} The theory
+    \emph{forbids} a parity-preserving effect outside the activation window of
+    \cref{prop:regime}(ii). Concretely, in the infinite-resource / sub-frontier
+    corner \cref{prop:regime}(iii) the advantage is driven to zero, so a stable,
+    parity-verified $\ladder{4}$-vs-$\ladderplus$ risk gap that persists there
+    would contradict the theory. Prohibitions are falsified by a single clean
+    counterexample and need no sign.
+  \item[(F2)] \emph{Comparative-trend predictions.} Moving the learner toward
+    its frontier widens the permitted envelope $\Phi$ (\cref{prop:regime}(ii):
+    the $\nsample$-dependent estimation term grows as effective resources
+    shrink, and an approximation gap $\approxerr{\ladderplus}>\approxerr{\ladder{4}}$
+    can only then express itself). The theory thus predicts the \emph{ordering}
+    of effect magnitudes across a knob --- larger in-regime than off-regime ---
+    without committing to the sign of any single magnitude. A trend in the wrong
+    direction (an effect that grows as the frontier recedes) falsifies it.
+\end{enumerate}
+
+Write $\rho$ for \emph{frontier proximity}, the ratio of task demand to model
+capacity --- informally, how hard the instance is for the model in question.
+$\rho\to 0$ is the easy-task / large-model corner where \cref{thm:irrelevance}
+and \cref{prop:regime}(iii) jointly force the advantage to zero (the regime
+\cref{subsec:anchor-t1} assigned T1 and \cref{subsec:anchor-t3} assigned T3);
+$\rho\to 1$ is the capacity-separated frontier where \cref{prop:regime}(ii)
+opens the window. The master prediction is monotonicity in $\rho$; the
+remaining predictions are the concrete knobs that move $\rho$ on the Lumen
+apparatus. None of the falsifiers below requires the theory to have guessed a
+sign.
+
+\subsection{The predictions}
+\label{subsec:the-predictions}
+
+Each prediction names the mechanism it rests on, the Lumen knob that realizes
+it, the predicted effect on the magnitude $|\advantage(\ladder{4},\ladderplus)|$
+(never its sign, except where the theory genuinely constrains a trend), and the
+observation that would falsify it. Throughout, ``parity-verified'' means the
+$\ladder{4}/\ladderplus$ pair is held at operational parity (\cref{def:parity})
+with the round-trip recovery of \cref{tab:cladder} re-measured for the new
+regime, so that a moved effect cannot be an artifact of a moved information gap.
+
+\begin{prediction}[Frontier-proximity gating --- the master necessary condition]
+\label{pred:frontier}
+At fixed task and parity, $|\advantage(\ladder{4},\ladderplus)|$ is a
+non-decreasing function of frontier proximity $\rho$ and tends to $0$ as
+$\rho\to 0$. Equivalently (F1): the theory forbids a stable, parity-verified
+representation effect in the easy-task / high-capacity corner.\par
+\emph{Mechanism.} \cref{thm:irrelevance} (channel closed at the optimum) and
+\cref{prop:regime}(iii) (advantage $\to 0$ in the infinite-resource limit); the
+window only opens under the capacity separation of
+\cref{prop:capacity-separation}, available at $\rho\to 1$.\par
+\emph{Knob.} Any axis that raises $\rho$: shrinking model capacity
+(\cref{pred:capacity}), raising task difficulty (\cref{pred:difficulty}), or
+restricting compute and context (\cref{pred:compute}). The master prediction is
+that all three move the effect the \emph{same} way.\par
+\emph{Predicted sign and size.} Sign free (F2 trend, not a direction);
+magnitude bounded by $\Phi$ (\cref{cor:size-gap}) at every $\rho$ and decaying
+to $0$ with $\rho$.\par
+\emph{Falsifier.} A parity-verified effect that is constant or \emph{increasing}
+as $\rho\to 0$ --- e.g.\ an $\ladder{4}$-vs-$\ladderplus$ gap as large on the
+frontier model / easy task as on the small model / hard task. This is the single
+observation that would refute the bounded-computation thesis of charter~§1: it
+would mean information content, not capacity, is moving the risk, in violation of
+\cref{thm:irrelevance} beyond the measured defect of \cref{sec:parity-defect}.
+\end{prediction}
+
+\begin{prediction}[Capacity descent --- smaller and quantized models]
+\label{pred:capacity}
+Holding the task corpus and parity fixed and descending a ladder of model
+capacities (frontier $\to$ mid-size $\to$ small $\to$ post-training-quantized),
+any parity-preserving effect appears or grows as capacity falls.\par
+\emph{Mechanism.} \cref{prop:regime}(ii): lower capacity lowers the effective
+resource budget and can open a positive approximation gap
+$\approxerr{\ladderplus}>\approxerr{\ladder{4}}$ that a frontier model closes in
+both coordinates (\cref{cor:realizable-gap}, the regime
+\cref{subsec:anchor-t1} read onto T1).\par
+\emph{Knob.} Swap the screening model (Makefile \texttt{SCREEN\_MODEL}) across a
+capacity ladder; add a small open-weights model and an INT8/INT4 quantization of
+it. Quantization is the cleanest capacity knob because it perturbs capacity at
+\emph{fixed} weights and task, isolating $\Phi$ from confounds of separate
+pre-training.\par
+\emph{Predicted sign and size.} Sign free; $|\advantage|$ non-increasing in
+capacity, bounded by $\Phi$ at each rung.\par
+\emph{Falsifier.} A flat profile across the capacity ladder, or a \emph{larger}
+parity-verified effect on the bigger model. Either contradicts \cref{pred:frontier}.
+\end{prediction}
+
+\begin{prediction}[Difficulty ascent --- longer, recursive, deeper-reasoning items]
+\label{pred:difficulty}
+Stratifying the corpus by intrinsic difficulty (function length, recursion /
+nesting depth, multi-hop reasoning), any parity-preserving effect concentrates on
+the hardest stratum and is absent on the easiest.\par
+\emph{Mechanism.} \cref{prop:regime}(ii): difficulty raises $\rho$ at fixed
+model, moving items from the sub-frontier saturation corner
+(\cref{subsec:anchor-t3}, where \cref{cor:realizable-gap} drives the advantage to
+the floor) into the activation window.\par
+\emph{Knob.} The candidate tracker already records \texttt{LINES}; add a
+difficulty stratification (length bins, a recursion flag, a reasoning-depth
+proxy) and a harder T3 transformation set. This is exactly the program's open
+need that T3 ``needs a harder dataset (or partial-credit transforms) before it
+can test anything'' (next-phase design, R5 evaluation): the theory says the
+harder dataset is where the bounded effect, if any, becomes visible.\par
+\emph{Predicted sign and size.} Sign free; $|\advantage|$ non-decreasing in
+difficulty, bounded by $\Phi$ per stratum.\par
+\emph{Falsifier.} An effect concentrated on the \emph{easy} stratum, or flat
+across difficulty. A larger raw effect on an easy, ceiling-prone stratum that
+vanishes under the continuous metric of \cref{subsec:battery} is \emph{not} a
+confirmation --- it is the T3 ceiling artifact (\cref{subsec:anchor-t3}) and
+must be reported as uninformative, not as support.
+\end{prediction}
+
+\begin{prediction}[Compute and context restriction]
+\label{pred:compute}
+Restricting the learner's inference-time resources --- capping reasoning tokens,
+truncating the context window, or reducing the number of in-context exemplars
+--- raises any parity-preserving effect relative to the unrestricted baseline.\par
+\emph{Mechanism.} \cref{prop:regime}(i)--(ii): these knobs lower the effective
+sample size $\nsample$ and the realized capacity of the in-context predictor,
+moving it from the vacuous-floor / well-resourced corner toward the activation
+window. This is the ``bounded compute'' clause of charter~§1 made operational.\par
+\emph{Knob.} Reasoning-effort / max-thinking-token budget; context-window
+truncation; few-shot count. All are apparatus-level settings requiring no change
+to the frozen scorers or datasets, so they sit alongside the confirmatory
+artifact (guardrail: frozen-script regime is sacred).\par
+\emph{Predicted sign and size.} Sign free; $|\advantage|$ non-increasing in the
+compute/context budget, bounded by $\Phi$.\par
+\emph{Falsifier.} An effect unchanged or \emph{shrinking} under tighter compute
+or context. A bounded-computation phenomenon must respond to a compute knob; one
+that does not is, by definition, not bounded-computation, and contradicts
+\cref{pred:frontier}.
+\end{prediction}
+
+\begin{prediction}[Bounded magnitude and parity-defect comonotonicity]
+\label{pred:size}
+Whatever the regime, the parity-verified swap gap is bounded, and it is bounded
+by a \emph{measurable} quantity: with $\paritydefect$ the parity defect
+(\cref{def:parity-defect}) computed from R4-style round-trip recovery and $c$ the
+calibration constant of \cref{cor:defect-two-term},
+\[
+  \big|\advantage(\ladder{4},\ladderplus)\big|
+  \;\le\; \min\big\{\,\Phi,\; c\,\paritydefect\,\big\} \;+\; o(\|\overline v\|),
+\]
+the abstract capacity envelope $\Phi$ of \cref{cor:size-gap} and the operational
+envelope $c\,\paritydefect$ of \cref{thm:defect-risk-gap} both applying.
+Moreover the swap gap is comonotone with the defect: as the $\ladder{4}\!\to\!
+\ladderplus$ projection is improved and $\paritydefect\to 0$, any swap gap must
+shrink toward $0$.\par
+\emph{Mechanism.} \cref{cor:size-gap} (two-sided capacity envelope) and
+\cref{thm:defect-risk-gap}/\cref{cor:defect-two-term} (the swap gap is dominated
+by the transport defect, with no mutual-information term under operational
+parity).\par
+\emph{Knob.} Compute $\paritydefect$ from the round-trip recovery rates already
+produced by the R4 pipeline (\cref{tab:cladder}: contracts $100\%$, node kinds
+$99.8\%$, types $96.4\%$, byte-exact $0/30$); improve the projection to drive
+$\paritydefect$ down and re-measure the swap gap.\par
+\emph{Predicted sign and size.} $|\advantage|\le c\,\paritydefect$ in magnitude;
+comonotone in $\paritydefect$.\par
+\emph{Falsifier.} (i)~A parity-verified effect exceeding $c\,\paritydefect$
+(beyond the local-Fisher remainder of \cref{prop:defect-fisher-local}) ---
+information content would then be moving the risk under verified parity,
+contradicting \cref{thm:irrelevance}. (ii)~A swap gap that \emph{persists or
+grows} as $\paritydefect\to 0$ under an improved projection --- the gap would
+then not be a parity-defect artifact, contradicting \cref{cor:defect-finer-order}.
+\end{prediction}
+
+\subsection{A unified test battery on the Lumen apparatus}
+\label{subsec:battery}
+
+The five predictions are not five separate studies. \Cref{pred:capacity,%
+pred:difficulty,pred:compute} are three orthogonal axes of the single frontier
+proximity $\rho$ of \cref{pred:frontier}, so the economical design is one
+pre-registered factorial --- model capacity $\times$ task difficulty $\times$
+compute budget --- with the $\ladder{4}/\ladderplus$ contrast measured in every
+cell and $\paritydefect$ (\cref{pred:size}) measured alongside. The master
+prediction is then a single monotonicity test across the diagonal from the
+low-$\rho$ corner (frontier model, easy stratum, full budget; theory predicts
+$\approx 0$) to the high-$\rho$ corner (small/quantized model, hardest stratum,
+restricted budget; theory permits the largest effect, still capped by $\Phi$).
+
+Three discipline requirements make the battery actionable rather than
+suggestive, and they are inherited, not invented here.
+
+\paragraph{Measurement must not ceiling (the W-04 dependency).}
+Every prediction is about the \emph{magnitude} of a bounded-regime effect, and
+\cref{subsec:anchor-t3} showed that a saturating scorer destroys exactly that
+signal: T3's $93.7\%$ ceiling left an effective $\nsample\approx 5$ and rendered
+the cell uninformative in both directions. The battery is therefore conditional
+on the continuous, anti-saturation metric of the program's measurement-design
+pass (backlog item W-04: a continuous-valued location/quality score reported
+alongside the frozen composite). Without it, a high-$\rho$ cell that ceilings is
+\emph{not} evidence for or against any prediction --- it is a censored
+measurement, and \cref{pred:difficulty}'s falsifier explicitly refuses to read a
+ceiling-inflated raw effect as confirmation. W-04 is thus a precondition for the
+T3-difficulty arm, not an optional refinement.
+
+\paragraph{``Effect'' means multiplicity-surviving, not raw-$p$.}
+Consistent with the program's decision-gate definition, a confirmed effect is a
+pre-registered, multiple-comparison-surviving signal under the continuous
+metric, not a raw-$p$ or directional-only reading. The factorial multiplies the
+comparison family, so the analysis plan must fix the correction (e.g.\ Holm over
+the declared cells, as in the frozen confirmatory family) \emph{before}
+collection. A raw-$p$ blip in one high-$\rho$ cell confirms nothing; the
+prediction is about the monotone trend surviving correction across the design.
+
+\paragraph{Parity is re-verified per cell.}
+Moving model, difficulty, or compute can move the operational information gap as
+a side effect. Each cell therefore re-measures the round-trip recovery and
+$\paritydefect$ (\cref{pred:size}); a cell whose parity has drifted is analyzed
+under \cref{sec:parity-defect}, not silently treated as parity-preserving. This
+is the standing guardrail that information parity is operational, not absolute
+(\cref{rem:parity-ledger}, guardrail~G3).
+
+\subsection{What each outcome would mean for the program}
+\label{subsec:decision-map}
+
+The predictions are designed to feed the program's existing decision gates, so a
+result moves a build decision rather than only a belief. \Cref{tab:pred-summary}
+collects the five predictions, their knobs, and their falsifiers;
+\cref{tab:pred-gates} maps the two qualitatively different battery outcomes onto
+the decision-gate rows.
+
+\begin{table}[t]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}p{0.20\linewidth}p{0.26\linewidth}p{0.16\linewidth}p{0.30\linewidth}@{}}
+\toprule
+Prediction & Lumen knob & Predicted $|\advantage|$ & Falsifier \\
+\midrule
+\cref{pred:frontier} Frontier gating (master) &
+  raise $\rho$ (any axis) & $\nearrow$ in $\rho$, $\to 0$ as $\rho\to 0$ &
+  stable / growing effect as $\rho\to 0$ \\
+\cref{pred:capacity} Capacity descent &
+  model ladder $+$ quantization & $\nearrow$ as capacity $\searrow$ &
+  flat, or larger on bigger model \\
+\cref{pred:difficulty} Difficulty ascent &
+  length / recursion / depth strata; harder T3 & $\nearrow$ with difficulty &
+  effect on easy stratum, or flat \\
+\cref{pred:compute} Compute / context &
+  reasoning budget, context, shots & $\nearrow$ under restriction &
+  unchanged / shrinks under restriction \\
+\cref{pred:size} Bounded magnitude &
+  measure $\paritydefect$ from R4 & $\le\min\{\Phi,c\,\paritydefect\}$ &
+  exceeds $c\,\paritydefect$; or survives $\paritydefect\to0$ \\
+\bottomrule
+\end{tabular}
+\caption{The five falsifiable predictions, their bounded-regime knobs on the
+Lumen apparatus, the predicted effect on the magnitude
+$|\advantage(\ladder{4},\ladderplus)|$ (signs deliberately unspecified per
+guardrail~G2), and the explicit falsifier of each.}
+\label{tab:pred-summary}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}p{0.46\linewidth}p{0.48\linewidth}@{}}
+\toprule
+Battery outcome (multiplicity-surviving, W-04 metric) & Decision-gate consequence \\
+\midrule
+A monotone bounded-regime effect emerges at high $\rho$
+(\cref{pred:capacity,pred:difficulty,pred:compute} confirmed), bounded by
+$\Phi$ and comonotone with $\paritydefect$ &
+  The current ``C4 weak on T1/T3'' standing is revised \emph{conditionally}:
+  the structured representation helps a bounded learner where the theory says it
+  can. Scopes Lumen to the bounded regime (small/quantized models, hard tasks,
+  tight compute) rather than the frontier --- a verification/review-support
+  framing, not ``promote to primary bet.'' \\[2pt]
+No effect anywhere off the floor, or an effect that fails to decay with $\rho$ &
+  Two opposite readings, distinguished by \cref{pred:frontier}'s falsifier.
+  \emph{No effect:} corroborates the negative half --- the projection, not the
+  language, is what to revisit (matching the standing decision-gate row).
+  \emph{Non-decaying effect:} \cref{pred:frontier} is falsified and the
+  bounded-computation thesis itself is wrong; the program would re-open the
+  information-design question the irrelevance theorem was taken to close. \\
+\bottomrule
+\end{tabular}
+\caption{How the two qualitatively different battery outcomes map onto the
+program's decision gates. The theory's value is that both outcomes are
+informative: one scopes the product to the bounded regime, the other refutes a
+load-bearing assumption.}
+\label{tab:pred-gates}
+\end{table}
+
+\begin{remark}[What this section does and does not claim]
+\label{rem:pred-honesty}
+Every statement in \cref{subsec:the-predictions} is a prediction or a
+conjecture, never a finding (guardrail~G2/G6). The theory does not assert that
+any bounded-regime effect exists, and it never predicts which representation
+wins: the sign of $\advantage$ is left free throughout, and the only directional
+content is the \emph{trend} of $|\advantage|$ across a resource knob
+(\cref{subsec:pred-form}). The predictions are valuable precisely because they
+are two-sided in consequence --- a confirmed monotone effect scopes the product,
+a clean null corroborates the negative half, and a non-decaying effect falsifies
+the thesis (\cref{tab:pred-gates}) --- so the theory cannot be unfalsifiable
+``always consistent.''
+\idealization{All five predictions inherit the mapping caveats of
+\cref{rem:anchor-limits}: a frozen LLM is not an ERM with a tunable
+$(\nsample,\hypclass)$, so $\rho$, $\Phi$, and the activation window of
+\cref{prop:regime} are read onto the apparatus by analogy (idealization~(i),
+relaxed but not eliminated), and parity is operational, re-verified per cell up
+to the \cref{sec:parity-defect} defect (idealization~(ii)). The predictions are
+robust to these only because they assert \emph{monotone trends, prohibitions,
+and bounds}, never point values --- the same discipline that made the
+retrodiction of \cref{sec:anchoring} legitimate. The one quantity here that is
+directly measurable on the frozen apparatus rather than analogical is
+$\paritydefect$ (\cref{pred:size}), which is why it carries the section's
+sharpest falsifier.}
+\end{remark}

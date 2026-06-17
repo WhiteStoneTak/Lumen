@@ -47,6 +47,13 @@
 \newtheorem{example}[theorem]{Example}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+% ----- Falsifiable predictions (§8, T3-2) -----
+% Predictions are NOT proved results: they carry an independent counter (P8.x)
+% so they are never confused with the theorems they derive from, and they live
+% in remark style to keep the conjectural status visually distinct (guardrails
+% G2/G6). Each prediction is stated with a sign/size claim and an explicit
+% falsifier in its body.
+\newtheorem{prediction}{Prediction}[section]
 
 % ----- Idealization-disclosure box (guardrail G3) -----
 % Every invocation of the irrelevance theorem must state which idealization
