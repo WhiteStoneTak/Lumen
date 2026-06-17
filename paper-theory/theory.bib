@@ -195,3 +195,221 @@
   address   = {Providence, RI},
   year      = {2000}
 }
+
+% =============================================================
+% Related work (§9, T4-2, WOV-275). Every entry below was verified against a
+% primary source (arXiv / ACL Anthology / PMLR / OpenReview / publisher DOI /
+% dblp) at insertion time; verification URLs are kept in the url/doi fields.
+% G5 honoured: "SOAP" is NOT cited (it is a workshop venue, not a work);
+% INDICT (Le et al., NeurIPS 2024) is NOT cited as AST-based hallucination
+% detection (it is a dual-critic code-generation framework); Clover,
+% Plan-and-Solve, and PAL were each verified before inclusion; AST-based
+% hallucination detection is represented by an independently-sourced work
+% (Khati et al.), not by a repurposed INDICT cite.
+
+% --- §9.1 Information-theoretic views of representation ---
+% The information bottleneck and its deep-learning follow-up. Cited to
+% contrast a compression-vs-prediction tradeoff with our fixed-information
+% setting. (Classical sufficiency is already covered by coverthomas2006 and
+% lehmanncasella1998 above.)
+
+@misc{tishby2000informationbottleneck,
+  author        = {Tishby, Naftali and Pereira, Fernando C. and Bialek, William},
+  title         = {The information bottleneck method},
+  year          = {2000},
+  eprint        = {physics/0004057},
+  archivePrefix = {arXiv},
+  primaryClass  = {physics.data-an},
+  doi           = {10.48550/arXiv.physics/0004057},
+  url           = {https://arxiv.org/abs/physics/0004057}
+}
+
+@inproceedings{alemi2017deepvib,
+  author    = {Alemi, Alexander A. and Fischer, Ian and Dillon, Joshua V. and Murphy, Kevin},
+  title     = {Deep Variational Information Bottleneck},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2017},
+  url       = {https://openreview.net/forum?id=HyxQzBceg}
+}
+
+% --- §9.2 Learning-theoretic analyses of representation ---
+% Both ask which representation to LEARN (across tasks / under task diversity),
+% in contrast to our question of whether an information-preserving format helps
+% a fixed bounded learner.
+
+@article{maurer2016multitask,
+  author  = {Maurer, Andreas and Pontil, Massimiliano and Romera-Paredes, Bernardino},
+  title   = {The Benefit of Multitask Representation Learning},
+  journal = {Journal of Machine Learning Research},
+  volume  = {17},
+  number  = {81},
+  pages   = {1--32},
+  year    = {2016},
+  url     = {https://jmlr.org/papers/v17/15-242.html}
+}
+
+@inproceedings{tripuraneni2021taskdiversity,
+  author    = {Tripuraneni, Nilesh and Jordan, Michael I. and Jin, Chi},
+  title     = {On the Theory of Transfer Learning: The Importance of Task Diversity},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2021},
+  url       = {https://proceedings.neurips.cc/paper/2021/hash/59587bffec1c7846f3e34230141556ae-Abstract.html}
+}
+
+% --- §9.3 Applied category theory in machine learning ---
+% Substantive ACT-in-ML contributions, cited to situate our THIN, instrumental
+% categorical layer (parity-as-retraction; round-trip defect) and to disclaim
+% any categorical-foundations novelty.
+
+@misc{fong2019backpropfunctor,
+  author        = {Fong, Brendan and Spivak, David I. and Tuy{\'e}ras, R{\'e}my},
+  title         = {Backprop as Functor: A compositional perspective on supervised learning},
+  year          = {2019},
+  eprint        = {1711.10455},
+  archivePrefix = {arXiv},
+  primaryClass  = {math.CT},
+  doi           = {10.48550/arXiv.1711.10455},
+  note          = {LICS 2019},
+  url           = {https://arxiv.org/abs/1711.10455}
+}
+
+@inproceedings{cruttwell2022categorical,
+  author    = {Cruttwell, Geoffrey S. H. and Gavranovi{\'c}, Bruno and Ghani, Neil and Wilson, Paul and Zanasi, Fabio},
+  title     = {Categorical Foundations of Gradient-Based Learning},
+  booktitle = {Programming Languages and Systems (ESOP)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {13240},
+  pages     = {1--28},
+  publisher = {Springer, Cham},
+  year      = {2022},
+  doi       = {10.1007/978-3-030-99336-8_1},
+  url       = {https://link.springer.com/chapter/10.1007/978-3-030-99336-8_1}
+}
+
+% --- §9.4 Code representation for language models ---
+% Link target: the empirical companion's Related Work (preprint-v1, §2). The
+% training-time structured-code family, the closest controlled ancestor, the
+% structured-/program-aided-prompting line, prompt-format sensitivity, and the
+% neighbouring contract-checking and AST-hallucination-detection areas.
+
+@inproceedings{feng2020codebert,
+  author    = {Feng, Zhangyin and Guo, Daya and Tang, Duyu and Duan, Nan and Feng, Xiaocheng and Gong, Ming and Shou, Linjun and Qin, Bing and Liu, Ting and Jiang, Daxin and Zhou, Ming},
+  title     = {{CodeBERT}: A Pre-Trained Model for Programming and Natural Languages},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2020},
+  pages     = {1536--1547},
+  year      = {2020},
+  doi       = {10.18653/v1/2020.findings-emnlp.139},
+  url       = {https://aclanthology.org/2020.findings-emnlp.139/}
+}
+
+@inproceedings{guo2021graphcodebert,
+  author    = {Guo, Daya and Ren, Shuo and Lu, Shuai and Feng, Zhangyin and Tang, Duyu and Liu, Shujie and Zhou, Long and Duan, Nan and Svyatkovskiy, Alexey and Fu, Shengyu and Tufano, Michele and Deng, Shao Kun and Clement, Colin and Drain, Dawn and Sundaresan, Neel and Yin, Jian and Jiang, Daxin and Zhou, Ming},
+  title     = {{GraphCodeBERT}: Pre-training Code Representations with Data Flow},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2021},
+  url       = {https://openreview.net/forum?id=jLoC4ez43PZ}
+}
+
+@inproceedings{jiang2021treebert,
+  author    = {Jiang, Xue and Zheng, Zhuoran and Lyu, Chen and Li, Liang and Lyu, Lei},
+  title     = {{TreeBERT}: A tree-based pre-trained model for programming language},
+  booktitle = {Proceedings of the Thirty-Seventh Conference on Uncertainty in Artificial Intelligence (UAI)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {161},
+  pages     = {54--63},
+  publisher = {PMLR},
+  year      = {2021},
+  url       = {https://proceedings.mlr.press/v161/jiang21a.html}
+}
+
+@inproceedings{fried2023incoder,
+  author    = {Fried, Daniel and Aghajanyan, Armen and Lin, Jessy and Wang, Sida and Wallace, Eric and Shi, Freda and Zhong, Ruiqi and Yih, Wen-tau and Zettlemoyer, Luke and Lewis, Mike},
+  title     = {{InCoder}: A Generative Model for Code Infilling and Synthesis},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023},
+  url       = {https://openreview.net/forum?id=hQwb-lbM6EL}
+}
+
+@article{namavar2022coderepr,
+  author  = {Namavar, Marjane and Nashid, Noor and Mesbah, Ali},
+  title   = {A controlled experiment of different code representations for learning-based program repair},
+  journal = {Empirical Software Engineering},
+  volume  = {27},
+  number  = {190},
+  year    = {2022},
+  doi     = {10.1007/s10664-022-10223-5},
+  url     = {https://link.springer.com/article/10.1007/s10664-022-10223-5}
+}
+
+@inproceedings{wei2022chainofthought,
+  author    = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed H. and Le, Quoc V. and Zhou, Denny},
+  title     = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2022},
+  url       = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/9d5609613524ecf4f15af0f7b31abca4-Abstract-Conference.html}
+}
+
+@inproceedings{wang2023plansolve,
+  author    = {Wang, Lei and Xu, Wanyu and Lan, Yihuai and Hu, Zhiqiang and Lan, Yunshi and Lee, Roy Ka-Wei and Lim, Ee-Peng},
+  title     = {{Plan-and-Solve} Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models},
+  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages     = {2609--2634},
+  year      = {2023},
+  doi       = {10.18653/v1/2023.acl-long.147},
+  url       = {https://aclanthology.org/2023.acl-long.147/}
+}
+
+@inproceedings{gao2023pal,
+  author    = {Gao, Luyu and Madaan, Aman and Zhou, Shuyan and Alon, Uri and Liu, Pengfei and Yang, Yiming and Callan, Jamie and Neubig, Graham},
+  title     = {{PAL}: Program-aided Language Models},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {202},
+  pages     = {10764--10799},
+  publisher = {PMLR},
+  year      = {2023},
+  url       = {https://proceedings.mlr.press/v202/gao23f.html}
+}
+
+@inproceedings{sclar2024promptformatting,
+  author    = {Sclar, Melanie and Choi, Yejin and Tsvetkov, Yulia and Suhr, Alane},
+  title     = {Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design or: How I learned to start worrying about prompt formatting},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  url       = {https://openreview.net/forum?id=RIu5lyNXjT}
+}
+
+@inproceedings{salinas2024butterfly,
+  author    = {Salinas, Abel and Morstatter, Fred},
+  title     = {The Butterfly Effect of Altering Prompts: How Small Changes and Jailbreaks Affect Large Language Model Performance},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},
+  pages     = {4629--4651},
+  year      = {2024},
+  doi       = {10.18653/v1/2024.findings-acl.275},
+  url       = {https://aclanthology.org/2024.findings-acl.275/}
+}
+
+@inproceedings{sun2024clover,
+  author    = {Sun, Chuyue and Sheng, Ying and Padon, Oded and Barrett, Clark W.},
+  title     = {{Clover}: Closed-Loop Verifiable Code Generation},
+  booktitle = {AI Verification (SAIV)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {14846},
+  pages     = {134--155},
+  publisher = {Springer, Cham},
+  year      = {2024},
+  doi       = {10.1007/978-3-031-65112-0_7},
+  url       = {https://link.springer.com/chapter/10.1007/978-3-031-65112-0_7}
+}
+
+@misc{khati2026asthallucination,
+  author        = {Khati, Dipin and Rodriguez-Cardenas, Daniel and Pantzer, Paul and Poshyvanyk, Denys},
+  title         = {Detecting and Correcting Hallucinations in {LLM}-Generated Code via Deterministic {AST} Analysis},
+  year          = {2026},
+  eprint        = {2601.19106},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  doi           = {10.48550/arXiv.2601.19106},
+  note          = {Accepted to FORGE 2026},
+  url           = {https://arxiv.org/abs/2601.19106}
+}

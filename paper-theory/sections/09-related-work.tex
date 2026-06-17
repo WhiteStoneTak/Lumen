@@ -1,16 +1,126 @@
-% Section 9 — Related work (charter §4.9; issue T4-2)
+% Section 9 — Related work (charter §4.9; issue T4-2, WOV-275)
 \section{Related work}
 \label{sec:related}
 
-% STUB (T4-2). Information-theoretic, learning-theoretic, and categorical
-% views of representation, plus code-representation-for-LLMs.
-%
 % Citation hygiene (guardrail G5, from R6, VERBATIM):
 %   - Do NOT cite "SOAP" as a work.
 %   - Do NOT mischaracterize INDICT (Le et al., NeurIPS 2024).
 %   - Verify Clover, Plan-and-Solve, PAL before citing.
 %   - Find correct references independently rather than reusing prior
 %     confabulated exemplars.
-% Every \cite added in this section must clear G5 before it stays.
+% Every \cite in this section was verified against a primary source at
+% insertion time (see theory.bib header). The section positions the paper; it
+% does not survey. Each area is cited only where it touches a specific result,
+% and no individual ingredient is claimed as this paper's novelty (guardrail
+% G2); the circumscribed claim is stated in \cref{subsec:rw-novelty}.
 
-\noindent\emph{[Stub. Fills in T4-2 under guardrail G5.]}
+This paper sits at the meeting point of four literatures: information-theoretic
+accounts of what a representation can carry, learning-theoretic accounts of what
+a learner can extract from it, the categorical machinery we borrow to state
+parity exactly, and the empirical study of code representations for language
+models that motivates the whole question. We situate each in turn, and in each
+case the relationship is the same in form: the prior work supplies an object or a
+tradeoff, and our contribution is to fix one axis (target information) so the
+other (a bounded learner's value) can be isolated.
+
+\subsection{Information-theoretic views of representation}
+\label{subsec:rw-info}
+
+The negative half of the paper (\cref{sec:parity}) is built from sufficiency and
+the data-processing inequality, both standard \citep{coverthomas2006,
+lehmanncasella1998}: a sufficient statistic for $Y$ retains all predictive
+information, and post-processing cannot increase mutual information. The
+information-bottleneck programme \citep{tishby2000informationbottleneck}, and its
+variational deep-learning realisation \citep{alemi2017deepvib}, turn this calculus
+into a design objective by trading compression of $X$ against retention of
+information about $Y$ along a Lagrangian frontier. Our setting is the
+complementary one. We do not move along that frontier; we hold the predictive
+term $\MI{Y}{\rep(X)}$ \emph{fixed} across representations (information parity,
+\cref{def:parity}) and ask what is left to vary. The irrelevance theorem
+(\cref{thm:irrelevance}) is, in bottleneck language, the statement that two points
+on the same level set of retained information are indistinguishable to the Bayes
+optimum, so any residual effect cannot be an information-bottleneck effect at all.
+
+\subsection{Learning-theoretic analyses of representation}
+\label{subsec:rw-learning}
+
+A second body of work studies, within statistical learning theory, when a
+\emph{learned} representation provably helps: multitask representation learning
+quantifies the sample-complexity benefit of a shared feature map
+\citep{maurer2016multitask}, and transfer-learning theory shows the benefit hinges
+on task diversity \citep{tripuraneni2021taskdiversity}. These results ask which
+representation to \emph{learn} and prove that the right one lowers estimation
+error. The positive half of this paper (\cref{sec:bounded}) asks a different
+question on the same machinery: given two representations of equal information,
+what advantage can a \emph{fixed}, finite-capacity learner extract from one over
+the other? Our bound (\cref{thm:bounded-gap}) is in the same currency these
+analyses use --- an approximation term and a Rademacher estimation term
+\citep{bartlettmendelson2002, shalevshwartz2014, mohri2018} --- but it carries no
+mutual-information term, which is exactly what marks the residual as a capacity
+phenomenon rather than an information one.
+
+\subsection{Applied category theory in machine learning}
+\label{subsec:rw-cat}
+
+The go/no-go section on parity (\cref{sec:category}) reads operational parity as a
+retraction and tracks its round-trip defect. We use category theory only as a
+language for that one structural fact, and we want the borrowing to be honest
+about its weight. There is a substantial programme that does treat learning
+itself categorically --- supervised learning as a functor
+\citep{fong2019backpropfunctor} and categorical foundations of gradient-based
+learning via lenses and reverse-derivative categories
+\citep{cruttwell2022categorical}. We make no contribution to that programme. The
+categorical content here is the thin observation that a section/retraction pair
+exposes a defect invisible to both the mutual information and the Bayes risk
+(\cref{thm:retraction}); the standard references \citep{maclane1998, riehl2016,
+awodey2010} supply everything we use, and the section survives only because it
+earns a theorem the core sections cannot state (charter §2).
+
+\subsection{Code representation for language models}
+\label{subsec:rw-code}
+
+The empirical question this paper formalises is the one studied directly by its
+companion preprint, whose related-work section (\texttt{preprint-v1}, §2) we
+extend rather than repeat. Two lines bear on it. \emph{Training-time} integration
+of code structure bakes ASTs, data flow, or tree structure into model weights ---
+CodeBERT \citep{feng2020codebert}, GraphCodeBERT \citep{guo2021graphcodebert},
+TreeBERT \citep{jiang2021treebert}, and the generative InCoder
+\citep{fried2023incoder}. The closest controlled ancestor is
+\citet{namavar2022coderepr}, who compare token, AST, and graph representations for
+learning-based program repair and find the better representation is task- and
+model-dependent rather than universal. We do not retrain; we vary the input
+representation of a frozen model and, unlike that lineage, hold information
+constant by construction, so a null is informative rather than inconclusive.
+
+\emph{Inference-time} structure enters at the prompt boundary. Chain-of-thought
+\citep{wei2022chainofthought}, plan-then-solve scaffolding
+\citep{wang2023plansolve}, and program-aided prompting \citep{gao2023pal} all
+improve a fixed model by changing the form, not the information content, of the
+input --- and PAL in particular adds an external execution resource, which places
+its gains squarely on the capacity/operational side of our account rather than the
+information side. A parallel line documents that frontier models are sensitive to
+semantically inert prompt-format changes \citep{sclar2024promptformatting,
+salinas2024butterfly}; this is precisely the bounded-learner swap gap our positive
+half predicts (\cref{sec:bounded}) and our parity-defect section bounds
+(\cref{sec:parity-defect}). Finally, two neighbouring areas are sometimes
+conflated with representation effects but are operational-consistency mechanisms:
+contract- and verifier-backed consistency checking of generated code
+\citep{sun2024clover}, and deterministic AST analysis for detecting and correcting
+code hallucinations \citep{khati2026asthallucination}. We cite these for what they
+are; neither bears on the information-parity claim.
+
+\subsection{Novelty, circumscribed}
+\label{subsec:rw-novelty}
+
+Every ingredient above pre-exists: sufficiency and the DPI, the bottleneck
+tradeoff, representation-learning bounds, the categorical view of learning, and
+the empirical comparison of code formats. The companion preprint's contribution is
+a controlled empirical \emph{combination} --- information-parity testing of a
+frozen model under pre-registered correction. This paper's contribution is
+narrower and theoretical: a formal account of \emph{when} code-representation
+format can and cannot help a bounded language model --- never at the information
+limit (\cref{thm:irrelevance}), and otherwise only within a capacity budget that
+carries no information term and is non-vacuous only in a named finite-resource
+regime (\cref{thm:bounded-gap,prop:regime}) --- anchored to a controlled null
+rather than to a manufactured positive. We claim the localisation and its
+falsifiers (\cref{sec:predictions}), not any of the components it is built from.
