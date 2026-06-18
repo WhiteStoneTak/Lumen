@@ -299,6 +299,29 @@ operationalized as a hierarchy of code representations
 (\S\ref{sec:3.1.1}) and the information axis is held by the C1+
 parity control (\S\ref{sec:3.2}).
 
+\subsection{Neighbouring operational mechanisms}
+\label{sec:2.4-neighbours}
+Three neighbouring areas are close enough to require separation
+from Lumen's claim. Contract- and verifier-backed systems such as
+Clover \citep{sun2024clover} check consistency among generated
+code, specifications, and annotations. Deterministic AST analyses
+can likewise detect and correct hallucinations in generated code
+\citep{khati2026asthallucination}. Both are operational-consistency
+mechanisms: they filter or repair generated artifacts, but they do
+not vary representation format under information control.
+
+Focused reasoning prompts occupy a different boundary. Chain-of-thought
+prompting \citep{wei2022cot}, Plan-and-Solve prompting
+\citep{wang2023plansolve}, and program-aided language models
+\citep{gao2023pal} alter the form of the reasoning interface rather
+than the information content of the code representation. PAL further
+delegates execution to an external interpreter, placing its gains on
+the capacity/operational side rather than the representation side.
+These lines therefore reinforce the circumscribed novelty claim
+below: Lumen's contribution is not structure, checking, or prompting
+alone, but their controlled comparison under an information-parity
+control.
+
 \subsection{Novelty, circumscribed}
 \label{sec:2.4}
 The contribution claimed here is the controlled

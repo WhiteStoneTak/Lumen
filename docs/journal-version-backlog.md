@@ -186,7 +186,10 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
   above, verifying the existence and bibliographic detail of every cited
   work before inclusion. Do not cite SOAP. Do not cite INDICT as AST-based
   hallucination detection.
-- **status:** OPEN
+- **status:** ADDRESSED in WOV-249 R6-1 / L2-02: empirical §2 now adds one
+  positioning subsection covering contract/verifier-backed consistency checking,
+  deterministic AST hallucination detection, and structured/focused prompting;
+  SOAP is not cited and INDICT is omitted.
 
 ### L2-03 — §2.4 self-limitation may read as a double weakness
 
