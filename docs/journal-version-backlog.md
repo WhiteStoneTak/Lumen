@@ -186,7 +186,10 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
   above, verifying the existence and bibliographic detail of every cited
   work before inclusion. Do not cite SOAP. Do not cite INDICT as AST-based
   hallucination detection.
-- **status:** OPEN
+- **status:** ADDRESSED in WOV-249 R6-1 / L2-02: empirical §2 now adds one
+  positioning subsection covering contract/verifier-backed consistency checking,
+  deterministic AST hallucination detection, and structured/focused prompting;
+  SOAP is not cited and INDICT is omitted.
 
 ### L2-03 — §2.4 self-limitation may read as a double weakness
 
@@ -203,7 +206,11 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
 - **Journal-version work:** Optionally re-frame §2.4 to make explicit that
   the methodology itself is the deliverable and the empirical instantiation
   is diagnostic.
-- **status:** OPEN
+- **status:** ADDRESSED in WOV-250 R6-2 / L2-03: §2.4 now states the
+  methodology (information-parity control + pre-registered family-wise
+  corrected design) is the deliverable and the 30-function T2 instantiation
+  is diagnostic, not a referendum on the method; the circumscribed-novelty
+  honesty is preserved and the double-weakness reading is closed.
 
 ### L3-05 — Parse-failure exclusion is MNAR; sensitivity analysis missing
 
