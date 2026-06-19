@@ -206,7 +206,11 @@ in a confirmatory tone. The current authoritative confirmatory attempt is
 - **Journal-version work:** Optionally re-frame §2.4 to make explicit that
   the methodology itself is the deliverable and the empirical instantiation
   is diagnostic.
-- **status:** OPEN
+- **status:** ADDRESSED in WOV-250 R6-2 / L2-03: §2.4 now states the
+  methodology (information-parity control + pre-registered family-wise
+  corrected design) is the deliverable and the 30-function T2 instantiation
+  is diagnostic, not a referendum on the method; the circumscribed-novelty
+  honesty is preserved and the double-weakness reading is closed.
 
 ### L3-05 — Parse-failure exclusion is MNAR; sensitivity analysis missing
 
