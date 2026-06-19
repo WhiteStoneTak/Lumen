@@ -1,4 +1,4 @@
-% Section 11 — Conclusion (charter §4.11; issue T4-1)
+% Section 11 — Conclusion
 \section{Conclusion}
 \label{sec:conclusion}
 
@@ -8,14 +8,14 @@ positive. The explanation is two-halved. The negative half is a theorem: under
 information parity the data-processing inequality closes at the optimum, and the
 Bayes risk is format-invariant (\cref{thm:irrelevance}), so the Lumen T1 null is
 the \emph{predicted} information-limit outcome and not an anomaly to be explained
-away (guardrail~G1). When parity fails, the failure is not catastrophic but
+away. When parity fails, the failure is not catastrophic but
 graded: the inflation of Bayes risk is the lost information exactly under log
 loss and within a $\sqrt{\cdot}$ envelope otherwise (\cref{cor:ratedist-gap}).
 The positive half localizes, and bounds, the only place a real effect can live.
 A bounded learner is not the Bayes posterior, and the room between them is a
 capacity budget with no information content (\cref{thm:bounded-gap},
 \cref{cor:size-gap}); that budget is non-empty only in the finite-resource,
-capacity-separated window the theory names (\cref{prop:regime}). The two go/no-go
+capacity-separated window the theory names (\cref{prop:regime}). The two further
 refinements sharpen the picture without changing it: operational parity is a
 retraction whose defect hides from both the mutual information and the Bayes risk
 (\cref{thm:retraction}), and that same defect, once metrized, dominates the swap
@@ -39,7 +39,7 @@ The honest residue is small but real, and \cref{sec:limitations} collects it.
 The irrelevance theorem lives at two idealizations a frozen LLM does not meet;
 the bounded-learner objects map onto a single model by analogy; the T1/T3
 distinction rests on an empirical surmise about task difficulty that is
-conjectural, not proved (guardrail~G6). What survives all of this is a single,
+conjectural, not proved. What survives all of this is a single,
 falsifiable claim: format cannot buy information that is not there, so any
 genuine code-representation effect on a bounded model is a capacity phenomenon of
 bounded size, appearing only near the model's frontier --- and that is a

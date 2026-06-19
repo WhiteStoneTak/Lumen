@@ -1,34 +1,15 @@
-% Section 6 — Quantitative parity defect (charter §4.6; issues T1-5, T2-5)
-% GO/NO-GO area (charter §2): OT/info-geometry survives only if it earns a theorem.
+% Section 6 — Quantitative parity defect
 \section{Quantitative parity defect}
 \label{sec:parity-defect}
 
-\gonogo{Optimal transport + information geometry (T1-5 $\to$ T2-5) was
-provisional. If the parity defect yielded only a restatement of the
-information-theoretic content of \cref{sec:parity} and bought no new
-proposition, this section was to be demoted to a remark and the decision
-recorded in WOV-271 (T2-5). T1-5 supplied the foundations and \emph{defined}
-the metric precisely enough to be computed against the R4 artifacts; the
-explicit criterion is stated in \cref{subsec:defect-gonogo}.
-\textbf{Resolved (T2-5, WOV-271): go.} The metric earns
-\cref{thm:defect-risk-gap}: $\paritydefect$ upper-bounds the risk gap of a
-\emph{fixed} bounded predictor across the
-$\ladder{4}\!\leftrightarrow\!\ladderplus$ swap --- a quantity
-\cref{thm:irrelevance} and the information gap $\infogap{\cdot}$ cannot see
-(both vanish under parity) --- and \cref{cor:defect-finer-order} shows it
-strictly refines the mutual-information ordering on the parity class, witnessed
-by the R4 profile (\cref{ex:r4-defect}). The section stands
-(\cref{subsec:defect-theorem}).}
-
-% This file holds the T1-5 (WOV-266) FOUNDATIONS only: Wasserstein distance +
-% Kantorovich-Rubinstein duality; statistical manifolds, the Fisher metric,
-% KL as a local divergence; the DEFINITION of the quantitative parity defect
-% (W1 between induced predictive distributions + a local Fisher sensitivity);
-% and a recipe for computing it in principle against the R4 round-trip data.
-% The metric is USED (and earns or loses its place) in T2-5.
+% Foundations: Wasserstein distance + Kantorovich-Rubinstein duality;
+% statistical manifolds, the Fisher metric, KL as a local divergence; the
+% definition of the quantitative parity defect (W1 between induced predictive
+% distributions + a local Fisher sensitivity); and a recipe for computing it in
+% principle against the round-trip recovery data.
 
 \cref{sec:parity} treats parity as a binary equality of mutual informations,
-and guardrail~G3 flags that real controls meet it only ``operationally, not
+and notes that real controls meet it only ``operationally, not
 absolutely.'' This section turns ``how far from parity'' into a number. The
 mutual-information gap $\MI{Y}{X}-\MI{Y}{\rep(X)}$ already measures lost
 \emph{information}; what it does not measure is the residual asymmetry between
@@ -37,8 +18,8 @@ a bounded predictor to slightly different predictive distributions --- exactly
 the $\sigalg{\ladder{4}}\ne\sigalg{\ladderplus}$ gap of
 \cref{prop:abs-strict}. We build the optimal-transport and
 information-geometry tools that quantify that residual, define the parity
-defect $\paritydefect$, and specify how it is computed against the R4
-round-trip artifacts. We follow \citet{villani2009} and \citet{peyrecuturi2019}
+defect $\paritydefect$, and specify how it is computed against the
+round-trip recovery artifacts. We follow \citet{villani2009} and \citet{peyrecuturi2019}
 for optimal transport and \citet{amarinagaoka2000} for information geometry.
 
 \subsection{Wasserstein distance and Kantorovich--Rubinstein duality}
@@ -170,15 +151,15 @@ The two terms are complementary by \cref{prop:kl-fisher}: the Wasserstein term
 captures the part of the asymmetry that survives at the global scale of the
 output distribution, and the Fisher term captures the local sensitivity of the
 predictor to the residual structural perturbation that the round trip fails to
-undo. \cref{eq:parity-defect} is a definition, not yet a theorem; T2-5 must
-show $\paritydefect$ either bounds a risk gap or constrains the predictive
+undo. \cref{eq:parity-defect} is a definition, not yet a theorem;
+\cref{subsec:defect-theorem} must show $\paritydefect$ either bounds a risk gap or constrains the predictive
 asymmetry in a way the mutual-information gap of \cref{sec:parity} does not
-(\cref{subsec:defect-gonogo}).
+(the criterion of \cref{subsec:defect-gonogo}).
 
-\subsection{Computing the defect against the R4 round-trip data}
+\subsection{Computing the defect against the round-trip recovery data}
 \label{subsec:defect-r4}
 
-The R4 round-trip recovery experiment (empirical paper Appendix~D) re-parses
+The round-trip recovery experiment (empirical paper Appendix~D) re-parses
 $\ladderplus$ back to a Contract IR $\ladder{4}'$ and reports how much of
 $\ladder{4}$'s structure is recovered: contracts $100\%$, AST node kinds
 $99.8\%$, types $96.4\%$, parent--child edges $98.7\%$, byte-exact AST
@@ -206,57 +187,55 @@ bytes. The defect \eqref{eq:parity-defect} is computed against it as follows.
     maximizing the Kantorovich--Rubinstein dual \eqref{eq:kr} over a Lipschitz
     witness class.
   \item \textbf{Trade-off $\lambda$.} Fixed by matching the two terms' units on
-    a held-out calibration slice; the procedure is specified with the T2-5
-    computation, not chosen post hoc.
+    a held-out calibration slice; the procedure is specified in advance,
+    not chosen post hoc.
 \end{enumerate}
 
-\begin{remark}[Status of the computation, G3/G6]
+\begin{remark}[Status of the computation]
 \label{rem:defect-status}
 The recipe is ``computable in principle'': it specifies estimable quantities
 and named estimators, but it is \emph{not} executed in this paper, and no
-numerical value of $\paritydefect$ is claimed. The R4 rates are used as the
-inputs the metric \emph{would} consume, illustrating that the defect is
-grounded in measured artifacts rather than postulated. Any statement that the
-computed defect is small (and hence that the empirical control was close to
-exact parity) is, until T2-5 runs it, a conjecture and is labeled as such
-(guardrail~G6).
+numerical value of $\paritydefect$ is claimed. The round-trip recovery rates
+are used as the inputs the metric \emph{would} consume, illustrating that the
+defect is grounded in measured artifacts rather than postulated. Any statement
+that the computed defect is small (and hence that the empirical control was
+close to exact parity) is, until the recipe is run, a conjecture and is labeled
+as such.
 \end{remark}
 
-\subsection{Go/no-go criterion handed to T2-5}
+\subsection{When the metric earns its place}
 \label{subsec:defect-gonogo}
 
 \begin{quote}
 \textbf{Criterion (depth of OT/info-geometry).} Section~\ref{sec:parity-defect}
-survives as a section iff T2-5 establishes that $\paritydefect$
+survives as a section iff a proof establishes that $\paritydefect$
 \eqref{eq:parity-defect} (i) upper-bounds the bounded predictor's risk gap
 between $\ladder{4}$ and $\ladderplus$, or (ii) provides a strictly finer
 ordering of representations than the mutual-information gap of
 \cref{sec:parity} (two reps with equal information gap but different defect,
-witnessed against the R4 profile). If T2-5 produces only a reformulation of
-the information gap, the section is demoted to a remark recording that the
-parity defect coincides with the information gap in this setting, and the
-decision is logged in WOV-271.
+witnessed against the round-trip profile). If only a reformulation of
+the information gap is available, the section is demoted to a remark recording
+that the parity defect coincides with the information gap in this setting.
 \end{quote}
 
-\subsection{What the metric earns: the defect bounds the bounded-predictor risk gap (T2-5)}
+\subsection{What the metric earns: the defect bounds the bounded-predictor risk gap}
 \label{subsec:defect-theorem}
 
-This subsection discharges the go/no-go of \cref{subsec:defect-gonogo}, and the
-verdict is \textbf{go}. The criterion asks for \emph{either} prong; the defect
+This subsection discharges the criterion of \cref{subsec:defect-gonogo}. The
+criterion asks for \emph{either} prong; the defect
 delivers both. We show (i) $\paritydefect$ upper-bounds the risk gap of a fixed
 bounded predictor across the $\ladder{4}\leftrightarrow\ladderplus$ swap
 (\cref{thm:defect-risk-gap}, with the Fisher term supplying the local regime in
 \cref{prop:defect-fisher-local}), and (ii) it strictly refines the
 mutual-information ordering on the parity class
-(\cref{cor:defect-finer-order}), a separation realized by the R4 control pair
-(\cref{ex:r4-defect}). Full proofs are in \cref{app:parity-defect}; the decision
-is recorded in WOV-271.
+(\cref{cor:defect-finer-order}), a separation realized by the round-trip
+control pair (\cref{ex:r4-defect}). Full proofs are in \cref{app:parity-defect}.
 
 The object both prongs concern is the \emph{shared reader}: a single bounded
 predictor consumes either representation. Formally we keep exactly the setup
 \cref{def:parity-defect} already commits to --- one kernel $\kernel{K}$ evaluated
 at $\rep_c(X)$ for $c\in\{\ladder{4},\ladderplus\}$ --- which models the frozen
-LLM of \texttt{preprint-v1} reading $\ladder{4}$ or $\ladderplus$ through their
+LLM of the empirical study reading $\ladder{4}$ or $\ladderplus$ through their
 common token-sequence codomain. Its risk on condition $c$ is
 $\risk(\kernel{K};c)=\Expect_{(X,Y)}\!\int_{\Aspace}\loss(Y,a)\,\kernel{K}(\rep_c(X),\mathrm{d}a)$
 (\cref{def:risk}), and the quantity at issue is the
@@ -325,7 +304,7 @@ form --- the bound is informative precisely when
 $\sigalg{\ladder{4}}\ne\sigalg{\ladderplus}$ (\cref{prop:abs-strict}) makes
 $\kernel{K}$ respond to the swap; under absolute parity both sides are $0$. The
 bound limits the \emph{size} of the swap gap in either direction and asserts no
-effect exists (guardrail~G2); the Lipschitz-loss hypothesis is discharged in the
+effect exists; the Lipschitz-loss hypothesis is discharged in the
 near regime by \cref{prop:defect-fisher-local} for merely bounded losses.}
 \end{theorem}
 
@@ -364,7 +343,7 @@ statement (idealization~(i) relaxed). It is a local (small-$\overline{v}$)
 bound: the $o(\|\overline{v}\|)$ remainder is the Taylor error of
 \cref{prop:kl-fisher}, and the inequality is informative only when the round-trip
 perturbation is small --- the near-parity regime in which the global bound
-\eqref{eq:defect-risk-gap} may be loose. Sign-agnostic (G2).}
+\eqref{eq:defect-risk-gap} may be loose. Sign-agnostic.}
 \end{proposition}
 
 \begin{proof}[Proof idea]
@@ -431,9 +410,9 @@ $(\ladder{4},\ladderplus)$ has $\infogap{\ladder{4}}=\infogap{\ladderplus}=0$ by
 design yet $\paritydefect>0$ by \cref{ex:r4-defect}, an explicit witness.
 \end{proof}
 
-\begin{example}[The defect on the R4 round trip: an illustrative computation]
+\begin{example}[The defect on the round trip: an illustrative computation]
 \label{ex:r4-defect}
-We instantiate \eqref{eq:parity-defect} on the R4 profile by the recipe of
+We instantiate \eqref{eq:parity-defect} on the round-trip profile by the recipe of
 \cref{subsec:defect-r4}. Each non-recovered structural element is a coordinate of
 $\overline{v}$ with magnitude its round-trip failure rate ($1-$recovery);
 \cref{tab:r4-defect} collects them. The Fisher term weights each coordinate by
@@ -480,18 +459,18 @@ Byte-exact AST       & $0/30$   & $1.000$ & \emph{inert} (weight $\approx 0$) \\
 \multicolumn{2}{@{}l}{Illustrative $\paritydefect$ ($L=\lambda=1$)} & $0.089$ & \eqref{eq:parity-defect} \\
 \bottomrule
 \end{tabular}
-\caption{The parity defect computed on the R4 round-trip recovery profile
+\caption{The parity defect computed on the round-trip recovery profile
 (\cref{subsec:defect-r4}, \cref{ex:r4-defect}). Numbers are \emph{illustrative}:
 action diameter normalized to $1$, $L=\lambda=1$, and a diagonal Fisher metric
 with unit weight on the predictively-relevant coordinates and zero on the inert
 byte coordinate. They are not the output of running the frozen predictor
-(guardrail~G6; \cref{rem:defect-status}). The naive raw-distance defect
+(\cref{rem:defect-status}). The naive raw-distance defect
 $\|\overline{v}\|\approx 1.00$ is $\approx 26\times$ larger and byte-dominated;
 the Fisher weighting is what makes the defect small.}
 \label{tab:r4-defect}
 \end{table}
 
-\begin{remark}[Why this passes the criterion; scope of the go (G4/G6)]
+\begin{remark}[Why this passes the criterion; scope of the result]
 \label{rem:defect-go-scope}
 \cref{thm:defect-risk-gap} and \cref{cor:defect-finer-order} meet the criterion of
 \cref{subsec:defect-gonogo} on \emph{both} prongs (it required either). The defect
@@ -501,14 +480,14 @@ in the common kernel of $\infogap{\cdot}$ and $\bayesrisk(\cdot)$
 (\cref{thm:retraction}(iii)): both are $0$ across the parity pair while the defect
 is positive (\cref{ex:r4-defect}). So a proposition that bounds and orders by the
 swap gap cannot be a restatement of either. The two terms are shown
-non-redundant by \cref{cor:defect-two-term}, and the R4 example shows the Fisher
-term in particular does work the raw byte distance cannot. \textbf{Scope (G6).}
+non-redundant by \cref{cor:defect-two-term}, and the round-trip example shows the
+Fisher term in particular does work the raw byte distance cannot. \textbf{Scope.}
 The numeric defect of \cref{ex:r4-defect} is illustrative and computed-in-principle
-(\cref{rem:defect-status}): it consumes the measured R4 rates but normalizes the
+(\cref{rem:defect-status}): it consumes the measured recovery rates but normalizes the
 action geometry, fixes $L,\lambda$, and posits a diagonal Fisher metric rather
-than estimating one from the frozen predictor's outputs. The go rests on the
+than estimating one from the frozen predictor's outputs. The result rests on the
 propositions \cref{thm:defect-risk-gap}, \cref{prop:defect-fisher-local},
-\cref{cor:defect-finer-order}; the R4 example anchors them in artifacts and
+\cref{cor:defect-finer-order}; the round-trip example anchors them in artifacts and
 exhibits the prong-(ii) separation, and no claim is made that the executed value
-is small until T2-5's recipe is actually run (a conjecture, so labeled).
+is small until the recipe is actually run (a conjecture, so labeled).
 \end{remark}

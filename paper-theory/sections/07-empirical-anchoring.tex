@@ -1,4 +1,4 @@
-% Section 7 — Empirical anchoring (charter §4.7; issue T3-1)
+% Section 7 — Empirical anchoring
 \section{Empirical anchoring}
 \label{sec:anchoring}
 
@@ -10,8 +10,8 @@ to the three frozen outcomes of \texttt{preprint-v1} --- the T1 clean null, the
 T3 ceiling, and the T2 moderate-but-absorbed positive --- by naming, for each,
 the theoretical regime it falls in. The exercise is strictly
 \emph{retrodiction}: every empirical number here is read off the frozen record,
-none is produced by the theory, and no new empirical claim is built (guardrail
-G2). The point is to show that the recorded outcomes are the ones the theory
+none is produced by the theory, and no new empirical claim is built. The point
+is to show that the recorded outcomes are the ones the theory
 \emph{already permits}, and to be exact about where the mapping from an
 idealized learner to a single frozen LLM stops being a deduction and becomes an
 analogy.
@@ -37,7 +37,7 @@ ceiling --- recorded a rank-biserial effect $r_{\mathrm{rb}}=+0.10$ at raw
 $p=0.36$, a clean non-rejection of C4${}\le{}$C1${}^{+}$. Under the theory this
 is not a weak or disappointing positive; it is the \emph{predicted}
 outcome of the information-limit regime, and that prediction is exactly what
-guardrail~G1 forbids us to soften.
+the honesty discipline forbids us to soften.
 
 The mechanism is \cref{thm:irrelevance}. C4 and C1${}^{+}$ are constructed for
 operational information parity, $\ladder{4}\parityeq\ladderplus$
@@ -116,14 +116,14 @@ saturation) \emph{and} the instrument could not have measured one (ceiling
 censoring). The larger $r$ is consistent with the theory not because the theory
 predicts it but because the theory predicts the cell carries no identifying
 signal in either direction; reading the point estimate as evidence of a
-structure advantage would violate guardrail~G2.
+structure advantage would be an overclaim the theory forbids.
 
 \idealization{The saturation argument uses \cref{cor:realizable-gap}, which
 \emph{relaxes} idealization~(i) (it is a bounded-learner statement, not a Bayes
 one) but assumes the base class renders $Y$ realizable in every coordinate ---
 the formal content of ``below the capacity frontier.'' For a frozen LLM this
 realizability is an empirical surmise about task difficulty, not a verified
-property; it is the conjectural step here (guardrail~G6), and the
+property; it is the conjectural step here, and the
 distinctness-from-T1 claim depends on it.}
 
 \subsection{The T2 positive as a permitted, unidentified bounded effect}
@@ -140,7 +140,7 @@ existence violates no bound --- and, were it real, it would sit in the
 activation window of \cref{prop:regime}(ii), the finite-sample
 capacity-separated regime the theory names as the only place a parity-preserving
 effect can live. That is the whole of the retrodiction: the sign is
-unconstrained by the theory (guardrail~G2), the size is bounded, and the
+unconstrained by the theory, the size is bounded, and the
 statistical verdict on the frozen record is non-rejection. T2 is the cell most
 worth pointing a designed bounded-regime experiment at (\cref{sec:predictions}),
 precisely because it is the one the theory cannot resolve from the existing
@@ -168,7 +168,7 @@ The mapping's limits, stated plainly so \cref{sec:limitations} can collect them:
     silent on a bounded learner, where \cref{thm:bounded-gap} permits a nonzero
     advantage up to $\Phi$. ``No information-channel effect is expected'' is the
     exact claim; ``the effect is zero'' is not, and conflating them would be the
-    central overclaim G1/G2 exist to prevent.
+    central overclaim this paper takes care to prevent.
   \item[(L3)] \emph{Idealizations are not met by a frozen LLM.} The model is
     neither Bayes-optimal (idealization~(i)) nor at absolute parity
     (idealization~(ii), corrected only up to the \cref{sec:parity-defect}
@@ -178,7 +178,7 @@ The mapping's limits, stated plainly so \cref{sec:limitations} can collect them:
     \emph{bounds and regimes}, never point values.
   \item[(L4)] \emph{The T1/T3 distinction is partly conjectural.} That T3 sits
     below the capacity frontier (hence realizable, hence saturated) is an
-    empirical surmise about task difficulty (guardrail~G6), not a theorem; if
+    empirical surmise about task difficulty, not a theorem; if
     T3 were in fact frontier-hard, its ceiling would be measurement saturation
     without the sub-frontier reading, and only the censoring argument would
     survive.

@@ -1,41 +1,24 @@
-% Section 3 — The category of representations (charter §4.3; issues T1-4, T2-3)
-% GO/NO-GO area (charter §2): category theory survives only if it earns a theorem.
+% Section 3 — The category of representations
 \section{The category of representations}
 \label{sec:category}
 
-\gonogo{Category theory (T1-4 $\to$ T2-3) was provisional. If the
-parity-as-retraction framing produced only a restatement of the
-information-theoretic content of \cref{sec:parity} and bought no new
-proposition, this section was to be demoted to a remark and the decision
-recorded in WOV-269 (T2-3). T1-4 supplied the foundations and fixed the
-framing precisely enough that T2-3 could make that call; the explicit
-criterion is stated in \cref{subsec:cat-gonogo}.
-\textbf{Resolved (T2-3, WOV-269): go.} The framing earns
-\cref{thm:retraction}: the round-trip defect is an idempotent that
-\cref{thm:irrelevance} and \cref{prop:suff-iff-mi} are constitutionally
-blind to, and whose splitting feeds \cref{sec:parity-defect}
-(\cref{subsec:cat-theorem}). The section stands.}
-
-% This file holds the T1-4 (WOV-265) FOUNDATIONS only: categories, functors,
-% natural transformations, sections/retractions/adjunctions; the category of
-% representations with the C-ladder transforms as morphisms; parity cast as a
-% retraction and the round-trip defect as failure of a retraction; and an
-% explicit go/no-go criterion handed to T2-3.
+% Foundations: categories, functors, natural transformations,
+% sections/retractions/adjunctions; the category of representations with the
+% C-ladder transforms as morphisms; parity cast as a retraction and the
+% round-trip defect as failure of a retraction.
 %
-% Authoritative C-ladder (charter §5; design-constitution.tex §14.1):
+% C-ladder:
 %   C1  = plain source, C2 = Raw AST, C3 = Typed AST, C4 = Contract IR,
 %   C1+ = annotated source PROJECTED FROM C4 (the information-parity control).
-% Use these definitions, NOT the README's simplified table.
 
 This section asks whether the categorical language buys anything the
 measure-theoretic and information-theoretic machinery does not already supply.
-Its honest purpose (guardrail~G4) is to make the question \emph{decidable}: we
-build just enough category theory to state precisely what ``$\ladderplus$ is
-the correct control'' and ``the round-trip $\roundtrip{\ladder{4}}{\ladderplus}$
-measures a defect'' would mean as categorical statements, and we fix a
-go/no-go criterion (\cref{subsec:cat-gonogo}) that T2-3 must meet for the
-section to survive. We follow \citet{maclane1998}, \citet{riehl2016}, and
-\citet{awodey2010}.
+Its purpose is to make the question \emph{decidable}: we build just enough
+category theory to state precisely what ``$\ladderplus$ is the correct
+control'' and ``the round-trip $\roundtrip{\ladder{4}}{\ladderplus}$ measures a
+defect'' would mean as categorical statements, and we fix a criterion
+(\cref{subsec:cat-gonogo}) the framing must meet to earn its place. We follow
+\citet{maclane1998}, \citet{riehl2016}, and \citet{awodey2010}.
 
 \subsection{Categories, functors, natural transformations}
 \label{subsec:cat-basics}
@@ -94,7 +77,8 @@ Functors $L:\mathcal{C}\to\mathcal{D}$ and $R:\mathcal{D}\to\mathcal{C}$ form
 an \emph{adjunction} $L\dashv R$ if there is a natural bijection
 $\mathcal{D}(L A, D)\cong\mathcal{C}(A, R D)$. We record adjunctions only
 because the projection/re-parse pair below is a candidate adjoint pair; whether
-that structure earns its keep is part of the go/no-go.
+that structure earns its keep is part of the criterion of
+\cref{subsec:cat-gonogo}.
 \end{definition}
 
 \subsection{The category $\catRep$ of representations}
@@ -171,7 +155,7 @@ The defect $e\circ p\ne\mathrm{id}_{\ladder{4}}$ says $\ladder{4}$ carries
 byte-level structure that the projection discards and the re-parse does not
 restore. The idempotent $e\circ p$ projects $\ladder{4}$ onto the part of its
 structure that survives the round trip; its image is the parity-relevant
-content and its ``kernel'' is the defect. The R4 round-trip data
+content and its ``kernel'' is the defect. The round-trip recovery data
 (\cref{sec:parity-defect}: byte-exact AST recovery $0/30$, but contracts
 $100\%$, node kinds $99.8\%$, types $96.4\%$) are exactly the empirical
 profile of this idempotent --- near-identity on semantic structure, far from
@@ -181,32 +165,31 @@ identity on surface bytes.
 \label{rem:cat-claim}
 \cref{def:cat-parity} is a \emph{framing}, not yet a theorem. It commits to
 reading parity as a retraction and the defect as the non-identity composite,
-and it lines those up with \cref{def:parity} and the R4 data. Whether this
+and it lines those up with \cref{def:parity} and the round-trip data. Whether this
 buys a proposition beyond \cref{sec:parity} --- for instance, that the
 idempotent $e\circ p$ splits $\ladder{4}$ into a parity-relevant retract plus a
 predictively inert complement, giving a categorical decomposition the
 information-theoretic account does not already provide --- is the question
-T2-3 settles affirmatively in \cref{subsec:cat-theorem} (\cref{thm:retraction}).
+settled affirmatively in \cref{subsec:cat-theorem} (\cref{thm:retraction}).
 \end{remark}
 
-\subsection{Go/no-go criterion handed to T2-3}
+\subsection{When the categorical framing earns its place}
 \label{subsec:cat-gonogo}
 
-To keep the go/no-go decision honest rather than aesthetic (guardrail~G4), we
-fix the criterion now, before T2-3 attempts the proof.
+To keep this decision honest rather than aesthetic, we fix the criterion now,
+before attempting the proof.
 
 \begin{quote}
 \textbf{Criterion (depth of category theory).} Section~\ref{sec:category}
-survives as a section iff T2-3 proves a proposition that (i) is stated in the
-retraction language of \cref{def:cat-parity}, and (ii) is \emph{not} a
+survives as a section iff a proof establishes a proposition that (i) is stated
+in the retraction language of \cref{def:cat-parity}, and (ii) is \emph{not} a
 notational re-encoding of \cref{thm:irrelevance} or
 \cref{prop:suff-iff-mi} --- i.e.\ it must either constrain the round-trip
 defect in a way \cref{sec:parity} does not, or supply the splitting of
 \cref{rem:cat-claim} as a usable decomposition feeding \cref{sec:parity-defect}.
-If T2-3 yields only a restatement, category theory is demoted: \cref{def:catrep}
+If only a restatement is available, category theory is demoted: \cref{def:catrep}
 and \cref{def:cat-parity} collapse into a single remark inside
-\cref{sec:parity}, and this section is deleted. The decision and its
-justification are recorded in WOV-269.
+\cref{sec:parity}, and this section is deleted.
 \end{quote}
 
 \noindent The foundations above are deliberately minimal --- just the
@@ -214,15 +197,15 @@ retraction vocabulary and the one category $\catRep$ --- so that demotion, if
 it comes, costs one remark rather than a rewrite. This is the section's
 insurance against decorative math.
 
-\subsection{What the framing earns: the defect is a composable idempotent (T2-3)}
+\subsection{What the framing earns: the defect is a composable idempotent}
 \label{subsec:cat-theorem}
 
-This subsection discharges the go/no-go of \cref{subsec:cat-gonogo}, and the
-verdict is \textbf{go}. We isolate the one proposition the retraction language
-buys, show it is stated in the vocabulary of \cref{def:cat-parity}, and show it
-is not a re-encoding of \cref{thm:irrelevance} or \cref{prop:suff-iff-mi} --- on
-the contrary, the object it controls is provably invisible to both. The full
-proofs are in \cref{app:retraction}; the decision is recorded in WOV-269.
+This subsection discharges the criterion of \cref{subsec:cat-gonogo}. We
+isolate the one proposition the retraction language buys, show it is stated in
+the vocabulary of \cref{def:cat-parity}, and show it is not a re-encoding of
+\cref{thm:irrelevance} or \cref{prop:suff-iff-mi} --- on the contrary, the
+object it controls is provably invisible to both. The full proofs are in
+\cref{app:retraction}.
 
 \begin{definition}[Parity rung]
 \label{def:parity-rung}
@@ -262,7 +245,7 @@ Let $(p,e)$ be a parity rung with round trip $\phi=e\circ p$.
     $\bayesrisk(A)=\bayesrisk(B)$ (\cref{thm:irrelevance}); yet the defect may
     be nontrivial, $\phi\ne\mathrm{id}_A$ (\cref{prop:abs-strict}). The
     round-trip defect therefore lies in the common kernel of the two functionals
-    the go/no-go forbids re-encoding: neither the mutual information of
+    the criterion forbids re-encoding: neither the mutual information of
     \cref{prop:suff-iff-mi} nor the Bayes risk of \cref{thm:irrelevance}
     separates $A$ from $B$, while the idempotent $\phi$ does.
 \end{enumerate}
@@ -295,7 +278,7 @@ compositionality \emph{licenses} the chaining, so the C-ladder's defect
 decomposes rung by rung rather than only in aggregate.
 \end{corollary}
 
-\begin{remark}[Why this passes the criterion; scope of the go (G4/G6)]
+\begin{remark}[Why this passes the criterion; scope of the result]
 \label{rem:cat-go-scope}
 \cref{thm:retraction} meets both prongs of \cref{subsec:cat-gonogo}. It is
 \emph{(i)} stated in the retraction language of \cref{def:cat-parity} --- the
@@ -313,5 +296,5 @@ structural result about a single instantiated rung
 ($\ladder{4}\rightleftarrows\ladderplus$); it becomes quantitatively
 load-bearing only once the control is refined into several parity-controlled
 rungs, and we mark its present use as the single-rung splitting it licenses, not
-as a multi-rung measurement (guardrail~G6).
+as a multi-rung measurement.
 \end{remark}

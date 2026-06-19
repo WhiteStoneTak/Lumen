@@ -1,4 +1,4 @@
-% Section 1 — Introduction (charter §4.1; issue T4-1 prose, drawing on T1-2/T1-3)
+% Section 1 — Introduction
 \section{Introduction}
 \label{sec:intro}
 
@@ -28,8 +28,8 @@ retaining the same mutual information with $Y$ --- the Bayes-optimal risk is
 \emph{format-invariant} (\cref{thm:irrelevance}). At constant information the
 optimum cannot tell the formats apart. The Lumen T1 null is, on this reading,
 not a weak or disappointing positive but the \emph{predicted} outcome of the
-information-limit regime, and treating it as anything else is the overclaim our
-honesty guardrails exist to prevent.
+information-limit regime, and treating it as anything else is the overclaim this
+paper takes care to prevent.
 
 The second half is positive, and it is deliberately \emph{not} a claim that any
 effect exists. A frozen LLM is not the Bayes posterior; it is a
@@ -94,22 +94,21 @@ the positive half says where to hunt for the capacity one.
     format-invariant (\cref{thm:irrelevance}); when parity fails, the inflation
     of Bayes risk is controlled by the information lost --- exactly the lost bits
     under log loss, and a $\sqrt{\cdot}$ envelope for any bounded loss
-    (\cref{cor:ratedist-gap}). This is the formal content of the negative half
-    and the disciplined statement of guardrail~G1.
+    (\cref{cor:ratedist-gap}). This is the formal content of the negative half.
   \item \textbf{A bounded-learner advantage bound} (\cref{sec:bounded}). At
     constant information the achievable advantage is capped by a capacity budget
     $\Phi$ with no mutual-information term (\cref{thm:bounded-gap}), two-sided in
     magnitude (\cref{cor:size-gap}), and non-vacuous only in a named
     finite-resource window (\cref{prop:regime}). This is the positive half,
-    stated as a bound and never as an existence claim (guardrail~G2).
-  \item \textbf{Two go/no-go refinements that earned their place}
+    stated as a bound and never as an existence claim.
+  \item \textbf{Two further refinements that earned their place}
     (\cref{sec:category}, \cref{sec:parity-defect}). A categorical reading shows
     operational parity is a retraction whose round-trip defect is invisible to
     both the mutual information and the Bayes risk yet real
     (\cref{thm:retraction}); a transport/information-geometry reading metrizes
     that defect and proves it dominates the swap gap of any fixed bounded
     predictor (\cref{thm:defect-risk-gap}). Each survives only because it proves
-    something the core two sections cannot (charter §2).
+    something the core two sections cannot.
   \item \textbf{Retrodiction without overfitting, and falsifiable predictions}
     (\cref{sec:anchoring}, \cref{sec:predictions}). We map each of the three
     frozen Lumen cells to the regime it occupies --- T1 to the information limit,
@@ -137,11 +136,11 @@ theory at risk of being wrong.
 Three disclaimers bound the whole paper and are stated once. First, the
 irrelevance theorem holds at two \emph{idealizations} neither met by a frozen
 LLM --- Bayes-optimality and exact parity --- and every downstream invocation
-discloses which it relies on (guardrail~G3, the \texttt{\textbackslash
+discloses which it relies on (the \texttt{\textbackslash
 idealization} boxes throughout). Second, the bounded-learner objects
 ($\nsample$, $\hypclass$, the ERM $\widehat f_{\rep}$) are read onto a single
 fixed model by analogy, so the retrodiction asserts bounds and regimes, never
-point values. Third, the two go/no-go sections are provisional by charter and
+point values. Third, the two conditional sections are provisional and
 carry their decision in-source; they are kept only because each earned a theorem.
 What this paper is not is a claim that format does not matter, that any effect is
 zero, or that the preprint should have found a positive: it is the statement that

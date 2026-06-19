@@ -4,14 +4,14 @@
 % Single source of truth for symbols across all sections. Every theorem,
 % lemma, and proof draws its notation from here so that the four
 % mathematical areas (measure-theoretic probability, information theory,
-% statistical learning theory, and the two go/no-go layers) stay
+% statistical learning theory, and the category-theory / optimal-transport layers) stay
 % internally consistent. Edit here, not inline.
 %
 % Convention: areas are grouped and labelled. When a T1/T2 issue introduces
 % a new symbol it adds it to the relevant group below with a one-line
 % comment, rather than redefining \newcommand locally in a section.
 
-% ----- Measure-theoretic probability (§2, T1-1) -----
+% ----- Measure-theoretic probability (§2) -----
 \newcommand{\Xspace}{\mathcal{X}}            % input space (programs/representations source)
 \newcommand{\Yspace}{\mathcal{Y}}            % label/target space
 \newcommand{\Zspace}{\mathcal{Z}}            % representation codomain
@@ -35,29 +35,29 @@
 \newcommand{\risk}{\mathcal{R}}              % risk functional
 \newcommand{\bayesrisk}{\risk^{\star}}       % Bayes risk
 
-% ----- Information theory (§4, T1-2 / T2-1 / T2-2) -----
+% ----- Information theory (§4) -----
 \newcommand{\MI}[2]{I(#1 ; #2)}              % mutual information
 \newcommand{\Ent}[1]{H(#1)}                  % (differential) entropy
 \newcommand{\CondEnt}[2]{H(#1 \given #2)}    % conditional entropy
 \newcommand{\KL}[2]{D_{\mathrm{KL}}\!\left(#1 \,\Vert\, #2\right)} % KL divergence
 \newcommand{\markov}{\rightarrow}            % Markov-chain link, X \markov \rep(X) \markov Y
 \newcommand{\suff}{\;\succeq_{\mathrm{suff}}\;} % sufficiency preorder
-\newcommand{\parityeq}{\;\equiv_{\mathrm{par}}\;} % information-parity equivalence (T1-2)
+\newcommand{\parityeq}{\;\equiv_{\mathrm{par}}\;} % information-parity equivalence
 \newcommand{\ratedist}{R(D)}                 % rate-distortion function
-\newcommand{\infogap}[1]{\Delta_{\mathsf{I}}\!\left(#1\right)} % information gap I(Y;X)-I(Y;rep(X)) (T2-2)
-\newcommand{\decode}{\delta}                 % decoding relation of a structured representation (T2-1)
-\newcommand{\strrep}[1][\rep]{\langle #1, \decode_{#1}\rangle} % structured rep = encoder + decoding relation (T2-1)
+\newcommand{\infogap}[1]{\Delta_{\mathsf{I}}\!\left(#1\right)} % information gap I(Y;X)-I(Y;rep(X))
+\newcommand{\decode}{\delta}                 % decoding relation of a structured representation
+\newcommand{\strrep}[1][\rep]{\langle #1, \decode_{#1}\rangle} % structured rep = encoder + decoding relation
 
-% ----- Statistical learning theory (§5, T1-3 / T2-4) -----
+% ----- Statistical learning theory (§5) -----
 \newcommand{\hypclass}{\mathcal{H}}          % hypothesis class
 \newcommand{\capac}[1]{\mathfrak{C}(#1)}     % capacity/complexity term (VC, Rademacher, ...)
 \newcommand{\Rad}[1]{\mathfrak{R}_n(#1)}     % empirical Rademacher complexity at sample n
 \newcommand{\emprisk}{\widehat{\risk}}       % empirical risk
 \newcommand{\nsample}{n}                     % sample size
 \newcommand{\advantage}{\Delta}              % representation advantage (bounded-regime gap)
-\newcommand{\approxerr}[1]{\mathsf{A}(#1)}   % approximation error of induced class H∘rep (T2-4)
+\newcommand{\approxerr}[1]{\mathsf{A}(#1)}   % approximation error of induced class H∘rep
 
-% ----- Category theory (§3, T1-4 / T2-3) — GO/NO-GO -----
+% ----- Category theory (§3) -----
 \newcommand{\catRep}{\mathbf{Rep}}           % category of representations
 \newcommand{\ladder}[1]{\mathrm{C}#1}        % C-ladder object, e.g. \ladder{4} = C4
 \newcommand{\ladderplus}{\mathrm{C1^{+}}}    % information-parity control C1+
@@ -65,12 +65,12 @@
 \newcommand{\retract}{\;\trianglelefteq\;}   % retraction relation (parity = retraction)
 \newcommand{\roundtrip}[2]{#1 \!\to\! #2 \!\to\! #1'} % round-trip defect C4 -> C1+ -> C4'
 
-% ----- Optimal transport + information geometry (§6, T1-5 / T2-5) — GO/NO-GO -----
+% ----- Optimal transport + information geometry (§6) -----
 \newcommand{\Wass}[1]{W_{#1}}                % Wasserstein-#1 distance
 \newcommand{\preddist}[1]{\mu_{#1}}          % induced predictive distribution under condition #1
 \newcommand{\Fisher}{\mathcal{I}_{F}}        % Fisher information
 \newcommand{\paritydefect}{\delta_{\mathrm{par}}} % quantitative parity defect
-\newcommand{\cpredtransport}{\overline{\Wass{1}}} % input-coupled predictive transport (T2-5)
+\newcommand{\cpredtransport}{\overline{\Wass{1}}} % input-coupled predictive transport
 
 % ----- Cross-cutting -----
 \newcommand{\defeq}{\vcentcolon=}            % "defined as"

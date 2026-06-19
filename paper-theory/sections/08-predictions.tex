@@ -1,13 +1,13 @@
-% Section 8 — Predictions and falsifiable tests (charter §4.8; issue T3-2)
+% Section 8 — Predictions and falsifiable tests
 \section{Predictions and falsifiable tests}
 \label{sec:predictions}
 
-% Fills in T3-2 (WOV-273). The paper's forward-looking contribution and the
-% antidote to "a math-dressed null" (charter §1 positive half; guardrail G2).
-% Each prediction carries (charter §4.8): a named bounded-regime experiment on
+% The paper's forward-looking contribution and the
+% antidote to "a math-dressed null".
+% Each prediction carries: a named bounded-regime experiment on
 % the Lumen apparatus, a SIGN and SIZE statement (size from \cref{cor:size-gap}
 % and \cref{thm:defect-risk-gap}), and an explicit FALSIFIER. Hard rule
-% (guardrail G2/G6): these are falsifiable PREDICTIONS/CONJECTURES, never
+%: these are falsifiable PREDICTIONS/CONJECTURES, never
 % established empirical findings.
 
 \Cref{sec:anchoring} retrodicted the three frozen cells; it deliberately
@@ -31,7 +31,7 @@ statement and an explicit falsifier.
 A one-sided, sign-agnostic bound (\cref{thm:bounded-gap},
 $\advantage(\rep,\rep')\le\Phi$, with $\Phi$ a capacity functional carrying no
 mutual-information term) does not predict that any effect exists, nor which
-representation wins; guardrail~G2 forbids manufacturing either. It is therefore
+representation wins; the theory manufactures neither. It is therefore
 worth stating precisely what \emph{is} falsifiable, so the predictions below are
 not mistaken for disguised existence claims.
 
@@ -98,7 +98,7 @@ to $0$ with $\rho$.\par
 \emph{Falsifier.} A parity-verified effect that is constant or \emph{increasing}
 as $\rho\to 0$ --- e.g.\ an $\ladder{4}$-vs-$\ladderplus$ gap as large on the
 frontier model / easy task as on the small model / hard task. This is the single
-observation that would refute the bounded-computation thesis of charter~§1: it
+observation that would refute the bounded-computation thesis: it
 would mean information content, not capacity, is moving the risk, in violation of
 \cref{thm:irrelevance} beyond the measured defect of \cref{sec:parity-defect}.
 \end{prediction}
@@ -137,7 +137,7 @@ the floor) into the activation window.\par
 difficulty stratification (length bins, a recursion flag, a reasoning-depth
 proxy) and a harder T3 transformation set. This is exactly the program's open
 need that T3 ``needs a harder dataset (or partial-credit transforms) before it
-can test anything'' (next-phase design, R5 evaluation): the theory says the
+can test anything'': the theory says the
 harder dataset is where the bounded effect, if any, becomes visible.\par
 \emph{Predicted sign and size.} Sign free; $|\advantage|$ non-decreasing in
 difficulty, bounded by $\Phi$ per stratum.\par
@@ -156,11 +156,11 @@ truncating the context window, or reducing the number of in-context exemplars
 \emph{Mechanism.} \cref{prop:regime}(i)--(ii): these knobs lower the effective
 sample size $\nsample$ and the realized capacity of the in-context predictor,
 moving it from the vacuous-floor / well-resourced corner toward the activation
-window. This is the ``bounded compute'' clause of charter~§1 made operational.\par
+window. This is the ``bounded compute'' clause of the thesis made operational.\par
 \emph{Knob.} Reasoning-effort / max-thinking-token budget; context-window
 truncation; few-shot count. All are apparatus-level settings requiring no change
 to the frozen scorers or datasets, so they sit alongside the confirmatory
-artifact (guardrail: frozen-script regime is sacred).\par
+artifact (the frozen-script regime is held fixed).\par
 \emph{Predicted sign and size.} Sign free; $|\advantage|$ non-increasing in the
 compute/context budget, bounded by $\Phi$.\par
 \emph{Falsifier.} An effect unchanged or \emph{shrinking} under tighter compute
@@ -173,7 +173,7 @@ that does not is, by definition, not bounded-computation, and contradicts
 \label{pred:size}
 Whatever the regime, the parity-verified swap gap is bounded, and it is bounded
 by a \emph{measurable} quantity: with $\paritydefect$ the parity defect
-(\cref{def:parity-defect}) computed from R4-style round-trip recovery and $c$ the
+(\cref{def:parity-defect}) computed from round-trip recovery and $c$ the
 calibration constant of \cref{cor:defect-two-term},
 \[
   \big|\advantage(\ladder{4},\ladderplus)\big|
@@ -189,7 +189,7 @@ shrink toward $0$.\par
 by the transport defect, with no mutual-information term under operational
 parity).\par
 \emph{Knob.} Compute $\paritydefect$ from the round-trip recovery rates already
-produced by the R4 pipeline (\cref{tab:cladder}: contracts $100\%$, node kinds
+produced by the round-trip pipeline (\cref{tab:cladder}: contracts $100\%$, node kinds
 $99.8\%$, types $96.4\%$, byte-exact $0/30$); improve the projection to drive
 $\paritydefect$ down and re-measure the swap gap.\par
 \emph{Predicted sign and size.} $|\advantage|\le c\,\paritydefect$ in magnitude;
@@ -246,8 +246,8 @@ Moving model, difficulty, or compute can move the operational information gap as
 a side effect. Each cell therefore re-measures the round-trip recovery and
 $\paritydefect$ (\cref{pred:size}); a cell whose parity has drifted is analyzed
 under \cref{sec:parity-defect}, not silently treated as parity-preserving. This
-is the standing guardrail that information parity is operational, not absolute
-(\cref{rem:parity-ledger}, guardrail~G3).
+is the standing requirement that information parity is operational, not absolute
+(\cref{rem:parity-ledger}).
 
 \subsection{What each outcome would mean for the program}
 \label{subsec:decision-map}
@@ -279,14 +279,14 @@ Prediction & Lumen knob & Predicted $|\advantage|$ & Falsifier \\
   reasoning budget, context, shots & $\nearrow$ under restriction &
   unchanged / shrinks under restriction \\
 \cref{pred:size} Bounded magnitude &
-  measure $\paritydefect$ from R4 & $\le\min\{\Phi,c\,\paritydefect\}$ &
+  measure $\paritydefect$ from the round trip & $\le\min\{\Phi,c\,\paritydefect\}$ &
   exceeds $c\,\paritydefect$; or survives $\paritydefect\to0$ \\
 \bottomrule
 \end{tabular}
 \caption{The five falsifiable predictions, their bounded-regime knobs on the
 Lumen apparatus, the predicted effect on the magnitude
-$|\advantage(\ladder{4},\ladderplus)|$ (signs deliberately unspecified per
-guardrail~G2), and the explicit falsifier of each.}
+$|\advantage(\ladder{4},\ladderplus)|$ (signs deliberately unspecified), and
+the explicit falsifier of each.}
 \label{tab:pred-summary}
 \end{table}
 
@@ -325,7 +325,7 @@ load-bearing assumption.}
 \begin{remark}[What this section does and does not claim]
 \label{rem:pred-honesty}
 Every statement in \cref{subsec:the-predictions} is a prediction or a
-conjecture, never a finding (guardrail~G2/G6). The theory does not assert that
+conjecture, never a finding. The theory does not assert that
 any bounded-regime effect exists, and it never predicts which representation
 wins: the sign of $\advantage$ is left free throughout, and the only directional
 content is the \emph{trend} of $|\advantage|$ across a resource knob

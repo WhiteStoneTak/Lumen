@@ -1,22 +1,21 @@
 % Section 4 — Information parity and the irrelevance theorem
-% (charter §4.4; issues T1-2, T2-1, T2-2)
 \section{Information parity and the irrelevance theorem}
 \label{sec:parity}
 
-% Area role (charter §2): parity = sufficiency / Markov-equivalence; the
+% Area role: parity = sufficiency / Markov-equivalence; the
 % irrelevance theorem via DPI; rate-distortion for lossy reps.
 %
 % This file holds:
-%   - T1-2 (WOV-263): information-theoretic foundations (entropy, divergence,
+%   - information-theoretic foundations (entropy, divergence,
 %     mutual information), the data-processing inequality with proof,
 %     sufficiency + Fisher-Neyman factorization, rate-distortion for lossy
 %     reps, and the FORMAL DEFINITION of information parity with the
 %     operational-vs-absolute distinction (paper §3.3) made precise.
-%   - T2-1 (WOV-267): structured representation + decoding relation
+%   - structured representation + decoding relation
 %     (subsec:structured), the C-ladder worked examples (tab:cladder), and the
 %     parity-hypothesis ledger naming which grade each later theorem assumes
 %     (tab:parity-ledger).
-%   - T2-2: the at-optimum irrelevance theorem (DPI => Bayes-risk invariance).
+%   - the at-optimum irrelevance theorem (DPI => Bayes-risk invariance).
 
 This section supplies the information-theoretic engine of the paper. It builds
 the three quantities the spine needs (entropy, relative entropy, mutual
@@ -27,7 +26,7 @@ condition under which the inequality is tight, and then defines
 the thesis (\cref{sec:intro}) is, at this level, a single sentence: parity
 makes the data-processing inequality an equality, so the information available
 to an optimal predictor does not move with the representation. Making that
-sentence a theorem about Bayes risk is deferred to T2-2; here we fix the
+sentence a theorem about Bayes risk is deferred to \cref{thm:irrelevance}; here we fix the
 objects it quantifies over. We follow the standard treatments of
 \citet{coverthomas2006} for the information quantities and rate--distortion,
 and \citet{lehmanncasella1998} for sufficiency and the factorization theorem;
@@ -221,9 +220,9 @@ $Y$-fidelity axis: it loses no predictive information and \eqref{eq:dpi-rep}
 is an equality. A lossy representation incurs a strictly positive
 information gap $\MI{Y}{X}-\MI{Y}{\rep(X)} > 0$, and the rate--distortion
 machinery bounds the resulting inflation of Bayes risk. The exact bound is the
-rate--distortion corollary of the irrelevance theorem (T2-2); its quantitative
+rate--distortion corollary of the irrelevance theorem; its quantitative
 companion --- a Wasserstein/Fisher \emph{parity defect} computed against the
-R4 round-trip data --- is \cref{sec:parity-defect}. We record here only that
+round-trip recovery data --- is \cref{sec:parity-defect}. We record here only that
 the defect is governed by an information gap, so that ``how far from parity''
 is a measurable quantity rather than a metaphor.
 \end{remark}
@@ -232,8 +231,8 @@ is a measurable quantity rather than a metaphor.
 \label{subsec:parity-def}
 
 We can now define the central object. Two grades are distinguished, because
-the distinction is exactly guardrail~G3's ``parity is operational, not
-absolute'' (paper §3.3), and the paper uses the weaker grade deliberately.
+the distinction is exactly the ``parity is operational, not
+absolute'' slogan, and the paper uses the weaker grade deliberately.
 
 \begin{definition}[Information parity]
 \label{def:parity}
@@ -280,7 +279,7 @@ precisely what the round-trip data witness.
 
 \begin{remark}[Which grade the paper uses, and why it matters]
 \label{rem:which-parity}
-The irrelevance theorem (T2-2) is stated against \emph{operational} parity
+The irrelevance theorem is stated against \emph{operational} parity
 (\cref{def:parity}): that is all the Bayes-risk argument needs, since
 \cref{prop:suff-iff-mi} ties operational parity to the equality case of the
 data-processing inequality, and Bayes risk depends on a representation only
@@ -289,7 +288,7 @@ parity is sufficient but unnecessarily strong, and --- by
 \cref{prop:abs-strict} --- it is the grade that \emph{fails} in practice: the
 control $\ladderplus$ and the structured representation $\ladder{4}$ are
 designed to be operationally parity (equal predictive content for $Y$) but are
-not byte-identical, and the R4 round-trip recovery (\cref{sec:parity-defect})
+not byte-identical, and the round-trip recovery (\cref{sec:parity-defect})
 quantifies the residual asymmetry $\sigalg{\ladder{4}} \ne
 \sigalg{\ladderplus}$. The slogan ``parity is operational, not absolute'' is
 therefore the formal statement that the central comparison rests on
@@ -301,7 +300,7 @@ informations under the (unknown but fixed) data law $\jlaw$. It is an
 idealization in two senses made explicit downstream: (i) it presumes the two
 representations are \emph{exactly} sufficient, whereas a constructed control
 may be sufficient only up to a measured defect (\cref{sec:parity-defect}); and
-(ii) the risk consequence it feeds (T2-2) presumes Bayes-optimality, which a
+(ii) the risk consequence it feeds presumes Bayes-optimality, which a
 finite-capacity LLM does not attain (\cref{sec:bounded}).}
 \end{remark}
 
@@ -315,7 +314,7 @@ types, extracted contracts) while remaining, by design, decodable back toward
 source form. That decodability is what makes $\ladderplus$ a usable control
 rather than an abstract coarsening, and it is the hinge on which operational
 and absolute parity (\cref{def:parity}) separate. We make the object precise
-here (T2-1), then instantiate it on the C-ladder, and close by naming, for
+here, then instantiate it on the C-ladder, and close by naming, for
 each later theorem, the exact parity grade it assumes.
 
 \begin{definition}[Structured representation and its decoding relation]
@@ -423,7 +422,7 @@ $\ladderplus\parityeq\ladder{4}$ (\cref{prop:decode-parity}(a)). They are
 \emph{not} exactly faithful: the round trip
 $\roundtrip{\ladder{4}}{\ladderplus}$ recovers contracts at $100\%$, node kinds
 at $99.8\%$, and types at $96.4\%$, but byte-exact ASTs at $0/30$
-(R4 data, \cref{sec:parity-defect}). So $\sigalg{\ladder{4}}\ne
+(round-trip data, \cref{sec:parity-defect}). So $\sigalg{\ladder{4}}\ne
 \sigalg{\ladderplus}$, absolute parity fails, and the residual asymmetry is not
 assumed away but measured in \cref{sec:parity-defect}. This is precisely the
 configuration \cref{prop:decode-parity}(c) describes.
@@ -434,7 +433,7 @@ The point of separating the grades is that the paper's results do not all
 need the same one. \cref{tab:parity-ledger} is the ledger; it is binding, in
 the sense that no later theorem may silently upgrade its hypothesis from
 operational to absolute parity (that upgrade is exactly the move
-guardrail~G3 forbids).
+the operational-not-absolute discipline forbids).
 
 \begin{table}[h]
 \centering
@@ -444,10 +443,10 @@ guardrail~G3 forbids).
 Result & Parity hypothesis & Role of the hypothesis \\
 \midrule
 \cref{cor:dpi-rep} (DPI for reps)            & none           & holds for every representation \\
-\cref{thm:irrelevance} (T2-2, irrelevance)   & operational    & $\Rightarrow$ equal Bayes risk \\
-\S\ref{sec:bounded} bound (T2-4, \cref{def:advantage}) & operational & information held equal; gap is capacity \\
-\S\ref{sec:category} retraction (T2-3, \cref{thm:retraction}) & operational $=$ retraction & defect $=$ idempotent, info-invisible \\
-\S\ref{sec:parity-defect} defect (T2-5, \cref{def:parity-defect}) & operational holds & quantifies failure of \emph{absolute} \\
+\cref{thm:irrelevance} (irrelevance)         & operational    & $\Rightarrow$ equal Bayes risk \\
+\S\ref{sec:bounded} bound (\cref{def:advantage}) & operational & information held equal; gap is capacity \\
+\S\ref{sec:category} retraction (\cref{thm:retraction}) & operational $=$ retraction & defect $=$ idempotent, info-invisible \\
+\S\ref{sec:parity-defect} defect (\cref{def:parity-defect}) & operational holds & quantifies failure of \emph{absolute} \\
 \bottomrule
 \end{tabular}
 \caption{Parity-hypothesis ledger. Every downstream result is stated against
@@ -471,7 +470,7 @@ With parity defined (\cref{def:parity}) and the data-processing inequality in
 hand (\cref{lem:dpi,cor:dpi-rep}), the at-optimum invariance is now a theorem:
 operational parity \eqref{eq:parity} forces the Bayes risks to coincide. This
 is the load-bearing result of the paper --- the formal statement that makes the
-\texttt{preprint-v1} T1 null a \emph{prediction} (charter~G1) rather than a
+\texttt{preprint-v1} T1 null a \emph{prediction} rather than a
 disappointment. The argument is the one previewed after \cref{def:bayesrisk}:
 sufficiency makes the regular conditional law of $Y$ given the representation
 agree with the law given the raw input (\cref{prop:disint}), and Bayes risk is
@@ -582,5 +581,5 @@ bounds the inflation of the \emph{Bayes} risk, not of a bounded predictor's
 risk. The information gap $\infogap{\rep}$ is an exact quantity whose zero set
 is characterized by the factorization \cref{prop:fisher-neyman}; converting it
 into a \emph{bounded}-predictor risk gap is not done here and is the open
-obligation handed to \cref{sec:parity-defect} (T2-5) under its go/no-go.}
+obligation handed to \cref{sec:parity-defect}.}
 \end{remark}

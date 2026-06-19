@@ -1,33 +1,33 @@
-% Section 5 — The bounded-learner gap (charter §4.5; issues T1-3, T2-4)
+% Section 5 — The bounded-learner gap
 \section{The bounded-learner gap}
 \label{sec:bounded}
 
-% Area role (charter §2): where format can help once information is held
+% Area role: where format can help once information is held
 % constant; an UPPER BOUND on achievable representation advantage via
 % capacity/sample complexity; the regime that activates it.
 %
 % This file holds:
-%   - T1-3 (WOV-264): statistical-learning-theory foundations (PAC / agnostic
+%   - statistical-learning-theory foundations (PAC / agnostic
 %     setup, VC dimension, Rademacher complexity, uniform-convergence bounds),
 %     how a representation induces a hypothesis class H∘φ and changes its
 %     complexity at fixed information, a sample-complexity SEPARATION between
 %     information-equivalent representations, and identification of the single
 %     quantity that upper-bounds the achievable advantage.
-%   - T2-4: the advantage upper bound itself (placeholder retained below).
+%   - the advantage upper bound itself.
 %
 % The positive content is delivered as falsifiable predictions in §8, never as
-% established findings (guardrail G2).
+% established findings.
 
 \Cref{sec:parity} closes the information channel: under parity the Bayes risk
-does not move with the representation (\cref{thm:irrelevance}, proved in T2-2).
+does not move with the representation (\cref{thm:irrelevance}).
 If a representation effect exists at all, it must therefore live in the gap
 between the Bayes-optimal predictor and a real, \emph{bounded} one --- finite
 capacity, finite sample, bounded compute. This section builds the
 learning-theoretic tools that measure that gap and identifies the single
-quantity that will upper-bound the achievable advantage in T2-4. The framing
+quantity that will upper-bound the achievable advantage (\cref{thm:bounded-gap}). The framing
 is deliberately one-directional: the theory bounds how large a parity-preserving
 representation effect \emph{can} be, and names the regime in which to look for
-it; it does not assert that any such effect exists (guardrail~G2). We follow
+it; it does not assert that any such effect exists. We follow
 \citet{shalevshwartz2014} and \citet{mohri2018} for the learning theory,
 \citet{vapnik1998} for the VC framework, and \citet{bartlettmendelson2002} for
 the Rademacher bounds.
@@ -192,7 +192,7 @@ not.
 \cref{prop:capacity-separation} is the formal locus of ``format can help'':
 two representations that are interchangeable for an infinite-capacity
 predictor can present very different learning problems to a bounded one. It is
-also the formal boundary of guardrail~G2 --- the proposition asserts only that
+also the formal boundary of the no-existence-claim discipline --- the proposition asserts only that
 the capacity terms \emph{can} differ, the direction and magnitude of any
 real-LLM effect being an empirical question routed to the predictions of
 \cref{sec:predictions}.
@@ -220,7 +220,7 @@ Under parity the information-gap term in \eqref{eq:excess} cancels between the
 two representations, so $\advantage(\rep,\rep')$ is built entirely from the
 approximation and estimation terms, and \cref{thm:uniform} bounds the
 estimation part by the induced-class Rademacher complexity. This identifies
-the single quantity that will upper-bound the achievable advantage in T2-4:
+the single quantity that will upper-bound the achievable advantage (\cref{thm:bounded-gap}):
 \begin{equation}
   \label{eq:advantage-quantity}
   \boxed{\;\;
@@ -234,8 +234,7 @@ together with the (representation-dependent) approximation error. The result
 below turns this into a one-sided bound $\advantage(\rep,\rep') \le
 \Phi(\capac{\cdot},\nsample)$ controlled by capacity and sample size and
 \emph{not} by information content --- the formal statement that any
-parity-preserving effect is a bounded-computation phenomenon of bounded size
-(charter §1).
+parity-preserving effect is a bounded-computation phenomenon of bounded size.
 
 \subsection{The advantage upper bound}
 \label{subsec:advantage-bound}
@@ -292,7 +291,7 @@ operational parity \eqref{eq:parity}), invoked through \cref{thm:irrelevance} to
 set $\infogap{\rep}=\infogap{\rep'}=0$; the residual when parity holds only up to
 a measured defect is the subject of \cref{sec:parity-defect}. The bound is
 one-sided and sign-agnostic --- it limits how large a parity-preserving
-advantage \emph{can} be and asserts no effect exists (guardrail~G2).}
+advantage \emph{can} be and asserts no effect exists.}
 \end{theorem}
 
 The proof (\cref{app:bounded-gap}) is a sandwich: a deterministic floor
@@ -413,14 +412,14 @@ hence $\advantage(\rep,\rep')\to 0$.
 
 \begin{remark}[What the bound does and does not say]
 \label{rem:bounded-reading}
-\cref{thm:bounded-gap} is the positive half of the thesis made precise (charter
-§1): once parity closes the information channel (\cref{thm:irrelevance}), any
+\cref{thm:bounded-gap} is the positive half of the thesis made precise: once
+parity closes the information channel (\cref{thm:irrelevance}), any
 representation effect on a bounded learner is a \emph{bounded-computation}
 phenomenon whose maximum magnitude is the capacity budget $\Phi$ --- a
 sample-complexity quantity, never a mutual information --- and
 \cref{prop:regime} names the finite-sample, capacity-separated regime in which to
 look for one. This is the constructive payoff promised in \cref{sec:intro}, and
-it stays strictly inside guardrail~G2: the bound is agnostic about sign and about
+it stays strictly inside the no-existence-claim discipline: the bound is agnostic about sign and about
 existence, so the direction and reality of any real-LLM effect remain the
 empirical questions routed to \cref{sec:predictions}. The single idealization
 still standing --- exact parity --- is discharged in \cref{sec:parity-defect},

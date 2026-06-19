@@ -1,15 +1,9 @@
-% Lumen — workshop paper LaTeX skeleton
-% Constructed from outline v2.1 (verification-integrated).
-% Status: SECTION-STUB skeleton. Each section/subsection carries a 1–3 sentence
-% stub; full prose drafting is deferred to a later session.
+% Lumen — empirical paper
+% Information-Parity Testing for Code Representation Effects on Frontier LLMs:
+% Methodology and Diagnostic Findings from a Bug-Detection Study.
 %
-% Document class: article (initial). Switch to LLM4Code template only after
-% venue confirmation.
-%
-% Tables: numerical values populated from outline v2.1 verified figures and
-% from the analysis JSONs (results/analysis/.../*.json). No [TBD] cells.
-%
-% Figures: placeholders only. Source data files named in % TODO comments.
+% Document class: article.
+% Build: cd paper && tectonic main.tex
 
 \documentclass[11pt]{article}
 
@@ -32,13 +26,6 @@
 \usepackage[capitalize, noabbrev]{cleveref}
 \usepackage[font=small, labelfont=bf, labelsep=period, skip=4pt]{caption}
 \usepackage{titlesec}
-\usepackage{tocloft}
-% Compress vertical spacing between TOC entries so the entire contents
-% (body + Appendices A--E) fits cleanly on a single page rather than
-% spilling 4-5 lines onto an otherwise empty second page.
-\setlength{\cftbeforesecskip}{0pt}
-\setlength{\cftbeforesubsecskip}{0pt}
-\setlength{\cftbeforesubsubsecskip}{0pt}
 \titleformat*{\section}{\large\bfseries}
 \titleformat*{\subsection}{\normalsize\bfseries}
 \titleformat*{\subsubsection}{\normalsize\bfseries\itshape}
@@ -86,7 +73,6 @@
 
 \author{%
   \textbf{\large Takumi Shiraishi} \\[2pt]
-  Independent Researcher \\[1pt]
   \href{mailto:takumi@wovol.com}{\texttt{takumi@wovol.com}}
 }
 
@@ -99,9 +85,6 @@
 % Abstract
 % =============================================================
 \begin{abstract}
-% STUB: refine after §7 drafting (§7 == post-skeleton prose pass).
-% Pasted verbatim from outline v2.1 abstract; H1 sentence carries the
-% verified 95% bootstrap CI [+0.08, +0.92] excluding zero.
 Frontier LLMs are increasingly applied to code reasoning, yet whether the
 \emph{format} of input code affects reasoning quality, independent of the
 \emph{information content} of the representation, is rarely tested with
@@ -124,7 +107,6 @@ methodology, and propose rubric refinement and T1/T3 collection as the next
 steps.
 \end{abstract}
 
-\clearpage
 \tableofcontents
 \clearpage
 
@@ -218,7 +200,7 @@ model-runs---opposite the pre-registered prediction
 (\S\ref{sec:4.4}). No T2 record attains the composite ceiling of
 $3$ ($0/300$ records; \S\ref{sec:3.6}); the effective Wilcoxon
 $n$ collapses to $13$--$14$ on the central confirmatory cells.
-For this journal version the nine-cell family is completed (R5): H1
+For this journal version the nine-cell family is completed: H1
 (C4 over its information-parity control) is a \emph{clean null} on T1
 ($r = +0.10$, raw $p = 0.36$, no rubric ceiling) and ceiling-censored on
 T3 ($r = +0.43$, effective $n \approx 5$; $93.7\%$ of scores at $1.0$),
@@ -551,7 +533,7 @@ representation; T3 asks the model to produce a modified version
 of a function satisfying a contract-described change. Both are
 constitutional task families; the 90-day study collected only
 T2. T1 and T3 were collected afterward for this journal version
-under separate pre-registrations (R5; \texttt{t1-v1},
+under separate pre-registrations (\texttt{t1-v1},
 \texttt{t3-v1}), completing the nine-cell family
 (\S\ref{sec:4.2b}, \S\ref{sec:4.2c}).
 
@@ -620,7 +602,7 @@ $10{,}000$ seeded resamples.
 
 We honor $m = 9$ as pre-registered. In the preprint, six of the nine
 cells were insufficient-data placeholders; for this journal version T1
-and T3 were collected (R5, \S\ref{sec:4.2b}--\S\ref{sec:4.2c}) and all
+and T3 were collected (\S\ref{sec:4.2b}--\S\ref{sec:4.2c}) and all
 nine cells are now tested, with $m = 9$ retained throughout. We did not
 at any stage retroactively reduce $m$ to 3. Post-hoc
 $m$-reduction would forfeit the value of pre-registration: the cost
@@ -777,8 +759,8 @@ pre-registered direction. None of the three reaches Holm-corrected
 significance. The H3/T2 upper bound ($+0.077$) only just crosses zero.
 
 The family is now complete. The T1 family was collected under
-pre-registration \texttt{t1-v1} (R5-2, \S\ref{sec:4.2b}) and the T3 family
-under \texttt{t3-v1} (R5-4, \S\ref{sec:4.2c}); all nine cells are tested.
+pre-registration \texttt{t1-v1} (\S\ref{sec:4.2b}) and the T3 family
+under \texttt{t3-v1} (\S\ref{sec:4.2c}); all nine cells are tested.
 \textbf{No cell is rejected at the Holm-corrected level}: the smallest raw
 $p$ in the family is H1/T2's $0.023$, which already fails the $m=9$ Holm
 threshold ($0.05/9 = 0.0056$), so every cell corrects to Holm
@@ -794,7 +776,7 @@ in the dataset; its per-model decomposition is taken up in
 \centering
 \footnotesize
 \caption{Confirmatory 9-test family, now complete: all nine cells tested
-(T2; T1 via R5-2/\texttt{t1-v1}; T3 via R5-4/\texttt{t3-v1}) (\emph{Confirmatory
+(T2; T1 via \texttt{t1-v1}; T3 via \texttt{t3-v1}) (\emph{Confirmatory
 analysis}). $m=9$ Holm correction as pre-registered. \textbf{No cell is rejected
 at the Holm-corrected level.} The three T3 cells are ceiling-censored (93.7\% of
 T3 scores at $1.0$; see \S\ref{sec:4.2c}).}
@@ -819,8 +801,8 @@ H3 & T3 & 26  & $1.0$  & $0.938$ & $1.000$ & $-0.800$  & $[-1.000, +1.000]$   & 
 \subsection{Confirmatory: H1 on T1 (program understanding)}
 \label{sec:4.2b}
 The T1 family was collected after the preprint under pre-registration
-\texttt{t1-v1} (R5-2), using the frozen deterministic checklist scorer
-(R1-3) over all 30 confirmatory functions and the frozen model pair
+\texttt{t1-v1}, using the frozen deterministic checklist scorer
+over all 30 confirmatory functions and the frozen model pair
 (complete: $300/300$ cells, both models in every condition). The
 central test \textbf{H1/T1 (C4 vs C1\textsuperscript{+})} yields
 $r_{\text{rb}} = +0.098$ (raw one-sided $p = 0.361$; 95\% bootstrap CI
@@ -850,9 +832,9 @@ the reported result. Per-cell status counts are archived at
 
 \subsection{Confirmatory: H1 on T3 (code transformation), and a realised ceiling}
 \label{sec:4.2c}
-The T3 family was collected under pre-registration \texttt{t3-v1} (R5-4),
+The T3 family was collected under pre-registration \texttt{t3-v1},
 using the frozen test-pass-fraction scorer executed in a sandboxed
-subprocess with a 10\,s wall-clock timeout (R1-4). Of the 30 confirmatory
+subprocess with a 10\,s wall-clock timeout. Of the 30 confirmatory
 functions, 26 carry a frozen post-transform suite; the other four
 (\texttt{peak\_valley\_indices}, \texttt{segments\_above\_threshold},
 \texttt{stable\_partition}, \texttt{group\_by\_key}) have no T3 ground
@@ -1277,8 +1259,8 @@ The point estimate is consistent with the bet's direction; the
 statistical confirmation it would require has not been delivered.
 The empirical motivation for the bet is intact at the level of
 point estimates and weakened at the level of statistical
-confirmation. T1 and T3 have since been collected (R5,
-\S\ref{sec:4.2b}--\S\ref{sec:4.2c}) and did \emph{not} supply the
+confirmation. T1 and T3 have since been collected
+(\S\ref{sec:4.2b}--\S\ref{sec:4.2c}) and did \emph{not} supply the
 missing confirmation: H1 is a clean null on T1 and ceiling-censored on
 T3. The project continues at the architectural level pending rubric
 refinement (\S\ref{sec:5.3}) and a properly powered, ceiling-free
@@ -1303,7 +1285,7 @@ results support.
   effective $n$ was therefore identified post hoc rather than
   pre-confirmatory.
 \item \textbf{Family completeness and measurement limits.} The
-  nine-cell family is now complete (T1/T3 added in R5,
+  nine-cell family is now complete (T1/T3 added,
   \S\ref{sec:4.2b}--\S\ref{sec:4.2c}), but two of the three tasks are
   measurement-limited: T2 by a low-end rubric ceiling and T3 by a
   high-end solve-rate ceiling (93.7\% of T3 scores at $1.0$, effective

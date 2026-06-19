@@ -1,19 +1,9 @@
-% Appendix — Full proofs (charter §4 appendix; issue T4-4)
+% Appendix — Full proofs
 \section{Proofs}
 \label{app:proofs}
 
-% Full proofs of the T2 theorems, each with its idealization disclosure
-% attached (guardrail G3). As theorems land in T2 their proofs migrate here and
-% the section body keeps only the statement.
-%
-% Index of obligations (update as theorems are proved):
-%   - \cref{thm:irrelevance} (irrelevance at optimum, T2-2)        -- PROVED (T2-2, WOV-268)
-%   - \cref{cor:ratedist-gap} (rate--distortion parity bound, T2-2) -- PROVED (T2-2, WOV-268)
-%   - \cref{thm:bounded-gap} (bounded-learner advantage bound, T2-4) -- PROVED (T2-4, WOV-270)
-%   - \cref{thm:defect-risk-gap} (defect bounds bp risk gap, T2-5)  -- PROVED (T2-5, WOV-271; §6 GO)
-%   - \cref{prop:defect-fisher-local} (local Fisher control, T2-5)  -- PROVED (T2-5, WOV-271)
-%   - \cref{thm:retraction} (retraction proposition, T2-3)         -- PROVED (T2-3, WOV-269; §3 GO)
-%   - \cref{cor:defect-subadditive} (defect domain/subadditivity)  -- PROVED (T2-3, WOV-269)
+% Full proofs of the main theorems, each with its idealization disclosure
+% attached; the section bodies keep only the statements.
 
 \subsection{The irrelevance theorem and its rate--distortion corollary}
 \label{app:irrelevance}
@@ -193,13 +183,13 @@ already shown.
 (idealization~(i) retained); they relax exact parity (idealization~(ii)) to the
 lossy case and make the failure quantitative through $\infogap{\rep}$. The
 conversion of $\infogap{\rep}$ into a \emph{bounded}-predictor risk gap is not
-established here; it is the go/no-go obligation of \cref{sec:parity-defect}
-(T2-5). Identity~(a) is exact but specific to the log loss; bound~(b) is general
+established here; it is the obligation of \cref{sec:parity-defect}.
+Identity~(a) is exact but specific to the log loss; bound~(b) is general
 but, through Pinsker, loose by a square root --- neither is claimed to be the
 risk gap of a real frozen LLM.}
 \end{proof}
 
-\subsection{The retraction proposition (T2-3)}
+\subsection{The retraction proposition}
 \label{app:retraction}
 
 The category-theoretic claims are short once the retraction equation is in
@@ -268,7 +258,7 @@ by definition, the Bayes risk through the posterior kernel of
 \cref{lem:bayes-functional} --- and that quantity is equal for $A$ and $B$. The
 defect, however, is the discrepancy of induced $\sigma$-algebras
 $\sigalg{A}\ne\sigalg{B}$ (\cref{prop:abs-strict}), realized by the control rung
-whose round trip fails byte-exact recovery (R4 data, $0/30$;
+whose round trip fails byte-exact recovery (round-trip data, $0/30$;
 \cref{subsec:retraction-parity}); this is exactly the case $\phi\ne\mathrm{id}_A$.
 A discrepancy of $\sigma$-algebras at equal retained information is not a
 function of that information, so neither \cref{prop:suff-iff-mi} nor
@@ -279,7 +269,7 @@ through its use of \cref{thm:irrelevance}: Bayes-optimality and exact
 operational parity. Parts (i)--(ii) are purely categorical and assume neither.
 The proposition asserts the defect is invisible to the \emph{at-optimum}
 functionals; it does not assert the defect is empirically zero --- that is the
-quantitative question handed to \cref{sec:parity-defect} (T2-5).}
+quantitative question handed to \cref{sec:parity-defect}.}
 \end{proof}
 
 \begin{proof}[Proof of \cref{cor:defect-subadditive}]
@@ -300,7 +290,7 @@ The bound is the elementary triangle inequality; the categorical content is that
 (ii) supplies the intermediate laws that make the chain meaningful.
 \end{proof}
 
-\subsection{The bounded-learner advantage bound (T2-4)}
+\subsection{The bounded-learner advantage bound}
 \label{app:bounded-gap}
 
 The proof is a two-sided sandwich on the excess risk of the two representations,
@@ -366,11 +356,11 @@ is a capacity functional of an induced class, as claimed.
 $\post{\rep}$ --- and retains idealization~(ii) (exact parity
 \eqref{eq:parity}), used only to cancel $\infogap{\rep},\infogap{\rep'}$ via
 \cref{thm:irrelevance}. It bounds the \emph{size} of any parity-preserving
-advantage and is silent on sign and existence (guardrail~G2); the failure of
+advantage and is silent on sign and existence; the failure of
 exact parity is quantified in \cref{sec:parity-defect}.}
 \end{proof}
 
-\subsection{The parity-defect risk bounds (T2-5)}
+\subsection{The parity-defect risk bounds}
 \label{app:parity-defect}
 
 Both bounds are about the \emph{shared reader} $\kernel{K}$ of
@@ -423,7 +413,7 @@ Bayes posterior $\post{\rep}$ (idealization~(i) of \cref{rem:slogan} relaxed). I
 uses operational parity only to cancel $\infogap{\ladder{4}}=\infogap{\ladderplus}=0$
 (\cref{prop:suff-iff-mi}); it never invokes absolute parity, and is in fact
 vacuous ($\cpredtransport=0$) under it. The conclusion is a magnitude bound,
-sign- and existence-agnostic (guardrail~G2).}
+sign- and existence-agnostic.}
 \end{proof}
 
 \begin{proof}[Proof of \cref{prop:defect-fisher-local}]
@@ -460,5 +450,5 @@ profile $\overline{v}$, the level at which \cref{def:parity-defect} and
 \cref{subsec:defect-r4} are stated; input-level heterogeneity of the increment
 would add a perturbation-covariance correction
 $\tfrac14\|\loss\|_\infty^2\,\mathrm{tr}(\Fisher\,\mathrm{Cov}(v_X))$ of the same
-(second) order, which the aggregate metric does not resolve. Sign-agnostic (G2).}
+(second) order, which the aggregate metric does not resolve. Sign-agnostic.}
 \end{proof}

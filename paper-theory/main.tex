@@ -1,20 +1,12 @@
 % =============================================================
-% Theory Companion Paper — LaTeX skeleton (T0-2, WOV-261)
+% Structured Representation for Code LLMs:
+% When Format Can and Cannot Help a Bounded Learner, and Why
 % =============================================================
-% Working title (charter §0):
-%   Structured Representation for Code LLMs: When Format Can and Cannot
-%   Help a Bounded Learner, and Why.
+% Theory companion to the empirical preprint. Each section is a
+% separate file under sections/.
 %
-% This is a SECTION-STUB skeleton. Each section is a separate file under
-% sections/ carrying a 1-3 sentence stub plus a pointer to the charter
-% milestone that fills it. Full mathematics is deferred to T1/T2.
-%
-% Authority: subordinate to docs/design-constitution.tex and the frozen
-% preprint-v1. Governed by docs/theory-paper-charter.md. The honesty
-% guardrails (charter §3, G1-G6) are binding on every section.
-%
-% Build: see paper-theory/README.md or `make theory-paper`.
-% Primary tool: tectonic (self-contained, resolves natbib automatically).
+% Build with tectonic (self-contained, resolves natbib automatically):
+%   cd paper-theory && tectonic main.tex
 
 \documentclass[11pt]{article}
 
@@ -48,12 +40,12 @@
 \newtheorem{example}[theorem]{Example}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-% ----- Falsifiable predictions (§8, T3-2) -----
+% ----- Falsifiable predictions (§8) -----
 % Predictions are NOT proved results: they carry an independent counter (P8.x)
 % so they are never confused with the theorems they derive from, and they live
-% in remark style to keep the conjectural status visually distinct (guardrails
-% G2/G6). Each prediction is stated with a sign/size claim and an explicit
-% falsifier in its body.
+% in remark style to keep the conjectural status visually distinct. Each
+% prediction is stated with a sign/size claim and an explicit falsifier in its
+% body.
 \newtheorem{prediction}{Prediction}[section]
 % cleveref auto-derives the singular name but not the plural for this custom
 % environment; declare both so grouped/range references (e.g.
@@ -62,18 +54,11 @@
 \crefname{prediction}{Prediction}{Predictions}
 \Crefname{prediction}{Prediction}{Predictions}
 
-% ----- Idealization-disclosure box (guardrail G3) -----
+% ----- Idealization-disclosure box -----
 % Every invocation of the irrelevance theorem must state which idealization
 % it relies on. This command standardizes that disclosure.
 \newcommand{\idealization}[1]{%
-  \par\vspace{2pt}\noindent\textit{Idealization disclosure (G3).} #1\par\vspace{2pt}}
-
-% ----- Go/no-go marker (charter §2 discipline) -----
-% Sections 3 and 6 are provisional: they survive only if they earn a
-% theorem. This banner keeps that status visible in the draft.
-\newcommand{\gonogo}[1]{%
-  \par\noindent\fbox{\parbox{0.97\linewidth}{\small\textbf{GO/NO-GO (charter §2).}
-  #1}}\par\vspace{4pt}}
+  \par\vspace{2pt}\noindent\textit{Idealization disclosure.} #1\par\vspace{2pt}}
 
 \input{notation}
 
@@ -82,17 +67,15 @@
 
 \author{%
   \textbf{\large Takumi Shiraishi} \\[2pt]
-  Independent Researcher \\[1pt]
   \href{mailto:takumi@wovol.com}{\texttt{takumi@wovol.com}}
 }
 
-\date{Draft skeleton --- \today}
+\date{June 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-% Drafted in T4-1 after the theorems exist; backbone is charter §1.
 Does the format in which code is presented to a language model change what the
 model can predict about it? We give a theoretical companion to the frozen
 empirical record of \texttt{preprint-v1}, whose central pre-registered cell
@@ -110,8 +93,9 @@ limit, and the residual is exactly where format may act: at constant
 information the achievable representation advantage is capped by a capacity
 budget carrying no mutual-information term, two-sided in magnitude, and
 non-vacuous only in a named finite-resource, capacity-separated regime. Two
-go/no-go refinements show operational parity is a retraction whose round-trip
-defect is invisible to both the mutual information and the Bayes risk yet
+further structural refinements show operational parity is a retraction whose
+round-trip defect is invisible to both the mutual information and the Bayes
+risk yet
 dominates the swap gap of any fixed bounded predictor. We map the three frozen
 Lumen outcomes to the regimes they occupy --- claiming consistency, not
 confirmation --- and convert the localization into five falsifiable predictions

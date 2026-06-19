@@ -1,12 +1,11 @@
-% Section 10 — Limitations and honesty (charter §4.10; issue T4-3, WOV-276)
-% T4-3 is the manuscript's INTEGRITY GATE (guardrails G1/G2/G3) and must not
-% be skipped (charter §6 note). This section adds no new result; it audits the
-% ones already proved and states their price.
+% Section 10 — Limitations and honesty
+% Integrity gate: adds no new result; audits the ones already proved and states
+% their price.
 \section{Limitations and honesty}
 \label{sec:limitations}
 
-This section is the manuscript's integrity gate (charter §3, guardrails
-G1--G6). A math-heavy account built on top of a null is most at risk of reading
+This section is the manuscript's integrity gate. A math-heavy account built on
+top of a null is most at risk of reading
 as obfuscation, and the antidote is to collect in one place three things that
 are otherwise distributed through the paper: the assumptions every result rests
 on and the way each fails for a real frozen LLM (\cref{subsec:lim-assumptions});
@@ -21,14 +20,14 @@ section audits what the previous sections proved and names what it costs.
 \label{subsec:lim-assumptions}
 
 The results stand on six assumptions. Two are the idealizations disclosed at
-every use through the \texttt{\textbackslash idealization} boxes (guardrail~G3)
+every use through the \texttt{\textbackslash idealization} boxes
 and named in \cref{rem:slogan}: \emph{(i)~Bayes-optimality} and \emph{(ii)~exact
 parity}. The other four are modeling choices made once --- in \cref{sec:prelim}
 and \cref{sec:bounded} --- and inherited everywhere downstream.
 \cref{tab:idealization-ledger} is the ledger: each assumption, where it enters,
 where (if anywhere) it is relaxed or bounded rather than merely assumed, and the
 failure mode it carries for the real apparatus. Collecting them discharges the
-G3 obligation that no single result silently accumulates more idealization than
+obligation that no single result silently accumulates more idealization than
 it states (\cref{rem:parity-ledger}).
 
 \begin{table}[t]
@@ -59,16 +58,16 @@ Assumption & Enters at & Relaxed / bounded at & Failure mode for a frozen LLM \\
   The frozen apparatus: one model, single-function non-recursive Python, the fixed C-ladder and scorers &
   Not relaxed; the theorems are domain-agnostic but the anchoring is not &
   Nothing licenses extrapolation to multi-file, recursive, cross-language, or agentic code; the predictions name knobs on \emph{this} apparatus (\cref{subsec:battery}). \\
-\textbf{A6} Conditional go/no-go structure &
+\textbf{A6} Conditional section structure &
   \cref{sec:category}, \cref{sec:parity-defect}: each survives only by earning one theorem &
-  Resolved \textbf{go} (\cref{thm:retraction}; \cref{thm:defect-risk-gap}); demotion criteria still on record &
-  The numeric defect of \cref{ex:r4-defect} is illustrative/computed-in-principle (\cref{rem:defect-status}); ``the control was near exact parity'' is a labeled conjecture (G6). \\
+  Resolved (\cref{thm:retraction}; \cref{thm:defect-risk-gap}); demotion criteria still on record &
+  The numeric defect of \cref{ex:r4-defect} is illustrative/computed-in-principle (\cref{rem:defect-status}); ``the control was near exact parity'' is a labeled conjecture. \\
 \bottomrule
 \end{tabular}
 \caption{The assumption ledger. A1--A2 are the two idealizations of
 \cref{rem:slogan}, disclosed at every use; A3--A5 are modeling choices inherited
 from \cref{sec:prelim,sec:bounded}; A6 is the provisional status of the two
-go/no-go sections. ``Relaxed / bounded'' distinguishes assumptions the paper
+conditional sections. ``Relaxed / bounded'' distinguishes assumptions the paper
 later \emph{discharges into a measurable quantity} (A1 into $\Phi$, A2 into
 $\paritydefect$) from those it simply carries (A3--A5).}
 \label{tab:idealization-ledger}
@@ -105,14 +104,14 @@ between what was proved and what a casual reading might infer. The following are
     parity; it is silent on a bounded learner, for which \cref{thm:bounded-gap}
     permits a nonzero advantage up to $\Phi$. ``No information-channel effect is
     expected'' is the claim; ``the effect is zero'' is not, and conflating the
-    two is the central overclaim G1/G2 exist to prevent
+    two is the central overclaim this paper is at pains to avoid
     (\cref{rem:anchor-limits}, L2).
   \item[(N2)] \emph{It does not establish that any effect exists, or its sign.}
     Every bound is one-sided and sign-agnostic (\cref{thm:bounded-gap},
     \cref{cor:size-gap}): it limits how large a parity-preserving advantage
     \emph{can} be and is mute on whether one is realized and on which
     representation would win. The positive half is delivered only as falsifiable
-    predictions, never as findings (guardrail~G2; \cref{rem:pred-honesty}).
+    predictions, never as findings (\cref{rem:pred-honesty}).
   \item[(N3)] \emph{It does not confirm the theory from the frozen record.}
     \cref{sec:anchoring} claims consistency, not confirmation (L1): a null and a
     ceiling fail to refute, which is weaker than corroborating. The theory is put
@@ -120,15 +119,15 @@ between what was proved and what a casual reading might infer. The following are
     collected.
   \item[(N4)] \emph{It does not compute the parity defect on the frozen
     predictor.} The numeric $\paritydefect\approx0.089$ of \cref{ex:r4-defect}
-    is illustrative: it consumes the measured R4 recovery rates but normalizes
+    is illustrative: it consumes the measured round-trip recovery rates but normalizes
     the action geometry, fixes $L=\lambda=1$, and posits a diagonal $\Fisher$
     rather than estimating one (\cref{rem:defect-status}). The statement ``the
-    control was near exact parity'' is therefore a labeled conjecture until T2-5
-    runs the recipe (guardrail~G6).
+    control was near exact parity'' is therefore a labeled conjecture until the
+    recipe is run.
   \item[(N5)] \emph{It does not prove the T1/T3 regime distinction.} That T3
     sits below the capacity frontier --- hence realizable, hence saturated
     rather than information-limited --- is an empirical surmise about task
-    difficulty, not a theorem (L4, guardrail~G6). Were T3 in fact frontier-hard,
+    difficulty, not a theorem (L4). Were T3 in fact frontier-hard,
     only the ceiling-censoring half of \cref{subsec:anchor-t3} would survive.
   \item[(N6)] \emph{It does not recommend building anything.} The decision-gate
     mapping of \cref{tab:pred-gates} is conditional on outcomes not yet observed;
@@ -145,10 +144,10 @@ the text. We re-read the manuscript end to end --- abstract, \cref{sec:intro}
 through \cref{sec:conclusion}, and the appendix --- at sentence granularity,
 flagging any clause matching one of two patterns: \textbf{(P-a)} a sentence that
 converts the recorded null into a positive structure claim or builds a
-structure-advantage assertion on top of it (a G1/G2 violation), or
+structure-advantage assertion on top of it, or
 \textbf{(P-b)} a sentence that states a result holding only at an idealization
-as though it held of the frozen LLM (a G3 violation). \cref{tab:redteam}
-records, for each guardrail, where it is enforced in-source and the verdict of
+as though it held of the frozen LLM. \cref{tab:redteam}
+records, for each integrity check, where it is enforced in-source and the verdict of
 the pass.
 
 \begin{table}[t]
@@ -157,40 +156,39 @@ the pass.
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.07\linewidth}>{\raggedright\arraybackslash}p{0.55\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}@{}}
 \toprule
-Rail & Where enforced in-source & Verdict \\
+Check & Where enforced in-source & Verdict \\
 \midrule
-G1 & The null is presented as the predicted information-limit outcome
+Null not a shortfall & The null is presented as the predicted information-limit outcome
   (\cref{thm:irrelevance}, \cref{subsec:anchor-t1}); every ``disappointing/
   should-have-been-positive'' phrasing appears only inside its own negation
   (\cref{sec:intro}, \cref{sec:anchoring}). & Holds. No sentence frames the null
   as a shortfall. \\
-G2 & The positive half is a one-sided bound (\cref{thm:bounded-gap},
+Positive half one-sided & The positive half is a one-sided bound (\cref{thm:bounded-gap},
   \cref{cor:size-gap}); \cref{sec:predictions} is predictions/conjectures only
   (\cref{rem:pred-honesty}); sign of $\advantage$ left free throughout. &
   Holds, after RT-1 below. \\
-G3 & \texttt{\textbackslash idealization} boxes on \cref{thm:irrelevance},
+Idealizations disclosed & \texttt{\textbackslash idealization} boxes on \cref{thm:irrelevance},
   \cref{cor:ratedist-gap}, \cref{thm:bounded-gap}, \cref{thm:defect-risk-gap},
   \cref{prop:defect-fisher-local}, \cref{subsec:anchor-t1}; collected in
   \cref{tab:idealization-ledger}. & Holds. Every invocation discloses (i)/(ii). \\
-G4 & No decorative math: the two go/no-go sections carry explicit criteria
+No decorative math & The two conditional sections carry explicit criteria
   (\cref{subsec:cat-gonogo}, \cref{subsec:defect-gonogo}) and survive only by a
   theorem. & Holds; see demotion record. \\
-G5 & Citation hygiene restated in the \cref{sec:related} header and the bib
-  header; each cite verified against a primary source at insertion. & Holds
-  (audited under T4-2, WOV-275). \\
-G6 & Conjectural steps labeled: the T1/T3 difficulty surmise
+Citation hygiene & Citation hygiene restated in the \cref{sec:related} header and the bib
+  header; each cite verified against a primary source at insertion. & Holds. \\
+Conjectures labeled & Conjectural steps labeled: the T1/T3 difficulty surmise
   (\cref{subsec:anchor-t3}, L4), the computed-in-principle defect
   (\cref{rem:defect-status}, \cref{ex:r4-defect}). & Holds. \\
 \bottomrule
 \end{tabular}
 \caption{Red-team checklist. The pass looked for two failure patterns (P-a:
-null$\to$positive; P-b: idealization-as-fact) against the six guardrails. The
+null$\to$positive; P-b: idealization-as-fact) against six integrity checks. The
 one substantive finding is RT-1.}
 \label{tab:redteam}
 \end{table}
 
 \paragraph{Findings.}
-The pass produced one substantive correction. \textbf{RT-1 (G2 consistency).}
+The pass produced one substantive correction. \textbf{RT-1 (positive-half consistency).}
 \cref{sec:intro} and \cref{sec:conclusion} originally described the
 \cref{sec:predictions} battery as ``sign-aware'' predictions, whereas
 \cref{sec:predictions} itself is emphatic that every prediction is
@@ -198,35 +196,34 @@ The pass produced one substantive correction. \textbf{RT-1 (G2 consistency).}
 \emph{magnitude} $|\advantage|$ across a resource knob, never the sign of
 $\advantage$ (\cref{subsec:pred-form}, \cref{rem:pred-honesty}). The word
 ``sign-aware'' could be read as the theory committing to a direction, which is
-exactly the manufactured-positive failure G2 forbids; both occurrences were
+exactly the manufactured-positive failure the one-sided-bound discipline forbids; both occurrences were
 changed to ``sign-agnostic,'' matching the usage already standard in
 \cref{sec:intro} (the contributions paragraph), \cref{sec:bounded}, and
 \cref{sec:predictions}. No instance of pattern P-a or P-b survived the pass
 otherwise: the abstract's ``we prove a two-halved answer'' is accurate (a
-theorem and an upper bound), the go/no-go sections' ``show/earn'' verbs attach to
+theorem and an upper bound), the conditional sections' ``show/earn'' verbs attach to
 proved propositions, and \cref{sec:anchoring} never upgrades consistency to
 confirmation. The end-to-end read also surfaced one non-overclaim correctness
 defect --- a grouped cross-reference in \cref{subsec:battery} that rendered as a
 broken ``\texttt{??}'' marker --- which was fixed in the preamble; it is recorded
 here only so the pass is reported in full.
 
-\paragraph{Demotion record (charter §6, G4).}
-Both provisional sections were resolved \textbf{go}, and we state the bar they
-cleared so the reader can audit that it was real rather than aesthetic.
-\cref{sec:category} (category theory) survived because \cref{thm:retraction}
-proves the round-trip defect is an idempotent lying in the common kernel of the
-mutual information (\cref{prop:suff-iff-mi}) and the Bayes risk
-(\cref{thm:irrelevance}) --- a statement neither of those functionals can make,
-hence not a re-encoding of either (criterion \cref{subsec:cat-gonogo}; logged
-WOV-269). \cref{sec:parity-defect} (OT/information geometry) survived because
+\paragraph{Demotion record.}
+Both provisional sections were resolved in favour of keeping them, and we state
+the bar they cleared so the reader can audit that it was real rather than
+aesthetic. \cref{sec:category} (category theory) survived because
+\cref{thm:retraction} proves the round-trip defect is an idempotent lying in the
+common kernel of the mutual information (\cref{prop:suff-iff-mi}) and the Bayes
+risk (\cref{thm:irrelevance}) --- a statement neither of those functionals can
+make, hence not a re-encoding of either (criterion \cref{subsec:cat-gonogo}).
+\cref{sec:parity-defect} (OT/information geometry) survived because
 \cref{thm:defect-risk-gap} shows $\paritydefect$ upper-bounds, and
 \cref{cor:defect-finer-order} shows it strictly refines the information-gap
 ordering on the parity class --- both prongs of criterion
-\cref{subsec:defect-gonogo}, witnessed by \cref{ex:r4-defect} (logged WOV-271).
-Had either produced only a restatement of \cref{sec:parity}, the charter
+\cref{subsec:defect-gonogo}, witnessed by \cref{ex:r4-defect}.
+Had either produced only a restatement of \cref{sec:parity}, the criteria
 required demotion to a single remark; that neither did is the reason both
-sections stand, and the reason their go/no-go banners are kept in-source rather
-than quietly deleted.
+sections stand.
 
 \begin{remark}[The honest residue, restated]
 \label{rem:lim-residue}
@@ -249,6 +246,6 @@ ledger of the reliances incurred elsewhere. The one place it makes a positive
 assertion of its own --- that the residue is fully disclosed --- is verifiable
 by cross-checking \cref{tab:idealization-ledger,tab:redteam} against the
 \texttt{\textbackslash idealization} boxes of \cref{sec:parity,sec:bounded,%
-sec:parity-defect,sec:anchoring}, which is the audit guardrail~G3 asks the reader
+sec:parity-defect,sec:anchoring}, which is the audit the disclosure discipline asks the reader
 to be able to perform.}
 \end{remark}
