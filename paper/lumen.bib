@@ -1,6 +1,7 @@
 % Lumen bibliography
-% Three entries verified during pre-skeleton verification (outline v2.1 §"Bibliography keys").
-% Remaining entries are stubs marked NEEDS VERIFICATION; finalize in a later session.
+% All CITED entries are verified against primary sources (author lists, venues,
+% years, DOIs/URLs). The only remaining NEEDS-VERIFICATION stub is `unison`,
+% which is not cited and therefore never enters the bibliography.
 
 @article{namavar2022coderepr,
   author  = {Namavar, Marjane and Nashid, Noor and Mesbah, Ali},
@@ -78,48 +79,56 @@
 }
 
 % --------------------------------------------------------------------------
-% Stub entries — NEEDS VERIFICATION
-% Citation strings, venues, and years to be confirmed in a later session.
+% Code-representation and prompting references — VERIFIED (R6 bib finalization,
+% follow-up to WOV-249/WOV-250). Author lists, venues, years, and DOIs/URLs
+% confirmed against primary sources; cross-checked against the companion theory
+% paper's theory.bib, which verified the same works under the R6 guardrails.
 % --------------------------------------------------------------------------
 
-% NEEDS VERIFICATION
 @inproceedings{feng2020codebert,
-  author    = {Feng, Zhangyin and others},
+  author    = {Feng, Zhangyin and Guo, Daya and Tang, Duyu and Duan, Nan and Feng, Xiaocheng and Gong, Ming and Shou, Linjun and Qin, Bing and Liu, Ting and Jiang, Daxin and Zhou, Ming},
   title     = {{CodeBERT}: A Pre-Trained Model for Programming and Natural Languages},
-  booktitle = {Findings of EMNLP},
-  year      = {2020}
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2020},
+  pages     = {1536--1547},
+  year      = {2020},
+  doi       = {10.18653/v1/2020.findings-emnlp.139},
+  url       = {https://aclanthology.org/2020.findings-emnlp.139/}
 }
 
-% NEEDS VERIFICATION
 @inproceedings{guo2021graphcodebert,
-  author    = {Guo, Daya and others},
+  author    = {Guo, Daya and Ren, Shuo and Lu, Shuai and Feng, Zhangyin and Tang, Duyu and Liu, Shujie and Zhou, Long and Duan, Nan and Svyatkovskiy, Alexey and Fu, Shengyu and Tufano, Michele and Deng, Shao Kun and Clement, Colin and Drain, Dawn and Sundaresan, Neel and Yin, Jian and Jiang, Daxin and Zhou, Ming},
   title     = {{GraphCodeBERT}: Pre-training Code Representations with Data Flow},
-  booktitle = {ICLR},
-  year      = {2021}
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2021},
+  url       = {https://openreview.net/forum?id=jLoC4ez43PZ}
 }
 
-% NEEDS VERIFICATION
 @inproceedings{jiang2021treebert,
-  author    = {Jiang, Xue and others},
+  author    = {Jiang, Xue and Zheng, Zhuoran and Lyu, Chen and Li, Liang and Lyu, Lei},
   title     = {{TreeBERT}: A Tree-Based Pre-Trained Model for Programming Language},
-  booktitle = {UAI},
-  year      = {2021}
+  booktitle = {Proceedings of the Thirty-Seventh Conference on Uncertainty in Artificial Intelligence (UAI)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {161},
+  pages     = {54--63},
+  publisher = {PMLR},
+  year      = {2021},
+  url       = {https://proceedings.mlr.press/v161/jiang21a.html}
 }
 
-% NEEDS VERIFICATION
 @inproceedings{fried2022incoder,
-  author    = {Fried, Daniel and others},
+  author    = {Fried, Daniel and Aghajanyan, Armen and Lin, Jessy and Wang, Sida and Wallace, Eric and Shi, Freda and Zhong, Ruiqi and Yih, Wen-tau and Zettlemoyer, Luke and Lewis, Mike},
   title     = {{InCoder}: A Generative Model for Code Infilling and Synthesis},
-  booktitle = {ICLR},
-  year      = {2023}
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023},
+  url       = {https://openreview.net/forum?id=hQwb-lbM6EL}
 }
 
-% NEEDS VERIFICATION
 @inproceedings{wei2022cot,
-  author    = {Wei, Jason and others},
+  author    = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed H. and Le, Quoc V. and Zhou, Denny},
   title     = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},
-  booktitle = {NeurIPS},
-  year      = {2022}
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2022},
+  url       = {https://proceedings.neurips.cc/paper_files/paper/2022/hash/9d5609613524ecf4f15af0f7b31abca4-Abstract-Conference.html}
 }
 
 % NEEDS VERIFICATION — Unison reference (long-term inspiration; only cite if §2.4 reaches it)
