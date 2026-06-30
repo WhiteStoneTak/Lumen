@@ -48,3 +48,6 @@ scratch/
 paper-skeleton.zip
 lumen_run*.log
 .claude/
+
+# graphify knowledge graph (regenerable, large)
+graphify-out/
