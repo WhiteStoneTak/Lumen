@@ -22,7 +22,7 @@
   \large A Foundational Charter for Semantic Infrastructure Research
 }
 \author{Lumen Project}
-\date{Version 0.3 \quad---\quad \today}
+\date{Version 0.4 \quad---\quad \today}
 
 \begin{document}
 
@@ -30,8 +30,8 @@
 
 \begin{center}
   \begin{tabular}{@{}ll@{}}
-    \textbf{Version:} & v0.3 \\
-    \textbf{Status:}  & Foundational Working Draft (Post-Diagnostic Revision; gate for R5 pre-registrations) \\
+    \textbf{Version:} & v0.4 \\
+    \textbf{Status:}  & Foundational Working Draft (Route~A Completion; gate for Route~A2) \\
     \textbf{Language:} & English \\
   \end{tabular}
 \end{center}
@@ -56,6 +56,74 @@ record of what has been decided, what remains open, and what principles
 govern future decisions.  It is intended to be a living document,
 revised as experiments yield evidence and as understanding deepens.
 \end{abstract}
+
+\section*{Version 0.4 Changelog (Route A Completion)}
+\addcontentsline{toc}{section}{Version 0.4 Changelog}
+
+Version 0.4 records the completion of the 90-day empirical program
+(Route~A) and fixes the project's next direction. Where v0.3 was the
+pre-collection gate for the R5 confirmatory studies (T1 and T3), v0.4 is
+written with the full nine-cell family in hand. The v0.3 changelog and
+body below are retained unaltered as the historical gate record; where
+v0.4 and older text differ, v0.4 governs.
+
+\begin{enumerate}
+  \item \textbf{Route~A is complete.} The 90-day empirical study ran to
+    completion: the pre-registered nine-cell confirmatory family
+    (H1--H3 $\times$ T1/T2/T3) was collected and analysed, and all
+    materials were released. Route~A is now closed as an empirical
+    program; its findings are the input to the next phase, not a reason
+    to re-open the frozen record.
+
+  \item \textbf{Outcome: an informative negative / mixed result.} The
+    central test---structure at constant information (H1: C4 vs\
+    C1\textsuperscript{+})---does not reach corrected significance on any
+    of the three task families. It is reported as a clean, honest
+    non-rejection, not a failure to find an effect assumed to be present.
+    Per task:
+    \begin{itemize}[nosep]
+      \item \textbf{T1 (code understanding): a clean null.} The one
+        ceiling-free task returns a genuine null under adequate effective
+        $n$---the strongest form of the negative result.
+      \item \textbf{T2 (bug detection): direction-positive but
+        underpowered.} The H1 point estimate is positive and
+        direction-consistent across model-runs, but the composite score's
+        ceiling/tie collapse compresses the effective $n$, and the effect
+        does not survive multiplicity correction.
+      \item \textbf{T3 (code transformation): ceiling-censored.} A
+        high-end solve-rate ceiling censors the measurement, so T3 is
+        uninformative about H1 rather than evidence against it.
+    \end{itemize}
+    \emph{Rationale.} The theory companion accounts for this pattern:
+    under information parity the Bayes-optimal risk is format-invariant,
+    so any genuine representation effect on a bounded learner is a
+    capacity phenomenon of bounded size that appears only near the
+    model's frontier---exactly where a ceiling-free, bounded-regime
+    measurement is required to see it.
+
+  \item \textbf{Next direction: Route~A2.} The project proceeds to
+    Route~A2, a continuation of the empirical path with two coupled
+    workstreams: (a)~\textbf{bounded-regime testing}---ceiling-free T2/T3
+    metrics run where the theory localizes the effect (near the capacity
+    frontier), so the effective $n$ is no longer destroyed by
+    saturation; and (b)~a \textbf{Semantic Coding Layer prototype}
+    (\texttt{docs/next-phase-design.md}, P1), the earliest product-facing
+    successor to the C4 IR. Route~A2 is the active phase gated by this
+    version.
+    \emph{Rationale.} The Route~A diagnosis---that ceiling censoring, not
+    absence of effect, is the binding limitation---makes ``measure in the
+    bounded regime'' the highest-value next step; pairing it with a thin
+    prototype keeps the empirical and product tracks co-evolving.
+
+  \item \textbf{Route~B remains deferred.} The verification-core path
+    (full language, compiler backend, projectional editor) stays
+    explicitly out of scope. Nothing in the Route~A result argues for
+    opening it now; the canonical-core-over-surface-text bet
+    (Non-Negotiable~1) remains active and is reassessed only on stronger
+    contrary evidence than the present data provide.
+\end{enumerate}
+
+\vspace{0.5em}
 
 \section*{Version 0.3 Changelog (Post-Diagnostic Revision)}
 \addcontentsline{toc}{section}{Version 0.3 Changelog}
@@ -1425,6 +1493,26 @@ lumen/
     Review identified under-specification of primary vs.\
     exploratory analyses and risk of undisciplined pairwise
     testing. \\
+  \addlinespace
+
+  v0.4 &
+    Route~A (90-day empirical study) declared complete; result recorded
+    as an informative negative / mixed outcome---T1 a clean null, T2
+    direction-positive but underpowered, T3 ceiling-censored. &
+    The pre-registered nine-cell family was collected and analysed.  The
+    binding limitation is ceiling censoring of the effective sample, not
+    absence of effect, consistent with the theory companion's
+    information-limit prediction. \\
+  \addlinespace
+
+  v0.4 &
+    Next phase set to Route~A2: bounded-regime testing plus a Semantic
+    Coding Layer prototype.  Route~B (full language, compiler, editor)
+    remains deferred. &
+    Ceiling-free measurement near the capacity frontier is where the
+    theory localizes any real representation effect; a thin product
+    prototype keeps the empirical and product tracks co-evolving, and
+    Route~B has no new evidential trigger. \\
   \bottomrule
 \end{longtable}
 
@@ -1859,7 +1947,12 @@ Each is a candidate for future work.
 
   \item[Route A]
     The empirical research path: experiments comparing code
-    representations for LLM tasks.  The current 90-day focus.
+    representations for LLM tasks.  The 90-day study; completed in v0.4.
+
+  \item[Route A2]
+    The continuation of the empirical path after Route~A: ceiling-free
+    bounded-regime testing plus a Semantic Coding Layer prototype.  The
+    active phase as of v0.4.
 
   \item[Route B]
     The verification-core research path: formal design of the
