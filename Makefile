@@ -128,6 +128,20 @@ test:
 	python3 -m unittest discover -s tests -v
 
 # ---------------------------------------------------------------------------
+# W-04 ceiling-free measurement: EXPLORATORY re-analysis (alongside frozen).
+# Regenerates the exploratory de-saturation outputs under
+# results/analysis/exploratory/. Never touches the frozen scorers/analysis.
+# ---------------------------------------------------------------------------
+
+T2_RUN ?= full_t2_confirmatory_v2
+T3_RUN ?= full_t3_confirmatory_v1
+
+reanalyze-exploratory:
+	PYTHONPATH=src python3 -m experiment.score_t2_continuous --reanalyze $(T2_RUN)
+	PYTHONPATH=src python3 -m experiment.score_t2_patch       --reanalyze $(T2_RUN)
+	PYTHONPATH=src python3 -m experiment.score_t3_difficulty  --reanalyze $(T3_RUN)
+
+# ---------------------------------------------------------------------------
 # Theory companion paper (paper-theory/, WOV-261 T0-2)
 #
 # Builds the theory-paper skeleton to PDF. Prefers tectonic (self-contained,

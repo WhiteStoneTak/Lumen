@@ -344,7 +344,18 @@ journal-version scope contains; no priority or schedule is assigned.
 - **What:** Address the location sub-score ceiling identified in §5.3.
 - **Cross-reference:** L1-06 (reuse-value framing depends on outcome of
   this work).
-- **status:** OPEN
+- **status:** IN PROGRESS — ceiling-free measurement battery built as
+  exploratory instruments (alongside the frozen regime; not confirmatory until
+  Constitution v0.3 / R3). Delivered: continuous T2 location (line-IoU from R1-1
+  + new AST-node distance), continuous T2 patch-correctness (test-pass fraction)
+  and semantic equivalence (differential-behavioural + structural-AST), and a
+  difficulty-adjusted T3 quality metric with a hidden + metamorphic tier for a
+  7-function in-run subset that de-saturates the 93.7% all-pass ceiling by
+  construction. Specs: `docs/t2-continuous-scoring-spec.md`,
+  `docs/t3-difficulty-scoring-spec.md`; reproduction:
+  `docs/reproducibility/W-04-ceiling-free-measurement.md`. Remaining before
+  CLOSE: fold outcomes into Constitution v0.3 (W-05/R3) and decide which metrics
+  become protocol-level; full 29-function metamorphic authoring deferred.
 
 ### W-05 — Constitution update to v0.3
 

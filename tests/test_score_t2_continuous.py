@@ -18,6 +18,7 @@ if str(SRC) not in sys.path:
 
 from experiment.score_t2_continuous import (  # noqa: E402
     PROX_WEIGHT,
+    ast_location_distance_score,
     continuous_location_score,
     extract_predicted_lines,
 )
@@ -121,6 +122,49 @@ class TestExtractPredictedLines(unittest.TestCase):
             "There is an arithmetic mistake somewhere.", self.SOURCE
         )
         self.assertEqual(pred, set())
+
+
+class TestAstLocationDistanceScore(unittest.TestCase):
+    SOURCE = (
+        "def f(x):\n"           # 1
+        "    total = 0\n"       # 2
+        "    for i in range(len(x)):\n"   # 3
+        "        total += x[i] * 2\n"     # 4  (buggy line)
+        "    if total > 10:\n"  # 5
+        "        return total\n"  # 6
+        "    return total\n"    # 7
+    )
+
+    def test_exact_node_is_one(self):
+        # Prediction on the truth line -> same node -> 1.0
+        self.assertEqual(
+            ast_location_distance_score({4}, 4, 4, self.SOURCE), 1.0
+        )
+
+    def test_empty_prediction_is_zero(self):
+        self.assertEqual(
+            ast_location_distance_score(set(), 4, 4, self.SOURCE), 0.0
+        )
+
+    def test_closer_node_scores_higher(self):
+        # Sibling in the same loop (line 4 truth) should beat an unrelated
+        # statement outside the loop body.
+        near = ast_location_distance_score({3}, 4, 4, self.SOURCE)  # for-loop header
+        far = ast_location_distance_score({7}, 4, 4, self.SOURCE)   # trailing return
+        self.assertGreaterEqual(near, far)
+        self.assertGreaterEqual(near, 0.0)
+        self.assertLessEqual(near, 1.0)
+
+    def test_in_range_and_bounded(self):
+        for pred in ({2}, {3}, {5}, {6}, {7}):
+            s = ast_location_distance_score(pred, 4, 4, self.SOURCE)
+            self.assertGreaterEqual(s, 0.0)
+            self.assertLessEqual(s, 1.0)
+
+    def test_unparseable_source_is_none(self):
+        self.assertIsNone(
+            ast_location_distance_score({1}, 1, 1, "def f(:\n  broken")
+        )
 
 
 if __name__ == "__main__":

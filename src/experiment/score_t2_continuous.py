@@ -54,6 +54,7 @@ than asserted (see docs/reproducibility/R1-1-t2-continuous-location.md).
 
 from __future__ import annotations
 
+import ast
 import json
 import re
 from pathlib import Path
@@ -161,6 +162,116 @@ def continuous_location_score(
 
 
 # ---------------------------------------------------------------------------
+# AST-node-distance location signal (orthogonal to the line-IoU above)
+# ---------------------------------------------------------------------------
+# R1-1 chose line-span IoU + proximity and parked "AST proximity ... a future
+# option for span-level bugs". W-04 adds it as a *second*, orthogonal continuous
+# location signal reported alongside the IoU. Where line-IoU measures overlap in
+# the flat line coordinate system, this measures distance in the *syntax tree*:
+# a prediction one node away in the AST (e.g. sibling statement) scores higher
+# than one in an unrelated branch even at the same line distance.
+
+
+def _node_span(node: ast.AST) -> tuple[int, int] | None:
+    lineno = getattr(node, "lineno", None)
+    end = getattr(node, "end_lineno", None)
+    if lineno is None:
+        return None
+    return (lineno, end if end is not None else lineno)
+
+
+def _parent_depth_maps(tree: ast.AST) -> tuple[dict[int, ast.AST | None], dict[int, int]]:
+    """Return (parent-by-id, depth-by-id) for every node, root depth 0."""
+    parent: dict[int, ast.AST | None] = {id(tree): None}
+    depth: dict[int, int] = {id(tree): 0}
+    for node in ast.walk(tree):
+        for child in ast.iter_child_nodes(node):
+            parent[id(child)] = node
+            depth[id(child)] = depth[id(node)] + 1
+    return parent, depth
+
+
+def _smallest_node_covering(tree: ast.AST, line: int) -> ast.AST | None:
+    """Deepest, tightest-span node whose line range covers ``line``."""
+    best: ast.AST | None = None
+    best_key: tuple[int, int] | None = None  # (span_width, -has_lineno) minimise
+    _, depth = _parent_depth_maps(tree)
+    for node in ast.walk(tree):
+        span = _node_span(node)
+        if span is None:
+            continue
+        lo, hi = span
+        if lo <= line <= hi:
+            key = (hi - lo, -depth[id(node)])
+            if best_key is None or key < best_key:
+                best_key, best = key, node
+    return best
+
+
+def _tree_distance(
+    a: ast.AST, b: ast.AST, parent: dict[int, ast.AST | None], depth: dict[int, int]
+) -> int:
+    """Number of edges between ``a`` and ``b`` through their lowest common ancestor."""
+    if a is b:
+        return 0
+    # Collect ancestor chain of a (including a).
+    anc_a: dict[int, int] = {}
+    node: ast.AST | None = a
+    while node is not None:
+        anc_a[id(node)] = depth[id(node)]
+        node = parent.get(id(node))
+    # Walk up from b until we hit a common ancestor.
+    node = b
+    while node is not None and id(node) not in anc_a:
+        node = parent.get(id(node))
+    if node is None:
+        return depth[id(a)] + depth[id(b)]  # disjoint trees (shouldn't happen)
+    lca_depth = depth[id(node)]
+    return (depth[id(a)] - lca_depth) + (depth[id(b)] - lca_depth)
+
+
+def ast_location_distance_score(
+    predicted: set[int],
+    truth_start: int,
+    truth_end: int,
+    source_text: str,
+) -> float | None:
+    """Continuous AST-node-distance location score in [0, 1], or ``None``.
+
+    Exact truth node → 1.0; farther apart in the syntax tree → lower; unrelated
+    branch → toward 0.0. Returns ``None`` (→ ``not_applicable``) if the source
+    does not parse, so an un-parseable file never masquerades as a hard 0.
+    """
+    if not predicted:
+        return 0.0
+    try:
+        tree = ast.parse(source_text)
+    except SyntaxError:
+        return None
+
+    parent, depth = _parent_depth_maps(tree)
+    truth_line = (truth_start + truth_end) // 2
+    truth_node = _smallest_node_covering(tree, truth_line)
+    if truth_node is None:
+        return None
+
+    best: float = 0.0
+    saw_node = False
+    for p in predicted:
+        pred_node = _smallest_node_covering(tree, p)
+        if pred_node is None:
+            continue
+        saw_node = True
+        dist = _tree_distance(truth_node, pred_node, parent, depth)
+        denom = depth[id(truth_node)] + depth[id(pred_node)]
+        score = 1.0 if denom == 0 else max(0.0, 1.0 - dist / denom)
+        best = max(best, score)
+    if not saw_node:
+        return 0.0
+    return best
+
+
+# ---------------------------------------------------------------------------
 # Scoring one frozen response
 # ---------------------------------------------------------------------------
 
@@ -179,19 +290,19 @@ def score_response_file(score_record: dict[str, Any]) -> dict[str, Any]:
     func_id = score_record["func_id"]
     truth = _load_truth(func_id)
     src_path = REPO_ROOT / truth["location"]["path"]
-    source_lines = src_path.read_text(encoding="utf-8").splitlines()
+    source_text = src_path.read_text(encoding="utf-8")
+    source_lines = source_text.splitlines()
 
     response_ref = score_record["response_ref"]
     resp = json.loads((REPO_ROOT / response_ref).read_text(encoding="utf-8"))
     response_text = resp.get("response_text") or ""
 
+    start_line = truth["location"]["start_line"]
+    end_line = truth["location"]["end_line"]
+
     predicted = extract_predicted_lines(response_text, source_lines)
-    score = continuous_location_score(
-        predicted,
-        truth["location"]["start_line"],
-        truth["location"]["end_line"],
-        len(source_lines),
-    )
+    score = continuous_location_score(predicted, start_line, end_line, len(source_lines))
+    ast_score = ast_location_distance_score(predicted, start_line, end_line, source_text)
 
     return {
         "lumen_schema": SCHEMA,
@@ -203,9 +314,11 @@ def score_response_file(score_record: dict[str, Any]) -> dict[str, Any]:
         "response_ref": response_ref,
         "ground_truth_ref": f"data/ground_truth/bugs/{func_id}.json",
         "location_continuous": round(score, 6),
+        "location_iou": round(score, 6),
+        "location_ast": round(ast_score, 6) if ast_score is not None else None,
         "location_binary_frozen": score_record.get("subscores", {}).get("location"),
         "predicted_lines": sorted(predicted),
-        "truth_span": [truth["location"]["start_line"], truth["location"]["end_line"]],
+        "truth_span": [start_line, end_line],
     }
 
 
@@ -231,6 +344,7 @@ def reanalyze_run(run_id: str) -> dict[str, Any]:
         records.append(score_response_file(rec))
 
     cont = [r["location_continuous"] for r in records]
+    astv = [r["location_ast"] for r in records if r["location_ast"] is not None]
     binr = [r["location_binary_frozen"] for r in records if r["location_binary_frozen"] is not None]
 
     def _tie_mass(vals: list[float]) -> dict[str, Any]:
@@ -261,6 +375,8 @@ def reanalyze_run(run_id: str) -> dict[str, Any]:
         "n_records": len(records),
         "tie_comparison": {
             "continuous_location": _tie_mass(cont),
+            "location_iou": _tie_mass(cont),
+            "location_ast": _tie_mass(astv),
             "binary_location_frozen": _tie_mass([float(x) for x in binr]),
         },
         "records": records,
@@ -311,9 +427,15 @@ def _main(argv: list[str] | None = None) -> int:
         f"tied_pair_fraction={tc['binary_location_frozen']['tied_pair_fraction']}"
     )
     print(
-        "  continuous location:       "
-        f"distinct={tc['continuous_location']['distinct_values']}, "
-        f"tied_pair_fraction={tc['continuous_location']['tied_pair_fraction']}"
+        "  continuous location (IoU): "
+        f"distinct={tc['location_iou']['distinct_values']}, "
+        f"tied_pair_fraction={tc['location_iou']['tied_pair_fraction']}"
+    )
+    print(
+        "  continuous location (AST): "
+        f"distinct={tc['location_ast']['distinct_values']}, "
+        f"tied_pair_fraction={tc['location_ast']['tied_pair_fraction']}, "
+        f"n={tc['location_ast']['n']}"
     )
     print(f"  wrote {out}")
     return 0

@@ -10,6 +10,16 @@
       "distinct_values": 37,
       "tied_pair_fraction": 0.1422
     },
+    "location_iou": {
+      "n": 300,
+      "distinct_values": 37,
+      "tied_pair_fraction": 0.1422
+    },
+    "location_ast": {
+      "n": 300,
+      "distinct_values": 7,
+      "tied_pair_fraction": 0.8532
+    },
     "binary_location_frozen": {
       "n": 300,
       "distinct_values": 1,
@@ -27,6 +37,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -46,6 +58,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29,
@@ -66,6 +80,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -85,6 +101,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -104,6 +122,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29,
@@ -124,6 +144,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -143,6 +165,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 0.058824,
+      "location_iou": 0.058824,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -178,6 +202,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -197,6 +223,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 0.058824,
+      "location_iou": 0.058824,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -232,6 +260,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/antidiagonals_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/antidiagonals.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29,
@@ -252,6 +282,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -277,6 +309,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -297,6 +331,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -322,6 +358,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -343,6 +381,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -362,6 +402,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -382,6 +424,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -401,6 +445,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -420,6 +466,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -439,6 +487,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/batch_list_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/batch_list.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -459,6 +509,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         38
@@ -478,6 +530,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         37,
@@ -499,6 +553,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         38
@@ -518,6 +574,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 0.0,
+      "location_iou": 0.0,
+      "location_ast": 0.2,
       "location_binary_frozen": 0,
       "predicted_lines": [
         7
@@ -537,6 +595,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         31,
@@ -559,6 +619,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         36,
@@ -581,6 +643,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         31,
@@ -601,6 +665,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         36,
@@ -623,6 +689,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 0.066667,
+      "location_iou": 0.066667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -656,6 +724,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/camel_to_snake_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/camel_to_snake.json",
       "location_continuous": 0.166667,
+      "location_iou": 0.166667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -680,6 +750,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         31,
@@ -705,6 +777,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         37,
@@ -728,6 +802,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         31,
@@ -753,6 +829,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         37,
@@ -776,6 +854,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.076923,
+      "location_iou": 0.076923,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         20,
@@ -807,6 +887,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.166667,
+      "location_iou": 0.166667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35,
@@ -831,6 +913,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.052632,
+      "location_iou": 0.052632,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -868,6 +952,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35,
@@ -893,6 +979,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.052632,
+      "location_iou": 0.052632,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -930,6 +1018,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/chunk_on_change_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/chunk_on_change.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         37,
@@ -953,6 +1043,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -983,6 +1075,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.75,
+      "location_iou": 0.75,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         10,
@@ -1009,6 +1103,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.3,
+      "location_iou": 0.3,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -1034,6 +1130,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.25,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -1054,6 +1152,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.363636,
+      "location_iou": 0.363636,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -1081,6 +1181,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.25,
       "location_binary_frozen": 0,
       "predicted_lines": [
         21
@@ -1100,6 +1202,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -1124,6 +1228,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.25,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -1144,6 +1250,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.363636,
+      "location_iou": 0.363636,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -1171,6 +1279,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/count_true_segments_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/count_true_segments.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.25,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -1191,6 +1301,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -1210,6 +1322,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         11,
@@ -1231,6 +1345,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -1250,6 +1366,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         19,
@@ -1275,6 +1393,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -1294,6 +1414,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         23,
@@ -1315,6 +1437,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -1334,6 +1458,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -1353,6 +1479,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -1372,6 +1500,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/dense_rank_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/dense_rank.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         23,
@@ -1393,6 +1523,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.230769,
+      "location_iou": 0.230769,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -1424,6 +1556,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.75,
+      "location_iou": 0.75,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -1446,6 +1580,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 0.333333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33
@@ -1465,6 +1601,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 0.5,
       "location_binary_frozen": 0,
       "predicted_lines": [
         32,
@@ -1486,6 +1624,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 0.333333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33
@@ -1505,6 +1645,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 0.333333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33
@@ -1524,6 +1666,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.071429,
+      "location_iou": 0.071429,
+      "location_ast": 0.5,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -1554,6 +1698,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 0.333333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33
@@ -1573,6 +1719,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.076923,
+      "location_iou": 0.076923,
+      "location_ast": 0.5,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -1602,6 +1750,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/equal_width_buckets_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/equal_width_buckets.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 0.333333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29,
@@ -1622,6 +1772,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.4,
+      "location_iou": 0.4,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30,
@@ -1644,6 +1796,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.6,
+      "location_iou": 0.6,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29,
@@ -1667,6 +1821,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.4,
+      "location_iou": 0.4,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30,
@@ -1689,6 +1845,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.6,
+      "location_iou": 0.6,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29,
@@ -1712,6 +1870,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.1875,
+      "location_iou": 0.1875,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -1746,6 +1906,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.6,
+      "location_iou": 0.6,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29,
@@ -1769,6 +1931,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.1875,
+      "location_iou": 0.1875,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -1803,6 +1967,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.6,
+      "location_iou": 0.6,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29,
@@ -1826,6 +1992,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.1875,
+      "location_iou": 0.1875,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -1860,6 +2028,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/find_balanced_spans_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/find_balanced_spans.json",
       "location_continuous": 0.6,
+      "location_iou": 0.6,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29,
@@ -1883,6 +2053,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         9,
@@ -1906,6 +2078,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17,
@@ -1927,6 +2101,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17
@@ -1946,6 +2122,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -1968,6 +2146,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17
@@ -1987,6 +2167,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17
@@ -2006,6 +2188,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17
@@ -2025,6 +2209,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17
@@ -2044,6 +2230,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17
@@ -2063,6 +2251,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/first_index_of_max_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/first_index_of_max.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17,
@@ -2084,6 +2274,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 0.1,
+      "location_iou": 0.1,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -2112,6 +2304,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         34,
@@ -2135,6 +2329,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         37
@@ -2154,6 +2350,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         37
@@ -2173,6 +2371,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 0.166667,
+      "location_iou": 0.166667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -2197,6 +2397,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 0.166667,
+      "location_iou": 0.166667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -2221,6 +2423,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 0.125,
+      "location_iou": 0.125,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -2247,6 +2451,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         37
@@ -2266,6 +2472,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 0.125,
+      "location_iou": 0.125,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -2292,6 +2500,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/frequency_table_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/frequency_table.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -2314,6 +2524,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33
@@ -2333,6 +2545,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -2353,6 +2567,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 0.0,
+      "location_iou": 0.0,
+      "location_ast": 0.0,
       "location_binary_frozen": 0,
       "predicted_lines": [],
       "truth_span": [
@@ -2370,6 +2586,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 0.0,
+      "location_iou": 0.0,
+      "location_ast": 0.0,
       "location_binary_frozen": 0,
       "predicted_lines": [],
       "truth_span": [
@@ -2387,6 +2605,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -2407,6 +2627,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -2427,6 +2649,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 0.05,
+      "location_iou": 0.05,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -2465,6 +2689,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -2485,6 +2711,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 0.05,
+      "location_iou": 0.05,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -2523,6 +2751,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_and_aggregate_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_and_aggregate.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -2543,6 +2773,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24
@@ -2562,6 +2794,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24
@@ -2581,6 +2815,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24
@@ -2600,6 +2836,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24
@@ -2619,6 +2857,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -2644,6 +2884,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         22,
@@ -2665,6 +2907,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         2,
@@ -2686,6 +2930,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24
@@ -2705,6 +2951,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         2,
@@ -2726,6 +2974,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/group_by_key_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/group_by_key.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24
@@ -2745,6 +2995,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -2766,6 +3018,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.125,
+      "location_iou": 0.125,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -2792,6 +3046,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         36,
@@ -2812,6 +3068,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.1,
+      "location_iou": 0.1,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35,
@@ -2840,6 +3098,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.033333,
+      "location_iou": 0.033333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -2888,6 +3148,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         36,
@@ -2913,6 +3175,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.033333,
+      "location_iou": 0.033333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -2961,6 +3225,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.083333,
+      "location_iou": 0.083333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -2991,6 +3257,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.034483,
+      "location_iou": 0.034483,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -3038,6 +3306,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/longest_plateau_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/longest_plateau.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         36,
@@ -3063,6 +3333,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -3083,6 +3355,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -3106,6 +3380,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.166667,
+      "location_iou": 0.166667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         19,
@@ -3130,6 +3406,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         38,
@@ -3152,6 +3430,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -3172,6 +3452,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -3192,6 +3474,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.029412,
+      "location_iou": 0.029412,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -3244,6 +3528,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -3267,6 +3553,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -3287,6 +3575,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/max_subarray_bounds_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/max_subarray_bounds.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         38,
@@ -3309,6 +3599,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -3329,6 +3621,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30,
@@ -3350,6 +3644,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3369,6 +3665,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3388,6 +3686,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3407,6 +3707,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3426,6 +3728,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3445,6 +3749,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3464,6 +3770,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3483,6 +3791,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_intervals_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_intervals.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3502,6 +3812,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -3521,6 +3833,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         20,
@@ -3544,6 +3858,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         15,
@@ -3565,6 +3881,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         20,
@@ -3588,6 +3906,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -3607,6 +3927,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -3626,6 +3948,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 0.166667,
+      "location_iou": 0.166667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         15,
@@ -3650,6 +3974,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         20,
@@ -3673,6 +3999,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -3692,6 +4020,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/merge_sorted_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/merge_sorted.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         25
@@ -3711,6 +4041,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3730,6 +4062,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30,
@@ -3750,6 +4084,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3769,6 +4105,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3788,6 +4126,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3807,6 +4147,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3826,6 +4168,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30,
@@ -3846,6 +4190,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30,
@@ -3868,6 +4214,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30,
@@ -3888,6 +4236,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/peak_valley_indices_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/peak_valley_indices.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         30
@@ -3907,6 +4257,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17
@@ -3926,6 +4278,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -3947,6 +4301,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17
@@ -3966,6 +4322,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -3987,6 +4345,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 0.125,
+      "location_iou": 0.125,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -4013,6 +4373,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         9,
@@ -4035,6 +4397,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17
@@ -4054,6 +4418,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         9,
@@ -4076,6 +4442,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         15,
@@ -4098,6 +4466,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/remove_adjacent_dups_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/remove_adjacent_dups.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         9,
@@ -4120,6 +4490,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4140,6 +4512,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4165,6 +4539,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4185,6 +4561,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.142857,
+      "location_iou": 0.142857,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4210,6 +4588,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4231,6 +4611,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4251,6 +4633,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4272,6 +4656,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4292,6 +4678,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4313,6 +4701,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rle_encode_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rle_encode.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -4333,6 +4723,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         19
@@ -4352,6 +4744,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         19
@@ -4371,6 +4765,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         19
@@ -4390,6 +4786,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         19
@@ -4409,6 +4807,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         2,
@@ -4432,6 +4832,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         19
@@ -4451,6 +4853,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         2,
@@ -4474,6 +4878,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         19
@@ -4493,6 +4899,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         2,
@@ -4516,6 +4924,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/rotate_list_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/rotate_list.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         2,
@@ -4539,6 +4949,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         22
@@ -4558,6 +4970,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 0.111111,
+      "location_iou": 0.111111,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         21,
@@ -4585,6 +4999,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         22
@@ -4604,6 +5020,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         22
@@ -4623,6 +5041,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         14,
@@ -4643,6 +5063,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         22
@@ -4662,6 +5084,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         14,
@@ -4682,6 +5106,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         22
@@ -4701,6 +5127,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         22
@@ -4720,6 +5148,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/segments_above_threshold_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/segments_above_threshold.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         22
@@ -4739,6 +5169,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         5,
@@ -4759,6 +5191,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         15,
@@ -4780,6 +5214,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -4799,6 +5235,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -4818,6 +5256,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -4837,6 +5277,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -4856,6 +5298,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -4875,6 +5319,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -4894,6 +5340,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -4913,6 +5361,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sliding_window_max_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sliding_window_max.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16
@@ -4932,6 +5382,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.571429,
+      "location_iou": 0.571429,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -4957,6 +5409,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.666667,
+      "location_iou": 0.666667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24,
@@ -4981,6 +5435,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.666667,
+      "location_iou": 0.666667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24,
@@ -5005,6 +5461,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.666667,
+      "location_iou": 0.666667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24,
@@ -5029,6 +5487,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.285714,
+      "location_iou": 0.285714,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -5061,6 +5521,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.666667,
+      "location_iou": 0.666667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24,
@@ -5085,6 +5547,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -5119,6 +5583,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.666667,
+      "location_iou": 0.666667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24,
@@ -5143,6 +5609,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.571429,
+      "location_iou": 0.571429,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         4,
@@ -5168,6 +5636,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/sorted_list_intersection_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/sorted_list_intersection.json",
       "location_continuous": 0.666667,
+      "location_iou": 0.666667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         24,
@@ -5192,6 +5662,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.1,
+      "location_iou": 0.1,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -5220,6 +5692,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.090909,
+      "location_iou": 0.090909,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -5249,6 +5723,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35,
@@ -5272,6 +5748,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.090909,
+      "location_iou": 0.090909,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -5301,6 +5779,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.041667,
+      "location_iou": 0.041667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -5343,6 +5823,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.111111,
+      "location_iou": 0.111111,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35,
@@ -5370,6 +5852,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.04,
+      "location_iou": 0.04,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -5413,6 +5897,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.1,
+      "location_iou": 0.1,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -5441,6 +5927,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.041667,
+      "location_iou": 0.041667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -5483,6 +5971,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/spiral_order_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/spiral_order.json",
       "location_continuous": 0.1,
+      "location_iou": 0.1,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         31,
@@ -5511,6 +6001,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         10,
@@ -5533,6 +6025,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35
@@ -5552,6 +6046,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35
@@ -5571,6 +6067,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35
@@ -5590,6 +6088,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         10,
@@ -5613,6 +6113,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35
@@ -5632,6 +6134,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         10,
@@ -5654,6 +6158,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         16,
@@ -5674,6 +6180,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         10,
@@ -5696,6 +6204,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/stable_partition_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/stable_partition.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         35
@@ -5715,6 +6225,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         27
@@ -5734,6 +6246,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         27,
@@ -5755,6 +6269,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         27
@@ -5774,6 +6290,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         27,
@@ -5795,6 +6313,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         27
@@ -5814,6 +6334,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         19,
@@ -5834,6 +6356,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         27
@@ -5853,6 +6377,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         27
@@ -5872,6 +6398,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 0.076923,
+      "location_iou": 0.076923,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -5903,6 +6431,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/strided_windows_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/strided_windows.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         27
@@ -5922,6 +6452,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.166667,
+      "location_iou": 0.166667,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -5946,6 +6478,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.090909,
+      "location_iou": 0.090909,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -5975,6 +6509,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.5,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -6001,6 +6537,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.5,
       "location_binary_frozen": 0,
       "predicted_lines": [
         51,
@@ -6021,6 +6559,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         50,
@@ -6042,6 +6582,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.333333,
+      "location_iou": 0.333333,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         50,
@@ -6063,6 +6605,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.125,
+      "location_iou": 0.125,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         32,
@@ -6089,6 +6633,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.25,
+      "location_iou": 0.25,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         50,
@@ -6111,6 +6657,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.2,
+      "location_iou": 0.2,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         20,
@@ -6134,6 +6682,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/tokenize_arithmetic_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/tokenize_arithmetic.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.5,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -6162,6 +6712,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.090909,
+      "location_iou": 0.090909,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         7,
@@ -6191,6 +6743,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.111111,
+      "location_iou": 0.111111,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         32,
@@ -6218,6 +6772,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.533333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         33,
@@ -6242,6 +6798,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.533333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         32,
@@ -6267,6 +6825,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.533333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -6301,6 +6861,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.125,
+      "location_iou": 0.125,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         32,
@@ -6327,6 +6889,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.533333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -6362,6 +6926,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.125,
+      "location_iou": 0.125,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         32,
@@ -6388,6 +6954,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.5,
+      "location_iou": 0.5,
+      "location_ast": 0.533333,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -6423,6 +6991,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/top_k_by_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/top_k_by.json",
       "location_continuous": 0.111111,
+      "location_iou": 0.111111,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         32,
@@ -6450,6 +7020,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.363636,
+      "location_iou": 0.363636,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17,
@@ -6479,6 +7051,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.4,
+      "location_iou": 0.4,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         26,
@@ -6507,6 +7081,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.307692,
+      "location_iou": 0.307692,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         17,
@@ -6538,6 +7114,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.4,
+      "location_iou": 0.4,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         26,
@@ -6566,6 +7144,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.571429,
+      "location_iou": 0.571429,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         26,
@@ -6591,6 +7171,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.4,
+      "location_iou": 0.4,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         26,
@@ -6619,6 +7201,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.571429,
+      "location_iou": 0.571429,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         26,
@@ -6644,6 +7228,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.444444,
+      "location_iou": 0.444444,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         26,
@@ -6671,6 +7257,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.4,
+      "location_iou": 0.4,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         26,
@@ -6699,6 +7287,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/two_sum_sorted_pairs_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/two_sum_sorted_pairs.json",
       "location_continuous": 0.4,
+      "location_iou": 0.4,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         26,
@@ -6727,6 +7317,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C1_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -6746,6 +7338,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C1_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -6765,6 +7359,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C1plus_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -6784,6 +7380,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C1plus_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -6803,6 +7401,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C2_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -6822,6 +7422,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C2_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -6841,6 +7443,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C3_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 0.0625,
+      "location_iou": 0.0625,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         1,
@@ -6875,6 +7479,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C3_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -6894,6 +7500,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C4_claude-opus-4-6.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
@@ -6913,6 +7521,8 @@
       "response_ref": "results/runs/full_t2_confirmatory_v2/responses/welford_running_stats_T2_C4_gpt-5.4.json",
       "ground_truth_ref": "data/ground_truth/bugs/welford_running_stats.json",
       "location_continuous": 1.0,
+      "location_iou": 1.0,
+      "location_ast": 1.0,
       "location_binary_frozen": 0,
       "predicted_lines": [
         29
